@@ -1,0 +1,4 @@
+
+*** Running ncdump bug test.
+*** All ncdump bug test output for netCDF-4 format passed!
+PASS tst_fillbug.sh (exit status: 0)

@@ -1,0 +1,11 @@
+
+*** Testing overwriting text attribute with string attribute.
+
+***Creating file...Success
+Creating global attribute with nc_put_att_text...Succes
+Overwriting global attribute with nc_put_att_string...Success
+Closing file...Success
+Test Finished.
+ok.
+*** Tests successful!
+PASS tst_atts_string_rewrite (exit status: 0)

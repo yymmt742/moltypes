@@ -1,0 +1,5 @@
+
+*** Checking HDF5 compound types (we're almost there kids).
+*** Checking packing of HDF5 compound types...ok.
+*** Tests successful!
+PASS tst_h_rd_cmp (exit status: 0)

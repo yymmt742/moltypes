@@ -1,0 +1,48 @@
+test_meta.sh:
+Not found: /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/dap4_test/cdltestfiles/test_anon_dim.cdl; ignored
+Not found: /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/dap4_test/cdltestfiles/test_anon_dim.cdl; ignored
+Not found: /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/dap4_test/cdltestfiles/test_sequence_1.cdl; ignored
+Not found: /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/dap4_test/cdltestfiles/test_sequence_2.cdl; ignored
+checking: test_anon_dim.2.syn
+checking: test_anon_dim.syn
+checking: test_atomic_array.5.nc
+checking: test_atomic_array.8.nc
+checking: test_atomic_array.9.nc
+checking: test_atomic_array.nc
+checking: test_atomic_array.syn
+checking: test_atomic_types.nc
+checking: test_atomic_types.syn
+checking: test_enum_2.nc
+checking: test_enum_array.4.nc
+checking: test_enum_array.nc
+checking: test_enum.nc
+checking: test_fill.nc
+checking: test_groups1.nc
+checking: test_one_vararray.1.nc
+checking: test_one_vararray.3.nc
+checking: test_one_vararray.nc
+checking: test_one_var.nc
+checking: test_opaque_array.7.nc
+checking: test_opaque_array.nc
+checking: test_opaque.nc
+checking: test_sequence_1.syn
+checking: test_sequence_2.syn
+checking: test_struct1.nc
+checking: test_struct_array.6.nc
+checking: test_struct_array.nc
+checking: test_struct_array.syn
+checking: test_struct_nested3.nc
+checking: test_struct_nested.nc
+checking: test_struct_type.nc
+checking: test_unlim1.nc
+checking: test_utf8.nc
+checking: test_vlen1.nc
+checking: test_vlen2.nc
+checking: test_vlen3.nc
+checking: test_vlen4.nc
+checking: test_vlen5.nc
+checking: test_vlen6.nc
+checking: test_vlen7.nc
+checking: test_vlen8.nc
+*** Pass
+PASS test_meta.sh (exit status: 0)

@@ -1,0 +1,12 @@
+Opening file "firstFile.cdf" with NcFile::replace
+Testing addGroup("groupName")                              -----------   passed
+Testing addDim("dimensionName")                            -----------   passed
+Testing NcDim::isUnlimited()                               -----------   passed
+Testing NcDim::isNull()                                    -----------   passed
+Testing NcDim::getSize()                                   -----------   passed
+Testing NcDim::getParentGroup()                            -----------   passed
+Testing NcDim::getName()                                   -----------   passed
+Testing NcGroup::getDimCount([netCDF::Location])           -----------   passed
+Testing NcGroup::getDims([netCDF::Location])               -----------   passed
+Testing NcGroup::getDims("name",[netCDF::Location])        -----------   passed
+Testing NcGroup::getDim("name",[netCDF::Location])         -----------   passed

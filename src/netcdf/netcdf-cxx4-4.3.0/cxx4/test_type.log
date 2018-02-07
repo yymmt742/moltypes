@@ -1,0 +1,35 @@
+Opening file "firstFile.cdf" with NcFile::replace
+Testing addGroup("groupName")                                -----------   passed
+Testing getName()                                            -----------   passed
+Testing getParentGroup() and isNull()                        -----------   passed
+Testing getSize()                                            -----------   passed
+Testing getTypeClass()                                       -----------   passed
+Testing getTypeClassName()                                   -----------   passed
+Testing creating new Compound Type                           -----------   passed
+Testing NcCompoundType::addMember()                          -----------   passed
+Testing NcCompoundType==>NcType && NcType::getTypeClass()    -----------   passed
+Testing compoundClass.getMemberCount()                       -----------   passed
+Testing NcCompoundType::getMemberDimCount()                  -----------   passed
+Testing NcCompoundType::getMemberShape(index)                -----------   passed
+Testing NcCompoundType::getMember(index).getName()           -----------   passed
+Testing NcCompoundType == NcType                             -----------   passed
+Testing NcCompoundType == NcCompoundType                     -----------   passed
+Testing creating new Vlen Type                               -----------   passed
+Testing NcVlenType::getTypeClass()                           -----------   passed
+Testing NcVlenType::getTypeClassName()                       -----------   passed
+Testing NcVlenType::getName()                                -----------   passed
+Testing NcVlenType::getBaseType(); == and !=                 -----------   passed
+Testing NcVlenType constructors                              -----------   passed
+Testing creating new Enum Type                               -----------   passed
+Testing NcEnumType::addMember()                              -----------   passed
+Testing NcEnumType::getBaseType() == and !=                  -----------   passed
+Testing NcEnumType::getMemberCount()                         -----------   passed
+Testing NcEnumType::getMemberNameFromIndex(index)            -----------   passed
+Testing NcEnumType::getMemberNameFromValue(index)            -----------   passed
+Testing NcEnumType::getMemberValue(index,value)              -----------   passed
+Testing NcEnumType constructors == and !=                    -----------   passed
+Testing ncFile::getType() (overloaded)                       -----------   passed
+Testing ENUM ncFile::putVar() and NcFile::getVar()           -----------   passed
+Testing COMPOUND ncFile::putVar() and NcFile::getVar()       -----------   passed
+Testing VLEN ncFile::putVar() and NcFile::getVar()           -----------   passed
+Testing COMPOUND with VLEN ncFile::putVar() and NcFile::getVar()    -----------   passed

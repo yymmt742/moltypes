@@ -1,0 +1,10 @@
+
+Testing nested types across platforms.
+*** testing of vlen of compound type...ok.
+*** testing Solaris-written vlen of compound type...ok.
+*** testing compound type containing array of compound type...ok.
+*** testing Solaris-written compound type containing array of compound type...ok.
+*** testing compound attribute containing array of vlen of compound type...ok.
+*** testing compound variable containing array of vlen of compound type...ok.
+*** Tests successful!
+PASS tst_xplatform2 (exit status: 0)

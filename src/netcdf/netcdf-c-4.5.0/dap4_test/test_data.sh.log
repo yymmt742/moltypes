@@ -1,0 +1,85 @@
+test_data.sh:
+testing: test_anon_dim.2.syn
+code=0 No error
+testing: test_anon_dim.syn
+code=0 No error
+testing: test_atomic_array.5.nc
+code=0 No error
+testing: test_atomic_array.8.nc
+code=0 No error
+testing: test_atomic_array.9.nc
+code=0 No error
+testing: test_atomic_array.nc
+code=0 No error
+testing: test_atomic_array.syn
+code=0 No error
+testing: test_atomic_types.nc
+code=0 No error
+testing: test_atomic_types.syn
+code=0 No error
+testing: test_enum_2.nc
+code=0 No error
+testing: test_enum_array.4.nc
+code=0 No error
+testing: test_enum_array.nc
+code=0 No error
+testing: test_enum.nc
+code=0 No error
+testing: test_fill.nc
+code=0 No error
+testing: test_groups1.nc
+code=0 No error
+testing: test_one_vararray.1.nc
+code=0 No error
+testing: test_one_vararray.3.nc
+code=0 No error
+testing: test_one_vararray.nc
+code=0 No error
+testing: test_one_var.nc
+code=0 No error
+testing: test_opaque_array.7.nc
+code=0 No error
+testing: test_opaque_array.nc
+code=0 No error
+testing: test_opaque.nc
+code=0 No error
+testing: test_sequence_1.syn
+code=0 No error
+testing: test_sequence_2.syn
+code=0 No error
+testing: test_struct1.nc
+code=0 No error
+testing: test_struct_array.6.nc
+code=0 No error
+testing: test_struct_array.nc
+code=0 No error
+testing: test_struct_array.syn
+code=0 No error
+testing: test_struct_nested3.nc
+code=0 No error
+testing: test_struct_nested.nc
+code=0 No error
+testing: test_struct_type.nc
+code=0 No error
+testing: test_unlim1.nc
+code=0 No error
+testing: test_utf8.nc
+code=0 No error
+testing: test_vlen1.nc
+code=0 No error
+testing: test_vlen2.nc
+code=0 No error
+testing: test_vlen3.nc
+code=0 No error
+testing: test_vlen4.nc
+code=0 No error
+testing: test_vlen5.nc
+code=0 No error
+testing: test_vlen6.nc
+code=0 No error
+testing: test_vlen7.nc
+code=0 No error
+testing: test_vlen8.nc
+code=0 No error
+*** Pass
+PASS test_data.sh (exit status: 0)

@@ -1,0 +1,5 @@
+
+*** Testing compound types.
+*** creating compound test file tst_comp.nc...ok.
+*** Tests successful!
+PASS tst_comp (exit status: 0)

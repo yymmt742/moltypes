@@ -1,0 +1,134 @@
+
+Testing MPI parallel I/O with various other mode flags...
+
+*** Testing illegal mode combinations
+*** Testing create + MPIO + fletcher32
+*** Testing create + MPIO + deflation
+ok.
+*** Tests successful!
+
+Testing MPI parallel I/O without netCDF...
+
+*** Testing basic MPI file I/O.
+*** testing file create with parallel I/O with MPI...ok.
+*** Tests successful!
+
+Testing very simple parallel I/O with 4 processors...
+
+*** tst_parallel testing very basic parallel access.
+*** tst_parallel testing whether we can create file for parallel access and write to it...ok.
+*** Tests successful!
+
+Testing simple parallel I/O with 16 processors...
+
+*** Testing more advanced parallel access.
+*** Testing parallel IO for raw-data with MPI-IO (driver)...ok.
+*** Testing parallel IO for meta-data with MPI-IO (driver)...ok.
+*** Testing parallel IO for different hyperslab selections with MPI-IO (driver)...ok.
+*** Testing parallel IO for extending variables with MPI-IO (driver)...ok.
+*** Testing parallel IO for raw-data with MPIPOSIX-IO (driver)...ok.
+*** Testing parallel IO for meta-data with MPIPOSIX-IO (driver)...ok.
+*** Testing parallel IO for different hyperslab selections with MPIPOSIX-IO (driver)...ok.
+*** Testing parallel IO for extending variables with MPIPOSIX-IO (driver)...ok.
+*** Tests successful!
+
+num_proc   time(s)  write_rate(B/s)
+1	0.244769	4.38675e+09
+2	0.229156	4.68564e+09
+4	0.199262	5.3886e+09
+8	0.245446	4.37466e+09
+
+Parallel Performance Test for NASA
+*** Testing parallel IO for NASA...
+num_proc	MPI mode	access		cache (MB)	grid size	chunks	avg. write time(s)	avg. write bandwidth(MB/s)	num_tries
+4		MPI-IO   	independent	1		40x61		contiguous	0.081060		1.323267			2
+4		MPI-IO   	independent	1		40x61		61x40    	0.022634		4.539767			2
+4		MPI-IO   	independent	1		40x61		31x20    	0.014758		6.309519			2
+4		MPI-IO   	collective	1		40x61		contiguous	0.018379		5.342950			2
+4		MPI-IO   	collective	1		40x61		61x40    	0.021969		4.241679			2
+4		MPI-IO   	collective	1		40x61		31x20    	0.023643		3.941646			2
+4		MPI-POSIX	independent	1		40x61		contiguous	0.033175		3.126611			2
+4		MPI-POSIX	independent	1		40x61		61x40    	0.021944		4.247957			2
+4		MPI-POSIX	independent	1		40x61		31x20    	0.027563		3.433052			2
+4		MPI-POSIX	collective	1		40x61		contiguous	0.028476		3.405634			2
+4		MPI-POSIX	collective	1		40x61		61x40    	0.014385		6.527090			2
+4		MPI-POSIX	collective	1		40x61		31x20    	0.015705		5.927711			2
+4		MPI-IO   	independent	32		40x61		contiguous	0.021767		4.490942			2
+4		MPI-IO   	independent	32		40x61		61x40    	0.036328		2.576133			2
+4		MPI-IO   	independent	32		40x61		31x20    	0.017183		5.417343			2
+4		MPI-IO   	collective	32		40x61		contiguous	0.019806		4.791012			2
+4		MPI-IO   	collective	32		40x61		61x40    	0.022619		4.115070			2
+4		MPI-IO   	collective	32		40x61		31x20    	0.023343		3.988785			2
+4		MPI-POSIX	independent	32		40x61		contiguous	0.028957		3.375271			2
+4		MPI-POSIX	independent	32		40x61		61x40    	0.013507		7.052418			2
+4		MPI-POSIX	independent	32		40x61		31x20    	0.016568		5.622444			2
+4		MPI-POSIX	collective	32		40x61		contiguous	0.014579		6.636531			2
+4		MPI-POSIX	collective	32		40x61		61x40    	0.014990		6.224754			2
+4		MPI-POSIX	collective	32		40x61		31x20    	0.016994		5.507897			2
+4		MPI-IO   	independent	64		40x61		contiguous	0.027333		4.378718			2
+4		MPI-IO   	independent	64		40x61		61x40    	0.021143		4.475465			2
+4		MPI-IO   	independent	64		40x61		31x20    	0.019182		5.014059			2
+4		MPI-IO   	collective	64		40x61		contiguous	0.018450		5.302752			2
+4		MPI-IO   	collective	64		40x61		61x40    	0.015674		5.985463			2
+4		MPI-IO   	collective	64		40x61		31x20    	0.016404		5.680126			2
+4		MPI-POSIX	independent	64		40x61		contiguous	0.035704		3.796745			2
+4		MPI-POSIX	independent	64		40x61		61x40    	0.033782		3.467682			2
+4		MPI-POSIX	independent	64		40x61		31x20    	0.014983		6.563693			2
+4		MPI-POSIX	collective	64		40x61		contiguous	0.018372		5.100649			2
+4		MPI-POSIX	collective	64		40x61		61x40    	0.015836		5.910996			2
+4		MPI-POSIX	collective	64		40x61		31x20    	0.022851		4.073352			2
+4		MPI-IO   	independent	1		4x3x61x40	contiguous	0.078406		14.245707			2
+4		MPI-IO   	independent	1		4x3x61x40	1x3x61x40	0.090492		12.575618			2
+4		MPI-IO   	independent	1		4x3x61x40	2x2x31x20	0.072775		15.440161			2
+4		MPI-IO   	independent	1		4x3x61x40	4x3x61x40	0.089235		13.329081			2
+4		MPI-IO   	collective	1		4x3x61x40	contiguous	0.061804		18.215517			2
+4		MPI-IO   	collective	1		4x3x61x40	1x3x61x40	0.061893		18.199205			2
+4		MPI-IO   	collective	1		4x3x61x40	2x2x31x20	0.061723		18.251854			2
+4		MPI-IO   	collective	1		4x3x61x40	4x3x61x40	0.067262		16.606020			2
+4		MPI-POSIX	independent	1		4x3x61x40	contiguous	0.078426		14.241921			2
+4		MPI-POSIX	independent	1		4x3x61x40	1x3x61x40	0.077998		14.320406			2
+4		MPI-POSIX	independent	1		4x3x61x40	2x2x31x20	0.078077		14.305609			2
+4		MPI-POSIX	independent	1		4x3x61x40	4x3x61x40	0.078359		14.254094			2
+4		MPI-POSIX	collective	1		4x3x61x40	contiguous	0.067217		16.617082			2
+4		MPI-POSIX	collective	1		4x3x61x40	1x3x61x40	0.067351		16.584083			2
+4		MPI-POSIX	collective	1		4x3x61x40	2x2x31x20	0.067226		16.614743			2
+4		MPI-POSIX	collective	1		4x3x61x40	4x3x61x40	0.067141		16.635972			2
+4		MPI-IO   	independent	32		4x3x61x40	contiguous	0.072856		15.419749			2
+4		MPI-IO   	independent	32		4x3x61x40	1x3x61x40	0.089402		13.354216			2
+4		MPI-IO   	independent	32		4x3x61x40	2x2x31x20	0.072518		15.493087			2
+4		MPI-IO   	independent	32		4x3x61x40	4x3x61x40	0.078033		14.608482			2
+4		MPI-IO   	collective	32		4x3x61x40	contiguous	0.061590		18.284024			2
+4		MPI-IO   	collective	32		4x3x61x40	1x3x61x40	0.061704		18.248781			2
+4		MPI-IO   	collective	32		4x3x61x40	2x2x31x20	0.067389		16.574481			2
+4		MPI-IO   	collective	32		4x3x61x40	4x3x61x40	0.067201		16.621264			2
+4		MPI-POSIX	independent	32		4x3x61x40	contiguous	0.078233		14.277249			2
+4		MPI-POSIX	independent	32		4x3x61x40	1x3x61x40	0.078404		14.245988			2
+4		MPI-POSIX	independent	32		4x3x61x40	2x2x31x20	0.078430		14.241349			2
+4		MPI-POSIX	independent	32		4x3x61x40	4x3x61x40	0.078408		14.245470			2
+4		MPI-POSIX	collective	32		4x3x61x40	contiguous	0.067336		16.587544			2
+4		MPI-POSIX	collective	32		4x3x61x40	1x3x61x40	0.067097		16.646791			2
+4		MPI-POSIX	collective	32		4x3x61x40	2x2x31x20	0.067181		16.625905			2
+4		MPI-POSIX	collective	32		4x3x61x40	4x3x61x40	0.061521		18.306827			2
+4		MPI-IO   	independent	64		4x3x61x40	contiguous	0.072597		15.483484			2
+4		MPI-IO   	independent	64		4x3x61x40	1x3x61x40	0.072695		15.458569			2
+4		MPI-IO   	independent	64		4x3x61x40	2x2x31x20	0.067114		16.642479			2
+4		MPI-IO   	independent	64		4x3x61x40	4x3x61x40	0.072774		15.438929			2
+4		MPI-IO   	collective	64		4x3x61x40	contiguous	0.067240		16.611202			2
+4		MPI-IO   	collective	64		4x3x61x40	1x3x61x40	0.067243		16.610587			2
+4		MPI-IO   	collective	64		4x3x61x40	2x2x31x20	0.067114		16.642512			2
+4		MPI-IO   	collective	64		4x3x61x40	4x3x61x40	0.067137		16.636674			2
+4		MPI-POSIX	independent	64		4x3x61x40	contiguous	0.078046		14.311377			2
+4		MPI-POSIX	independent	64		4x3x61x40	1x3x61x40	0.078372		14.251875			2
+4		MPI-POSIX	independent	64		4x3x61x40	2x2x31x20	0.078225		14.278563			2
+4		MPI-POSIX	independent	64		4x3x61x40	4x3x61x40	0.078269		14.270534			2
+4		MPI-POSIX	collective	64		4x3x61x40	contiguous	0.067109		16.643826			2
+4		MPI-POSIX	collective	64		4x3x61x40	1x3x61x40	0.061622		18.262127			2
+4		MPI-POSIX	collective	64		4x3x61x40	2x2x31x20	0.061784		18.225147			2
+4		MPI-POSIX	collective	64		4x3x61x40	4x3x61x40	0.061571		18.291317			2
+ok.
+*** Tests successful!
+
+Parallel I/O test for Collective I/O, contributed by HDF Group.
+1	0.000782013	2.09511e+07
+2	0.000611067	2.68121e+07
+PASS run_par_test.sh (exit status: 0)

@@ -1,0 +1,146 @@
++ test x. = x
++ . ../test_common.sh
+++ set -e
+++ TOPSRCDIR=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0
+++ TOPBUILDDIR=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0
+++ test x1 = x1
+++ set -x
+++ top_srcdir=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0
+++ top_builddir=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0
+++ test x. = x
++++ pwd
+++ builddir=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump
+++ execdir=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump
++++ basename .
+++ thisdir=.
++++ pwd
+++ WD=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump
+++ cd .
++++ pwd
+++ srcdir=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump
+++ cd /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump
+++ cd /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0
++++ pwd
+++ top_srcdir=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0
+++ cd /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump
+++ cd /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump
++++ pwd
+++ builddir=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump
+++ cd /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump
+++ cd /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0
++++ pwd
+++ top_builddir=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0
+++ cd /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump
+++ cd /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump
++++ pwd
+++ execdir=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump
+++ cd /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump
++++ uname
++++ cut -d _ -f 1
+++ tcc=Linux
+++ test x = xCYGWIN
+++ export srcdir top_srcdir builddir top_builddir execdir
+++ test -e /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump/ncdump.exe
+++ ext=
+++ export NCDUMP=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump/ncdump
+++ NCDUMP=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump/ncdump
+++ export NCCOPY=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump/nccopy
+++ NCCOPY=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump/nccopy
+++ export NCGEN=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncgen/ncgen
+++ NCGEN=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncgen/ncgen
+++ export NCGEN3=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncgen3/ncgen3
+++ NCGEN3=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncgen3/ncgen3
+++ ncgen3c0=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncgen3/c0.cdl
+++ ncgenc0=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncgen/c0.cdl
+++ ncgenc04=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncgen/c0_4.cdl
+++ cd /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump
++ set -e
++ echo ''
+
++ echo '*** Testing ncgen and ncdump test output for classic format.'
+*** Testing ncgen and ncdump test output for classic format.
++ echo '*** creating ctest1.cdl from ctest0.nc...'
+*** creating ctest1.cdl from ctest0.nc...
++ /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump/ncdump -n c1 /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump/ctest0.nc
++ sed s/e+0/e+/g
++ echo '*** creating c0.nc from c0.cdl...'
+*** creating c0.nc from c0.cdl...
++ /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncgen/ncgen -b -o c0.nc /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncgen/c0.cdl
++ echo '*** creating c1.cdl from c0.nc...'
+*** creating c1.cdl from c0.nc...
++ sed s/e+0/e+/g
++ /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump/ncdump -n c1 /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump/c0.nc
++ echo '*** comparing ncdump of C program output (ctest1.cdl) with c1.cdl...'
+*** comparing ncdump of C program output (ctest1.cdl) with c1.cdl...
++ diff -b c1.cdl ctest1.cdl
++ echo '*** test output for ncdump -k'
+*** test output for ncdump -k
+++ /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump/ncdump -k c0.nc
++ KIND=classic
++ test classic = classic
++ /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncgen/ncgen -k classic -b -o c0tmp.nc /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncgen/c0.cdl
++ cmp c0tmp.nc c0.nc
++ echo '*** test output for ncdump -x'
+*** test output for ncdump -x
++ echo '*** creating tst_ncml.nc from tst_ncml.cdl'
+*** creating tst_ncml.nc from tst_ncml.cdl
++ /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncgen/ncgen -b -o tst_ncml.nc /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump/tst_ncml.cdl
++ echo '*** creating c1.ncml from tst_ncml.nc'
+*** creating c1.ncml from tst_ncml.nc
++ /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump/ncdump -x tst_ncml.nc
++ sed s/e-00/e-0/g
+Attribute: 'gnul'; value contains nul characters; producing illegal xml
++ echo '*** comparing ncdump -x of generated file with ref1.ncml ...'
+*** comparing ncdump -x of generated file with ref1.ncml ...
++ diff -b c1.ncml /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump/ref1.ncml
++ echo '*** test output for ncdump -s'
+*** test output for ncdump -s
++ echo '*** creating tst_mslp.nc from tst_mslp.cdl'
+*** creating tst_mslp.nc from tst_mslp.cdl
++ /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncgen/ncgen -b -o tst_mslp.nc /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump/tst_mslp.cdl
++ echo '*** creating tst_format_att.cdl from tst_mslp.nc'
+*** creating tst_format_att.cdl from tst_mslp.nc
++ /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump/ncdump -s tst_mslp.nc
++ echo '*** comparing ncdump -s of generated file with ref_tst_format_att.cdl ...'
+*** comparing ncdump -s of generated file with ref_tst_format_att.cdl ...
++ diff -b tst_format_att.cdl /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump/ref_tst_format_att.cdl
++ echo '*** All ncgen and ncdump test output for classic format passed!'
+*** All ncgen and ncdump test output for classic format passed!
++ echo '*** Testing ncgen and ncdump test output for 64-bit offset format.'
+*** Testing ncgen and ncdump test output for 64-bit offset format.
++ echo '*** creating ctest1_64.cdl from test0_64.nc...'
+*** creating ctest1_64.cdl from test0_64.nc...
++ /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump/ncdump -n c1 ctest0_64.nc
++ sed s/e+0/e+/g
++ echo '*** creating c0.nc from c0.cdl...'
+*** creating c0.nc from c0.cdl...
++ /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncgen/ncgen -k nc6 -b -o c0.nc /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncgen/c0.cdl
++ echo '*** creating c1.cdl from c0.nc...'
+*** creating c1.cdl from c0.nc...
++ /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump/ncdump -n c1 c0.nc
++ sed s/e+0/e+/g
++ echo '*** comparing ncdump of C program output (ctest1_64.cdl) with c1.cdl...'
+*** comparing ncdump of C program output (ctest1_64.cdl) with c1.cdl...
++ diff -b c1.cdl ctest1_64.cdl
++ echo '*** test output for ncdump -k'
+*** test output for ncdump -k
+++ /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump/ncdump -k c0.nc
++ test '64-bit offset' = '64-bit offset'
++ /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncgen/ncgen -k nc6 -b -o c0tmp.nc /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncgen/c0.cdl
++ cmp c0tmp.nc c0.nc
++ echo '*** test output for ncdump -s'
+*** test output for ncdump -s
++ echo '*** creating tst_mslp_64.nc from tst_mslp.cdl'
+*** creating tst_mslp_64.nc from tst_mslp.cdl
++ /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncgen/ncgen -k nc6 -b -o tst_mslp_64.nc /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump/tst_mslp.cdl
++ echo '*** creating tst_format_att_64.cdl from tst_mslp_64.nc'
+*** creating tst_format_att_64.cdl from tst_mslp_64.nc
++ /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump/ncdump -s tst_mslp_64.nc
++ sed s/e+0/e+/g
++ echo '*** comparing ncdump -s of generated file with ref_tst_format_att_64.cdl ...'
+*** comparing ncdump -s of generated file with ref_tst_format_att_64.cdl ...
++ diff -b tst_format_att_64.cdl /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdump/ref_tst_format_att_64.cdl
++ echo '*** All ncgen and ncdump test output for 64-bit offset format passed!'
+*** All ncgen and ncdump test output for 64-bit offset format passed!
++ exit 0
+PASS tst_output.sh (exit status: 0)

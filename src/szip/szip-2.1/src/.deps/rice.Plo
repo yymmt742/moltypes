@@ -1,0 +1,64 @@
+rice.lo: rice.c /usr/include/stdlib.h /usr/include/features.h \
+ /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
+ /usr/include/bits/wordsize.h /usr/include/gnu/stubs-64.h \
+ /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stddef.h \
+ /usr/include/stdio.h \
+ /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stddef.h \
+ /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+ /usr/include/bits/typesizes.h /usr/include/libio.h /usr/include/_G_config.h \
+ /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stddef.h \
+ /usr/include/wchar.h \
+ /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stdarg.h \
+ /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+ /usr/include/bits/stdio.h /usr/include/string.h \
+ /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stddef.h \
+ /usr/include/bits/string.h /usr/include/bits/string2.h /usr/include/sys/stat.h \
+ /usr/include/bits/stat.h rice.h ricehdf.h
+
+/usr/include/stdlib.h:
+
+/usr/include/features.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/gnu/stubs.h:
+
+/usr/include/gnu/stubs-64.h:
+
+/opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stddef.h:
+
+/usr/include/stdio.h:
+
+/usr/include/bits/types.h:
+
+/usr/include/bits/typesizes.h:
+
+/usr/include/libio.h:
+
+/usr/include/_G_config.h:
+
+/usr/include/wchar.h:
+
+/opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stdarg.h:
+
+/usr/include/bits/stdio_lim.h:
+
+/usr/include/bits/sys_errlist.h:
+
+/usr/include/bits/stdio.h:
+
+/usr/include/string.h:
+
+/usr/include/bits/string.h:
+
+/usr/include/bits/string2.h:
+
+/usr/include/sys/stat.h:
+
+/usr/include/bits/stat.h:
+
+rice.h:
+
+ricehdf.h:

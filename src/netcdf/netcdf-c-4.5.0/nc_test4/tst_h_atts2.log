@@ -1,0 +1,6 @@
+
+*** Checking HDF5 attribute functions some more.
+*** Opening tst_xplatform2_3.nc... reading type Magna_Carta_VLEN  reading type barons  reading type cmp_t ok.
+*** Opening tst_xplatform2_3.nc again...ok.
+*** Tests successful!
+PASS tst_h_atts2 (exit status: 0)

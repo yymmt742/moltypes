@@ -1,0 +1,5 @@
+
+*** Testing fix for non-coord var bug.
+*** creating bug test file tst_bug324.nc...ok.
+*** Tests successful!
+PASS tst_bug324 (exit status: 0)

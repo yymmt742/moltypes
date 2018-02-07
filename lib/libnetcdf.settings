@@ -1,0 +1,37 @@
+# NetCDF C Configuration Summary
+==============================
+
+# General
+-------
+NetCDF Version:		4.5.0
+Configured On:		Mon Jan 15 04:19:24 JST 2018
+Host System:		x86_64-pc-linux-gnu
+Build Directory: 	/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0
+Install Prefix:         /home/yamamoto/local/devel/moltypes
+
+# Compiling Options
+-----------------
+C Compiler:		/opt/intel/compilers_and_libraries_2017.2.174/linux/mpi/intel64/bin/mpiicc
+CFLAGS:			-O3 -xHost -ip -no-prec-div -static-intel -Difort -fPIC
+CPPFLAGS:		-I/home/yamamoto/local/devel/moltypes/include -fPIC
+LDFLAGS:		-L/home/yamamoto/local/devel/moltypes/lib
+AM_CFLAGS:		
+AM_CPPFLAGS:		
+AM_LDFLAGS:		
+Shared Library:		yes
+Static Library:		yes
+Extra libraries:	-ldl -lm -lhdf5_hl -lhdf5 -lz -lsz -lcurl
+
+# Features
+--------
+NetCDF-2 API:		yes
+HDF4 Support:		no
+NetCDF-4 API:		yes
+NC-4 Parallel Support:	yes
+PNetCDF Support:	no
+DAP2 Support:		yes
+DAP4 Support:		yes
+Diskless Support:	yes
+MMap Support:		no
+JNA Support:		no
+CDF5 Support:		no

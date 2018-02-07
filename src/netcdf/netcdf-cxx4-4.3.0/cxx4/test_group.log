@@ -1,0 +1,7 @@
+Opening file "firstFile.cdf" with NcFile::replace
+Testing addGroup("groupName")                         -----------   passed
+Testing getGroupCount([netCDF::Location])             -----------   passed
+Testing getGroups([netCDF::Location])                 -----------   passed
+Testing getGroups("name",[netCDF::Location])          -----------   passed
+Testing getGroup("name",[netCDF::Location])           -----------   passed
+Testing getParentGroup()                              -----------   passed

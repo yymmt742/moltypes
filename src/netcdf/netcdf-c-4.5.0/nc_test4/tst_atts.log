@@ -1,0 +1,6 @@
+
+*** Testing netCDF-4 attributes.
+*** testing attribute renaming for a global attribute...ok.
+*** testing attribute renaming for a variable attribute...ok.
+*** Tests successful!
+PASS tst_atts (exit status: 0)

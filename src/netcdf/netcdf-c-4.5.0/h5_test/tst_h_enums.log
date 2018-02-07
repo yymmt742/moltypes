@@ -1,0 +1,6 @@
+
+*** Checking HDF5 enum types.
+*** Checking simple HDF5 enum type...ok.
+*** Checking HDF5 enum type missing values...ok.
+*** Tests successful!
+PASS tst_h_enums (exit status: 0)

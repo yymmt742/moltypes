@@ -1,0 +1,9 @@
+
+*** Testing netcdf-4 variable chunking.
+**** testing that fixed vars with filter end up being chunked, with good sizes...ok.
+**** testing default chunksizes...ok.
+**** testing that chunking works on classic mode files...ok.
+**** testing many chunking and contiguous variables...ok.
+**** testing that too large chunksizes fail...ok.
+*** Tests successful!
+PASS tst_chunks (exit status: 0)

@@ -1,0 +1,8 @@
+
+*** Creating test files for ncdump.
+*** creating nested group file tst_solar_1.nc...ok.
+*** checking nested group file tst_solar_1.nc...ok.
+*** creating file with VLEN tst_solar_2.nc...ok.
+*** creating file with compound type tst_solar_cmp.nc...ok.
+*** Tests successful!
+PASS tst_create_files (exit status: 0)

@@ -1,0 +1,47 @@
+
+*** Testing netcdf-4 variable functions, even more.
+*** Testing with classic format:
+**** testing simple fill value attribute creation...Error at line 74: expecting NC_ELATEFILL but got No error
+ok.
+**** testing simple fill value with data read...ok.
+**** testing fill value with one other attribute...ok.
+**** testing fill value with three other attributes...ok.
+**** testing fill value with simple example...ok.
+**** testing fill value with example from cxx tests in v2 api...ok.
+*** Testing with 64-bit offset format:
+**** testing simple fill value attribute creation...Error at line 74: expecting NC_ELATEFILL but got No error
+ok.
+**** testing simple fill value with data read...ok.
+**** testing fill value with one other attribute...ok.
+**** testing fill value with three other attributes...ok.
+**** testing fill value with simple example...ok.
+**** testing fill value with example from cxx tests in v2 api...ok.
+*** Testing with HDF5:
+**** testing simple fill value attribute creation...ok.
+**** testing simple fill value with data read...ok.
+**** testing fill value with one other attribute...ok.
+**** testing fill value with three other attributes...ok.
+**** testing fill value with simple example...ok.
+**** testing fill value with example from cxx tests in v2 api...ok.
+*** Testing with HDF5, netCDF Classic Model:
+**** testing simple fill value attribute creation...ok.
+**** testing simple fill value with data read...ok.
+**** testing fill value with one other attribute...ok.
+**** testing fill value with three other attributes...ok.
+**** testing fill value with simple example...ok.
+**** testing fill value with example from cxx tests in v2 api...ok.
+**** testing create order varids...ok.
+**** testing simple variable renaming...ok.
+**** testing dimension and variable renaming...ok.
+**** testing endianness...ok.
+**** testing chunking and the chunk cache...ok.
+**** testing contiguous storage...ok.
+**** testing extreme numbers dude...ok.
+**** testing error codes for name clashes...ok.
+**** testing error codes for name clashes some more...ok.
+**** testing error codes for name clashes even more...ok.
+**** testing error code for too-large chunks...ok.
+**** testing that contiguous storage can't be turned on for vars with unlimited dims or filters...ok.
+**** testing that contiguous storage can't be turned on for vars with unlimited dims or filters...ok.
+*** Tests successful!
+PASS tst_vars2 (exit status: 0)

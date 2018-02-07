@@ -1,0 +1,7 @@
+
+*** Testing with CF example http://cf-pcmdi.llnl.gov/documents/cf-conventions/1.4/ch05s02.html....
+**** simple test with only metadataok.
+**** test with data writes...ok.
+**** test with data writes without enddefs...ok.
+*** Tests successful!
+PASS tst_coords3 (exit status: 0)

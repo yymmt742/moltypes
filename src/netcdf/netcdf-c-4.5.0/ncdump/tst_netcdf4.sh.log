@@ -1,0 +1,18 @@
+
+*** Testing ncgen and ncdump test output for netCDF-4 format.
+*** Testing ncgen and ncdump test output for netCDF-4 classic format.
+*** Testing ncdump output for netCDF-4 features.
+*** Testing -v option with absolute name and groups...
+*** Testing -v option with relative name and groups...
+*** dumping tst_unicode.nc to tst_unicode.cdl...
+
+*** Testing UTF-8.
+*** creating UTF-8 test file tst_unicode.nc...ok.
+*** Tests successful!
+
+*** Testing '-s' option for special attributes.
+*** creating special attributes test file tst_special_atts.nc...ok.
+*** Tests successful!
+*** comparing tst_special_atts.cdl with ref_tst_special_atts.cdl...
+*** All ncgen and ncdump test output for netCDF-4 format passed!
+PASS tst_netcdf4.sh (exit status: 0)

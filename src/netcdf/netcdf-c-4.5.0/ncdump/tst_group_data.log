@@ -1,0 +1,5 @@
+
+*** Testing groups.
+*** creating nested group file tst_group_data.nc...ok.
+*** Tests successful!
+PASS tst_group_data (exit status: 0)

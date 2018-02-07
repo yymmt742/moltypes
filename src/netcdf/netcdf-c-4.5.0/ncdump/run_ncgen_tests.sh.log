@@ -1,0 +1,9 @@
+*** Testing ncgen.
+*** creating classic file c0.nc from c0.cdl...
+*** generating c0.nc ***
+*** comparing c0.nc against /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncgen/c0.cdl *** 
+*** creating 64-bit offset file c0_64.nc from c0.cdl...
+*** generating c0.nc ***
+*** comparing c0.nc against /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncgen/c0.cdl *** 
+*** Test successful!
+PASS run_ncgen_tests.sh (exit status: 0)

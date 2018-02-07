@@ -1,0 +1,16 @@
+
+Testing parallel I/O with HDF5...
+*** Creating file for parallel I/O read, and rereading it...
+p=1, write_rate=2018.42, read_rate=6371.33
+ok.
+*** Tests successful!
+*** Creating file for parallel I/O read, and rereading it...
+p=2, write_rate=2126.32, read_rate=10210.6
+ok.
+*** Tests successful!
+*** Creating file for parallel I/O read, and rereading it...
+p=4, write_rate=2231.13, read_rate=13016.1
+ok.
+*** Tests successful!
+SUCCESS!!!
+PASS run_par_tests.sh (exit status: 0)

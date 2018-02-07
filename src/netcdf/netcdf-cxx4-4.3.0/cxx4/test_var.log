@@ -1,0 +1,10 @@
+Opening file "firstFile.cdf" with NcFile::replace
+Testing addGroup("groupName")                              -----------   passed
+Testing addVar("varName","typeName")                       -----------   passed
+Testing addDim("dimensionName")                            -----------   passed
+Testing addVar("varName","typeName","dimName")             -----------   passed
+Preparing for tests...
+Testing addCount([netCDF::Location])                       -----------   passed
+Testing getVars([netCDF::Location])                        -----------   passed
+Testing getVar("name",[netCDF::Location])                  -----------   passed
+Testing getVars("name",[netCDF::Location])                 -----------   passed

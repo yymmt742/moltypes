@@ -1,0 +1,26 @@
+*** Testing ncgen for netCDF-4.
+*** creating netCDF-4 file c0_4.nc from c0_4.cdl...
+*** generating c0_4.nc ***
+*** comparing binary against source CDL file *** 
+*** creating netCDF-4 classic model file c0_4c.nc from c0.cdl...
+*** generating c0.nc ***
+*** comparing binary against source CDL file *** 
+*** creating C code for CAM file ref_camrun.cdl...
+*** test for jira NCF-199 bug
+*** generating ncf199.nc ***
+*** comparing binary against source CDL file *** 
+*** creating binary files for github issue 323...
+*** github issue 323 test 1
+*** generating compound_datasize_test.nc ***
+*** comparing binary against source CDL file *** 
+*** github issue 323 test 2
+*** generating compound_datasize_test2.nc ***
+*** comparing binary against source CDL file *** 
+*** Global Attribute with Enum type
+*** generating tst_gattenum.nc ***
+*** comparing binary against source CDL file *** 
+*** Integer constant with just 'u' suffix
+*** generating tst_usuffix.nc ***
+*** comparing binary against source CDL file *** 
+*** Test successful!
+PASS run_ncgen_nc4_tests.sh (exit status: 0)

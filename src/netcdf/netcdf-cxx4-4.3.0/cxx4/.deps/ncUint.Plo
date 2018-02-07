@@ -1,0 +1,224 @@
+ncUint.lo: ncUint.cpp ncUint.h ncType.h /usr/local/include/c++/4.8.4/string \
+ /usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/c++config.h \
+ /usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/os_defines.h \
+ /usr/include/features.h /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
+ /usr/include/gnu/stubs.h /usr/include/bits/wordsize.h \
+ /usr/include/gnu/stubs-64.h \
+ /usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/cpu_defines.h \
+ /usr/local/include/c++/4.8.4/bits/stringfwd.h \
+ /usr/local/include/c++/4.8.4/bits/memoryfwd.h \
+ /usr/local/include/c++/4.8.4/bits/char_traits.h \
+ /usr/local/include/c++/4.8.4/bits/stl_algobase.h \
+ /usr/local/include/c++/4.8.4/bits/functexcept.h \
+ /usr/local/include/c++/4.8.4/bits/exception_defines.h \
+ /usr/local/include/c++/4.8.4/bits/cpp_type_traits.h \
+ /usr/local/include/c++/4.8.4/ext/type_traits.h \
+ /usr/local/include/c++/4.8.4/ext/numeric_traits.h \
+ /usr/local/include/c++/4.8.4/bits/stl_pair.h \
+ /usr/local/include/c++/4.8.4/bits/move.h \
+ /usr/local/include/c++/4.8.4/bits/concept_check.h \
+ /usr/local/include/c++/4.8.4/bits/stl_iterator_base_types.h \
+ /usr/local/include/c++/4.8.4/bits/stl_iterator_base_funcs.h \
+ /usr/local/include/c++/4.8.4/debug/debug.h \
+ /usr/local/include/c++/4.8.4/bits/stl_iterator.h \
+ /usr/local/include/c++/4.8.4/bits/postypes.h /usr/local/include/c++/4.8.4/cwchar \
+ /usr/include/wchar.h /usr/include/stdio.h \
+ /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stdarg.h \
+ /usr/include/bits/wchar.h \
+ /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stddef.h \
+ /usr/include/xlocale.h /usr/local/include/c++/4.8.4/cwchar /usr/include/wchar.h \
+ /usr/local/include/c++/4.8.4/bits/allocator.h \
+ /usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/c++allocator.h \
+ /usr/local/include/c++/4.8.4/ext/new_allocator.h \
+ /usr/local/include/c++/4.8.4/new /usr/local/include/c++/4.8.4/exception \
+ /usr/local/include/c++/4.8.4/bits/atomic_lockfree_defines.h \
+ /usr/local/include/c++/4.8.4/bits/localefwd.h \
+ /usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/c++locale.h \
+ /usr/local/include/c++/4.8.4/clocale /usr/include/locale.h \
+ /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stddef.h \
+ /usr/include/bits/locale.h /usr/local/include/c++/4.8.4/iosfwd \
+ /usr/local/include/c++/4.8.4/cctype /usr/include/ctype.h \
+ /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+ /usr/include/bits/typesizes.h /usr/include/endian.h /usr/include/bits/endian.h \
+ /usr/include/bits/byteswap.h /usr/include/bits/wordsize.h \
+ /usr/local/include/c++/4.8.4/bits/ostream_insert.h \
+ /usr/local/include/c++/4.8.4/bits/cxxabi_forced.h \
+ /usr/local/include/c++/4.8.4/bits/stl_function.h \
+ /usr/local/include/c++/4.8.4/backward/binders.h \
+ /usr/local/include/c++/4.8.4/bits/range_access.h \
+ /usr/local/include/c++/4.8.4/bits/basic_string.h \
+ /usr/local/include/c++/4.8.4/ext/atomicity.h \
+ /usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/gthr.h \
+ /usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/gthr-default.h \
+ /usr/include/pthread.h /usr/include/sched.h \
+ /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stddef.h \
+ /usr/include/time.h /usr/include/bits/sched.h /usr/include/time.h \
+ /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stddef.h \
+ /usr/include/bits/time.h /usr/include/bits/pthreadtypes.h \
+ /usr/include/bits/wordsize.h /usr/include/bits/setjmp.h \
+ /usr/include/bits/wordsize.h /usr/include/bits/wordsize.h \
+ /usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/atomic_word.h \
+ /usr/local/include/c++/4.8.4/bits/basic_string.tcc \
+ /home/yamamoto/local/devel/moltypes/include/netcdf.h \
+ /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stddef.h \
+ /usr/include/errno.h /usr/include/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/asm/errno.h /usr/include/asm-generic/errno.h \
+ /usr/include/asm-generic/errno-base.h
+
+ncUint.h:
+
+ncType.h:
+
+/usr/local/include/c++/4.8.4/string:
+
+/usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/c++config.h:
+
+/usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/os_defines.h:
+
+/usr/include/features.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/gnu/stubs.h:
+
+/usr/include/gnu/stubs-64.h:
+
+/usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/cpu_defines.h:
+
+/usr/local/include/c++/4.8.4/bits/stringfwd.h:
+
+/usr/local/include/c++/4.8.4/bits/memoryfwd.h:
+
+/usr/local/include/c++/4.8.4/bits/char_traits.h:
+
+/usr/local/include/c++/4.8.4/bits/stl_algobase.h:
+
+/usr/local/include/c++/4.8.4/bits/functexcept.h:
+
+/usr/local/include/c++/4.8.4/bits/exception_defines.h:
+
+/usr/local/include/c++/4.8.4/bits/cpp_type_traits.h:
+
+/usr/local/include/c++/4.8.4/ext/type_traits.h:
+
+/usr/local/include/c++/4.8.4/ext/numeric_traits.h:
+
+/usr/local/include/c++/4.8.4/bits/stl_pair.h:
+
+/usr/local/include/c++/4.8.4/bits/move.h:
+
+/usr/local/include/c++/4.8.4/bits/concept_check.h:
+
+/usr/local/include/c++/4.8.4/bits/stl_iterator_base_types.h:
+
+/usr/local/include/c++/4.8.4/bits/stl_iterator_base_funcs.h:
+
+/usr/local/include/c++/4.8.4/debug/debug.h:
+
+/usr/local/include/c++/4.8.4/bits/stl_iterator.h:
+
+/usr/local/include/c++/4.8.4/bits/postypes.h:
+
+/usr/local/include/c++/4.8.4/cwchar:
+
+/usr/include/wchar.h:
+
+/usr/include/stdio.h:
+
+/opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stdarg.h:
+
+/usr/include/bits/wchar.h:
+
+/opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stddef.h:
+
+/usr/include/xlocale.h:
+
+/usr/local/include/c++/4.8.4/bits/allocator.h:
+
+/usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/c++allocator.h:
+
+/usr/local/include/c++/4.8.4/ext/new_allocator.h:
+
+/usr/local/include/c++/4.8.4/new:
+
+/usr/local/include/c++/4.8.4/exception:
+
+/usr/local/include/c++/4.8.4/bits/atomic_lockfree_defines.h:
+
+/usr/local/include/c++/4.8.4/bits/localefwd.h:
+
+/usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/c++locale.h:
+
+/usr/local/include/c++/4.8.4/clocale:
+
+/usr/include/locale.h:
+
+/usr/include/bits/locale.h:
+
+/usr/local/include/c++/4.8.4/iosfwd:
+
+/usr/local/include/c++/4.8.4/cctype:
+
+/usr/include/ctype.h:
+
+/usr/include/bits/types.h:
+
+/usr/include/bits/typesizes.h:
+
+/usr/include/endian.h:
+
+/usr/include/bits/endian.h:
+
+/usr/include/bits/byteswap.h:
+
+/usr/local/include/c++/4.8.4/bits/ostream_insert.h:
+
+/usr/local/include/c++/4.8.4/bits/cxxabi_forced.h:
+
+/usr/local/include/c++/4.8.4/bits/stl_function.h:
+
+/usr/local/include/c++/4.8.4/backward/binders.h:
+
+/usr/local/include/c++/4.8.4/bits/range_access.h:
+
+/usr/local/include/c++/4.8.4/bits/basic_string.h:
+
+/usr/local/include/c++/4.8.4/ext/atomicity.h:
+
+/usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/gthr.h:
+
+/usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/gthr-default.h:
+
+/usr/include/pthread.h:
+
+/usr/include/sched.h:
+
+/usr/include/time.h:
+
+/usr/include/bits/sched.h:
+
+/usr/include/bits/time.h:
+
+/usr/include/bits/pthreadtypes.h:
+
+/usr/include/bits/setjmp.h:
+
+/usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/atomic_word.h:
+
+/usr/local/include/c++/4.8.4/bits/basic_string.tcc:
+
+/home/yamamoto/local/devel/moltypes/include/netcdf.h:
+
+/usr/include/errno.h:
+
+/usr/include/bits/errno.h:
+
+/usr/include/linux/errno.h:
+
+/usr/include/asm/errno.h:
+
+/usr/include/asm-generic/errno.h:
+
+/usr/include/asm-generic/errno-base.h:

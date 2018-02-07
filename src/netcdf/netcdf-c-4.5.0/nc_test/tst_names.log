@@ -1,0 +1,19 @@
+
+*** testing names with file tst_names.nc...
+*** switching to netCDF classic format...Error at line 282 (loop=131): No error
+Error at line 282 (loop=132): No error
+ok.
+*** switching to netCDF 64-bit offset format...Error at line 282 (loop=131): No error
+Error at line 282 (loop=132): No error
+ok.
+*** switching to netCDF 64-bit data format...Error at line 282 (loop=131): No error
+Error at line 282 (loop=132): No error
+Error at line 304: NetCDF: Unknown file format
+*** switching to netCDF netCDF-4/HDF5 format...Error at line 282 (loop=131): No error
+Error at line 282 (loop=132): No error
+ok.
+*** switching to netCDF netCDF-4 classic model format...Error at line 282 (loop=131): No error
+Error at line 282 (loop=132): No error
+ok.
+*** Tests successful!
+PASS tst_names (exit status: 0)

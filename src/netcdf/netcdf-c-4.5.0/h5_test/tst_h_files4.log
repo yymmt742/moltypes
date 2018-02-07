@@ -1,0 +1,7 @@
+
+*** Checking HDF5 file functions.
+*** Creating HDF5 file in the canonical netCDF-4 way...ok.
+*** Opening a HDF5 file with H5Literate...ok.
+*** Opening a HDF5 file in the canonical netCDF-4 way...ok.
+*** Tests successful!
+PASS tst_h_files4 (exit status: 0)

@@ -1,0 +1,6 @@
+
+*** Testing interoperability between big vs. little endian platforms.
+*** testing with file with lots of atts...ok.
+*** testing with file ./ref_tst_interops4.nc...ok.
+*** Tests successful!
+PASS tst_interops4 (exit status: 0)

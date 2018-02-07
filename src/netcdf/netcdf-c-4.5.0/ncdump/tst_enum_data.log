@@ -1,0 +1,5 @@
+
+*** Testing enums.
+*** creating enum test file tst_enum_data.nc...ok.
+*** Tests successful!
+PASS tst_enum_data (exit status: 0)

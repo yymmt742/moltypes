@@ -1,0 +1,12 @@
+FSOURCES=spur_itertools.f\
+         spur_shapeshifter.f\
+         spur_matcalc.f\
+         spur_vector.f\
+         spur_env.f\
+         spur_string.f\
+         spur_ioerrorhandler.f\
+         spur_pathname.f\
+         spur_stdio.f\
+         spur_ncio.f\
+         spur_optparse.f\
+         spur_histgram.f\

@@ -1,0 +1,144 @@
+---
+H:
+  ATOMICNUMBER : 1
+  NAME : Hydrogen
+  NAME : H
+  MASS : 1.008
+  RADII: 1.200
+  Types:
+    H  :
+      ORBITAL : s
+      MASS    : 1.008
+      RADII   : 0.60
+      CHARGE  : 0.00
+    H1 :
+      ORBITAL : s
+      MASS    : 1.008
+      RADII   : 1.387
+      CHARGE  : 0.00
+    H2 :
+      ORBITAL : s
+      MASS    : 1.008
+      RADII   : 1.287
+      CHARGE  : 0.00
+    H3 :
+      ORBITAL : s
+      MASS    : 1.008
+      RADII   : 1.187
+      CHARGE  : 0.00
+    HA :
+      ORBITAL : s
+      MASS    : 1.008
+      RADII   : 1.459
+      CHARGE  : 0.00
+He:
+  ATOMICNUMBER : 2
+  NAME : Helium
+  MASS : 4.0
+  RADII: 1.400
+  TYPES:
+    he :
+     ORBITAL : s
+     MASS    : 4.000
+     RADII   : 1.400
+     CHARGE  : 0.00
+Li:
+  ATOMICNUMBER : 3
+  NAME : Lithium
+  MASS : 7.d0
+  RADII: 1.820
+  TYPES:
+    li :
+      ORBITAL : sp3
+      MASS    : 7.000
+      RADII   : 1.820
+      CHARGE  : 0.00
+Be:
+  ATOMICNUMBER : 4
+  NAME : Beryllium
+  MASS : 9.0
+  RADII: 1.530
+  TYPES:
+    li :
+      ORBITAL : sp3
+      MASS    : 9.000
+      RADII   : 1.530
+      CHARGE  : 0.00
+B:
+  ATOMICNUMBER : 5
+  NAME : Boron
+  MASS : 11.0
+  RADII: 1.920
+  TYPES:
+    li :
+      ORBITAL : sp3
+      MASS    : 11.000
+      RADII   : 1.920
+      CHARGE  : 0.00
+C:
+  ATOMICNUMBER : 6
+  NAME : Carbon
+  MASS : 12.0
+  RADII: 1.720
+  TYPES:
+    c :
+      ORBITAL : sp3
+      MASS    : 12.000
+      RADII   : 1.720
+      CHARGE  : 0.00
+N:
+  NAME : Nytrogen
+  MASS : 14.0
+  RADII: 1.550
+  TYPES:
+    n :
+      ORBITAL : sp3
+      MASS    : 14.000
+      RADII   : 1.550
+      CHARGE  : 0.00
+O:
+  NAME : Oxygen
+  MASS : 16.0
+  RADII: 1.520
+  TYPES:
+    o :
+      ORBITAL : sp3
+      MASS    : 16.000
+      RADII   : 1.520
+      CHARGE  : 0.00
+F:
+  NAME : Fluorine
+  MASS : 19.0
+  RADII: 1.470
+  TYPES:
+    f :
+      ORBITAL : sp3
+      MASS    : 19.000
+      RADII   : 1.470
+      CHARGE  : 0.00
+Ne:
+  NAME : Neon
+  MASS : 20.0
+  RADII: 1.540
+  TYPES:
+    ne:
+      ORBITAL : sp3
+      MASS    : 20.000
+      RADII   : 1.540
+      CHARGE  : 0.00
+Na:
+  NAME : Sodium
+  MASS : 23.0
+  RADII: 2.270
+  TYPES:
+    na:
+      ORBITAL : sp3
+      MASS    : 23.000
+      RADII   : 2.270
+      CHARGE  : 0.00
+    na+:
+      ORBITAL : sp3
+      MASS    : 23.000
+      RADII   : 2.270
+      CHARGE  : 1.00
+---

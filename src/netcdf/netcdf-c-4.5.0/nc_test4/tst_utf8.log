@@ -1,0 +1,7 @@
+
+*** Testing UTF-8 names.
+*** creating UTF-8 names in classic model netcdf files...ok.
+*** renaming to UTF-8 names in classic model netcdf files...ok.
+*** creating UTF-8 names in netcdf-4 file...ok.
+*** Tests successful!
+PASS tst_utf8 (exit status: 0)

@@ -1,0 +1,5 @@
+
+*** Checking HDF5 file c0.nc.
+*** Checking HDF5 objcts...ok.
+*** Tests successful!
+PASS tst_h_rdc0 (exit status: 0)

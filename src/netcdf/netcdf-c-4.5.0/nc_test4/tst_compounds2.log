@@ -1,0 +1,7 @@
+
+*** Testing netcdf-4 user defined type functions, even more.
+*** testing compound var containing byte arrays of various size...array len=257... ok.
+*** testing compound var on different machines...offset x: 0  offset y: 8 NC_COMPOUND_OFFSET(struct s1, y): 8 ok.
+*** testing compound var containing compound var, on different machines...ok.
+*** Tests successful!
+PASS tst_compounds2 (exit status: 0)

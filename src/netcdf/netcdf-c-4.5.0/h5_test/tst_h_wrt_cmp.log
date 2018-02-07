@@ -1,0 +1,5 @@
+
+*** Checking HDF5 compound types (even more so).
+*** Checking packing of HDF5 compound types...ok.
+*** Tests successful!
+PASS tst_h_wrt_cmp (exit status: 0)

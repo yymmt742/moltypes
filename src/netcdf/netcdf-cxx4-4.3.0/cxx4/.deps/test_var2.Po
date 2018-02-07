@@ -1,0 +1,444 @@
+test_var2.o: test_var2.cpp /usr/local/include/c++/4.8.4/iostream \
+ /usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/c++config.h \
+ /usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/os_defines.h \
+ /usr/include/features.h /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
+ /usr/include/gnu/stubs.h /usr/include/bits/wordsize.h \
+ /usr/include/gnu/stubs-64.h \
+ /usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/cpu_defines.h \
+ /usr/local/include/c++/4.8.4/ostream /usr/local/include/c++/4.8.4/ios \
+ /usr/local/include/c++/4.8.4/iosfwd \
+ /usr/local/include/c++/4.8.4/bits/stringfwd.h \
+ /usr/local/include/c++/4.8.4/bits/memoryfwd.h \
+ /usr/local/include/c++/4.8.4/bits/postypes.h /usr/local/include/c++/4.8.4/cwchar \
+ /usr/include/wchar.h /usr/include/stdio.h \
+ /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stdarg.h \
+ /usr/include/bits/wchar.h \
+ /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stddef.h \
+ /usr/include/xlocale.h /usr/local/include/c++/4.8.4/exception \
+ /usr/local/include/c++/4.8.4/bits/atomic_lockfree_defines.h \
+ /usr/local/include/c++/4.8.4/bits/char_traits.h \
+ /usr/local/include/c++/4.8.4/bits/stl_algobase.h \
+ /usr/local/include/c++/4.8.4/bits/functexcept.h \
+ /usr/local/include/c++/4.8.4/bits/exception_defines.h \
+ /usr/local/include/c++/4.8.4/bits/cpp_type_traits.h \
+ /usr/local/include/c++/4.8.4/ext/type_traits.h \
+ /usr/local/include/c++/4.8.4/ext/numeric_traits.h \
+ /usr/local/include/c++/4.8.4/bits/stl_pair.h \
+ /usr/local/include/c++/4.8.4/bits/move.h \
+ /usr/local/include/c++/4.8.4/bits/concept_check.h \
+ /usr/local/include/c++/4.8.4/bits/stl_iterator_base_types.h \
+ /usr/local/include/c++/4.8.4/bits/stl_iterator_base_funcs.h \
+ /usr/local/include/c++/4.8.4/debug/debug.h \
+ /usr/local/include/c++/4.8.4/bits/stl_iterator.h \
+ /usr/local/include/c++/4.8.4/cwchar /usr/include/wchar.h \
+ /usr/local/include/c++/4.8.4/bits/localefwd.h \
+ /usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/c++locale.h \
+ /usr/local/include/c++/4.8.4/clocale /usr/include/locale.h \
+ /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stddef.h \
+ /usr/include/bits/locale.h /usr/local/include/c++/4.8.4/cctype \
+ /usr/include/ctype.h /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+ /usr/include/bits/typesizes.h /usr/include/endian.h /usr/include/bits/endian.h \
+ /usr/include/bits/byteswap.h /usr/include/bits/wordsize.h \
+ /usr/local/include/c++/4.8.4/bits/ios_base.h \
+ /usr/local/include/c++/4.8.4/ext/atomicity.h \
+ /usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/gthr.h \
+ /usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/gthr-default.h \
+ /usr/include/pthread.h /usr/include/sched.h \
+ /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stddef.h \
+ /usr/include/time.h /usr/include/bits/sched.h /usr/include/time.h \
+ /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stddef.h \
+ /usr/include/bits/time.h /usr/include/bits/pthreadtypes.h \
+ /usr/include/bits/wordsize.h /usr/include/bits/setjmp.h \
+ /usr/include/bits/wordsize.h /usr/include/bits/wordsize.h \
+ /usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/atomic_word.h \
+ /usr/local/include/c++/4.8.4/bits/locale_classes.h \
+ /usr/local/include/c++/4.8.4/string \
+ /usr/local/include/c++/4.8.4/bits/allocator.h \
+ /usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/c++allocator.h \
+ /usr/local/include/c++/4.8.4/ext/new_allocator.h \
+ /usr/local/include/c++/4.8.4/new \
+ /usr/local/include/c++/4.8.4/bits/ostream_insert.h \
+ /usr/local/include/c++/4.8.4/bits/cxxabi_forced.h \
+ /usr/local/include/c++/4.8.4/bits/stl_function.h \
+ /usr/local/include/c++/4.8.4/backward/binders.h \
+ /usr/local/include/c++/4.8.4/bits/range_access.h \
+ /usr/local/include/c++/4.8.4/bits/basic_string.h \
+ /usr/local/include/c++/4.8.4/bits/basic_string.tcc \
+ /usr/local/include/c++/4.8.4/bits/locale_classes.tcc \
+ /usr/local/include/c++/4.8.4/streambuf \
+ /usr/local/include/c++/4.8.4/bits/streambuf.tcc \
+ /usr/local/include/c++/4.8.4/bits/basic_ios.h \
+ /usr/local/include/c++/4.8.4/bits/locale_facets.h \
+ /usr/local/include/c++/4.8.4/cwctype /usr/include/wctype.h /usr/include/wchar.h \
+ /usr/local/include/c++/4.8.4/cctype \
+ /usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/ctype_base.h \
+ /usr/local/include/c++/4.8.4/bits/streambuf_iterator.h \
+ /usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/ctype_inline.h \
+ /usr/local/include/c++/4.8.4/bits/locale_facets.tcc \
+ /usr/local/include/c++/4.8.4/bits/basic_ios.tcc \
+ /usr/local/include/c++/4.8.4/bits/ostream.tcc \
+ /usr/local/include/c++/4.8.4/istream \
+ /usr/local/include/c++/4.8.4/bits/istream.tcc \
+ /usr/local/include/c++/4.8.4/vector \
+ /usr/local/include/c++/4.8.4/bits/stl_construct.h \
+ /usr/local/include/c++/4.8.4/ext/alloc_traits.h \
+ /usr/local/include/c++/4.8.4/bits/stl_uninitialized.h \
+ /usr/local/include/c++/4.8.4/bits/stl_vector.h \
+ /usr/local/include/c++/4.8.4/bits/stl_bvector.h \
+ /usr/local/include/c++/4.8.4/bits/vector.tcc /usr/local/include/c++/4.8.4/set \
+ /usr/local/include/c++/4.8.4/bits/stl_tree.h \
+ /usr/local/include/c++/4.8.4/bits/stl_set.h \
+ /usr/local/include/c++/4.8.4/bits/stl_multiset.h \
+ /usr/local/include/c++/4.8.4/map /usr/local/include/c++/4.8.4/bits/stl_map.h \
+ /usr/local/include/c++/4.8.4/bits/stl_multimap.h ./netcdf \
+ /home/yamamoto/local/devel/moltypes/include/netcdf.h \
+ /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stddef.h \
+ /usr/include/errno.h /usr/include/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/asm/errno.h /usr/include/asm-generic/errno.h \
+ /usr/include/asm-generic/errno-base.h ./ncAtt.h ./ncType.h ./ncException.h \
+ /usr/local/include/c++/4.8.4/typeinfo ./ncByte.h ./ncType.h ./ncChar.h \
+ ./ncType.h ./ncCheck.h /usr/include/stdio.h \
+ /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stddef.h \
+ /usr/include/libio.h /usr/include/_G_config.h \
+ /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stddef.h \
+ /usr/include/wchar.h /usr/include/bits/stdio_lim.h \
+ /usr/include/bits/sys_errlist.h /usr/include/bits/stdio.h /usr/include/string.h \
+ /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stddef.h \
+ /usr/include/stdlib.h \
+ /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stddef.h \
+ /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+ /usr/include/sys/types.h \
+ /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stddef.h \
+ /usr/include/sys/select.h /usr/include/bits/select.h \
+ /usr/include/bits/wordsize.h /usr/include/bits/sigset.h /usr/include/bits/time.h \
+ /usr/include/sys/sysmacros.h /usr/include/alloca.h \
+ /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stddef.h \
+ ./ncCompoundType.h ./ncType.h ./ncDim.h ./ncDouble.h ./ncType.h ./ncEnumType.h \
+ ./ncType.h ./ncCheck.h ./ncException.h ./ncFile.h ./ncGroup.h ./ncType.h \
+ ./ncEnumType.h ./ncType.h ./ncCheck.h ./ncGroupAtt.h ./ncAtt.h ./ncType.h \
+ ./ncException.h ./ncFloat.h ./ncType.h ./ncGroup.h ./ncType.h ./ncEnumType.h \
+ ./ncType.h ./ncCheck.h ./ncGroupAtt.h ./ncAtt.h ./ncType.h ./ncException.h \
+ ./ncGroupAtt.h ./ncAtt.h ./ncType.h ./ncException.h ./ncInt.h ./ncType.h \
+ ./ncInt64.h ./ncType.h ./ncOpaqueType.h ./ncType.h ./ncShort.h ./ncType.h \
+ ./ncString.h ./ncType.h ./ncType.h ./ncUbyte.h ./ncType.h ./ncUint.h ./ncType.h \
+ ./ncUint64.h ./ncType.h ./ncUshort.h ./ncType.h ./ncVar.h ./ncVarAtt.h ./ncAtt.h \
+ ./ncType.h ./ncException.h ./ncGroup.h ./ncType.h ./ncEnumType.h ./ncType.h \
+ ./ncCheck.h ./ncGroupAtt.h ./ncAtt.h ./ncType.h ./ncException.h ./ncByte.h \
+ ./ncType.h ./ncUbyte.h ./ncType.h ./ncChar.h ./ncType.h ./ncShort.h ./ncType.h \
+ ./ncUshort.h ./ncType.h ./ncInt.h ./ncType.h ./ncUint.h ./ncType.h ./ncInt64.h \
+ ./ncType.h ./ncUint64.h ./ncType.h ./ncFloat.h ./ncType.h ./ncDouble.h \
+ ./ncType.h ./ncString.h ./ncType.h ./ncVarAtt.h ./ncAtt.h ./ncType.h \
+ ./ncException.h ./ncVlenType.h ./ncType.h /usr/local/include/c++/4.8.4/iomanip \
+ test_utilities.h
+
+/usr/local/include/c++/4.8.4/iostream:
+
+/usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/c++config.h:
+
+/usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/os_defines.h:
+
+/usr/include/features.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/gnu/stubs.h:
+
+/usr/include/gnu/stubs-64.h:
+
+/usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/cpu_defines.h:
+
+/usr/local/include/c++/4.8.4/ostream:
+
+/usr/local/include/c++/4.8.4/ios:
+
+/usr/local/include/c++/4.8.4/iosfwd:
+
+/usr/local/include/c++/4.8.4/bits/stringfwd.h:
+
+/usr/local/include/c++/4.8.4/bits/memoryfwd.h:
+
+/usr/local/include/c++/4.8.4/bits/postypes.h:
+
+/usr/local/include/c++/4.8.4/cwchar:
+
+/usr/include/wchar.h:
+
+/usr/include/stdio.h:
+
+/opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stdarg.h:
+
+/usr/include/bits/wchar.h:
+
+/opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/include/stddef.h:
+
+/usr/include/xlocale.h:
+
+/usr/local/include/c++/4.8.4/exception:
+
+/usr/local/include/c++/4.8.4/bits/atomic_lockfree_defines.h:
+
+/usr/local/include/c++/4.8.4/bits/char_traits.h:
+
+/usr/local/include/c++/4.8.4/bits/stl_algobase.h:
+
+/usr/local/include/c++/4.8.4/bits/functexcept.h:
+
+/usr/local/include/c++/4.8.4/bits/exception_defines.h:
+
+/usr/local/include/c++/4.8.4/bits/cpp_type_traits.h:
+
+/usr/local/include/c++/4.8.4/ext/type_traits.h:
+
+/usr/local/include/c++/4.8.4/ext/numeric_traits.h:
+
+/usr/local/include/c++/4.8.4/bits/stl_pair.h:
+
+/usr/local/include/c++/4.8.4/bits/move.h:
+
+/usr/local/include/c++/4.8.4/bits/concept_check.h:
+
+/usr/local/include/c++/4.8.4/bits/stl_iterator_base_types.h:
+
+/usr/local/include/c++/4.8.4/bits/stl_iterator_base_funcs.h:
+
+/usr/local/include/c++/4.8.4/debug/debug.h:
+
+/usr/local/include/c++/4.8.4/bits/stl_iterator.h:
+
+/usr/local/include/c++/4.8.4/bits/localefwd.h:
+
+/usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/c++locale.h:
+
+/usr/local/include/c++/4.8.4/clocale:
+
+/usr/include/locale.h:
+
+/usr/include/bits/locale.h:
+
+/usr/local/include/c++/4.8.4/cctype:
+
+/usr/include/ctype.h:
+
+/usr/include/bits/types.h:
+
+/usr/include/bits/typesizes.h:
+
+/usr/include/endian.h:
+
+/usr/include/bits/endian.h:
+
+/usr/include/bits/byteswap.h:
+
+/usr/local/include/c++/4.8.4/bits/ios_base.h:
+
+/usr/local/include/c++/4.8.4/ext/atomicity.h:
+
+/usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/gthr.h:
+
+/usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/gthr-default.h:
+
+/usr/include/pthread.h:
+
+/usr/include/sched.h:
+
+/usr/include/time.h:
+
+/usr/include/bits/sched.h:
+
+/usr/include/bits/time.h:
+
+/usr/include/bits/pthreadtypes.h:
+
+/usr/include/bits/setjmp.h:
+
+/usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/atomic_word.h:
+
+/usr/local/include/c++/4.8.4/bits/locale_classes.h:
+
+/usr/local/include/c++/4.8.4/string:
+
+/usr/local/include/c++/4.8.4/bits/allocator.h:
+
+/usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/c++allocator.h:
+
+/usr/local/include/c++/4.8.4/ext/new_allocator.h:
+
+/usr/local/include/c++/4.8.4/new:
+
+/usr/local/include/c++/4.8.4/bits/ostream_insert.h:
+
+/usr/local/include/c++/4.8.4/bits/cxxabi_forced.h:
+
+/usr/local/include/c++/4.8.4/bits/stl_function.h:
+
+/usr/local/include/c++/4.8.4/backward/binders.h:
+
+/usr/local/include/c++/4.8.4/bits/range_access.h:
+
+/usr/local/include/c++/4.8.4/bits/basic_string.h:
+
+/usr/local/include/c++/4.8.4/bits/basic_string.tcc:
+
+/usr/local/include/c++/4.8.4/bits/locale_classes.tcc:
+
+/usr/local/include/c++/4.8.4/streambuf:
+
+/usr/local/include/c++/4.8.4/bits/streambuf.tcc:
+
+/usr/local/include/c++/4.8.4/bits/basic_ios.h:
+
+/usr/local/include/c++/4.8.4/bits/locale_facets.h:
+
+/usr/local/include/c++/4.8.4/cwctype:
+
+/usr/include/wctype.h:
+
+/usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/ctype_base.h:
+
+/usr/local/include/c++/4.8.4/bits/streambuf_iterator.h:
+
+/usr/local/include/c++/4.8.4/x86_64-unknown-linux-gnu/bits/ctype_inline.h:
+
+/usr/local/include/c++/4.8.4/bits/locale_facets.tcc:
+
+/usr/local/include/c++/4.8.4/bits/basic_ios.tcc:
+
+/usr/local/include/c++/4.8.4/bits/ostream.tcc:
+
+/usr/local/include/c++/4.8.4/istream:
+
+/usr/local/include/c++/4.8.4/bits/istream.tcc:
+
+/usr/local/include/c++/4.8.4/vector:
+
+/usr/local/include/c++/4.8.4/bits/stl_construct.h:
+
+/usr/local/include/c++/4.8.4/ext/alloc_traits.h:
+
+/usr/local/include/c++/4.8.4/bits/stl_uninitialized.h:
+
+/usr/local/include/c++/4.8.4/bits/stl_vector.h:
+
+/usr/local/include/c++/4.8.4/bits/stl_bvector.h:
+
+/usr/local/include/c++/4.8.4/bits/vector.tcc:
+
+/usr/local/include/c++/4.8.4/set:
+
+/usr/local/include/c++/4.8.4/bits/stl_tree.h:
+
+/usr/local/include/c++/4.8.4/bits/stl_set.h:
+
+/usr/local/include/c++/4.8.4/bits/stl_multiset.h:
+
+/usr/local/include/c++/4.8.4/map:
+
+/usr/local/include/c++/4.8.4/bits/stl_map.h:
+
+/usr/local/include/c++/4.8.4/bits/stl_multimap.h:
+
+./netcdf:
+
+/home/yamamoto/local/devel/moltypes/include/netcdf.h:
+
+/usr/include/errno.h:
+
+/usr/include/bits/errno.h:
+
+/usr/include/linux/errno.h:
+
+/usr/include/asm/errno.h:
+
+/usr/include/asm-generic/errno.h:
+
+/usr/include/asm-generic/errno-base.h:
+
+./ncAtt.h:
+
+./ncType.h:
+
+./ncException.h:
+
+/usr/local/include/c++/4.8.4/typeinfo:
+
+./ncByte.h:
+
+./ncChar.h:
+
+./ncCheck.h:
+
+/usr/include/libio.h:
+
+/usr/include/_G_config.h:
+
+/usr/include/bits/stdio_lim.h:
+
+/usr/include/bits/sys_errlist.h:
+
+/usr/include/bits/stdio.h:
+
+/usr/include/string.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/bits/waitflags.h:
+
+/usr/include/bits/waitstatus.h:
+
+/usr/include/sys/types.h:
+
+/usr/include/sys/select.h:
+
+/usr/include/bits/select.h:
+
+/usr/include/bits/sigset.h:
+
+/usr/include/sys/sysmacros.h:
+
+/usr/include/alloca.h:
+
+./ncCompoundType.h:
+
+./ncDim.h:
+
+./ncDouble.h:
+
+./ncEnumType.h:
+
+./ncFile.h:
+
+./ncGroup.h:
+
+./ncGroupAtt.h:
+
+./ncFloat.h:
+
+./ncInt.h:
+
+./ncInt64.h:
+
+./ncOpaqueType.h:
+
+./ncShort.h:
+
+./ncString.h:
+
+./ncUbyte.h:
+
+./ncUint.h:
+
+./ncUint64.h:
+
+./ncUshort.h:
+
+./ncVar.h:
+
+./ncVarAtt.h:
+
+./ncVlenType.h:
+
+/usr/local/include/c++/4.8.4/iomanip:
+
+test_utilities.h:

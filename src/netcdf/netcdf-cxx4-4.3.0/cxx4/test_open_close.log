@@ -1,0 +1,5 @@
+Attempting to open a file that doesn't exist... Caught Expected Exception.
+Opening file "firstFile.cdf"... Success.
+Closing file...Success.
+
+Finished.

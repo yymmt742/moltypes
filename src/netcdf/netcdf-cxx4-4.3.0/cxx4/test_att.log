@@ -1,0 +1,12 @@
+Opening file "firstFile.cdf" with NcFile::replace
+Testing addGroup("groupName")                              -----------   passed
+Testing putAtt("attName","typeName",len,dataValues)        -----------   passed
+Testing getAttLength()                                     -----------   passed
+Testing getName()                                          -----------   passed
+Testing getType()                                          -----------   passed
+Testing getParentGroup()                                   -----------   passed
+Testing getValues()                                        -----------   passed
+Testing attCount([netCDF::Location])                       -----------   passed
+Testing getAtts([netCDF::Location])                        -----------   passed
+Testing getAtt("name",[netCDF::Location])                  -----------   passed
+Testing getAtts("name",[netCDF::Location])                 -----------   passed

@@ -1,0 +1,16 @@
+
+*** Testing netcdf-4 user defined type functions.
+*** testing simple compound scalar variable create...ok.
+*** testing simple compound variable create...ok.
+*** testing REALLY simple compound variable create...ok.
+*** testing simple compound attribute create...ok.
+*** testing compound variable with new atomic types...ok.
+*** testing compound variable containing an array of ints...ok.
+*** testing compound var containing compound type...ok.
+*** creating compound test file...ok.
+*** Now opening the ref file for this...ok.
+*** testing compound var containing char array...ok.
+*** testing compound var containing byte array...ok.
+*** testing with user-contributed code...ok.
+*** Tests successful!
+PASS tst_compounds (exit status: 0)

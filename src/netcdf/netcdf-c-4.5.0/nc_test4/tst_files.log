@@ -1,0 +1,15 @@
+
+*** Testing netcdf-4 file functions.
+*** testing version 4.5.0 of Jan 15 2018 03:23:35 $...ok.
+*** testing with bad inputs...ok.
+*** testing simple opens and creates...ok.
+*** testing more complex opens and creates...ok.
+*** testing redef for netCDF classic...ok.
+*** testing redef for netCDF 64-bit offset...ok.
+*** testing redef for netCDF-4 ...ok.
+*** testing redef for netCDF-4, with strict netCDF-3 rules...ok.
+*** testing different formats...ok.
+*** testing CLASSIC_MODEL flag with classic formats...ok.
+*** testing multiple open files...ok.
+*** Tests successful!
+PASS tst_files (exit status: 0)

@@ -1,0 +1,5 @@
+
+*** Testing NaN
+*** creating NaN test file tst_nans.nc...ok.
+*** Tests successful!
+PASS tst_nans (exit status: 0)

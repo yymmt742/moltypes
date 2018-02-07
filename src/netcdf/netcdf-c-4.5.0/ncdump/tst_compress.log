@@ -1,0 +1,3 @@
+*** Creating compressible test files tst_inflated.nc, tst_inflated4.nc...ok.
+*** Tests successful!
+PASS tst_compress (exit status: 0)

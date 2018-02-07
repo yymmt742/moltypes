@@ -1,0 +1,5 @@
+
+*** Testing strings.
+*** creating strings test file tst_string_data.nc...ok.
+*** Tests successful!
+PASS tst_string_data (exit status: 0)

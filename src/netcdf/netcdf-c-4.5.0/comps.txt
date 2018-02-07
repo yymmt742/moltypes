@@ -1,0 +1,29 @@
+CPPFLAGS= CC=gcc CFLAGS= LDFLAGS= LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=mpiicc CFLAGS= LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=mpiicc CFLAGS=-I/home/yamamoto/local/devel/moltypes/include LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=mpiicc CFLAGS=-I/home/yamamoto/local/devel/moltypes/include LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=mpiicc CFLAGS=-I/home/yamamoto/local/devel/moltypes/include -fPIC LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=mpiicc CFLAGS=-I/home/yamamoto/local/devel/moltypes/include -fPIC LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=mpiicc CFLAGS=-I/home/yamamoto/local/devel/moltypes/include -fPIC LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=mpiicc CFLAGS=-I/home/yamamoto/local/devel/moltypes/include -fPIC LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=mpiicc CFLAGS=-I/home/yamamoto/local/devel/moltypes/include -fPIC LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=mpiicc CFLAGS=-I/home/yamamoto/local/devel/moltypes/include -fPIC LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=mpiicc CFLAGS='-O3 -xHost -ip -no-prec-div -static-intel' LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=mpiicc CFLAGS='-O3 -xHost -ip -no-prec-div -static-intel' LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=icc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=icc CFLAGS=-I/home/yamamoto/local/devel/moltypes/include -fPIC LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=icc CFLAGS=-I/home/yamamoto/local/devel/moltypes/include -fPIC LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=icc CFLAGS=-I/home/yamamoto/local/devel/moltypes/include -fPIC LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=icc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/src/netcdf/include CC=icc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel LDFLAGS=-L/home/yamamoto/local/devel/moltypes/src/netcdf/lib LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=mpiicc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=mpiicc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=mpiicc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=mpiicc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=mpiicc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=mpiicc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel -Difort LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=mpiicc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel -Difort LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lnetcdf -lhdf5_hl -lhdf5 -lz -lcurl
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=mpiicc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel -Difort LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lnetcdf -lhdf5_hl -lhdf5 -lz -lcurl
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=mpiicc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel -Difort LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lnetcdf -lhdf5_hl -lhdf5 -lz -lcurl
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=mpiicc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel -Difort LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lnetcdf -lhdf5_hl -lhdf5 -lz -lcurl
+CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include -fPIC CC=mpiicc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel -Difort -fPIC LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lhdf5_hl -lhdf5 -lz -lsz -lcurl

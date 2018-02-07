@@ -1,0 +1,5 @@
+
+*** Testing UTF-8.
+*** creating UTF-8 test file tst_unicode.nc...ok.
+*** Tests successful!
+PASS tst_unicode (exit status: 0)

@@ -1,0 +1,5 @@
+
+*** Testing '-s' option for special attributes.
+*** creating special attributes test file tst_special_atts.nc...ok.
+*** Tests successful!
+PASS tst_special_atts (exit status: 0)

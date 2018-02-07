@@ -1,0 +1,5 @@
+
+*** Checking HDF5 compound types some more.
+*** Checking HDF5 compound attribute which contains a simple compound type...ok.
+*** Tests successful!
+PASS tst_h_compounds2 (exit status: 0)

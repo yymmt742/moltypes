@@ -1,0 +1,15 @@
+
+*** Testing netcdf-4 coordinate variables and dimensions.
+**** testing Jeff Whitakers reported 4.1 bug...ok.
+**** testing setting cache values for coordinate variables...ok.
+**** testing multi-line strings in attributes...ok.
+**** testing ar-4 example metadata with ncgen-generated code...ok.
+**** testing dim order when coord vars are defined in the wrong order...ok.
+**** testing order of coordinate dims...ok.
+**** testing coordinate vars...ok.
+**** testing 2D non-coordinate variable...ok.
+**** testing 2D coordinate variable...ok.
+**** testing new order of doing things with coordinate variable...ok.
+**** testing 2D coordinate variable with dimensions defined in different order...ok.
+*** Tests successful!
+PASS tst_coords (exit status: 0)

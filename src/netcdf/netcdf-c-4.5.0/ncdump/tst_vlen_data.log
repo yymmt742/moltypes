@@ -1,0 +1,5 @@
+
+*** Testing vlens.
+*** creating vlen test file tst_vlen_data.nc...ok.
+*** Tests successful!
+PASS tst_vlen_data (exit status: 0)

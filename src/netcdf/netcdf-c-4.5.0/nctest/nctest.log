@@ -1,0 +1,116 @@
+Testing V2 API with 3 different netCDF formats.
+
+
+Switching to netCDF classic format.
+*** Testing nccreate ...	ok ***
+*** Testing ncopen ...		ok ***
+*** Testing ncredef ...		ok ***
+*** Testing ncendef ...		ok ***
+*** Testing ncclose ...		ok ***
+*** Testing ncinquire ...	ok ***
+*** Testing ncsync ...		ok ***
+*** Testing ncabort ...		ok ***
+*** Testing ncdimdef ...	ok ***
+*** Testing ncdimid ...		ok ***
+*** Testing ncdiminq ...	ok ***
+*** Testing ncdimrename ...	ok ***
+*** Testing ncvardef ...	ok ***
+*** Testing ncvarid ...		ok ***
+*** Testing ncvarinq ...	ok ***
+*** Testing ncvarputg ...	ok ***
+*** Testing ncvarput1 ...	ok ***
+*** Testing ncvarget1 ...	ok ***
+*** Testing ncvarput ...	ok ***
+*** Testing ncvarget ...	ok ***
+*** Testing ncvarputg ...	ok ***
+*** Testing ncvargetg ...	ok ***
+*** Testing ncrecinq ...	ok ***
+*** Testing ncrecput ...	ok ***
+*** Testing ncrecget ...	ok ***
+*** Testing ncvarrename ...	ok ***
+*** Testing ncattput ...	ok ***
+*** Testing ncattinq ...	ok ***
+*** Testing ncattget ...	ok ***
+*** Testing ncattcopy ...	ok ***
+*** Testing ncattname ...	ok ***
+*** Testing ncattrename ...	ok ***
+*** Testing ncattdel ...	ok ***
+*** Testing nctypelen ...	ok ***
+
+
+Switching to 64-bit offset format.
+*** Testing nccreate ...	ok ***
+*** Testing ncopen ...		ok ***
+*** Testing ncredef ...		ok ***
+*** Testing ncendef ...		ok ***
+*** Testing ncclose ...		ok ***
+*** Testing ncinquire ...	ok ***
+*** Testing ncsync ...		ok ***
+*** Testing ncabort ...		ok ***
+*** Testing ncdimdef ...	ok ***
+*** Testing ncdimid ...		ok ***
+*** Testing ncdiminq ...	ok ***
+*** Testing ncdimrename ...	ok ***
+*** Testing ncvardef ...	ok ***
+*** Testing ncvarid ...		ok ***
+*** Testing ncvarinq ...	ok ***
+*** Testing ncvarputg ...	ok ***
+*** Testing ncvarput1 ...	ok ***
+*** Testing ncvarget1 ...	ok ***
+*** Testing ncvarput ...	ok ***
+*** Testing ncvarget ...	ok ***
+*** Testing ncvarputg ...	ok ***
+*** Testing ncvargetg ...	ok ***
+*** Testing ncrecinq ...	ok ***
+*** Testing ncrecput ...	ok ***
+*** Testing ncrecget ...	ok ***
+*** Testing ncvarrename ...	ok ***
+*** Testing ncattput ...	ok ***
+*** Testing ncattinq ...	ok ***
+*** Testing ncattget ...	ok ***
+*** Testing ncattcopy ...	ok ***
+*** Testing ncattname ...	ok ***
+*** Testing ncattrename ...	ok ***
+*** Testing ncattdel ...	ok ***
+*** Testing nctypelen ...	ok ***
+
+
+Switching to netCDF-4 format (with NC_CLASSIC_MODEL).
+*** Testing nccreate ...	ok ***
+*** Testing ncopen ...		ok ***
+*** Testing ncredef ...		ok ***
+*** Testing ncendef ...		ok ***
+*** Testing ncclose ...		ok ***
+*** Testing ncinquire ...	ok ***
+*** Testing ncsync ...		ok ***
+*** Testing ncabort ...		ok ***
+*** Testing ncdimdef ...	ok ***
+*** Testing ncdimid ...		ok ***
+*** Testing ncdiminq ...	ok ***
+*** Testing ncdimrename ...	ok ***
+*** Testing ncvardef ...	ok ***
+*** Testing ncvarid ...		ok ***
+*** Testing ncvarinq ...	ok ***
+*** Testing ncvarputg ...	ok ***
+*** Testing ncvarput1 ...	ok ***
+*** Testing ncvarget1 ...	ok ***
+*** Testing ncvarput ...	ok ***
+*** Testing ncvarget ...	ok ***
+*** Testing ncvarputg ...	ok ***
+*** Testing ncvargetg ...	ok ***
+*** Testing ncrecinq ...	ok ***
+*** Testing ncrecput ...	ok ***
+*** Testing ncrecget ...	ok ***
+*** Testing ncvarrename ...	ok ***
+*** Testing ncattput ...	ok ***
+*** Testing ncattinq ...	ok ***
+*** Testing ncattget ...	ok ***
+*** Testing ncattcopy ...	ok ***
+*** Testing ncattname ...	ok ***
+*** Testing ncattrename ...	ok ***
+*** Testing ncattdel ...	ok ***
+*** Testing nctypelen ...	ok ***
+
+Total number of failures: 0
+nctest SUCCESS!!!
+PASS nctest (exit status: 0)

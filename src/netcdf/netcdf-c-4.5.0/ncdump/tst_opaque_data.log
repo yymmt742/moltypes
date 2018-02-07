@@ -1,0 +1,5 @@
+
+*** Testing opaque types.
+*** creating opaque test file tst_opaque_data.nc...ok.
+*** Tests successful!
+PASS tst_opaque_data (exit status: 0)

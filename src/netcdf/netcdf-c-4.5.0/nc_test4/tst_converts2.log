@@ -1,0 +1,7 @@
+
+*** Testing more netcdf-4 data conversion.
+*** Testing NC_BYTE conversions...ok.
+*** Testing NC_USHORT conversions...ok.
+*** Testing MAX_INT conversions...ok.
+*** Tests successful!
+PASS tst_converts2 (exit status: 0)
