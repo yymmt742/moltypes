@@ -6,6 +6,7 @@ icc   17.0.2 or later
 ifort 17.0.2 or later  
 mkl   2017.2.174 or later  
 
+<!--
 # ToStr - adjust left and triming String.                   
 #  Class :                                                  
 #     Transformational function                             
@@ -77,3 +78,4 @@ mkl   2017.2.174 or later
 #     Line  be an allocatable CHARACTER(*) dimension(:).    
 #     NLine  must be an INTEGER.                            
 #---------------------------------------------------------  
+-->
