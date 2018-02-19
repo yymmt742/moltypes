@@ -5,6 +5,7 @@ implicit none
 real,parameter   :: Pi = 3.1415926535897932
 real,parameter   :: AngRad = Pi/180.0
 real,parameter   :: RadAng = 180.0/Pi
+real,parameter   :: chkflp = 1.0
 logical          :: xwrt,verbose
 integer          :: istat
   istat = 0
@@ -25,7 +26,7 @@ contains
   character(:),allocatable :: ifmt,nfmt,ncout
   integer                  :: natm,nmol,nres,ntrj,nswp,nflp,ncpy
   real,allocatable         :: X(:,:,:,:),FLPX(:,:,:,:),c0(:,:),c1(:,:,:)
-  real,allocatable         :: timestep(:),tmprms(:),minrms(:),rms(:)
+  real,allocatable         :: timestep(:),tmprms(:),minrms(:),rms(:),rmscor(:,:)
   integer,allocatable      :: vswp(:,:),vflp(:),minidx(:)
   real                     :: revn,revt,rmse,rerr
   integer                  :: i,j,k,inc,progres
@@ -86,14 +87,17 @@ contains
       write(logf%devn(),'(A,I6,A)',err=100) '| ',i,'  ['//join(vswp(:,i),delim=',',dig=digit(nres))//']'
     enddo
     call logf%break()
+!
     vflp = load_vflp(logf,nmol,arg%optargs('-flp',1),mt%inq('name','XX  '))
 !
     allocate(X(3,nmol,nres,ntrj),FLPX(3,nmol,nres,ntrj))
     allocate(c0(3,natm),c1(3,natm,ncpy))
-    allocate(timestep(ntrj),rms(ntrj),minrms(ntrj),tmprms(ncpy))
+    allocate(timestep(ntrj),rms(ntrj),minrms(ntrj))
+    allocate(rmscor(ntrj,3),tmprms(ncpy))
     allocate(minidx(ntrj))
 !
     timestep = real([(i,i=1,ntrj)]) * arg%optargf('-s',1)
+    rmscor   = 0.0
 !
     if(verbose) write(STDOUT,'(A)') '* >> NOW LOADING...'
     call mt%load()
@@ -101,22 +105,26 @@ contains
     call mt%clear()
     FLPX  = mol_flip(nmol,nres,ntrj,vflp,X)
 !
-!
-    call logf%puts('* >> NORMAL RMSD (KEY=1) AND RADIUS OF GYRATION (Angs.)')
-    call logf%puts('|        [TIME]   [RMSD]  [RADIUS]')
-    do i=1,ntrj
-      c0 = reshape(X(:,:,:,i),[3,natm])
-      call fit_rmsd(natm,reshape(X(:,:,:,1),[3,natm]),c0)
-      write(logf%devn(),'(i6,3F9.3)',err=100) i,timestep(i),calc_rmsd(natm,c0,reshape(X(:,:,:,1),[3,natm]),revn),calc_rog(natm,c0,revn)
+    call logf%puts('* >> CHECK FLIPING MATRIX')
+    rmse = 0.0
+    call logf%puts('|    [NRES]  [RMSERR]')
+    do i=1,nres
+      rerr = checkflip(nmol,vflp,X(:,:,i,1))
+      rmse = rmse + rerr
+      write(logf%devn(),'(A,F9.3)',err=100) '|      '//tostr(i)//'    ',rerr
     enddo
+    call logf%puts('|--------------------')
+    rmse = rmse / real(nres)
+    write(logf%devn(),'(A,F9.3)',err=100) '|AVERAGE    ',rmse
+    if(rmse>=chkflp) call logf%puts('CAUTION :: Too large C2V frip rms error (check'//trim(arg%optargs('-flp',1))//')')
     call logf%break()
 !
     call dat%fetch(trim(arg%optargs('-dat',1))) ; call dat%generate()
-    call dat%puts('#      [TIME] [KEY FRAME]  [MIN RMSD]      [RMSD]     [DELTA]  ['//Join([(i,i=1,nres)],'] [',digit(nres))//'] [CHIRAL]')
+    call dat%puts('#      [TIME] [KEY FRAME]  [MIN RMSD]      [RMSD]     [DELTA]  ['//Join([(i,i=1,nres)],'] [',digit(nres))//'] [C]')
     i = index(dat%is(),'.',.TRUE.)
     if(i==0) i = len_trim(dat%is()) + 1
     allocate(character(i-1) :: ncout)
-    ncout(:) = dat%is() ; ncout = ncout//'.nc'
+    ncout(:) = dat%is() ; ncout = trim(ncout)//'.nc'
 !
     call logf%puts('* >> MINIMAM RMSD CALCULATION')
     write(logf%devn(),'(A,'//nfmt//',A,'//nfmt//')',err=100,advance='no') '| ',0,'/',nkey
@@ -128,8 +136,7 @@ contains
     do
       ikey = ikey + 1
       k    = nint(real(ntrj*(ikey-1))/real(nkey)) + 1
-!
-      c0 = reshape(X(:,:,:,k),[3,natm])
+      c0   = reshape(X(:,:,:,k),[3,natm])
 !
       if(verbose)then
         write(STDOUT,'(i6,a,i6,a)',advance='no') k,'/',ntrj,' |' ; flush(STDOUT)
@@ -168,10 +175,15 @@ contains
         if(ichiral<0)then
           call dat%break()
         else
-          write(dat%devn(),'(A)',err=100) ' #CHIRAL'
+          write(dat%devn(),'(A)',err=100) ' *'
         endif
       enddo
       call dat%break()
+!
+      j = ntrj-k+1
+      rmscor(1:j,1) = rmscor(1:j,1) + rms(k:ntrj)
+      rmscor(1:j,2) = rmscor(1:j,2) + minrms(k:ntrj)
+      rmscor(1:j,3) = rmscor(1:j,3) + 1.0
 !
       if(ikey==arg%optargi('-x',1))then
         call ExportAmberNetcdf(ncout,natm,1,c1(:,:,minidx(1)),overwrite=.TRUE.)
@@ -185,6 +197,18 @@ contains
 !
       if(verbose) call PrintCounter(ntrj,ntrj,progres)
       if(ikey>=nkey) EXIT
+    enddo
+!
+    call logf%break()
+    call logf%puts('* >> RMSD TIME CORRELATION (Angs.)')
+    call logf%puts('|        [TIME]   [CORR]  [MINIM] [RMSD(K=1)] [RADIUS]')
+    do i=1,ntrj
+      c0 = reshape(X(:,:,:,i),[3,natm])
+      call fit_rmsd(natm,reshape(X(:,:,:,1),[3,natm]),c0)
+      if(rmscor(i,3)>0.5) rmscor(i,1:2) = rmscor(i,1:2) / rmscor(i,3)
+      write(logf%devn(),'(i6,3F9.3,F12.3,F9.3)',err=100) i,timestep(i),rmscor(i,1),rmscor(i,2),&
+                                                       & calc_rmsd(natm,c0,reshape(X(:,:,:,1),[3,natm]),revn),&
+                                                       & calc_rog(natm,c0,revn)
     enddo
 !
     if(verbose) write(stdout,'(a,f11.3,a)') 'Total calculation time :: ',omp_get_wtime()-time,' sec.'
@@ -258,6 +282,26 @@ contains
     endif
   end function permutation
 !
+  real function checkflip(nmol,vflp,c) result(res)
+  integer,intent(in) :: nmol,vflp(nmol)
+  real,intent(in)    :: c(3,nmol)
+  real               :: c0(3,nmol),c1(3,nmol),com(3),revn
+  integer            :: i
+    com  = 0.0 ; revn = 1.0/real(nmol)
+    do i=1,nmol
+      com = com + c(:,i)
+    enddo
+    com = com * revn
+    do i=1,nmol
+      c0(:,i) = c(:,i) - com
+    enddo
+    do i=1,nmol
+      c1(:,i) =  c0(:,vflp(i))
+    enddo
+    call fit_rmsd(nmol,c0,c1)
+    res = calc_rmsd(nmol,c0,c1,revn)
+  end function checkflip
+!
   subroutine fit_rmsd(natm,c0,c1)
   integer,intent(in) :: natm
   real,intent(in)    :: c0(3,natm)
@@ -307,29 +351,32 @@ contains
     enddo
   end function mol_flip
 !
-  pure function residue_swap(natm,nmol,nres,nswp,nflp,vswp,ncpy,X,FLPX) result(res)
+function residue_swap(natm,nmol,nres,nswp,nflp,vswp,ncpy,X,FLPX) result(res)
+  !pure function residue_swap(natm,nmol,nres,nswp,nflp,vswp,ncpy,X,FLPX) result(res)
   integer,intent(in) :: natm,nmol,nres,nswp,nflp,ncpy,vswp(nres,nswp)
   real,intent(in)    :: X(3,nmol,nres),FLPX(3,nmol,nres)
   real               :: res(3,natm,ncpy)
-  integer(4)         :: i,j,k,at,lb,ub
-    at = 1
+  integer(4)         :: i,j,k,at1,at2,lb,ub
+    at1 = 1 ; at2 = 2
     do k=0,nflp-1
       do j=1,nswp
         lb = 0 ; ub = 0
         do i=1,nres
           lb = ub + 1 ; ub = ub + nmol
           if(btest(k,i-1))then
-            res(:,lb:ub,at) = FLPX(:,:,vswp(i,j))
+            res(:,lb:ub,at1) = FLPX(:,:,vswp(i,j))
           else
-            res(:,lb:ub,at) = X(:,:,vswp(i,j))
+            res(:,lb:ub,at1) = X(:,:,vswp(i,j))
           endif
         enddo
-        do i=1,nres
-          res(1,lb:ub,at+1) =  res(1,lb:ub,at)
-          res(2,lb:ub,at+1) =  res(2,lb:ub,at)
-          res(3,lb:ub,at+1) = -res(3,lb:ub,at)
+!
+        do i=1,natm
+          res(1,i,at2) =  res(1,i,at1)
+          res(2,i,at2) =  res(2,i,at1)
+          res(3,i,at2) = -res(3,i,at1)
         enddo
-        at = at + 2
+!
+        at1 = at1 + 2 ; at2 = at2 + 2
       enddo
     enddo
   end function residue_swap
@@ -365,7 +412,7 @@ contains
     call logf%break()
     call logf%puts('* >> TRAJECTORY INFOMATION')
     write(logf%devn(),'(3(A,I6),A)') '| natom :: [',natm,'] / nres  :: [',nres, '] / nframe :: [',ntrj  ,']'
-    write(logf%devn(),'(3(A,I6),A)') '| nswap :: [',nswp,'] / nflip :: [',nflp, '] / ncopy  :: [',ncpy*2,']'
+    write(logf%devn(),'(3(A,I6),A)') '| nswap :: [',nswp,'] / nflip :: [',nflp, '] / ncopy  :: [',ncpy  ,']'
     write(logf%devn(),'(A,I6,A)')    '| nkey  :: [',nkey,']'
     call logf%break()
   end subroutine PrintHeader
