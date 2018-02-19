@@ -89,8 +89,6 @@ contains
     enddo
     call logf%break()
 !
-    vflp = load_vflp(logf,nmol,arg%optargs('-flp',1),mt%inq('name','XX  '))
-!
     allocate(X(3,nmol,nres,ntrj),FLPX(3,nmol,nres,ntrj))
     allocate(c0(3,natm),c1(3,natm,ncpy))
     allocate(timestep(ntrj),rms(ntrj),minrms(ntrj))
@@ -100,29 +98,37 @@ contains
     timestep = real([(i,i=1,ntrj)]) * arg%optargf('-s',1)
     rmscor   = 0.0
 !
-    call mt%load()
-    call centering_coordinates(mt)
+    vflp = load_vflp(logf,nmol,arg%optargs('-flp',1),mt%inq('name','XX  '))
+    call mt%load() ; call centering_coordinates(mt)
 !
-    X = reshape(mt%xyz(),[3,nmol,nres,ntrj])
-    call mt%clear()
+    X = reshape(mt%xyz(),[3,nmol,nres,ntrj]) ; call mt%clear()
     FLPX  = mol_flip(nmol,nres,ntrj,vflp,X)
 !
     call logf%puts('* >> CHECK FLIPING VECTOR')
+!
     rmse = 0.0
-    call logf%puts('| [NRES]     [RMSERR]')
-    do i=1,nres
-      rerr = checkflip(nmol,vflp,X(:,:,i,1))
-      rmse = rmse + rerr
-      write(logf%devn(),'(A,F9.3)',err=100) '|      '//tostr(i)//'    ',rerr
+    rms  = HUGE(0.0)
+    do j=1,ntrj
+      rerr = 0.0
+      do i=1,nres
+        rerr = checkflip(nmol,vflp,X(:,:,i,j),FLPX(:,:,i,j))
+        if(rerr<rms(j)) rms(j) = rerr
+        rmse = rmse + rerr
+      enddo
     enddo
-    call logf%puts('|--------------------')
-    rmse = rmse / real(nres)
-    write(logf%devn(),'(A,F9.3)',err=100) '|AVERAGE    ',rmse
-    if(rmse>=chkflp) call logf%puts('CAUTION :: Too large C2V frip rms error (check'//trim(arg%optargs('-flp',1))//')')
+!
+    rerr = minval(rms,1)
+    rmse = rmse / real(nres*ntrj)
+    write(logf%devn(),'(2(A,F9.3))',err=100) '|AVERAGE RMSD = ',rmse,' MINIMAM RMSD = ',rerr
+!
+    if(rerr>=chkflp)then
+      call logf%break()
+      call logf%puts('CAUTION :: Too large C2V frip rms error (check '//trim(arg%optargs('-flp',1))//')')
+    endif
     call logf%break()
 !
     call dat%fetch(trim(arg%optargs('-dat',1))) ; call dat%generate()
-    call dat%puts('#      [TIME] [KEY FRAME] [MIN RMSD]      [RMSD]     [DELTA]   ['//Join([(i,i=1,nres)],'] [',digit(nres))//'] [CHIR]')
+    call dat%puts('#     [TIME]       [KEY]  [MIN RMSD]      [RMSD]      [DIFF]   ['//Join([(i,i=1,nres)],'] [',digit(nres))//'] [CHI]')
 !
     i = index(dat%is(),'.',.TRUE.)
     if(i==0) i = len_trim(dat%is()) + 1
@@ -140,7 +146,6 @@ contains
       k    = nint(real(ntrj*(ikey-1))/real(nkey)) + 1
       c0   = reshape(X(:,:,:,k),[3,natm])
 !
-      progres = 0
       do j=1,ntrj
         c1  = residue_swap(natm,nmol,nres,nswp,nflp,vswp,ncpy,X(:,:,:,j),FLPX(:,:,:,j))
         do i=1,ncpy
@@ -170,9 +175,9 @@ contains
           endif
         enddo
         if(ichiral<0)then
-          write(dat%devn(),'(A)',err=100) '  FALSE'
+          write(dat%devn(),'(A)',err=100) ' FALSE'
         else
-          write(dat%devn(),'(A)',err=100) '   TRUE'
+          write(dat%devn(),'(A)',err=100) '  TRUE'
         endif
       enddo
       call dat%break()
@@ -190,7 +195,8 @@ contains
       endif
 !
       flpcnt = count(minidx/=1)
-      write(logf%devn(),'(2X,'//nfmt//',A,'//nfmt//',2F9.3,2X,I8,F6.1)',err=100) ikey,'/',nkey,timestep(k),rmse*revt,flpcnt,real(100*flpcnt)*revt
+      write(logf%devn(),'(2X,'//nfmt//',A,'//nfmt//',2F9.3,2X,I8,F6.1)',err=100)&
+     &          ikey,'/',nkey,timestep(k),rmse*revt,flpcnt,real(100*flpcnt)*revt
 !
       if(ikey>=nkey) EXIT
     enddo
@@ -277,25 +283,29 @@ contains
     endif
   end function permutation
 !
-  real function checkflip(nmol,vflp,c) result(res)
+  real function checkflip(nmol,vflp,c,f) result(res)
   integer,intent(in) :: nmol,vflp(nmol)
-  real,intent(in)    :: c(3,nmol)
-  real               :: c0(3,nmol),c1(3,nmol),com(3),revn
+  real,intent(in)    :: c(3,nmol),f(3,nmol)
+  real               :: c0(3,nmol),c1(3,nmol)
+    c0 = centering(nmol,c) ; c1 = centering(nmol,f)
+    call fit_rmsd(nmol,c0,c1)
+    res = calc_rmsd(nmol,c0,c1,1.0/real(nmol))
+  end function checkflip
+!
+  pure function centering(natm,c) result(res)
+  integer,intent(in) :: natm
+  real,intent(in)    :: c(3,natm)
+  real               :: com(3),res(3,natm)
   integer            :: i
-    com  = 0.0 ; revn = 1.0/real(nmol)
-    do i=1,nmol
+    com  = 0.0
+    do i=1,natm
       com = com + c(:,i)
     enddo
-    com = com * revn
-    do i=1,nmol
-      c0(:,i) = c(:,i) - com
+    com = com / real(natm)
+    do i=1,natm
+      res(:,i) = c(:,i) - com
     enddo
-    do i=1,nmol
-      c1(:,i) =  c0(:,vflp(i))
-    enddo
-    call fit_rmsd(nmol,c0,c1)
-    res = calc_rmsd(nmol,c0,c1,revn)
-  end function checkflip
+  end function centering
 !
   subroutine fit_rmsd(natm,c0,c1)
   integer,intent(in) :: natm
@@ -338,20 +348,22 @@ contains
   integer,intent(in) :: nmol,nres,ntrj,vflp(nmol)
   real,intent(in)    :: X(3,nmol,nres,ntrj)
   real               :: res(3,nmol,nres,ntrj)
-  integer            :: i,j
-    do concurrent(j=1:ntrj)
-    do concurrent(i=1:nres)
-      res(:,:,i,j) = X(:,:,vflp(i),j)
+  integer            :: i,j,k
+    do concurrent(k=1:ntrj)
+    do concurrent(j=1:nres)
+    do concurrent(i=1:nmol)
+      res(:,i,j,k) = X(:,vflp(i),j,k)
+    enddo
     enddo
     enddo
   end function mol_flip
 !
-function residue_swap(natm,nmol,nres,nswp,nflp,vswp,ncpy,X,FLPX) result(res)
-  !pure function residue_swap(natm,nmol,nres,nswp,nflp,vswp,ncpy,X,FLPX) result(res)
+  pure function residue_swap(natm,nmol,nres,nswp,nflp,vswp,ncpy,X,FLPX) result(res)
   integer,intent(in) :: natm,nmol,nres,nswp,nflp,ncpy,vswp(nres,nswp)
   real,intent(in)    :: X(3,nmol,nres),FLPX(3,nmol,nres)
   real               :: res(3,natm,ncpy)
-  integer(4)         :: i,j,k,at1,at2,lb,ub
+  integer            :: i,j,at1,at2,lb,ub
+  integer(4)         :: k
     at1 = 1 ; at2 = 2
     do k=0,nflp-1
       do j=1,nswp
@@ -370,7 +382,6 @@ function residue_swap(natm,nmol,nres,nswp,nflp,vswp,ncpy,X,FLPX) result(res)
           res(2,i,at2) =  res(2,i,at1)
           res(3,i,at2) = -res(3,i,at1)
         enddo
-!
         at1 = at1 + 2 ; at2 = at2 + 2
       enddo
     enddo
