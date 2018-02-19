@@ -14,6 +14,7 @@ integer          :: istat
 contains
   subroutine compute_vpaa_rmsd()
   use moltypes
+  use moltypes_process
   use moltypes_export
   use spur_string
   use spur_histgram
@@ -100,13 +101,15 @@ contains
     rmscor   = 0.0
 !
     call mt%load()
+    call centering_coordinates(mt)
+!
     X = reshape(mt%xyz(),[3,nmol,nres,ntrj])
     call mt%clear()
     FLPX  = mol_flip(nmol,nres,ntrj,vflp,X)
 !
-    call logf%puts('* >> CHECK FLIPING MATRIX')
+    call logf%puts('* >> CHECK FLIPING VECTOR')
     rmse = 0.0
-    call logf%puts('|    [NRES]  [RMSERR]')
+    call logf%puts('| [NRES]     [RMSERR]')
     do i=1,nres
       rerr = checkflip(nmol,vflp,X(:,:,i,1))
       rmse = rmse + rerr
@@ -119,7 +122,7 @@ contains
     call logf%break()
 !
     call dat%fetch(trim(arg%optargs('-dat',1))) ; call dat%generate()
-    call dat%puts('#      [TIME] [KEY FRAME]  [MIN RMSD]      [RMSD]     [DELTA]  ['//Join([(i,i=1,nres)],'] [',digit(nres))//'] [C]')
+    call dat%puts('#      [TIME] [KEY FRAME] [MIN RMSD]      [RMSD]     [DELTA]   ['//Join([(i,i=1,nres)],'] [',digit(nres))//'] [CHIR]')
 !
     i = index(dat%is(),'.',.TRUE.)
     if(i==0) i = len_trim(dat%is()) + 1
@@ -145,7 +148,7 @@ contains
           tmprms(i) = calc_rmsd(natm,c0,c1(:,:,i),revn)
         enddo
         minidx(j) = minloc(tmprms,1)
-        minrms(j) = minval(tmprms,1)
+        minrms(j) = tmprms(minidx(j))
         rms(j)    = tmprms(1)
       enddo
 !
@@ -167,9 +170,9 @@ contains
           endif
         enddo
         if(ichiral<0)then
-          call dat%break()
+          write(dat%devn(),'(A)',err=100) '  FALSE'
         else
-          write(dat%devn(),'(A)',err=100) ' *'
+          write(dat%devn(),'(A)',err=100) '   TRUE'
         endif
       enddo
       call dat%break()
