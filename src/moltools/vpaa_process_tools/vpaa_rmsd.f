@@ -6,7 +6,7 @@ real,parameter   :: Pi = 3.1415926535897932
 real,parameter   :: AngRad = Pi/180.0
 real,parameter   :: RadAng = 180.0/Pi
 real,parameter   :: chkflp = 1.0
-logical          :: xwrt,verbose
+logical          :: xwrt
 integer          :: istat
   istat = 0
   call compute_vpaa_rmsd()
@@ -41,6 +41,7 @@ contains
     call arg%add_option("-flp",narg=1,metavar='filename',help='c2v molecule flip list')
     call arg%add_option("-x",narg=1,metavar='index',def=['0'],help='fiting frame for trajout')
     call arg%add_option("--silent",help='run silent mode')
+    call arg%add_option("--noswp", help='run without swaping')
     call arg%parser()
     if(arg%narg()==0) call arg%call_usage()
 !
@@ -53,7 +54,6 @@ contains
     call mt%fetch(arg%args())
 !
     if(arg%option('-m')) call mt%atomselect(arg%optargs('-m',1))
-    verbose = .not.arg%option('--silent').and.arg%option('-o')
 !
     natm = mt%natoms() ; nres = mt%nresidues() ; ntrj = mt%nframes()
 !
@@ -99,7 +99,6 @@ contains
     timestep = real([(i,i=1,ntrj)]) * arg%optargf('-s',1)
     rmscor   = 0.0
 !
-    if(verbose) write(STDOUT,'(A)') '* >> NOW LOADING...'
     call mt%load()
     X = reshape(mt%xyz(),[3,nmol,nres,ntrj])
     call mt%clear()
@@ -121,6 +120,7 @@ contains
 !
     call dat%fetch(trim(arg%optargs('-dat',1))) ; call dat%generate()
     call dat%puts('#      [TIME] [KEY FRAME]  [MIN RMSD]      [RMSD]     [DELTA]  ['//Join([(i,i=1,nres)],'] [',digit(nres))//'] [C]')
+!
     i = index(dat%is(),'.',.TRUE.)
     if(i==0) i = len_trim(dat%is()) + 1
     allocate(character(i-1) :: ncout)
@@ -131,16 +131,11 @@ contains
     call logf%puts('   [TIME]   [RMSE]   [NFLIP] [ % ]')
 !
     ikey = 0
-    if(verbose) call PrintProgresBar(ntrj)
 !
     do
       ikey = ikey + 1
       k    = nint(real(ntrj*(ikey-1))/real(nkey)) + 1
       c0   = reshape(X(:,:,:,k),[3,natm])
-!
-      if(verbose)then
-        write(STDOUT,'(i6,a,i6,a)',advance='no') k,'/',ntrj,' |' ; flush(STDOUT)
-      endif
 !
       progres = 0
       do j=1,ntrj
@@ -152,7 +147,6 @@ contains
         minidx(j) = minloc(tmprms,1)
         minrms(j) = minval(tmprms,1)
         rms(j)    = tmprms(1)
-        if(verbose) call PrintCounter(ntrj,j,progres)
       enddo
 !
       rmse    = 0.0
@@ -195,7 +189,6 @@ contains
       flpcnt = count(minidx/=1)
       write(logf%devn(),'(2X,'//nfmt//',A,'//nfmt//',2F9.3,2X,I8,F6.1)',err=100) ikey,'/',nkey,timestep(k),rmse*revt,flpcnt,real(100*flpcnt)*revt
 !
-      if(verbose) call PrintCounter(ntrj,ntrj,progres)
       if(ikey>=nkey) EXIT
     enddo
 !
@@ -211,7 +204,6 @@ contains
                                                        & calc_rog(natm,c0,revn)
     enddo
 !
-    if(verbose) write(stdout,'(a,f11.3,a)') 'Total calculation time :: ',omp_get_wtime()-time,' sec.'
     call logf%break()
     call logf%puts('------------------------------------------------------------')
     call logf%puts('---                  END OF CALCULATION                  ---')
@@ -428,23 +420,4 @@ function residue_swap(natm,nmol,nres,nswp,nflp,vswp,ncpy,X,FLPX) result(res)
     call logf%puts(errmsg)
     call logf%puts('CALCLATION WAS TERMINATED ABNORMARY!')
   end function CheckAbort
-!
-  subroutine PrintProgresBar(ntrj)
-  integer,intent(in)    :: ntrj
-    write(STDOUT,'(a,i0,a)') 'Processing trajectry for ',ntrj,' frames'
-    write(STDOUT,'(a)') ' [KEY FRAME]  |----------------------------------------|'
-    flush(STDOUT)
-  end subroutine PrintProgresBar
-!
-  subroutine PrintCounter(ntrj,counter,progres)
-  integer,intent(in)    :: ntrj,counter
-  integer,intent(out)   :: progres
-  integer               :: i,tmp
-    tmp = 40*counter/ntrj
-    do i=progres+1,tmp
-      write(STDOUT,'(a)',advance='no') '>'
-    enddo
-    if(progres<tmp.and.tmp==40)write(STDOUT,'(a)') '|'
-    progres = maxval([tmp,progres],1) ; flush(STDOUT)
-  end subroutine PrintCounter
 end program vpaa_rmsd
