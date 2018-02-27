@@ -26,8 +26,6 @@ module moltypes_ambermdcrd
     logical,public                      :: load_box  = .TRUE.
     logical,public                      :: load_ang  = .FALSE.
   contains
-    procedure,private :: AmdFmtWrite
-    generic           :: WRITE(formatted)   => AmdFmtWrite
     procedure         :: set_natom          => AmdSetNatom
     procedure         :: fetch              => AmdFetch
     procedure         :: load               => AmdLoad
@@ -40,30 +38,6 @@ module moltypes_ambermdcrd
     final             :: AmdDestractor
   end type AmberMdcrd
 contains
-  subroutine AmdFmtWrite(this,unit,iotype,v_list,iostat,iomsg)
-  use spur_string, only : digit,str_pad
-  class(AmberMdcrd),intent(in):: this
-  integer,intent(in)           :: unit
-  character(*),intent(in)      :: iotype
-  integer,intent(in)           :: v_list(:)
-  integer,intent(out)          :: iostat
-  character(*),intent(inout)   :: iomsg
-  character(:),allocatable     :: space
-  integer                      :: i,dig
-    iostat = 0
-    if(this%nnode<=0.or.this%natom<=0)then
-      write(unit,'(a)',iostat=iostat,iomsg=iomsg) 'HERE IS EMPTY CONTAINER' ; RETURN
-    endif
-!
-    write(unit,'(a,i0,a,i0,a,/)',iostat=iostat,iomsg=iomsg) 'HERE CONTAINS ',this%natom,' ATOMS'
-    dig = digit(this%nnode)
-    allocate(character(dig+3)::space) ; space(:) = ''
-    do i=1,this%nnode
-      if(iostat/=0) RETURN
-      write(unit,'(2a,/)',iostat=iostat,iomsg=iomsg) '['//str_pad(i,dig)//'] ',this%node(i)%is()
-    enddo
-  end subroutine AmdFmtWrite
-!
   subroutine AmdSetNatom(this,natom)
   class(AmberMdcrd),intent(inout) :: this
   integer,intent(in)              :: natom

@@ -29,6 +29,7 @@ use spur_ioerrorhandler
     integer                :: dev = DEVNULL, stat=IO_CLOSING, iseek=0
   contains
     procedure         :: connect        => StdioConnect
+    procedure         :: append         => StdioAppend
     procedure         :: streamseek     => StdioStreamSeek
     procedure         :: generate       => StdioGenerate
     procedure         :: seek           => StdioSeek
@@ -82,7 +83,7 @@ contains
       if(CheckAbort(this,is/=0,IO_MKDIRERR))RETURN
     endif
 !
-    call GetDevN(this) ; if(CheckAbort(this,this%dev==IO_DEVERR,IO_DEVERR))RETURN
+    call GetDevN(this) ; if(CheckAbort(this))RETURN
     open(this%dev, FILE=this%is(), STATUS="REPLACE",ACTION="WRITE",POSITION="ASIS",IOSTAT=is)
     call SetIostat(this,is) ; if(CheckAbort(this,ierr=IO_OPENERR))RETURN
   end subroutine StdioGenerate
@@ -97,12 +98,12 @@ contains
     if(CheckAbort(this,this%isExist().and.this%isnotWritable(),IO_NOTWRITABLE)) RETURN
     if(CheckOpen(this%stat)) call this%quit()
 !
-    call GetDevN(this) ; if(CheckAbort(this,this%dev==IO_DEVERR,IO_DEVERR))RETURN
+    call GetDevN(this) ; if(CheckAbort(this))RETURN
 !
     if(this%isExist())then
       open(this%dev,FILE=this%is(),STATUS="OLD",ACTION="WRITE",POSITION="APPEND",IOSTAT=is)
     else
-      open(this%dev,FILE=this%is(),STATUS="NEW",ACTION="WRITE",POSITION="ASIS",IOSTAT=is)
+      open(this%dev,FILE=this%is(),STATUS="REPLACE",ACTION="WRITE",POSITION="ASIS",IOSTAT=is)
     endif
     call SetIostat(this,is) ; if(CheckAbort(this,ierr=IO_OPENERR))RETURN
   end subroutine StdioAppend
@@ -117,7 +118,7 @@ contains
     if(CheckAbort(this,this%isExist().and.this%isnotReadable(),IO_NOTREADABLE)) RETURN
     if(CheckOpen(this%stat)) call this%quit()
 !
-    call GetDevN(this) ; if(CheckAbort(this,this%dev==IO_DEVERR,IO_DEVERR))RETURN
+    call GetDevN(this) ; if(CheckAbort(this))RETURN
 !
     open(this%dev, FILE=this%is(), STATUS="OLD",ACTION="READ",POSITION="ASIS",IOSTAT=is)
     call SetIostat(this,is) ; if(CheckAbort(this,ierr=IO_OPENERR))RETURN
@@ -154,7 +155,6 @@ contains
   class(stdio),intent(inout) :: this
   integer,intent(in)         :: is
   character(9)               :: act
-    if(CheckAbort(this,is>0,IO_ABNORMAL)) RETURN
     if(is==0)then
       INQUIRE(this%dev,ACTION=act)
       if(act=='READ')then
@@ -164,9 +164,12 @@ contains
       else
         this%stat = IO_CLOSING
       endif
+    elseif(is>0) then
+      this%stat = IO_ABNORMAL
     else
       this%stat = IO_ENDOFFILE
     endif
+    call this%check()
   end subroutine SetIostat
 !
   subroutine StdioBreak(this)
@@ -477,9 +480,8 @@ contains
   end function StdioNLines
 !
   pure integer function StdioCurrentAddress(this) result(res)
-  use spur_itertools
   class(stdio),intent(in) :: this
-    res = PeriodicBound(this%baff%size(),this%iseek)
+    res = this%iseek
   end function StdioCurrentAddress
 !
   pure subroutine StdioGoback(this,num)
@@ -525,6 +527,7 @@ contains
   character(*),intent(in),optional :: path
   integer                          :: is
     if(present(path)) call this%Fetch(path)
+    if(this%isnotExist()) RETURN
     if(this%isClose()) call this%Connect()
     call RoutineNameIs('STDIO_DELETE')
     close(this%dev,STATUS="DELETE",IOSTAT=is) ; call SetIostat(this,is)
@@ -559,9 +562,7 @@ contains
   class(stdio),intent(inout) :: this
   integer                    :: is
     call RoutineNameIs('STDIO_QUIT')
-    if(.not.this%isOpen())then
-      this%stat = IO_CLOSING ; RETURN
-    endif
+    if(this%dev==DEVNULL) RETURN
     close(this%dev,IOSTAT=is)
     call SetIostat(this,is)
     DEVTABLE(this%dev) = .true. ; this%dev = DEVNULL

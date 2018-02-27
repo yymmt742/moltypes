@@ -15,8 +15,7 @@ module moltypes
 !
   integer,parameter      :: MODE_RST7   =  1
   integer,parameter      :: MODE_NETCDF =  2
-  integer,parameter      :: MODE_MDCRD  =  3
-  integer,parameter      :: MODE_XYZ    =  4
+  integer,parameter      :: MODE_XYZ    =  3
 !
   character(4),parameter :: KEY_NAME    = 'name'
   character(4),parameter :: KEY_TYPE    = 'type'
@@ -31,8 +30,6 @@ module moltypes
   double precision,parameter :: StdVelR = 20.4550                  ! For Amber Unit
   double precision,parameter :: StdVel  = 1.0/StdVelR              !   1.d0/20.455d0
 !
-  character(20)  :: ROUTINE    = 'MOLTYPES'
-!
   type moltype
   private
     integer                       :: stat = MOLTYPES_NOERR
@@ -41,7 +38,6 @@ module moltypes
     type(amberprmtop),allocatable :: prmtop(:)
     type(ambernetcdf),allocatable :: nc(:)
     type(amberrst7),allocatable   :: rst7(:)
-!    type(ambermdcrd),allocatable  :: mdcrd(:)
     type(xyzfmt),allocatable      :: xyzfmt(:)
     logical,allocatable           :: mask(:)
     logical,public                :: terminates_at_abnormal = terminates_default
@@ -92,17 +88,15 @@ contains
   subroutine MoltypeAtomSelect(this,mask)
   class(moltype),intent(inout) :: this
   character(*),intent(in)      :: mask
-    if(allocated(this%mp))then
-      this%mask = this%mp(N_ALLOC)%parse(mask)
-    endif
+    if(allocated(this%mp)) this%mask = this%mp(N_ALLOC)%parse(mask)
   end subroutine MoltypeAtomSelect
 !
   subroutine MoltypeAtomSelectArray(this,mask)
   class(moltype),intent(inout) :: this
   character(*),intent(in)      :: mask(:)
   integer                      :: i
+    this%mask = .FALSE.
     if(allocated(this%mp))then
-      this%mask = .FALSE.
       do i=lbound(mask,1),ubound(mask,1)
         this%mask = IOR(this%mask,this%mp(N_ALLOC)%parse(mask(i)))
       enddo
@@ -132,9 +126,9 @@ contains
   use spur_pathname
   class(moltype),intent(inout) :: this
   type(pathname) ,intent(in)   :: fpath
-    ROUTINE = 'MOLTYPES_FETCH'
+    call RoutineNameIs('MOLTYPES_FETCH')
 !
-    if(CheckMoltype(this,fpath%isnotExist(),IO_NOTEXIST)) RETURN
+    if(CheckMoltype(this,fpath%isnotExist(),IO_NOTEXIST))       RETURN
     if(CheckMoltype(this,fpath%isnotReadable(),IO_NOTREADABLE)) RETURN
 !
     select case(fpath%extension())
@@ -164,14 +158,6 @@ contains
       if(.not.allocated(this%mp)) call MoltypeMPinit(this,this%nc(N_ALLOC)%natoms())
       if(CheckMoltype(this,size(this%mask)/=this%nc(N_ALLOC)%natoms(),IO_NATOMERR)) RETURN
       call MoltypeSetMode(this,MODE_NETCDF)
-!   case('mdcrd','crd')
-!     if(.not.allocated(this%mdcrd)) allocate(this%mdcrd(N_ALLOC))
-!     this%mdcrd(N_ALLOC)%terminates_at_abnormal = this%terminates_at_abnormal
-!
-!     call this%mdcrd(N_ALLOC)%fetch(fpath%is())
-!     if(CheckMoltype(this,this%mdcrd(N_ALLOC)%iserr(),IO_FMTERR)) RETURN
-!
-!     call MoltypeSetMode(this,MODE_MDCRD)
     case('rst7','restrt')
       if(.not.allocated(this%rst7)) allocate(this%rst7(N_ALLOC))
       this%rst7(N_ALLOC)%terminates_at_abnormal = this%terminates_at_abnormal
@@ -204,7 +190,7 @@ contains
   integer,intent(in),optional      :: lb,ub,stride
   character(*),intent(in),optional :: mask
   integer                          :: llb,lub,linc
-    ROUTINE = 'MOLTYPES_LOAD'
+    call RoutineNameIs('MOLTYPES_LOAD')
     if(.not.allocated(this%mp)) RETURN
     llb  =  1 ; if(present(lb)) llb = lb
     lub  = -1 ; if(present(ub)) lub = ub
@@ -215,12 +201,9 @@ contains
     case(MODE_NETCDF)
       call this%nc(N_ALLOC)%load(lb=llb,ub=lub,inc=linc,mask=this%mask)
       if(CheckMoltype(this,this%nc(N_ALLOC)%iserr(),IO_FMTERR)) RETURN
-!   case(MODE_RST7)
-!     call this%rst7(N_ALLOC)%load(lb=llb,ub=lub,inc=linc,mask=this%mask)
-!     if(CheckMoltype(this,this%rst7(N_ALLOC)%iserr(),IO_FMTERR)) RETURN
-!   case(MODE_MDCRD)
-!     call this%mdcrd(N_ALLOC)%set_natom(this%natoms()) ; call this%mdcrd(N_ALLOC)%load()
-!     if(CheckMoltype(this,this%mdcrd(N_ALLOC)%iserr(),IO_FMTERR)) RETURN
+    case(MODE_RST7)
+      call this%rst7(N_ALLOC)%load(lb=llb,ub=lub,inc=linc,mask=this%mask)
+      if(CheckMoltype(this,this%rst7(N_ALLOC)%iserr(),IO_FMTERR)) RETURN
     case(MODE_XYZ)
       call this%xyzfmt(N_ALLOC)%load()
       if(CheckMoltype(this,this%xyzfmt(N_ALLOC)%iserr(),IO_FMTERR)) RETURN
@@ -270,8 +253,6 @@ contains
       res = this%nc(N_ALLOC)%nframes()
     case(MODE_RST7)
       res = this%rst7(N_ALLOC)%nframes()
-!   case(MODE_MDCRD)
-!     res = this%mdcrd(N_ALLOC)%nframes()
     case(MODE_XYZ)
       res = this%xyzfmt(N_ALLOC)%nframes()
     case default
@@ -331,8 +312,6 @@ contains
       if(allocated(this%nc(N_ALLOC)%xyz))    res = this%nc(N_ALLOC)%xyz(1:3,1:this%natoms(),1:this%nframes())
     case(MODE_RST7)
       if(allocated(this%rst7(N_ALLOC)%xyz))  res = this%rst7(N_ALLOC)%xyz(1:3,1:this%natoms(),1:this%nframes())
-!   case(MODE_MDCRD)
-!     if(allocated(this%mdcrd(N_ALLOC)%xyz)) res = this%mdcrd(N_ALLOC)%xyz(1:3,1:this%natoms(),1:this%nframes())
     case(MODE_XYZ)
       if(allocated(this%xyzfmt(N_ALLOC)%xyz))res = this%xyzfmt(N_ALLOC)%xyz(1:3,1:this%natoms(),1:this%nframes())
     case default
@@ -353,8 +332,6 @@ contains
       if(allocated(this%nc(N_ALLOC)%xyz))    res = this%nc(N_ALLOC)%xyz(1:3,1:this%natoms(),at)
     case(MODE_RST7)
       if(allocated(this%rst7(N_ALLOC)%xyz))  res = this%rst7(N_ALLOC)%xyz(1:3,1:this%natoms(),at)
-!   case(MODE_MDCRD)
-!     if(allocated(this%mdcrd(N_ALLOC)%xyz)) res = this%mdcrd(N_ALLOC)%xyz(1:3,1:this%natoms(),at)
     case(MODE_XYZ)
       if(allocated(this%xyzfmt(N_ALLOC)%xyz))res = this%xyzfmt(N_ALLOC)%xyz(1:3,1:this%natoms(),at)
     end select
@@ -370,8 +347,6 @@ contains
       if(allocated(this%nc(N_ALLOC)%box))    res = this%nc(N_ALLOC)%box(1:3,1:this%nframes())
     case(MODE_RST7)
       if(allocated(this%rst7(N_ALLOC)%box))  res = this%rst7(N_ALLOC)%box(1:3,1:this%nframes())
-!   case(MODE_MDCRD)
-!     if(allocated(this%mdcrd(N_ALLOC)%box)) res = this%mdcrd(N_ALLOC)%box(1:3,1:this%nframes())
     end select
   end function MoltypeBox_all
 !
@@ -388,8 +363,6 @@ contains
       if(allocated(this%nc(N_ALLOC)%box))    res = this%nc(N_ALLOC)%box(1:3,at)
     case(MODE_RST7)
       if(allocated(this%rst7(N_ALLOC)%box))  res = this%rst7(N_ALLOC)%box(1:3,at)
-!   case(MODE_MDCRD)
-!     if(allocated(this%mdcrd(N_ALLOC)%box)) res = this%mdcrd(N_ALLOC)%box(1:3,at)
     end select
   end function MoltypeBox_idx
 !
@@ -403,8 +376,6 @@ contains
       if(allocated(this%nc(N_ALLOC)%ang))    res = this%nc(N_ALLOC)%ang(1:3,1:this%nframes())
     case(MODE_RST7)
       if(allocated(this%rst7(N_ALLOC)%ang))  res = this%rst7(N_ALLOC)%ang(1:3,1:this%nframes())
-!   case(MODE_MDCRD)
-!     if(allocated(this%mdcrd(N_ALLOC)%ang)) res = this%mdcrd(N_ALLOC)%ang(1:3,1:this%nframes())
     end select
   end function MoltypeBoxAng_all
 !
@@ -421,8 +392,6 @@ contains
      if(allocated(this%nc(N_ALLOC)%ang))     res = this%nc(N_ALLOC)%box(1:3,at)
     case(MODE_RST7)
      if(allocated(this%rst7(N_ALLOC)%ang))   res = this%rst7(N_ALLOC)%box(1:3,at)
-!   case(MODE_MDCRD)
-!     if(allocated(this%mdcrd(N_ALLOC)%ang)) res = this%mdcrd(N_ALLOC)%box(1:3,at)
     end select
   end function MoltypeBoxAng_idx
 !
@@ -466,8 +435,6 @@ contains
       this%nc(N_ALLOC)%xyz(1:3,1:natom,1:nframe)     = xyz(1:3,1:natom,1:nframe)
     case(MODE_RST7)
       this%rst7(N_ALLOC)%xyz(1:3,1:natom,1:nframe)   = xyz(1:3,1:natom,1:nframe)
-!   case(MODE_MDCRD)
-!     this%mdcrd(N_ALLOC)%xyz(1:3,1:natom,1:nframe)  = xyz(1:3,1:natom,1:nframe)
     case(MODE_XYZ)
       this%xyzfmt(N_ALLOC)%xyz(1:3,1:natom,1:nframe) = xyz(1:3,1:natom,1:nframe)
     end select
@@ -510,7 +477,6 @@ contains
     if(allocated(this%prmtop))deallocate(this%prmtop)
     if(allocated(this%nc))    deallocate(this%nc)
     if(allocated(this%rst7))  deallocate(this%rst7)
-!    if(allocated(this%mdcrd)) deallocate(this%mdcrd)
     if(allocated(this%mask))  deallocate(this%mask)
     this%terminates_at_abnormal = terminates_default
   end subroutine MoltypeClear

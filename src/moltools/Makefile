@@ -3,8 +3,10 @@ include config.h
 all: setup
 
 setup:
-	(cd mcut && make)
-	(cd vpaa_process_tools && make)
+#	(cd mcut && make)
+#	(cd vpaa_process_tools && make)
+#	(cd xhamil && make)
+	(cd toybox && make)
 
 .PHONY: clean
 clean:

@@ -40,27 +40,27 @@ contains
   character(*),intent(in)      :: path
   type(stdio)                  :: baff
   type(vector_character)       :: words
-  character(256)               :: dumatm
-  real                         :: dum(spatial_def)
   integer                      :: i,atom,using
     call RoutineNameIs('XYZFMT_FETCH')
     baff%terminates_at_abnormal = this%terminates_at_abnormal
     this%nnode = this%nnode + 1 ; using = this%nnode
-    call stackExtention(this) ; this%node(using) = path
+!
+    call stackExtention(this) ; call this%node(using)%fetch(path)
     call CheckXyz(this,this%node(using)%isnotExist(),IO_NOTEXIST)
     call CheckXyz(this,this%node(using)%isnotReadable(),IO_NOTREADABLE)
 !
     call baff%fetch(path)
+    call baff%load()
+    call CheckXyz(this,baff%iserr(),IO_FMTERR)
     call words%split(baff%gets()) ; atom = words%ToInt(1)
     call this%node(using)%put_caption(baff%gets())
-    call CheckXyz(this,baff%iserr(),IO_FMTERR)
 !
     if(this%natom==atom_def)then
-        call this%atm%clear()
+      call this%atm%clear()
       call this%atm%reserve(atom)
       do i=1,atom
-        read(baff%devn(),'(A,3F)',err=101,end=100) dumatm,dum
-        call this%atm%push(trim(dumatm))
+        call words%erace() ; call words%split(baff%gets())
+        call this%atm%push(trim(words%at(1)))
       enddo
 100   CONTINUE
       this%natom = this%atm%size()
@@ -97,24 +97,26 @@ contains
     enddo
   contains
     subroutine getxyz(this,nstack)
+    use spur_string
     class(XYZFMT),intent(inout)  :: this
     integer,intent(inout)        :: nstack
     type(stdio)                  :: baff
     real                         :: tmp(spatial_def,this%natom)
     type(vector_character)       :: words
-    character(80)                :: line
-    integer                      :: i,j,atom
+    integer                      :: i,j
+      call baff%fetch(this%node(using)%is()) ; call baff%load()
       do
-        read(baff%devn(),'(I0/A)',err=101,end=100) atom,line
-        call CheckXyz(this,this%natom/=atom.or.atom<=0,IO_NATOMERR)
+        call baff%goforward(2)
         do i=1,this%natom
-          read(baff%devn(),'(A,3F)',err=101,end=100)line,tmp(:,i)
+          call words%erace() ; call words%split(baff%gets())
+          tmp(:,i) = ToNum([words%at(2),words%at(3),words%at(4)],[0.d0,0.d0,0.d0])
         enddo
+        if(baff%CurrentAddress()>baff%nlines())EXIT
         this%nframe = this%nframe + 1 ; call TrjExpand(this,nstack)
         this%xyz(:,:,this%nframe) = tmp
+        if(baff%CurrentAddress()==baff%nlines())EXIT
       enddo
-100   RETURN
-101   call CheckXyz(this,.TRUE.,IO_FMTERR)
+      call baff%quit()
     end subroutine getxyz
 !
     pure subroutine TrjExpand(this,nstack)

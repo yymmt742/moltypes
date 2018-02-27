@@ -1,12 +1,16 @@
 module spur_itertools
   implicit none
   private
-  public :: IterScope,PlusMinus,PeriodicBound
+  public :: sgn,IterScope,PeriodicBound
+  integer(4),parameter     :: int4 = 4
+  integer(4),parameter     :: bsi4 = bit_size(int4) - 1
 contains
-  pure integer function PlusMinus(n) result(res)
-  integer,intent(in) :: n
-    res = n/abs(n)
-  end function PlusMinus
+  pure elemental function sgn(n) result(res)
+  integer(int4),intent(in) :: n
+  integer(int4)            :: res
+    res = n ; if(res==0) RETURN
+    res = ishft(btest(res,bsi4),1)+1
+  end function sgn
 !
   pure subroutine IterScope(length,lb,ub,inc,num)
   integer,intent(in)                 :: length

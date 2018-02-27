@@ -3,8 +3,7 @@ module moltypes_export
   use moltypes
   implicit none
   private
-  !public :: ExportAs,ExportXYZ,ExportMdcrd,ExportRST7,ExportAmberNetcdf
-  public :: ExportAs,ExportAmberNetcdf
+  public :: ExportAs,ExportXYZ,ExportMdcrd,ExportRST7,ExportAmberNetcdf
 !
   character(12),parameter :: DEFAULT_NAME = 'default_name'
 !
@@ -64,93 +63,90 @@ contains
     call RoutineNameIs('MOLTYPES_EXPORT')
     lo = .TRUE. ; if(present(overwrite)) lo = overwrite
     select case(fpath%extension())
-!   case('prmtop','top')
-!     if(allocated(this%prmtop))then
-!       call this%prmtop(N_ALLOC)%export(fpath%is(),mask=this%mask)
-!     endif
     case('netcdf','nc')
       call ExportAmberNetcdf(fpath%is(),this%natoms(),this%nframes(),xyz=this%xyz(),box=dble(this%box()),ang=dble(this%boxang()),overwrite=lo)
-!   case('mdcrd','crd')
-!     call ExportMdcrd(fpath%is(),this%natoms(),this%nframes(),this%xyz(),this%box(),this%boxang(),overwrite=lo)
-!   case('rst7','restrt')
-!     call ExportRST7(fpath%is(),this%natoms(),this%xyz(this%nframes()),this%box(this%nframes()),this%boxang(this%nframes()))
-!   case('xyz')
-!     call ExportXYZ(fpath%is(),this%natoms(),this%nframes(),this%xyz(),this%inq('name','XX  '),overwrite=lo)
-!   case default
-!     call ExportXYZ(fpath%is(),this%natoms(),this%nframes(),this%xyz(),this%inq('name','XX  '),overwrite=lo)
+    case('mdcrd','crd')
+      call ExportMdcrd(fpath%is(),this%natoms(),this%nframes(),this%xyz(),this%box(),this%boxang(),overwrite=lo)
+    case('rst7','restrt')
+      call ExportRST7(fpath%is(),this%natoms(),this%xyz(this%nframes()),this%box(this%nframes()),this%boxang(this%nframes()))
+    case default
+      call ExportXYZ(fpath%is(),this%natoms(),this%nframes(),this%xyz(),this%inq('name','XX  '),overwrite=lo)
     end select
   end subroutine MoltypeExport
 !
-! subroutine ExportXYZ(path,natm,nframe,xyz,atm,title,ffmt,overwrite)
-! use spur_stdio
-! character(*),intent(in)              :: path
-! integer,intent(in)                   :: natm,nframe
-! real,intent(in)                      :: xyz(spatial,natm,nframe)
-! character(*),intent(in)              :: atm(natm)
-! character(*),intent(in),optional     :: title,ffmt
-! logical,intent(in),optional          :: overwrite
-! character(:),allocatable             :: lffmt,ltitle
-! type(stdio)                          :: fout
-! integer                              :: i,j
-!   call RoutineNameIs('EXPORT_XYZFORMAT')
-!   fout%terminates_at_abnormal = .TRUE.
-!   call CheckAbort(natm<=0,IO_NATOMERR)
-!   call fout%fetch(path)
-!   if(present(overwrite))then
-!     if(overwrite) call fout%generate()
-!   endif
+  subroutine ExportXYZ(path,natm,nframe,xyz,atm,title,ffmt,overwrite)
+  use spur_stdio
+  character(*),intent(in)              :: path
+  integer,intent(in)                   :: natm,nframe
+  real,intent(in)                      :: xyz(spatial,natm,nframe)
+  character(*),intent(in)              :: atm(natm)
+  character(*),intent(in),optional     :: title,ffmt
+  logical,intent(in),optional          :: overwrite
+  character(:),allocatable             :: lffmt,ltitle
+  type(stdio)                          :: fout
+  integer                              :: i,j
+    call RoutineNameIs('EXPORT_XYZFORMAT')
+    if(CheckAbort(natm<=0,IO_NATOMERR))RETURN
+    call fout%fetch(path)
+    if(present(overwrite))then
+      if(overwrite) call fout%generate()
+    endif
+ 
+    allocate(character(0)::lffmt,ltitle)
+    if(present(ffmt))then  ; lffmt  = '(A,3'//ffmt//')'
+    else ; lffmt  = '(A,3F9.3)'  ; endif
+    if(present(title))then ; ltitle = title
+    else ; ltitle = DEFAULT_NAME ; endif
+ 
+    do j=1,nframe
+      write(fout%devn(),'(I0)',ERR=100) natm ; call fout%puts(ltitle)
+      do i=1,natm
+        write(fout%devn(),lffmt,ERR=100) atm(i),xyz(:,i,j)
+      enddo
+    enddo
+    call fout%quit() ; RETURN
+100 if(CheckAbort(.TRUE.,IO_WRITERR))RETURN
+  end subroutine ExportXYZ
 !
-!   allocate(character(0)::lffmt,ltitle)
-!   if(present(ffmt))then  ; lffmt  = '(A,3'//ffmt//')'
-!   else ; lffmt = '(A,3F9.3)' ; endif
-!   if(present(title))then ; ltitle = title
-!   else ; ltitle = DEFAULT_NAME ; endif
+  subroutine ExportMdcrd(path,natm,nframe,xyz,box,ang,title,overwrite)
+  use spur_stdio
+  character(*),intent(in)              :: path
+  integer,intent(in)                   :: natm,nframe
+  real,intent(in)                      :: xyz(spatial,natm,nframe),box(spatial,nframe)
+  real,intent(in),optional             :: ang(spatial,nframe)
+  character(*),intent(in),optional     :: title
+  logical,intent(in),optional          :: overwrite
+  character(:),allocatable             :: ltitle
+  real                                 :: lang(spatial)
+  type(stdio)                          :: fout
+  integer                              :: i
+    call RoutineNameIs('EXPORT_AMBERMDCRD')
+    fout%terminates_at_abnormal = .TRUE.
+    if(CheckAbort(natm<=0,IO_NATOMERR))RETURN
 !
-!   do j=1,nframe
-!     write(fout%devn(),'(I0)',ERR=100) natm ; call fout%puts(ltitle)
-!     do i=1,natm
-!       write(fout%devn(),lffmt,ERR=100) atm(i),xyz(:,i,j)
-!     enddo
-!   enddo
-!   call fout%quit() ; RETURN
-!100 call CheckAbort(.TRUE.,IO_WRITERR)
-! end subroutine ExportXYZ
+    allocate(character(0)::ltitle)
+    if(present(title))then ; ltitle = title
+    else ; ltitle = DEFAULT_NAME ; endif
 !
-! subroutine ExportMdcrd(path,natm,nframe,xyz,box,ang,title,overwrite)
-! use spur_stdio
-! character(*),intent(in)              :: path
-! integer,intent(in)                   :: natm,nframe
-! real,intent(in)                      :: xyz(spatial,natm,nframe),box(spatial,nframe)
-! real,intent(in),optional             :: ang(spatial,nframe)
-! character(*),intent(in),optional     :: title
-! logical,intent(in),optional          :: overwrite
-! character(:),allocatable             :: ltitle
-! real                                 :: lang(spatial)
-! type(stdio)                          :: fout
-! integer                              :: i
-!   call RoutineNameIs('EXPORT_AMBERMDCRD')
-!   fout%terminates_at_abnormal = .TRUE.
-!   call CheckAbort(natm<=0,IO_NATOMERR)
-!   allocate(character(0)::ltitle)
-!   if(present(title))then ; ltitle = title
-!   else ; ltitle = DEFAULT_NAME ; endif
+    call fout%fetch(path)
 !
-!   if(present(overwrite))then
-!     if(overwrite)then
-!       call fout%generate(path) ; call fout%puts(ltitle)
-!     endif
-!   endif
-!   call fout%append(path)
+    if(present(overwrite))then
+      if(overwrite) call fout%delete()
+    endif
+    if(fout%isnotExist())then
+      call fout%generate() ; call fout%puts(ltitle)
+    endif
 !
-!   lang = 90.0
-!   do i=1,nframe
-!     if(present(ang)) lang = ang(:,i)
-!     write(fout%devn(),'(10F8.3)',ERR=100) xyz(:,:,i)
-!     write(fout%devn(),'(6F8.3)', ERR=100) box(:,i),lang
-!   enddo
-!   call fout%quit() ; RETURN
-!100 call CheckAbort(.TRUE.,IO_WRITERR)
-!  end subroutine ExportMdcrd
+    call fout%append()
+    lang = 90.0
+    do i=1,nframe
+      if(present(ang)) lang = ang(:,i)
+      write(fout%devn(),'(10F8.3)',ERR=100) xyz(:,:,i)
+      write(fout%devn(),'(6F8.3)', ERR=100) box(:,i),lang
+    enddo
+    call fout%quit() ; RETURN
+100 if(CheckAbort(.TRUE.,IO_WRITERR)) RETURN
+   end subroutine ExportMdcrd
 !
   subroutine ExportRST7(path,natm,xyz,box,ang,vel,time,title)
   use spur_stdio
@@ -163,7 +159,6 @@ contains
   real                                 :: ltime,lang(spatial)
   type(stdio)                          :: fout
     call RoutineNameIs('EXPORT_AMBERRST7')
-    fout%terminates_at_abnormal = .TRUE.
     if(CheckAbort(natm<=0,IO_NATOMERR))RETURN
     call fout%fetch(path) ; call fout%generate()
 !
@@ -178,9 +173,7 @@ contains
     call fout%puts(ltitle)
     write(fout%devn(),'(I5,5E15.7)',ERR=100) natm,ltime
     write(fout%devn(),'(6F12.7)',ERR=100)   xyz
-    if(present(vel))then
-      write(fout%devn(),'(6F12.7)',ERR=100) vel
-    endif
+    if(present(vel)) write(fout%devn(),'(6F12.7)',ERR=100) vel
     write(fout%devn(),'(6F12.7)',ERR=100) box,lang
     call fout%quit() ; RETURN
 100 if(CheckAbort(.TRUE.,IO_WRITERR)) RETURN

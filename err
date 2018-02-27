@@ -1,0 +1,52 @@
+(cd src/spur03 && make)
+make[1]: ディレクトリ `/home/yamamoto/local/devel/github/moltypes/src/spur03' に入ります
+make[1]: `all' に対して行うべき事はありません.
+make[1]: ディレクトリ `/home/yamamoto/local/devel/github/moltypes/src/spur03' から出ます
+(cd src/moltypes && make)
+make[1]: ディレクトリ `/home/yamamoto/local/devel/github/moltypes/src/moltypes' に入ります
+make[1]: `all' に対して行うべき事はありません.
+make[1]: ディレクトリ `/home/yamamoto/local/devel/github/moltypes/src/moltypes' から出ます
+(cd src/moltools && make)
+make[1]: ディレクトリ `/home/yamamoto/local/devel/github/moltypes/src/moltools' に入ります
+(cd toybox && make)
+make[2]: ディレクトリ `/home/yamamoto/local/devel/github/moltypes/src/moltools/toybox' に入ります
+ifort -I/home/yamamoto/local/devel/github/moltypes/include -O3 -xHOST -free  -c -o dimgen.o dimgen.f
+dimgen.f(76): エラー #6460: これは包括構造体で定義されるフィールド名ではありません。   [N_ATOMS]
+    if(trj%n_atoms()<=0.or.trj%n_frames()<=0)STOP "this trajectory is empty!"
+-----------^
+dimgen.f(76): エラー #6158: 構造体名が無効かありません。   [TRJ]
+    if(trj%n_atoms()<=0.or.trj%n_frames()<=0)STOP "this trajectory is empty!"
+-------^
+dimgen.f(76): エラー #6460: これは包括構造体で定義されるフィールド名ではありません。   [N_FRAMES]
+    if(trj%n_atoms()<=0.or.trj%n_frames()<=0)STOP "this trajectory is empty!"
+-------------------------------^
+dimgen.f(77): エラー #6385: 許可されている最高のデータ型ランクは INTEGER(KIND=8) です。   [TRJ]
+    if(allocated(crd))deallocate(crd) ; allocate(crd(3,trj%n_atoms()))
+-------------------------------------------------------^
+dimgen.f(78): エラー #6385: 許可されている最高のデータ型ランクは INTEGER(KIND=8) です。   [TRJ]
+    if(allocated(cpy))deallocate(cpy) ; allocate(cpy(3,trj%n_atoms()))
+-------------------------------------------------------^
+dimgen.f(79): エラー #6385: 許可されている最高のデータ型ランクは INTEGER(KIND=8) です。   [TRJ]
+    if(allocated(atz))deallocate(atz) ; allocate(atz(trj%n_atoms()))
+-----------------------------------------------------^
+dimgen.f(80): エラー #6385: 許可されている最高のデータ型ランクは INTEGER(KIND=8) です。   [TRJ]
+    if(allocated(anm))deallocate(anm) ; allocate(anm(trj%n_atoms()))
+-----------------------------------------------------^
+dimgen.f(81): エラー #6385: 許可されている最高のデータ型ランクは INTEGER(KIND=8) です。   [TRJ]
+    if(allocated(hvy))deallocate(hvy) ; allocate(hvy(trj%n_atoms()))
+-----------------------------------------------------^
+dimgen.f(84): エラー #8497: 式でのプロシージャー名の不正な使用です。関数呼び出しで括弧がない可能性があります。   [INQ]
+    anm  = trj%inq('name','xx  ')
+---------------^
+dimgen.f(84): エラー #6054: このコンテキストには CHARACTER データ型が必要です。   [INQ]
+    anm  = trj%inq('name','xx  ')
+---------------^
+dimgen.f(100): エラー #8497: 式でのプロシージャー名の不正な使用です。関数呼び出しで括弧がない可能性があります。   [XYZ]
+    crd  = trj%xyz(1)
+---------------^
+コンパイルは dimgen.f で異常終了しました (コード 1)。
+make[2]: *** [dimgen.o] エラー 1
+make[2]: ディレクトリ `/home/yamamoto/local/devel/github/moltypes/src/moltools/toybox' から出ます
+make[1]: *** [setup] エラー 2
+make[1]: ディレクトリ `/home/yamamoto/local/devel/github/moltypes/src/moltools' から出ます
+make: *** [moltools] エラー 2

@@ -3,10 +3,10 @@ module spur_matcalc
 !$ use omp_lib
 implicit none
   private
-  public :: cov,idemat,refmat,det,svd
+  public :: cov,idemat,refmat,det,svd,sye
 !
   interface cov
-    module procedure rcov
+    module procedure rcov,dcov
   end interface cov
 !
   interface idemat
@@ -24,12 +24,17 @@ implicit none
   interface svd
     module procedure rsvd,dsvd
   end interface svd
+!
+  interface sye
+    module procedure dsye
+  end interface sye
 contains
-  function rcov(d1,d2,n,X,Y) result(res)
+  pure function rcov(d1,d2,n,X,Y) result(res)
   integer,intent(in) :: d1,d2,n
   real,intent(in)    :: X(d1,n),Y(d2,n)
   real               :: res(d1,d2)
   integer            :: i,j,k
+    res = 0.0
     do k=1,n
       do j=1,d2
         do i=1,d1
@@ -38,6 +43,21 @@ contains
       enddo
     enddo
   end function rcov
+!
+  pure function dcov(d1,d2,n,X,Y) result(res)
+  integer,intent(in)          :: d1,d2,n
+  double precision,intent(in) :: X(d1,n),Y(d2,n)
+  double precision            :: res(d1,d2)
+  integer                     :: i,j,k
+    res = 0.d0
+    do k=1,n
+      do j=1,d2
+        do i=1,d1
+          res(i,j) = res(i,j) + X(i,k)*Y(j,k)
+        enddo
+      enddo
+    enddo
+  end function dcov
 !
   function ridm(d) result(res)
   integer,intent(in) :: d
@@ -97,4 +117,21 @@ contains
     deallocate(WorkSpace) ; allocate(WorkSpace(1:LWork))
     CALL DGESVD('S','S',N,N,A,N,S,U,N,VT,N,WorkSpace,LWork,Info)
   end subroutine dsvd
+!
+  subroutine DSYE(A,EV,N)
+  double precision,intent(inout) :: A(N,N)
+  double precision,intent(out)   :: EV(N)
+  integer,intent(in)             :: N
+  double precision,allocatable   :: WorkSpace(:)
+  integer                        :: lda,lwork,liwork
+  integer                        :: info
+    LWork=-1
+    allocate(WorkSpace(1))
+    WorkSpace=0
+    CALL DSYEV('V','L',N,A,N,EV,WorkSpace,LWork,Info)
+    LWork=Int(WorkSpace(1))
+!
+    deallocate(WorkSpace) ; allocate(WorkSpace(1:LWork))
+    CALL DSYEV('V','L',N,A,N,EV,WorkSpace,LWork,Info)
+  end subroutine DSYE
 end module spur_matcalc

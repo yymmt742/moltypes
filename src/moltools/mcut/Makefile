@@ -2,7 +2,7 @@ mcut=mcut
 pcut=pcut
 
 LDFLAGS += -L$(LIBPATH) -lmoltypes -lspur03 -lnetcdf -lnetcdff -lhdf5_hl -lhdf5 -lz -lsz -lcurl -lm
-FFLAGS += -O3 -xHOST -free -traceback
+FFLAGS += -O3 -xHOST -free
 
 all: $(mcut) $(pcut)
 

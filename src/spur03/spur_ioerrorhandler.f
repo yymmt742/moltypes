@@ -100,8 +100,8 @@ contains
     case(IO_READERR)     ; res = r//' ERROR OCCURED WHILE READING'
     case(IO_WRITERR)     ; res = r//' ERROR OCCURED WHILE WRITING'
     case(IO_MKDIRERR)    ; res = r//' ERROR OCCURED WHILE MKDIR'
-    case(IO_DEVERR)      ; res = r//' TOO MANY OPEN FILES)'
-    case(IO_DEFERR)      ; res = r//' ERROR OCCURED WHILE DEFINING)'
+    case(IO_DEVERR)      ; res = r//' TOO MANY OPEN FILES'
+    case(IO_DEFERR)      ; res = r//' ERROR OCCURED WHILE DEFINING'
     case default         ; res = r//' UNKNOWN ERROR.'
     end select
     deallocate(r)
