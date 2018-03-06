@@ -95,6 +95,7 @@ module moltypes_amberprmtop
       if(CheckAmbPrm(this,this%path%isnotExist(),IO_NOTEXIST)) RETURN
 !
       fdata%terminates_at_abnormal = this%terminates_at_abnormal
+!
       call fdata%fetch(path) ; call fdata%connect()
       if(CheckAmbPrm(this,fdata%iserr(),IO_CANNOTOPEN)) RETURN
 !
@@ -264,7 +265,7 @@ module moltypes_amberprmtop
   type(vector_integer)              :: bonh,bona,angh,anga,dihh,diha
   integer                           :: i,j,k,is
     call RoutineNameIs('EXPORT_AMBERPERMTOP')
-    if(CheckAmbPrm(this,this%natoms()==0,IO_EMPTYATOM)) RETURN
+    if(CheckAmbPrm(this,this%natoms()<=0,IO_EMPTYATOM)) RETURN
     allocate(lmask(this%natoms())) ; lmask = .TRUE.
 !
     if(present(mask)) lmask = CompleteMask(mask,this%natoms())

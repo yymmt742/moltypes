@@ -137,18 +137,19 @@ contains
       this%prmtop(N_ALLOC)%terminates_at_abnormal = this%terminates_at_abnormal
 !
       call this%prmtop(N_ALLOC)%load(fpath%is())
-      if(CheckMoltype(this,this%prmtop(N_ALLOC)%iserr(),IO_FMTERR)) RETURN
+      if(CheckMoltype(this,this%prmtop(N_ALLOC)%iserr(),IO_FMTERR))       RETURN
+      if(CheckMoltype(this,this%prmtop(N_ALLOC)%Natoms()<=0,IO_NATOMERR)) RETURN
 !
       if(.not.allocated(this%mp)) call MoltypeMPinit(this,this%prmtop(N_ALLOC)%Natoms())
       if(CheckMoltype(this,size(this%mask)/=this%prmtop(N_ALLOC)%Natoms(),IO_NATOMERR)) RETURN
 !
-      call this%mp(N_ALLOC)%def_keyword(KEY_NAME,   this%prmtop(N_ALLOC)%IGRAPH)
-      call this%mp(N_ALLOC)%def_keyword(KEY_TYPE,   this%prmtop(N_ALLOC)%ISYMBL)
+      if(allocated(this%prmtop(N_ALLOC)%IGRAPH)) call this%mp(N_ALLOC)%def_keyword(KEY_NAME,   this%prmtop(N_ALLOC)%IGRAPH)
+      if(allocated(this%prmtop(N_ALLOC)%ISYMBL)) call this%mp(N_ALLOC)%def_keyword(KEY_TYPE,   this%prmtop(N_ALLOC)%ISYMBL)
+      if(allocated(this%prmtop(N_ALLOC)%ATNUM))  call this%mp(N_ALLOC)%def_keyword(KEY_ELEMENT,this%prmtop(N_ALLOC)%ATNUM)
+      if(allocated(this%prmtop(N_ALLOC)%CHARGE)) call this%mp(N_ALLOC)%def_keyword(KEY_CHARGE, real(this%prmtop(N_ALLOC)%CHARGE*StdChg))
+      if(allocated(this%prmtop(N_ALLOC)%AMASS))  call this%mp(N_ALLOC)%def_keyword(KEY_MASS,   real(this%prmtop(N_ALLOC)%AMASS))
       call this%mp(N_ALLOC)%def_keyword(KEY_RESNAME,this%prmtop(N_ALLOC)%resname())
       call this%mp(N_ALLOC)%def_keyword(KEY_RESID,  this%prmtop(N_ALLOC)%resid())
-      call this%mp(N_ALLOC)%def_keyword(KEY_ELEMENT,this%prmtop(N_ALLOC)%ATNUM)
-      call this%mp(N_ALLOC)%def_keyword(KEY_CHARGE, real(this%prmtop(N_ALLOC)%CHARGE*StdChg))
-      call this%mp(N_ALLOC)%def_keyword(KEY_MASS,   real(this%prmtop(N_ALLOC)%AMASS))
     case('netcdf','nc')
       if(.not.allocated(this%nc)) allocate(this%nc(N_ALLOC))
       this%nc(N_ALLOC)%terminates_at_abnormal = this%terminates_at_abnormal

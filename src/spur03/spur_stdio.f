@@ -132,17 +132,17 @@ contains
   character(MAXLINE)                   :: line
   integer                              :: id,is
     allocate(character(0)::res)
-    if(CheckAbort(this,len_trim(substring)==0,ierr=IO_ILEGALOPT))RETURN
-    if(CheckAbort(this,this%isnotReading(),ierr=IO_DISCONNECT))RETURN
+    if(CheckAbort(this,len_trim(substring)==0,ierr=IO_ILEGALOPT)) RETURN
+    if(CheckAbort(this,this%isnotReading(),ierr=IO_DISCONNECT))   RETURN
+!
     if(present(reload))then
-      if(this%isOpen()) rewind(this%dev) ; this%iseek = 0
+      if(reload.and.this%isOpen()) rewind(this%dev) ; this%iseek = 0
     endif
 !
     do
       this%iseek = this%iseek + 1
       read(this%dev,'(A)',END=100,iostat=is) line
-      call SetIostat(this,is) ; if(CheckAbort(this,this%iserr(),IO_OPENERR))RETURN
-      id    = index(trim(line),substring)
+      id = index(trim(line),substring)
       if(id>0)then
         res = trim(line) ; RETURN
       endif

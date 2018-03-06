@@ -30,13 +30,13 @@ contains
 !
     if(op%option("-m"))then
       call mp%init(prm%natoms())
-      call mp%def_keyword(KEY_NAME,   prm%IGRAPH)
-      call mp%def_keyword(KEY_TYPE,   prm%ISYMBL)
+      if(allocated(prm%IGRAPH)) call mp%def_keyword(KEY_NAME,   prm%IGRAPH)
+      if(allocated(prm%ISYMBL)) call mp%def_keyword(KEY_TYPE,   prm%ISYMBL)
+      if(allocated(prm%ATNUM))  call mp%def_keyword(KEY_ELEMENT,prm%ATNUM)
+      if(allocated(prm%CHARGE)) call mp%def_keyword(KEY_CHARGE, real(prm%CHARGE*StdChg))
+      if(allocated(prm%AMASS))  call mp%def_keyword(KEY_MASS,   real(prm%AMASS))
       call mp%def_keyword(KEY_RESNAME,prm%resname())
       call mp%def_keyword(KEY_RESID,  prm%resid())
-      call mp%def_keyword(KEY_ELEMENT,prm%ATNUM)
-      call mp%def_keyword(KEY_CHARGE, real(prm%CHARGE*StdChg))
-      call mp%def_keyword(KEY_MASS,   real(prm%AMASS))
       call prm%export(op%optargs('-o',1),mask=mp%parse(op%optargs('-m',1)))
     else
       call prm%export(op%optargs('-o',1))

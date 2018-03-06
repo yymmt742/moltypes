@@ -5,7 +5,6 @@ module moltypes_readmask
   private
   public :: readmask
 !
-  character(20)           :: ROUTINE = 'MOLTYPES_READMASK'
   integer,parameter       :: NATM_NULL            = -1
 !
   character(5),parameter :: KWD_INDEX   = 'index'
@@ -27,7 +26,7 @@ module moltypes_readmask
     type(vector_character),allocatable  :: cvar(:),cunq(:)
     type(vector_integer),allocatable    :: ivar(:),iunq(:)
     type(vector_real),allocatable       :: rvar(:)
-    logical,public                      :: terminates_at_abnormal = .FALSE.
+    logical,public                      :: terminates_at_abnormal = terminates_default
   contains
     procedure         :: init            => RmskInit
     procedure,private :: RmskDefKwd_chr
@@ -53,8 +52,8 @@ contains
   class(ReadMask),intent(inout) :: this
   integer,intent(in)            :: natm
   integer                       :: i
-    ROUTINE = 'READMASK_INIT'
-    call CheckRmsk(this,natm<=0,RMSK_INVALID_NATM) ; if(this%isErr())RETURN
+    call RoutineNameIs('READMASK_INIT')
+    if(CheckRmsk(this,natm<=0,RMSK_INVALID_NATM))RETURN
     call RmskDestractor(this)
     this%natm = natm
     call this%ikey%push(KWD_INDEX) ; this%inid=1
@@ -70,7 +69,8 @@ contains
   character(*),intent(in)            :: var(:)
   integer                            :: kid,old
   type(vector_character),allocatable :: swp(:)
-    call CheckRmsk(this,size(var)/=this%natm,RMSK_INVALID_NVAR) ; if(this%isErr())RETURN
+    call RoutineNameIs('READMASK_DEFKWD')
+    if(CheckRmsk(this,size(var)/=this%natm,RMSK_INVALID_NVAR))RETURN
     if(this%ckey%find(small(word))==0) call this%ckey%push(small(word)) ; kid = this%ckey%find(small(word))
     if(kid>this%cnid)then
       old = this%cnid ; this%cnid = maxval([old,1],1)
@@ -92,7 +92,8 @@ contains
   integer,intent(in)                 :: var(:)
   integer                            :: kid,old
   type(vector_integer),allocatable   :: swp(:)
-    call CheckRmsk(this,size(var)/=this%natm,RMSK_INVALID_NVAR) ; if(this%isErr())RETURN
+    call RoutineNameIs('READMASK_DEFKWD')
+    if(CheckRmsk(this,size(var)/=this%natm,RMSK_INVALID_NVAR))RETURN
     if(this%ikey%find(small(word))==0) call this%ikey%push(small(word)) ; kid = this%ikey%find(small(word))
     if(kid>this%inid)then
       old = this%inid ; this%inid = maxval([old,1],1)
@@ -114,7 +115,8 @@ contains
   real,intent(in)                    :: var(:)
   integer                            :: kid,old
   type(vector_real),allocatable      :: swp(:)
-    call CheckRmsk(this,size(var)/=this%natm,RMSK_INVALID_NVAR) ; if(this%isErr())RETURN
+    call RoutineNameIs('READMASK_DEFKWD')
+    if(CheckRmsk(this,size(var)/=this%natm,RMSK_INVALID_NVAR))RETURN
     if(this%rkey%find(small(word))==0) call this%rkey%push(small(word)) ; kid = this%rkey%find(small(word))
     if(kid>this%rnid)then
       old = this%rnid ; this%rnid = maxval([old,1],1)
@@ -233,7 +235,8 @@ contains
   type(vector_integer)           :: head,tail
   logical                        :: A,O,N,D
   integer                        :: i,j,kid
-    call CheckRmsk(this,this%isEmpty(),RMSK_UNDIFINED_PARSE)
+    call RoutineNameIs('READMASK_PARSE')
+    if(CheckRmsk(this,this%isEmpty(),RMSK_UNDIFINED_PARSE))RETURN
     if(this%isErr())then
       allocate(res(1)) ; res = .FALSE. ; RETURN
     endif
@@ -426,18 +429,18 @@ contains
     res = not(this%stat == RMSK_EMPTY .or.this%stat == MOLTYPES_NOERR)
   end function RMSKIsERR
 !
-  subroutine CheckRmsk(this,test,ierr)
-  class(ReadMask),intent(inout)  :: this
-  logical,intent(in)             :: test
-  integer,intent(in)             :: ierr
-    if(.not.test) RETURN
+  logical function CheckRmsk(this,test,ierr) result(res)
+  class(ReadMask),intent(inout)    :: this
+  logical,intent(in)               :: test
+  integer,intent(in)               :: ierr
+    res = test ; if(.not.res) RETURN
     if(this%terminates_at_abnormal)then
       call moltypes_echo_errmsg(ierr)
       call RmskDestractor(this) ; call exit(ierr)
     else
       this%stat = ierr
     endif
-  end subroutine CheckRmsk
+  end function CheckRmsk
 !
   pure subroutine RMSKClear(this)
   class(ReadMask),intent(inout)  :: this
