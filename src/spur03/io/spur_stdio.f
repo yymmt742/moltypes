@@ -2,7 +2,7 @@ module spur_stdio
 use,intrinsic :: ISO_FORTRAN_ENV, only : STDERR => ERROR_UNIT, &
 &                                        STDOUT => OUTPUT_UNIT,&
 &                                        STDINP => INPUT_UNIT
-use spur_vector
+use spur_vector_chr
 use spur_string
 use spur_pathname
 use spur_ioerrorhandler
@@ -24,7 +24,7 @@ use spur_ioerrorhandler
 !
   type,extends(pathname) :: stdio
     private
-    type(vector_character) :: baff
+    type(vector_chr)       :: baff
     logical                :: adv = ADVANCE_DEF
     integer                :: dev = DEVNULL, stat=IO_CLOSING, iseek=0
   contains
@@ -309,8 +309,8 @@ contains
       read(this%dev,'(A)',IOSTAT=is,END=100) line
       if(CheckAbort(this,is>0,IO_READERR)) EXIT
       call this%baff%push(trim(line))
-      bload = bload + bsign
-      lload = lload + lsign * len_trim(line)
+      bload = bload + bsign * len_trim(line)
+      lload = lload + lsign
       if(lload>lmax.or.bload>bmax) RETURN
     enddo
     RETURN
@@ -387,8 +387,8 @@ contains
     integer,intent(in)      :: num,dumm
     integer,intent(inout)   :: res(num)
     integer                 :: i
-    type(vector_character)  :: sp
-    call sp%split(string,delimiter=[' ',','])
+    type(vector_chr)        :: sp
+    call sp%split(string,delimiter=' ,')
     do i=1,minval([sp%size(),num],1)
       res(i) = ToNum(sp%at(i),dumm)
     enddo
@@ -437,8 +437,8 @@ contains
     real,intent(in)         :: dumm
     real,intent(inout)      :: res(num)
     integer                 :: i
-    type(vector_character)  :: sp
-    call sp%split(string,delimiter=[' ',','])
+    type(vector_chr)        :: sp
+    call sp%split(string,delimiter=' ,')
     do i=1,minval([sp%size(),num],1)
       res(i) = ToNum(sp%at(i),dumm)
     enddo

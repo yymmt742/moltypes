@@ -11,10 +11,10 @@ module spur_vector
   public :: operator(+),operator(-),operator(*),operator(/),operator(.dot.)
   public :: operator(.eq.),operator(.ne.)
 !
-  character(4),parameter :: INT_FMT="(I0)"
-  character(6),parameter :: REAL_FMT="(F8.3)"
-  character(7),parameter :: DBLE_FMT="(F16.9)"
-  character(3),parameter :: LOGC_FMT="(L)"
+  character(4),parameter :: INT_FMT  = "(I0)"
+  character(6),parameter :: REAL_FMT = "(F8.3)"
+  character(7),parameter :: DBLE_FMT = "(F16.9)"
+  character(3),parameter :: LOGC_FMT = "(L)"
 !
 !  integer(4),parameter   :: FNV_OFFSET_32 = 2166136261
   integer(4),parameter   :: FNV_OFFSET_32 = 166136261

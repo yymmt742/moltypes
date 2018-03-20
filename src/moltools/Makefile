@@ -6,7 +6,7 @@ setup:
 	(cd mcut && make)
 	(cd vpaa_process_tools && make)
 	(cd xhamil && make)
-	(cd toybox && make)
+#	(cd toybox && make)
 
 .PHONY: clean
 clean:

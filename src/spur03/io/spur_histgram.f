@@ -380,7 +380,7 @@ contains
 !
   subroutine H3dSymmetry(this,Symmetry,origin)
 !$ use omp_lib
-  use spur_string
+  use spur_string_neaten
   class(histgram_3d),intent(inout)     :: this
   character(*),intent(in)              :: Symmetry
   double precision,intent(in),optional :: origin(3)

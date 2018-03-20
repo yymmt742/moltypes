@@ -42,7 +42,7 @@ module moltypes_amberrst7
   end type AmberRst7
 contains
   subroutine AmbRstFmtWrite(this,unit,iotype,v_list,iostat,iomsg)
-  use spur_string, only : digit,str_pad
+  use spur_string
   class(AmberRst7),intent(in)  :: this
   integer,intent(in)           :: unit
   character(*),intent(in)      :: iotype
@@ -60,7 +60,7 @@ contains
     allocate(character(dig+3)::space) ; space(:) = ''
     do i=1,this%nnode
       if(iostat/=0) RETURN
-      write(unit,'(2a,/)',iostat=iostat,iomsg=iomsg) '['//str_pad(i,dig)//'] ',this%node(i)%is()
+      write(unit,'(2a,/)',iostat=iostat,iomsg=iomsg) '['//padding(i,dig)//'] ',this%node(i)%is()
     enddo
   end subroutine AmbRstFmtWrite
 !
@@ -70,7 +70,7 @@ contains
   integer                        :: using
     call RoutineNameIs('AMBERRST7_FETCH')
     this%nnode = this%nnode + 1 ; using = this%nnode
-    call stackExtention(this) ; this%node(using) = path
+    call stackExtention(this)   ; call this%node(using)%fetch(path)
     call CheckAmbRst(this,this%node(using)%isnotExist(),IO_NOTEXIST,using)
     call CheckAmbRst(this,this%node(using)%isnotReadable(),IO_NOTREADABLE,using)
     if(this%node(using)%isBinary())then
@@ -78,6 +78,7 @@ contains
     else
       call AmbRstFetchAscii(this,path)
     endif
+    this%nmask = this%natom
     if(this%isErr()) this%nnode = this%nnode - 1
     this%nframe = this%nnode
   contains
@@ -95,9 +96,7 @@ contains
       call this%node(using)%put_caption(baff%get_attribute("title"))
       invalid = ANY([baff%iserr(),spatial/=spatial_def,cell_spatial/=cell_spatial_def,&
           &          cell_angular/=cell_angular_def,label/=label_def,atom<=0,frame<0])
-      if(this%natom==atom_def)then
-        this%natom = atom ; this%nmask = this%natom
-      endif
+      if(this%natom==atom_def) this%natom = atom
       invalid = invalid.or.this%natom/=atom
       call CheckAmbRst(this,invalid,IO_NCFMTERR,using)
     end subroutine AmbRstFetchNetcdf
@@ -110,6 +109,7 @@ contains
     integer                           :: atom
       baff%terminates_at_abnormal = this%terminates_at_abnormal
       call baff%fetch(path)
+      call baff%load(maxline=2)
       call this%node(using)%put_caption(baff%gets())
       call words%split(baff%gets()) ; atom = words%ToInt(1)
       if(this%natom==atom_def) this%natom = atom
@@ -176,9 +176,13 @@ contains
     real                              :: tmp(6*(this%natom+1))
     type(stdio)                       :: baff
     type(vector_character)            :: words
+    character(80)                     :: line
     integer                           :: i,j,k,is
-      call baff%fetch(this%node(using)%is()) ; call baff%GoForward()
-      call words%split(baff%gets()) ; this%time(using) = words%ToReal(2)
+      call baff%fetch(this%node(using)%is())
+      call baff%connect()
+      read(baff%devn(),'(a)',err=100,iostat=is) line
+      read(baff%devn(),'(a)',err=100,iostat=is) line
+      call words%split(line) ; this%time(using) = words%ToReal(2)
       read(baff%devn(),'(6F12.7)',err=100,iostat=is) tmp
 !
       j = 0

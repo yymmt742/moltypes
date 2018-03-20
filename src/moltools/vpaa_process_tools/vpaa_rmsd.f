@@ -85,7 +85,7 @@ contains
 !
     call logf%puts('* >> CONSTRUCTING SWAPING MATRIX')
     do i=1,nswp
-      write(logf%devn(),'(A,I6,A)',err=100) '| ',i,'  ['//join(vswp(:,i),delim=',',dig=digit(nres))//']'
+      write(logf%devn(),'(A,I6,A,*(i0,","),A)',err=100) '| ',i,'  [',vswp(:,i),']'
     enddo
     call logf%break()
 !

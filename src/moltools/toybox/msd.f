@@ -1,21 +1,20 @@
 program msd
 use spur_optparse
 use moltypes
-use spur_vector
-use spur_io
+use spur_vector_dble
+use spur_stdio
 implicit none
 type(optparse)       :: arg
-type(trajectory)     :: trj
-type(fileio)         :: fio
+type(moltype)        :: trj
+type(stdio)          :: fio
 integer              :: i,j
 integer              :: nstep,nmax,nsum
 integer              :: progres,nwork,work
-type(vector_double)  :: msd_x,msd_y,msd_z,msd_r,rms_r
-
+type(vector_dble)    :: msd_x,msd_y,msd_z,msd_r,rms_r
   call arg%add_option("-m",narg=1,metavar='MaskString',help='Load mask string, like as vmd.')
   call arg%add_option("-o",narg=1,metavar='outputfile',help='output file.')
   call arg%add_option("-s",alias=["--second"],narg=1,metavar='value',def=['1.0'],&
-                     &help='trajectry time steps(ps). default 1.0')
+      &               help='trajectry time steps(ps). default 1.0')
   call arg%add_option("-u",narg=1,metavar='outputfile',def=['-1'],help='upper bound of sumup')
   call arg%parser()
   if(arg%narg()==0) call arg%call_usage()

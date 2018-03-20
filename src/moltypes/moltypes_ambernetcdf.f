@@ -59,7 +59,7 @@ module moltypes_ambernetcdf
   end type AmberNetcdf
 contains
   subroutine AncFmtWrite(this,unit,iotype,v_list,iostat,iomsg)
-  use spur_string, only : digit,str_pad
+  use spur_string
   class(AmberNetcdf),intent(in):: this
   integer,intent(in)           :: unit
   character(*),intent(in)      :: iotype
@@ -78,7 +78,7 @@ contains
     allocate(character(dig+3)::space) ; space(:) = ''
     do i=1,this%nnode
       if(iostat/=0) RETURN
-      write(unit,'(2a,/)',iostat=iostat,iomsg=iomsg) '['//str_pad(i,dig)//'] ',this%node(i)%path%is()
+      write(unit,'(2a,/)',iostat=iostat,iomsg=iomsg) '['//padding(i,dig)//'] ',this%node(i)%path%is()
       write(unit,'(2a,i0)',iostat=iostat,iomsg=iomsg)   space,'NATOM  = ',this%node(i)%atom
       write(unit,'(2a,i0,/)',iostat=iostat,iomsg=iomsg) space,'NFRAME = ',this%node(i)%frame
     enddo

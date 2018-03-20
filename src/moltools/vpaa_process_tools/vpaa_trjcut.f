@@ -132,11 +132,11 @@ contains
         refwrt = filter(nxyz,ratma,rres,pack(seq,new),refa)
 !
         if(rclu>0)then
-          nout = cutlog%basename()//str_pad(nclu,dig1)//'with'//str_pad(rclu,dig2)//'guest/'&
-                &//str_pad(serial,dig3)//'.'//join(pack(seq,new),'+')//'.nc'
+          nout = cutlog%basename()//padding(nclu,dig1,'0')//'with'//padding(rclu,dig2,'0')//'guest/'&
+                &//padding(serial,dig3,'0')//'.'//join(pack(seq,new),'+')//'.nc'
         else
-          nout = cutlog%basename()//str_pad(nclu,dig1)//'/'&
-                &//str_pad(serial,dig3)//'.'//join(pack(seq,new),'+')//'.nc'
+          nout = cutlog%basename()//padding(nclu,dig1,'0')//'/'&
+                &//padding(serial,dig3,'0')//'.'//join(pack(seq,new),'+')//'.nc'
         endif
         call CatchSnap(nout,nsum,&
                      & wrap(natma,nclu,ratma,rclu,&

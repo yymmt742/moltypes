@@ -64,13 +64,19 @@ contains
     lo = .TRUE. ; if(present(overwrite)) lo = overwrite
     select case(fpath%extension())
     case('netcdf','nc')
-      call ExportAmberNetcdf(fpath%is(),this%natoms(),this%nframes(),xyz=this%xyz(),box=dble(this%box()),ang=dble(this%boxang()),overwrite=lo)
+      call ExportAmberNetcdf(fpath%is(),this%natoms(),this%nframes(),    &
+     &                       xyz=this%xyz(),box=dble(this%box()),        &
+     &                       ang=dble(this%boxang()),overwrite=lo)
     case('mdcrd','crd')
-      call ExportMdcrd(fpath%is(),this%natoms(),this%nframes(),this%xyz(),this%box(),this%boxang(),overwrite=lo)
+      call ExportMdcrd(fpath%is(),this%natoms(),this%nframes(),          &
+     &                 this%xyz(),this%box(),this%boxang(),overwrite=lo)
     case('rst7','restrt')
-      call ExportRST7(fpath%is(),this%natoms(),this%xyz(this%nframes()),this%box(this%nframes()),this%boxang(this%nframes()))
+      call ExportRST7(fpath%is(),this%natoms(),                          &
+     &                this%xyz(this%nframes()),this%box(this%nframes()), &
+     &                this%boxang(this%nframes()))
     case default
-      call ExportXYZ(fpath%is(),this%natoms(),this%nframes(),this%xyz(),this%inq('name','XX  '),overwrite=lo)
+      call ExportXYZ(fpath%is(),this%natoms(),this%nframes(),this%xyz(), &
+     &               this%inq('name','XX  '),overwrite=lo)
     end select
   end subroutine MoltypeExport
 !
@@ -91,15 +97,15 @@ contains
     if(present(overwrite))then
       if(overwrite) call fout%generate()
     endif
+    call fout%append()
  
     allocate(character(0)::lffmt,ltitle)
     if(present(ffmt))then  ; lffmt  = '(A,3'//ffmt//')'
     else ; lffmt  = '(A,3F9.3)'  ; endif
     if(present(title))then ; ltitle = title
     else ; ltitle = DEFAULT_NAME ; endif
- 
     do j=1,nframe
-      write(fout%devn(),'(I0)',ERR=100) natm ; call fout%puts(ltitle)
+      write(fout%devn(),'(I0,/,a)',ERR=100) natm,ltitle
       do i=1,natm
         write(fout%devn(),lffmt,ERR=100) atm(i),xyz(:,i,j)
       enddo

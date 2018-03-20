@@ -29,7 +29,7 @@ contains
         integer :: i
         real    :: com(3)
         com = 0.d0
-        do concurrent (i=1:natm)
+        do i=1,natm
           if(selection(i)) com = com + xyz(:,i,j)
         enddo
         com = com * revn

@@ -1,6 +1,7 @@
 module moltypes_readmask
   use moltypes_errorhandler
   use spur_vector
+  use spur_string_neaten, only : small
   implicit none
   private
   public :: readmask
@@ -63,7 +64,6 @@ contains
   end subroutine RmskInit
 !
   subroutine RmskDefKwd_chr(this,word,var)
-  use spur_string, only : small
   class(ReadMask),intent(inout)      :: this
   character(*),intent(in)            :: word
   character(*),intent(in)            :: var(:)
@@ -86,7 +86,6 @@ contains
   end subroutine RmskDefKwd_chr
 !
   subroutine RmskDefKwd_int(this,word,var)
-  use spur_string, only : small
   class(ReadMask),intent(inout)      :: this
   character(*),intent(in)            :: word
   integer,intent(in)                 :: var(:)
@@ -109,7 +108,6 @@ contains
   end subroutine RmskDefKwd_int
 !
   subroutine RmskDefKwd_real(this,word,var)
-  use spur_string, only : small
   class(ReadMask),intent(inout)      :: this
   character(*),intent(in)            :: word
   real,intent(in)                    :: var(:)
@@ -130,7 +128,6 @@ contains
   end subroutine RmskDefKwd_real
 !
   function RmskShowInt(this,word) result(res)
-  use spur_string, only : small
   class(ReadMask),intent(in)    :: this
   character(*),intent(in)       :: word
   integer,allocatable           :: res(:)
@@ -143,7 +140,6 @@ contains
   end function RmskShowInt
 !
   pure integer function RmskNUniqInt(this,word) result(res)
-  use spur_string, only : small
   class(ReadMask),intent(in)    :: this
   character(*),intent(in)       :: word
   integer                       :: kid
@@ -154,7 +150,6 @@ contains
   end function RmskNUniqInt
 !
   pure function RmskShowUniqInt(this,word) result(res)
-  use spur_string, only : small
   class(ReadMask),intent(in)    :: this
   character(*),intent(in)       :: word
   integer,allocatable           :: res(:)
@@ -167,7 +162,6 @@ contains
   end function RmskShowUniqInt
 !
   function RmskShowReal(this,word) result(res)
-  use spur_string, only : small
   class(ReadMask),intent(in) :: this
   character(*),intent(in)    :: word
   real,allocatable           :: res(:)
@@ -179,7 +173,6 @@ contains
   end function RmskShowReal
 !
   function RmskShowChr(this,word) result(res)
-  use spur_string, only : small
   class(ReadMask),intent(in)                   :: this
   character(*),intent(in)                      :: word
   character(RmskChrlen(this,word)),allocatable :: res(:)
@@ -191,7 +184,6 @@ contains
   end function RmskShowChr
 !
   pure integer function RmskNUniqChr(this,word) result(res)
-  use spur_string, only : small
   class(ReadMask),intent(in)    :: this
   character(*),intent(in)       :: word
   integer                       :: kid
@@ -202,7 +194,6 @@ contains
   end function RmskNUniqChr
 !
   pure function RmskShowUniqChr(this,word) result(res)
-  use spur_string, only : small
   class(ReadMask),intent(in)                   :: this
   character(*),intent(in)                      :: word
   character(RmskChrlen(this,word)),allocatable :: res(:)
@@ -217,7 +208,6 @@ contains
   end function RmskShowUniqChr
 !
   pure integer function RmskChrlen(this,word) result(res)
-  use spur_string, only : small
   class(ReadMask),intent(in) :: this
   character(*),intent(in)    :: word
   integer                    :: kid
@@ -404,7 +394,6 @@ contains
   end subroutine mask_real
 !
   pure logical function RmskInqkey(this,word,xtype) result(res)
-  use spur_string, only : small
   class(ReadMask),intent(in)    :: this
   character(*),intent(in)       :: word,xtype
     select case(small(xtype(1:1)))

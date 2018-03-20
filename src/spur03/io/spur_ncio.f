@@ -1,6 +1,7 @@
 module spur_ncio
 use netcdf
-use spur_vector
+use spur_vector_int4
+use spur_vector_chr
 use spur_pathname
 use spur_ioerrorhandler
   implicit none
@@ -16,8 +17,8 @@ use spur_ioerrorhandler
   type,extends(pathname) :: ncio
     private
     integer                :: ncid=0,stat=IO_CLOSING,io=NF90_NOERR
-    type(vector_integer)   :: length,xtype
-    type(vector_character) :: dms,var
+    type(vector_int4)      :: length,xtype
+    type(vector_chr)       :: dms,var
   contains
     include "spur_ncio_putvariable.h"
     include "spur_ncio_getvariable.h"
@@ -109,22 +110,23 @@ contains
   end function NcReDefine
 !
   subroutine NcAddDimension(this,str)
+  use spur_string_tonum
   class(ncio),intent(inout)        :: this
   character(*),intent(in)          :: str
-  type(vector_character)           :: words,hands
+  type(vector_chr)                 :: words,hands
   integer                          :: i,length,did
     call RoutineNameIs('NCIO_ADD_DIMENSION')
     if(CheckAbort(this,NcReDefine(this),ierr=IO_OPENERR,filename=this%is())) RETURN
-    call words%split(str,delimiter=[' ',','])
+    call words%split(str,delimiter=' ,')
 !
     do i=1,words%size()
       this%io = 0
       length  = nf90_unlimited
       call hands%clear()
-      call hands%split(words%at(i),delimiter=['='])
+      call hands%split(words%at(i),delimiter='=')
       if(hands%size()>2) CYCLE
       if(hands%size()==2)then
-        length = hands%toint(2); if(length<=0)CYCLE
+        length = tonum_int4(hands%at(2),0); if(length<=0)CYCLE
       endif
       this%io = nf90_def_dim(this%ncid,hands%at(1),length,did)
       if(CheckAbort(this,ierr=IO_DEFERR,filename=this%is())) RETURN
@@ -137,17 +139,18 @@ contains
   subroutine NcAddVariable(this,str)
   class(ncio),intent(inout)        :: this
   character(*),intent(in)          :: str
-  type(vector_character)           :: words,hands
-  type(vector_integer)             :: did
+  type(vector_chr)                 :: words,hands
+  type(vector_int4)                :: did
   integer                          :: i,irem,xtype,vid,tmp
     call RoutineNameIs('NCIO_ADD_VARIABLE')
     if(CheckAbort(this,NcReDefine(this),ierr=IO_OPENERR,filename=this%is())) RETURN
 !
-    call hands%split(str,delimiter=[':']) ; if(hands%size()/=2) RETURN
-    xtype = nf90_type(hands%at(1)) ; if(xtype==NF90_XTYPE_ERROR)RETURN
+    call hands%split(str,delimiter=':') ; if(hands%size()/=2) RETURN
+    xtype = nf90_type(hands%at(1))
+    if(CheckAbort(this,xtype==NF90_XTYPE_ERROR,ierr=IO_DEFERR,filename=this%is())) RETURN
     irem = 1
     do
-      call parseBracket(hands%at(2),words,irem) ; if(words%size()<=1) RETURN
+      call parseBracket(hands%at(2),words,irem) ; if(words%size()<2) RETURN
       do i=2,words%size()
         tmp = this%dms%find(words%at(i)) ; if(tmp==0) RETURN ; call did%push(tmp)
       enddo
@@ -161,15 +164,15 @@ contains
   subroutine NcPutAttribute(this,str)
   class(ncio),intent(inout)        :: this
   character(*),intent(in)          :: str
-  type(vector_character)           :: words,hands
+  type(vector_chr)                 :: words,hands
   integer                          :: vid
-    call hands%split(str,delimiter=[':'])
+    call hands%split(str,delimiter=':')
     if(hands%size()==1)then
       vid = NF90_GLOBAL
-      call words%split(hands%at(1),delimiter=['='])
+      call words%split(hands%at(1),delimiter='=')
     elseif(hands%size()<=2)then
       vid = this%var%find(hands%at(1)) ; if(vid==0) RETURN
-      call words%split(hands%at(2),delimiter=['='])
+      call words%split(hands%at(2),delimiter='=')
     endif
     if(words%size()<2) RETURN
     if(CheckAbort(this,NcReDefine(this),ierr=IO_OPENERR,filename=this%is())) RETURN
@@ -209,10 +212,10 @@ contains
   character(*),intent(in)   :: str
   character(:),allocatable  :: res
   character(NF90_MAX_NAME)  :: xname
-  type(vector_character)    :: words,hands
+  type(vector_chr)          :: words,hands
   integer                   :: vid,length
     allocate(character(0)::res)
-    call hands%split(str,delimiter=[':'])
+    call hands%split(str,delimiter=':')
     if(hands%size()==1)then
       vid = NF90_GLOBAL ; call words%split(hands%at(1))
     elseif(hands%size()>=2)then
@@ -240,7 +243,7 @@ contains
 !
   pure subroutine parseBracket(str,words,remain)
   character(*),intent(in)              :: str
-  type(vector_character),intent(inout) :: words
+  type(vector_chr),intent(inout)       :: words
   integer,intent(inout)                :: remain
   integer                              :: i,j
     call words%clear() ; j = remain
@@ -251,7 +254,7 @@ contains
         remain = index(str(i:),ket(str(i:i))) + i
         if(remain==i)RETURN
         call words%push(str(j:i-1))
-        call words%split(str(i+1:remain-2),delimiter=[' ',','])
+        call words%split(str(i+1:remain-2),delimiter=' ,')
         RETURN
       end select
     enddo
@@ -276,7 +279,7 @@ contains
   end subroutine NcQuit
 !
   pure integer function nf90_type(xtype) result(res)
-  use spur_string, only : small
+  use spur_string_neaten
   character(*),intent(in)          :: xtype
     select case(small(xtype))
     case('byte','b') ;             res = NF90_BYTE

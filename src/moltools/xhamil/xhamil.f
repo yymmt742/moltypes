@@ -171,7 +171,7 @@ contains
           vel(:,i,j) = vel(:,1,j)
         enddo
       enddo
-      call ExportRST7(logdir//'/'//Str_pad(k,5)//'.rst7',natm,reshape(real(crd),[3,natm]),real(box),&
+      call ExportRST7(logdir//'/'//padding(k,5,'0')//'.rst7',natm,reshape(real(crd),[3,natm]),real(box),&
          &            [90.0,90.0,90.0],reshape(real(vel),[3,natm]),real(k))
     enddo
 !

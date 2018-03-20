@@ -1,6 +1,6 @@
 module spur_pathname
 use,intrinsic :: ISO_FORTRAN_ENV, only : INT8
-use spur_vector
+use spur_vector_chr
 use spur_ioerrorhandler
   implicit none
   private
@@ -12,7 +12,7 @@ use spur_ioerrorhandler
   type pathname
     private
     character(:),allocatable  :: path,ext,base,caption
-    type(vector_character)    :: dir
+    type(vector_chr)          :: dir
     integer                   :: perm = IO_UNKNOWN
     logical                   :: binary = .FALSE.
     logical,public            :: terminates_at_abnormal = terminates_default
@@ -158,7 +158,7 @@ contains
   end subroutine PathnamePutCaption
 !
   pure subroutine GetExtension(this)
-  use spur_string, only : Small
+  use spur_string_neaten
   class(Pathname),intent(inout)  :: this
   integer                        :: lb,ub
     if(allocated(this%ext))  deallocate(this%ext)  ; allocate(character(0)::this%ext)
@@ -171,7 +171,7 @@ contains
     this%base = this%path(lb:lb+ub-1)
     ub = len_trim(this%path)
     lb = index(this%path,'.',.TRUE.) + 1
-    if(lb<=ub) this%ext = Small(this%path(lb:ub))
+    if(lb<=ub) this%ext = small(this%path(lb:ub))
     lb = 1
     do
       ub = index(this%path(lb:),'/') ; if(ub==0)EXIT

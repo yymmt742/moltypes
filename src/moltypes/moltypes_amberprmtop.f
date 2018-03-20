@@ -84,7 +84,7 @@ module moltypes_amberprmtop
 !
   contains
     subroutine LoadAmberPrmtop(this,path)
-    use spur_string
+    use spur_string_neaten
     class(AmberPrmtop),intent(inout)  :: this
     character(*),intent(in)           :: path
     type(stdio)                       :: fdata
@@ -121,10 +121,11 @@ module moltypes_amberprmtop
         read(fdata%devn(),CFMT,err=101) this%IPOL
       endif
 !
+print*,this%natoms()
       call fdata%quit() ; call fdata%connect()
 !
       do
-        line = fdata%streamseek("%FLAG")   ; FLAG = LARGE(line(7:))
+        line = fdata%streamseek("%FLAG")   ; FLAG = large(line(7:))
         if(FLAG=='')EXIT
         line = fdata%streamseek("%FORMAT") ; CFMT = trim(line(8:))
         select case(FLAG)
@@ -174,7 +175,6 @@ module moltypes_amberprmtop
           case("POLARIZABILITY")             ; call ReadPrmF(this%ATPOL,    this%POINTERS(NATOM))
           case default
         end select
-100     if(CheckAmbPrm(this,is>0,IO_READERR)) EXIT
       enddo
 101   call fdata%quit()
   contains

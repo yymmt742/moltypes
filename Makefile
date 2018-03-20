@@ -20,6 +20,9 @@ moltypes:
 moltools:
 	(cd src/moltools && make)
 
+test:
+	(cd src/test && make && make test)
+
 .PHONY: clean
 clean:
 	(cd src/spur03 && make clean)

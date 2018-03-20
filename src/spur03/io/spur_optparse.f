@@ -150,7 +150,7 @@ contains
         endif
       enddo
       if(this%opt(k)%Narg/=this%opt(k)%arg%size().and.this%opt(k)%Narg>=0)then
-        call this%error%push('argument size is not mutch in '//Join(this%opt(k)%s%lookup(),"|"))
+        call this%error%push('argument size is not mutch in '//join(this%opt(k)%s%lookup(),"|"))
       endif
     enddo
 !

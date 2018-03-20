@@ -27,8 +27,6 @@ module moltypes_xyz
     procedure         :: atoms        => XyzAtoms
     procedure         :: nframes      => XyzNframes
     procedure         :: natoms       => XyzNatoms
-    procedure         :: nmasks       => XyzNmasks
-    procedure         :: nnodes       => XyzNnodes
     procedure         :: isErr        => XyzIsErr
     procedure         :: clear        => XyzClear
     final             :: XyzDestractor
@@ -43,15 +41,14 @@ contains
   integer                      :: i,atom,using
     call RoutineNameIs('XYZFMT_FETCH')
     baff%terminates_at_abnormal = this%terminates_at_abnormal
-    this%nnode = this%nnode + 1 ; using = this%nnode
+    this%nnode  = this%nnode + 1 ; using = this%nnode
 !
     call stackExtention(this) ; call this%node(using)%fetch(path)
     call CheckXyz(this,this%node(using)%isnotExist(),IO_NOTEXIST)
     call CheckXyz(this,this%node(using)%isnotReadable(),IO_NOTREADABLE)
 !
     call baff%fetch(path)
-    call baff%load()
-    call CheckXyz(this,baff%iserr(),IO_FMTERR)
+    call baff%load() ; call CheckXyz(this,baff%iserr(),IO_FMTERR)
     call words%split(baff%gets()) ; atom = words%ToInt(1)
     call this%node(using)%put_caption(baff%gets())
 !
@@ -64,9 +61,11 @@ contains
       enddo
 100   CONTINUE
       this%natom = this%atm%size()
+      this%nmask = this%natom
     endif
 !
     call CheckXyz(this,this%natom/=atom.or.atom<=0,IO_NATOMERR)
+    this%nframe = this%nnode
     if(.not.this%isErr()) RETURN
 101 this%nnode = this%nnode - 1
   end subroutine XyzFetch
@@ -85,55 +84,46 @@ contains
     call move_alloc(from=swp,to=this%node)
   end subroutine StackExtention
 !
-  subroutine XYZLoad(this)
+  subroutine XYZLoad(this,lb,ub,inc,mask)
+  use spur_itertools, only : IterScope
+  use spur_shapeshifter
+  use spur_string
   class(XYZFMT),intent(inout)  :: this
-  integer                      :: is,nstack,using
+  integer,intent(in),optional  :: lb,ub,inc
+  logical,intent(in),optional  :: mask(:)
+  logical,allocatable          :: lmask(:)
+  type(stdio)                  :: baff
+  type(vector_character)       :: words
+  integer                      :: is,llb,lub,linc
+  integer                      :: i,j
     call RoutineNameIs('XYZFMT_LOAD')
     if(this%isErr().or.this%nnode<=0)RETURN
-    nstack = 1 ; this%nframe = 0
-    if(allocated(this%xyz)) deallocate(this%xyz)
-    do using=1,this%nnode
-      call getxyz(this,nstack)
-    enddo
-  contains
-    subroutine getxyz(this,nstack)
-    use spur_string
-    class(XYZFMT),intent(inout)  :: this
-    integer,intent(inout)        :: nstack
-    type(stdio)                  :: baff
-    real                         :: tmp(spatial_def,this%natom)
-    type(vector_character)       :: words
-    integer                      :: i,j
-      call baff%fetch(this%node(using)%is()) ; call baff%load()
-      do
-        call baff%goforward(2)
-        do i=1,this%natom
-          call words%erace() ; call words%split(baff%gets())
-          tmp(:,i) = ToNum([words%at(2),words%at(3),words%at(4)],[0.d0,0.d0,0.d0])
-        enddo
-        if(baff%CurrentAddress()>baff%nlines())EXIT
-        this%nframe = this%nframe + 1 ; call TrjExpand(this,nstack)
-        this%xyz(:,:,this%nframe) = tmp
-        if(baff%CurrentAddress()==baff%nlines())EXIT
+    llb  = 1          ; if(present(lb))  llb  = lb
+    lub  = this%nnode ; if(present(ub))  lub  = ub
+    linc = 1          ; if(present(inc)) linc = inc
+!
+    call IterScope(this%nnode,llb,lub,linc,this%nframe)
+!
+    allocate(lmask(this%natom)) ; lmask = .TRUE.
+    if(present(mask)) lmask = CompleteMask(mask,this%natom)
+    this%nmask = count(lmask)
+!
+    if(LT_shape(shape(this%xyz),[spatial_def,this%nmask,this%nframe]))then
+      if(allocated(this%xyz)) deallocate(this%xyz)
+      allocate(this%xyz(spatial_def,this%nmask,this%nframe))
+    endif
+!
+    do j=1,this%nnode
+      call baff%fetch(this%node(j)%is())
+      call baff%load()
+      call baff%goforward(2)
+      do i=1,this%natom
+        call words%erace() ; call words%split(baff%gets())
+        this%xyz(:,i,j) = ToNum([words%at(2),words%at(3),words%at(4)],[0.0,0.0,0.0])
       enddo
+      call baff%clear()
       call baff%quit()
-    end subroutine getxyz
-!
-    pure subroutine TrjExpand(this,nstack)
-    class(XYZFMT),intent(inout)  :: this
-    integer,intent(inout)        :: nstack
-    real,allocatable             :: tmp(:,:,:)
-    integer                      :: old
-      if(nstack>this%nframe)return
-      old = nstack
-      do while(this%nframe>nstack)
-        nstack = nstack * 2
-      enddo
-!
-      allocate(tmp(spatial_def,this%natom,nstack))
-      if(allocated(this%xyz)) tmp(:,:,:old) = this%xyz(:,:,:old)
-      call move_alloc(from=tmp,to=this%xyz)
-    end subroutine TrjExpand
+    enddo
   end subroutine XyzLoad
 !
   pure function XyzAtoms(this) result(res)
@@ -144,23 +134,13 @@ contains
 !
   pure integer function XyzNatoms(this) result(res)
   class(XYZFMT),intent(in)  :: this
-    res = maxval([this%natom,0],1)
+    res = this%nmask
   end function XyzNatoms
 !
   pure integer function XyzNframes(this) result(res)
   class(XYZFMT),intent(in)  :: this
     res = this%nframe
   end function XyzNframes
-!
-  pure integer function XyzNmasks(this) result(res)
-  class(XYZFMT),intent(in)  :: this
-    res = maxval([this%nmask,0],1)
-  end function XyzNmasks
-!
-  pure integer function XyzNnodes(this) result(res)
-  class(XYZFMT),intent(in)  :: this
-    res = this%nnode
-  end function XyzNnodes
 !
   pure logical function XyzIsERR(this) result (res)
   class(XYZFMT),intent(in)  :: this
@@ -183,7 +163,7 @@ contains
   subroutine XyzClear(this)
   class(XYZFMT),intent(inout)  :: this
     this%natom = atom_def ; this%nnode  = node_def
-    this%nmask = atom_def ; this%nframe = frame_def
+    this%nmask = atom_def
     this%stat  = MOLTYPES_NOERR ; this%stack  = node_def
     if(allocated(this%node)) deallocate(this%node)
     call this%atm%clear()
