@@ -1,6 +1,5 @@
 module moltypes_export
   use moltypes_errorhandler
-  use moltypes
   implicit none
   private
   public :: ExportXYZ,ExportMdcrd,ExportRST7
