@@ -13,8 +13,7 @@ integer          :: istat
   if(istat/=0) ERROR STOP
 contains
   subroutine compute_vpaa_rmsd()
-  use moltypes
-  use moltypes_process
+  use moltypes_perser
   use moltypes_export
   use spur_string
   use spur_histgram
@@ -22,7 +21,7 @@ contains
   use spur_vector
   use spur_stdio
   type(optparse)           :: arg
-  type(moltype)            :: mt
+  type(molperser)          :: mt
   type(stdio)              :: dat,logf
   character(:),allocatable :: ifmt,nfmt,ncout
   integer                  :: natm,nmol,nres,ntrj,nswp,nflp,ncpy
@@ -99,9 +98,9 @@ contains
     rmscor   = 0.0
 !
     vflp = load_vflp(logf,nmol,arg%optargs('-flp',1),mt%inq('name','XX  '))
-    call mt%load() ; call centering_coordinates(mt)
+    call mt%load() ; call mt%centering_coordinates()
 !
-    X = reshape(mt%xyz(),[3,nmol,nres,ntrj]) ; call mt%clear()
+    X = reshape(mt%xyz(:,:,1:ntrj),[3,nmol,nres,ntrj]) ; call mt%clear()
     FLPX  = mol_flip(nmol,nres,ntrj,vflp,X)
 !
     call logf%puts('* >> CHECK FLIPING VECTOR')
@@ -188,9 +187,9 @@ contains
       rmscor(1:j,3) = rmscor(1:j,3) + 1.0
 !
       if(ikey==arg%optargi('-x',1))then
-        call ExportAmberNetcdf(ncout,natm,1,c1(:,:,minidx(1)),overwrite=.TRUE.)
-        do j=2,ntrj
-          call ExportAmberNetcdf(ncout,natm,1,c1(:,:,minidx(j)),overwrite=.FALSE.)
+        call GenerateAmberNetcdf(ncout,natm,xyz=.true.)
+        do j=1,ntrj
+          call ExportAmberNetcdf(ncout,natm,1,c1(:,:,minidx(j):minidx(j)))
         enddo
       endif
 !

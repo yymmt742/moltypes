@@ -42,13 +42,13 @@ contains
   allocate(cm2(3,natm),dx2(3,natm),dy2(3,natm))
   resid = mt%inq('resid',0)
 !
-  cm1 = mt%getmask(arg%optargs('-d1',1),3)
-  dx1 = mt%getmask(arg%optargs('-d1',2),3)
-  dy1 = mt%getmask(arg%optargs('-d1',3),3)
+  cm1 = mt%atommask(arg%optargs('-d1',1),3)
+  dx1 = mt%atommask(arg%optargs('-d1',2),3)
+  dy1 = mt%atommask(arg%optargs('-d1',3),3)
 !
-  cm2 = mt%getmask(arg%optargs('-d2',1),3)
-  dx2 = mt%getmask(arg%optargs('-d2',2),3)
-  dy2 = mt%getmask(arg%optargs('-d2',3),3)
+  cm2 = mt%atommask(arg%optargs('-d2',1),3)
+  dx2 = mt%atommask(arg%optargs('-d2',2),3)
+  dy2 = mt%atommask(arg%optargs('-d2',3),3)
 !
 !   if(natm<=0.or.nres<=0.or.nres/=dres1.or.nres/=dres2)then
 !     write(stdout,'(a,a)') 'No atoms in ',prm ; RETURN

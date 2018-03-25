@@ -226,7 +226,8 @@ contains
 !
     call ncout%fetch(path) ; if(CheckAbort(ncout%iserr(),IO_NCFMTERR,path)) RETURN
 !
-    if(ncout%isnotExist()) RETURN
+    if(ncout%isnotExist()) call GenerateAmberNetcdf(path,natm,present(xyz),present(vel),present(frc), &
+                              &                     present(box),present(ang),present(time))
 !
     call ncout%Loadheader()
     frame = ncout%dim_length('frame') + 1

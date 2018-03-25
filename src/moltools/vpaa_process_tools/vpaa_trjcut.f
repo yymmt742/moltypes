@@ -78,10 +78,10 @@ contains
     allocate(new(nrrs),old(nrrs,nrrs))
     allocate(character(0)::nout)
 !
-    mola  = mt%getmask(residmol,3)
-    mol   = mt%getmask(op%optargs('-mol',1),3)
-    refa  = mt%getmask(residref,3)
-    ref   = mt%getmask(op%optargs('-ref',1),3)
+    mola  = mt%atommask(residmol,3)
+    mol   = mt%atommask(op%optargs('-mol',1),3)
+    refa  = mt%atommask(residref,3)
+    ref   = mt%atommask(op%optargs('-ref',1),3)
 !
     seq   = [(i,i=1,nrrs)]
     memo  = 0
@@ -103,13 +103,11 @@ contains
     do i=1,ntrj
       breakdown = 0.0
       call mt%load(lb=i,ub=i)
-      X   = mt%xyz(i)
-      box = mt%box(i)
-      rcpbox = reciprocal(box)
+      rcpbox = reciprocal(mt%box(:,1))
       call get_network(natm,nres,ratm,rres,&
-                      &reshape(pack(X,mol),[3,natm,nres]),&
-                      &reshape(pack(X,ref),[3,ratm,rres]),&
-                      &box,rcpbox,threshold,threshold2,label)
+                      &reshape(pack(mt%xyz(:,:,1),mol),[3,natm,nres]),&
+                      &reshape(pack(mt%xyz(:,:,1),ref),[3,ratm,rres]),&
+                      &mt%box(:,1),rcpbox,threshold,threshold2,label)
       do j=1,nrrs
         new = j==label
         nclu = count(new(1:nres)) ; rclu = count(new) - nclu
@@ -290,7 +288,7 @@ contains
   character(*),intent(in)  :: x
   integer,intent(in)       :: nsum
   real,intent(in)          :: c0(3,nsum,1)
-    call ExportAmberNetcdf(x,nsum,1,c0,overwrite=.FALSE.)
+    call ExportAmberNetcdf(x,nsum,1,c0)
   end subroutine CatchSnap
 !
   function wrap(natm,nres,ratm,rres,crd,refcrd,box,rcpbox) result(res)
