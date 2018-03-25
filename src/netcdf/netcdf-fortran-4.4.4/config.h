@@ -66,13 +66,13 @@
 #define HAVE_NCCREATE 1
 
 /* Define to 1 if you have the `nc_def_opaque' function. */
-#define HAVE_NC_DEF_OPAQUE 1
+/* #undef HAVE_NC_DEF_OPAQUE */
 
 /* Define to 1 if you have the `nc_set_log_level' function. */
 /* #undef HAVE_NC_SET_LOG_LEVEL */
 
 /* Define to 1 if you have the `nc_use_parallel_enabled' function. */
-#define HAVE_NC_USE_PARALLEL_ENABLED 1
+/* #undef HAVE_NC_USE_PARALLEL_ENABLED */
 
 /* Define to 1 if you have the <ndir.h> header file, and it defines `DIR'. */
 /* #undef HAVE_NDIR_H */
@@ -254,7 +254,7 @@
 #define TIME_WITH_SYS_TIME 1
 
 /* if true, build netCDF-4 */
-#define USE_NETCDF4 1
+/* #undef USE_NETCDF4 */
 
 /* Version number of package */
 #define VERSION "4.4.4"
@@ -288,7 +288,7 @@
 /* #undef off_t */
 
 /* Turned on by netCDF configure. */
-/* #undef pgiFortran */
+#define pgiFortran 1
 
 /* Define to `unsigned int' if <sys/types.h> does not define. */
 /* #undef size_t */

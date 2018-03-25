@@ -102,27 +102,27 @@ check_PROGRAMS = nf03_test$(EXEEXT) $(am__EXEEXT_1) $(am__EXEEXT_2) \
 # Is the user building netCDF-4?
 
 # Add these netCDF-4 f77 test programs.
-am__append_1 = f03tst_vars f03tst_vars2 f03tst_vars3 f03tst_vars4 f03tst_vars5	\
-f03tst_vars6 f03tst_open_mem f03tst_types f03tst_types2 f03tst_types3 \
-f03tst_groups
+#am__append_1 = f03tst_vars f03tst_vars2 f03tst_vars3 f03tst_vars4 f03tst_vars5	\
+#f03tst_vars6 f03tst_open_mem f03tst_types f03tst_types2 f03tst_types3 \
+#f03tst_groups
 
-am__append_2 = f03tst_vars f03tst_vars2 f03tst_vars3 f03tst_vars4 f03tst_vars5 \
-         f03tst_vars6 f03tst_types f03tst_types2 f03tst_types3 f03tst_groups \
-         f03tst_open_mem
+#am__append_2 = f03tst_vars f03tst_vars2 f03tst_vars3 f03tst_vars4 f03tst_vars5 \
+#         f03tst_vars6 f03tst_types f03tst_types2 f03tst_types3 f03tst_groups \
+#         f03tst_open_mem
 
-am__append_3 = ftst_vars.nc ftst_vars2.nc ftst_vars3.nc ftst_vars4.nc	\
-              ftst_vars5.nc ftst_vars6.nc ftst_types.nc ftst_types2.nc \
-              ftst_types3.nc ftst_groups.nc f03tst_open_mem.nc
+#am__append_3 = ftst_vars.nc ftst_vars2.nc ftst_vars3.nc ftst_vars4.nc	\
+#              ftst_vars5.nc ftst_vars6.nc ftst_types.nc ftst_types2.nc \
+#              ftst_types3.nc ftst_groups.nc f03tst_open_mem.nc
 
 
 # This is a netCDF-4 V2 test program.
-am__append_4 = f03tst_v2
-am__append_5 = f03tst_v2
-am__append_6 = ftst_v2.nc
+#am__append_4 = f03tst_v2
+#am__append_5 = f03tst_v2
+#am__append_6 = ftst_v2.nc
 
 # Test parallel I/O
-am__append_7 = f03tst_parallel
-am__append_8 = ftst_parallel.nc
+##am__append_7 = f03tst_parallel
+##am__append_8 = ftst_parallel.nc
 
 # This is the fortran v2 test. It depends on the utilities being built
 # to generate i's input file.
@@ -147,16 +147,16 @@ CONFIG_HEADER = $(top_builddir)/config.h \
 	$(top_builddir)/libsrc/nfconfig1.inc
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
-am__EXEEXT_1 = f03tst_vars$(EXEEXT) \
-	f03tst_vars2$(EXEEXT) f03tst_vars3$(EXEEXT) \
-	f03tst_vars4$(EXEEXT) f03tst_vars5$(EXEEXT) \
-	f03tst_vars6$(EXEEXT) \
-	f03tst_open_mem$(EXEEXT) \
-	f03tst_types$(EXEEXT) f03tst_types2$(EXEEXT) \
-	f03tst_types3$(EXEEXT) \
-	f03tst_groups$(EXEEXT)
-am__EXEEXT_2 = f03tst_v2$(EXEEXT)
-am__EXEEXT_3 = f03tst_parallel$(EXEEXT)
+#am__EXEEXT_1 = f03tst_vars$(EXEEXT) \
+#	f03tst_vars2$(EXEEXT) f03tst_vars3$(EXEEXT) \
+#	f03tst_vars4$(EXEEXT) f03tst_vars5$(EXEEXT) \
+#	f03tst_vars6$(EXEEXT) \
+#	f03tst_open_mem$(EXEEXT) \
+#	f03tst_types$(EXEEXT) f03tst_types2$(EXEEXT) \
+#	f03tst_types3$(EXEEXT) \
+#	f03tst_groups$(EXEEXT)
+#am__EXEEXT_2 = f03tst_v2$(EXEEXT)
+##am__EXEEXT_3 = f03tst_parallel$(EXEEXT)
 am__EXEEXT_4 = f03test$(EXEEXT) tst03_f77_v2$(EXEEXT)
 am__f03test_SOURCES_DIST = module_tests.F90 f03test.F f03lib.c
 am_f03test_OBJECTS = module_tests.$(OBJEXT) \
@@ -170,111 +170,111 @@ am__v_lt_0 = --silent
 am__v_lt_1 = 
 am__f03tst_groups_SOURCES_DIST = module_tests.F90 f03tst_groups.F \
 	f03lib_f_interfaces.f90 f03lib.c handle_err.F
-am_f03tst_groups_OBJECTS = module_tests.$(OBJEXT) \
-	f03tst_groups.$(OBJEXT) \
-	f03lib_f_interfaces.$(OBJEXT) \
-	f03lib.$(OBJEXT) handle_err.$(OBJEXT)
+#am_f03tst_groups_OBJECTS = module_tests.$(OBJEXT) \
+#	f03tst_groups.$(OBJEXT) \
+#	f03lib_f_interfaces.$(OBJEXT) \
+#	f03lib.$(OBJEXT) handle_err.$(OBJEXT)
 f03tst_groups_OBJECTS = $(am_f03tst_groups_OBJECTS)
 f03tst_groups_LDADD = $(LDADD)
 f03tst_groups_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f03tst_open_mem_SOURCES_DIST = module_tests.F90 f03tst_open_mem.F \
 	f03lib_f_interfaces.f90 f03lib.c handle_err.F
-am_f03tst_open_mem_OBJECTS = module_tests.$(OBJEXT) \
-	f03tst_open_mem.$(OBJEXT) \
-	f03lib_f_interfaces.$(OBJEXT) \
-	f03lib.$(OBJEXT) handle_err.$(OBJEXT)
+#am_f03tst_open_mem_OBJECTS = module_tests.$(OBJEXT) \
+#	f03tst_open_mem.$(OBJEXT) \
+#	f03lib_f_interfaces.$(OBJEXT) \
+#	f03lib.$(OBJEXT) handle_err.$(OBJEXT)
 f03tst_open_mem_OBJECTS = $(am_f03tst_open_mem_OBJECTS)
 f03tst_open_mem_LDADD = $(LDADD)
 f03tst_open_mem_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f03tst_parallel_SOURCES_DIST = f03tst_parallel.F
-am_f03tst_parallel_OBJECTS = f03tst_parallel.$(OBJEXT)
+##am_f03tst_parallel_OBJECTS = f03tst_parallel.$(OBJEXT)
 f03tst_parallel_OBJECTS = $(am_f03tst_parallel_OBJECTS)
 f03tst_parallel_LDADD = $(LDADD)
 f03tst_parallel_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f03tst_types_SOURCES_DIST = module_tests.F90 f03tst_types.F \
 	f03lib_f_interfaces.f90 f03lib.c handle_err.F
-am_f03tst_types_OBJECTS = module_tests.$(OBJEXT) \
-	f03tst_types.$(OBJEXT) \
-	f03lib_f_interfaces.$(OBJEXT) \
-	f03lib.$(OBJEXT) handle_err.$(OBJEXT)
+#am_f03tst_types_OBJECTS = module_tests.$(OBJEXT) \
+#	f03tst_types.$(OBJEXT) \
+#	f03lib_f_interfaces.$(OBJEXT) \
+#	f03lib.$(OBJEXT) handle_err.$(OBJEXT)
 f03tst_types_OBJECTS = $(am_f03tst_types_OBJECTS)
 f03tst_types_LDADD = $(LDADD)
 f03tst_types_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f03tst_types2_SOURCES_DIST = module_tests.F90 f03tst_types2.F \
 	f03lib_f_interfaces.f90 f03lib.c handle_err.F
-am_f03tst_types2_OBJECTS = module_tests.$(OBJEXT) \
-	f03tst_types2.$(OBJEXT) \
-	f03lib_f_interfaces.$(OBJEXT) \
-	f03lib.$(OBJEXT) handle_err.$(OBJEXT)
+#am_f03tst_types2_OBJECTS = module_tests.$(OBJEXT) \
+#	f03tst_types2.$(OBJEXT) \
+#	f03lib_f_interfaces.$(OBJEXT) \
+#	f03lib.$(OBJEXT) handle_err.$(OBJEXT)
 f03tst_types2_OBJECTS = $(am_f03tst_types2_OBJECTS)
 f03tst_types2_LDADD = $(LDADD)
 f03tst_types2_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f03tst_types3_SOURCES_DIST = module_tests.F90 f03tst_types3.F \
 	f03lib_f_interfaces.f90 f03lib.c handle_err.F
-am_f03tst_types3_OBJECTS = module_tests.$(OBJEXT) \
-	f03tst_types3.$(OBJEXT) \
-	f03lib_f_interfaces.$(OBJEXT) \
-	f03lib.$(OBJEXT) handle_err.$(OBJEXT)
+#am_f03tst_types3_OBJECTS = module_tests.$(OBJEXT) \
+#	f03tst_types3.$(OBJEXT) \
+#	f03lib_f_interfaces.$(OBJEXT) \
+#	f03lib.$(OBJEXT) handle_err.$(OBJEXT)
 f03tst_types3_OBJECTS = $(am_f03tst_types3_OBJECTS)
 f03tst_types3_LDADD = $(LDADD)
 f03tst_types3_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f03tst_v2_SOURCES_DIST = f03tst_v2.F
-am_f03tst_v2_OBJECTS =  \
-	f03tst_v2.$(OBJEXT)
+#am_f03tst_v2_OBJECTS =  \
+#	f03tst_v2.$(OBJEXT)
 f03tst_v2_OBJECTS = $(am_f03tst_v2_OBJECTS)
 f03tst_v2_LDADD = $(LDADD)
 f03tst_v2_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f03tst_vars_SOURCES_DIST = module_tests.F90 f03tst_vars.F \
 	f03lib_f_interfaces.f90 f03lib.c handle_err.F
-am_f03tst_vars_OBJECTS = module_tests.$(OBJEXT) \
-	f03tst_vars.$(OBJEXT) \
-	f03lib_f_interfaces.$(OBJEXT) \
-	f03lib.$(OBJEXT) handle_err.$(OBJEXT)
+#am_f03tst_vars_OBJECTS = module_tests.$(OBJEXT) \
+#	f03tst_vars.$(OBJEXT) \
+#	f03lib_f_interfaces.$(OBJEXT) \
+#	f03lib.$(OBJEXT) handle_err.$(OBJEXT)
 f03tst_vars_OBJECTS = $(am_f03tst_vars_OBJECTS)
 f03tst_vars_LDADD = $(LDADD)
 f03tst_vars_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f03tst_vars2_SOURCES_DIST = module_tests.F90 f03tst_vars2.F \
 	f03lib_f_interfaces.f90 f03lib.c handle_err.F
-am_f03tst_vars2_OBJECTS = module_tests.$(OBJEXT) \
-	f03tst_vars2.$(OBJEXT) \
-	f03lib_f_interfaces.$(OBJEXT) \
-	f03lib.$(OBJEXT) handle_err.$(OBJEXT)
+#am_f03tst_vars2_OBJECTS = module_tests.$(OBJEXT) \
+#	f03tst_vars2.$(OBJEXT) \
+#	f03lib_f_interfaces.$(OBJEXT) \
+#	f03lib.$(OBJEXT) handle_err.$(OBJEXT)
 f03tst_vars2_OBJECTS = $(am_f03tst_vars2_OBJECTS)
 f03tst_vars2_LDADD = $(LDADD)
 f03tst_vars2_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f03tst_vars3_SOURCES_DIST = module_tests.F90 f03tst_vars3.F \
 	f03lib_f_interfaces.f90 f03lib.c handle_err.F
-am_f03tst_vars3_OBJECTS = module_tests.$(OBJEXT) \
-	f03tst_vars3.$(OBJEXT) \
-	f03lib_f_interfaces.$(OBJEXT) \
-	f03lib.$(OBJEXT) handle_err.$(OBJEXT)
+#am_f03tst_vars3_OBJECTS = module_tests.$(OBJEXT) \
+#	f03tst_vars3.$(OBJEXT) \
+#	f03lib_f_interfaces.$(OBJEXT) \
+#	f03lib.$(OBJEXT) handle_err.$(OBJEXT)
 f03tst_vars3_OBJECTS = $(am_f03tst_vars3_OBJECTS)
 f03tst_vars3_LDADD = $(LDADD)
 f03tst_vars3_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f03tst_vars4_SOURCES_DIST = module_tests.F90 f03tst_vars4.F \
 	f03lib_f_interfaces.f90 f03lib.c handle_err.F
-am_f03tst_vars4_OBJECTS = module_tests.$(OBJEXT) \
-	f03tst_vars4.$(OBJEXT) \
-	f03lib_f_interfaces.$(OBJEXT) \
-	f03lib.$(OBJEXT) handle_err.$(OBJEXT)
+#am_f03tst_vars4_OBJECTS = module_tests.$(OBJEXT) \
+#	f03tst_vars4.$(OBJEXT) \
+#	f03lib_f_interfaces.$(OBJEXT) \
+#	f03lib.$(OBJEXT) handle_err.$(OBJEXT)
 f03tst_vars4_OBJECTS = $(am_f03tst_vars4_OBJECTS)
 f03tst_vars4_LDADD = $(LDADD)
 f03tst_vars4_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f03tst_vars5_SOURCES_DIST = module_tests.F90 f03tst_vars5.F \
 	f03lib_f_interfaces.f90 f03lib.c handle_err.F
-am_f03tst_vars5_OBJECTS = module_tests.$(OBJEXT) \
-	f03tst_vars5.$(OBJEXT) \
-	f03lib_f_interfaces.$(OBJEXT) \
-	f03lib.$(OBJEXT) handle_err.$(OBJEXT)
+#am_f03tst_vars5_OBJECTS = module_tests.$(OBJEXT) \
+#	f03tst_vars5.$(OBJEXT) \
+#	f03lib_f_interfaces.$(OBJEXT) \
+#	f03lib.$(OBJEXT) handle_err.$(OBJEXT)
 f03tst_vars5_OBJECTS = $(am_f03tst_vars5_OBJECTS)
 f03tst_vars5_LDADD = $(LDADD)
 f03tst_vars5_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f03tst_vars6_SOURCES_DIST = module_tests.F90 f03tst_vars6.F \
 	f03lib_f_interfaces.f90 f03lib.c handle_err.F
-am_f03tst_vars6_OBJECTS = module_tests.$(OBJEXT) \
-	f03tst_vars6.$(OBJEXT) \
-	f03lib_f_interfaces.$(OBJEXT) \
-	f03lib.$(OBJEXT) handle_err.$(OBJEXT)
+#am_f03tst_vars6_OBJECTS = module_tests.$(OBJEXT) \
+#	f03tst_vars6.$(OBJEXT) \
+#	f03lib_f_interfaces.$(OBJEXT) \
+#	f03lib.$(OBJEXT) handle_err.$(OBJEXT)
 f03tst_vars6_OBJECTS = $(am_f03tst_vars6_OBJECTS)
 f03tst_vars6_LDADD = $(LDADD)
 f03tst_vars6_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
@@ -600,14 +600,14 @@ am__set_TESTS_bases = \
   bases=`echo $$bases`
 RECHECK_LOGS = $(TEST_LOGS)
 AM_RECURSIVE_TARGETS = check recheck
-am__EXEEXT_5 = f03tst_vars$(EXEEXT) \
-	f03tst_vars2$(EXEEXT) f03tst_vars3$(EXEEXT) \
-	f03tst_vars4$(EXEEXT) f03tst_vars5$(EXEEXT) \
-	f03tst_vars6$(EXEEXT) f03tst_types$(EXEEXT) \
-	f03tst_types2$(EXEEXT) \
-	f03tst_types3$(EXEEXT) \
-	f03tst_groups$(EXEEXT) \
-	f03tst_open_mem$(EXEEXT)
+#am__EXEEXT_5 = f03tst_vars$(EXEEXT) \
+#	f03tst_vars2$(EXEEXT) f03tst_vars3$(EXEEXT) \
+#	f03tst_vars4$(EXEEXT) f03tst_vars5$(EXEEXT) \
+#	f03tst_vars6$(EXEEXT) f03tst_types$(EXEEXT) \
+#	f03tst_types2$(EXEEXT) \
+#	f03tst_types3$(EXEEXT) \
+#	f03tst_groups$(EXEEXT) \
+#	f03tst_open_mem$(EXEEXT)
 TEST_SUITE_LOG = test-suite.log
 TEST_EXTENSIONS =  .test
 LOG_DRIVER = $(SHELL) $(top_srcdir)/test-driver
@@ -629,21 +629,21 @@ TEST_LOG_DRIVER = $(SHELL) $(top_srcdir)/test-driver
 TEST_LOG_COMPILE = $(TEST_LOG_COMPILER) $(AM_TEST_LOG_FLAGS) \
 	$(TEST_LOG_FLAGS)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing aclocal-1.14
+ACLOCAL = ${SHELL} /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing aclocal-1.14
 ALLOCA = 
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
 AR = ar
-AUTOCONF = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing autoconf
-AUTOHEADER = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing autoheader
-AUTOMAKE = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing automake-1.14
+AUTOCONF = ${SHELL} /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing autoconf
+AUTOHEADER = ${SHELL} /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing autoheader
+AUTOMAKE = ${SHELL} /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing automake-1.14
 AWK = gawk
 BUILD_INTERNAL_DOCS = no
-CC = mpiicc
+CC = icc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -O3 -xHost -ip -no-prec-div -static-intel -Difort -fPIC -DLONGLONG_IS_LONG
+CFLAGS = -O3 -xHost -ip -no-prec-div -I/home/yymmt/moltypes/include -fPIC -DLONGLONG_IS_LONG
 CPP = icc -E
-CPPFLAGS = -I/home/yamamoto/local/devel/moltypes/include -fPIC
+CPPFLAGS = -O3 -xHost -ip -no-prec-div -I/home/yymmt/moltypes/include -fPIC
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
@@ -657,18 +657,18 @@ ECHO_N = -n
 ECHO_T = 
 EGREP = /bin/grep -E
 EXEEXT = 
-F77 = mpiifort
-FC = mpiifort
-FCFLAGS = -g
+F77 = ifort
+FC = ifort
+FCFLAGS = -O3 -xHost -ip -no-prec-div -I/home/yymmt/moltypes/include -fPIC
 FCFLAGS_f90 = 
-FFLAGS = -O3 -xHost -ip -no-prec-div -static-intel -fPIC
+FFLAGS = -g
 FGREP = /bin/grep -F
 GREP = /bin/grep
 HAS_DAP = yes
 HAS_F03 = yes
 HAS_F90 = no
 HAS_NC2 = yes
-HAS_NC4 = yes
+HAS_NC4 = no
 HAVE_DOT = NO
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
@@ -676,20 +676,20 @@ INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LD = /usr/bin/ld -m elf_x86_64
-LDFLAGS = -L/home/yamamoto/local/devel/moltypes/lib
+LDFLAGS = -L/home/yymmt/moltypes/lib
 LIBOBJS = 
-LIBS = -lnetcdf -lhdf5_hl -lhdf5 -lz -lsz -lcurl
+LIBS = -lnetcdf 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = 
 LN_S = ln -s
 LTLIBOBJS = 
 MAINT = #
-MAKEINFO = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing makeinfo
+MAKEINFO = ${SHELL} /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /bin/mkdir -p
 MOD_FLAG = -I
-NC_FLIBS = -lnetcdff -L/home/yamamoto/local/devel/moltypes/lib -lnetcdf -lnetcdf -lhdf5_hl -lhdf5 -lz -lsz -lcurl
-NC_LIBS = -L/home/yamamoto/local/devel/moltypes/lib -lnetcdf -lnetcdf -lhdf5_hl -lhdf5 -lz -lsz -lcurl
+NC_FLIBS = -lnetcdff -L/home/yymmt/moltypes/lib -lnetcdf -lnetcdf 
+NC_LIBS = -L/home/yymmt/moltypes/lib -lnetcdf -lnetcdf 
 NM = /usr/bin/nm -B
 NMEDIT = 
 NMFLAGS = 
@@ -711,12 +711,12 @@ SET_MAKE =
 SHELL = /bin/sh
 STRIP = strip
 VERSION = 4.4.4
-abs_builddir = /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/nf03_test
-abs_srcdir = /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/nf03_test
-abs_top_builddir = /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4
-abs_top_srcdir = /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4
+abs_builddir = /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/nf03_test
+abs_srcdir = /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/nf03_test
+abs_top_builddir = /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4
+abs_top_srcdir = /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4
 ac_ct_AR = ar
-ac_ct_CC = mpiicc
+ac_ct_CC = icc
 ac_ct_DUMPBIN = 
 ac_ct_F77 = 
 ac_ct_FC = 
@@ -745,7 +745,7 @@ host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/install-sh
+install_sh = ${SHELL} /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -754,7 +754,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /home/yamamoto/local/devel/moltypes
+prefix = /home/yymmt/moltypes
 program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
@@ -791,19 +791,19 @@ test03_read.F test03_write.F util03.F f03lib.c
 CLEANFILES = scratch.nc test.nc copy.nc fills.nc $(am__append_3) \
 	$(am__append_6) $(am__append_8) $(am__append_11) tests.mod \
 	$(am__append_12)
-f03tst_types_SOURCES = module_tests.F90 f03tst_types.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-f03tst_types2_SOURCES = module_tests.F90 f03tst_types2.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-f03tst_types3_SOURCES = module_tests.F90 f03tst_types3.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-f03tst_vars_SOURCES = module_tests.F90 f03tst_vars.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-f03tst_vars2_SOURCES = module_tests.F90 f03tst_vars2.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-f03tst_vars3_SOURCES = module_tests.F90 f03tst_vars3.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-f03tst_vars4_SOURCES = module_tests.F90 f03tst_vars4.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-f03tst_vars5_SOURCES = module_tests.F90 f03tst_vars5.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-f03tst_vars6_SOURCES = module_tests.F90 f03tst_vars6.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-f03tst_open_mem_SOURCES = module_tests.F90 f03tst_open_mem.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-f03tst_groups_SOURCES = module_tests.F90 f03tst_groups.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-f03tst_v2_SOURCES = f03tst_v2.F
-f03tst_parallel_SOURCES = f03tst_parallel.F
+#f03tst_types_SOURCES = module_tests.F90 f03tst_types.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
+#f03tst_types2_SOURCES = module_tests.F90 f03tst_types2.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
+#f03tst_types3_SOURCES = module_tests.F90 f03tst_types3.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
+#f03tst_vars_SOURCES = module_tests.F90 f03tst_vars.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
+#f03tst_vars2_SOURCES = module_tests.F90 f03tst_vars2.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
+#f03tst_vars3_SOURCES = module_tests.F90 f03tst_vars3.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
+#f03tst_vars4_SOURCES = module_tests.F90 f03tst_vars4.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
+#f03tst_vars5_SOURCES = module_tests.F90 f03tst_vars5.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
+#f03tst_vars6_SOURCES = module_tests.F90 f03tst_vars6.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
+#f03tst_open_mem_SOURCES = module_tests.F90 f03tst_open_mem.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
+#f03tst_groups_SOURCES = module_tests.F90 f03tst_groups.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
+#f03tst_v2_SOURCES = f03tst_v2.F
+##f03tst_parallel_SOURCES = f03tst_parallel.F
 f03test_SOURCES = module_tests.F90 f03test.F f03lib.c
 
 # test03_get.F and test03_put.f need to be distributed, so that the user

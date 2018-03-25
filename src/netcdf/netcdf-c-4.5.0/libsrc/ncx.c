@@ -18,28 +18,28 @@
 
 #line 34
 
-#line 41
 
-#line 41
+#line 35
 #if HAVE_CONFIG_H
-#line 41
+#line 35
 #include <config.h>
-#line 41
+#line 35
 #endif
+#line 42
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <limits.h>
 
-#line 53
 
-#line 53
+#line 48
 #pragma GCC diagnostic ignored "-Wdeprecated"
-#line 53
+#line 48
 #include "ncx.h"
-#line 53
+#line 48
 #include "nc3dispatch.h"
+#line 54
 
 #line 72
 

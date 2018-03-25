@@ -90,10 +90,10 @@ target_triplet = x86_64-unknown-linux-gnu
 
 # Is the user building netCDF-4?
 # All netCDF-4 F77 functions are in one code file.
-am__append_3 = fort-nc4.c
-am__append_4 = -DNETCDF4=TRUE
+#am__append_3 = fort-nc4.c
+#am__append_4 = -DNETCDF4=TRUE
 am__append_5 = -DDAP=TRUE
-am__append_6 = -DPARALLEL_IO=TRUE
+#am__append_6 = -DPARALLEL_IO=TRUE
 subdir = libsrc
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(srcdir)/nfconfig.in $(top_srcdir)/depcomp $(include_HEADERS)
@@ -115,7 +115,7 @@ am__libnetcdfc_la_SOURCES_DIST = fort-attio.c fort-control.c \
 	fort-lib.c fort-misc.c fort-v2compat.c fort-vario.c \
 	fort-var1io.c fort-varaio.c fort-varmio.c fort-varsio.c \
 	cfortran.h fort-lib.h ncfortran.h fort-nc4.c
-am__objects_1 = fort-nc4.lo
+#am__objects_1 = fort-nc4.lo
 am_libnetcdfc_la_OBJECTS = fort-attio.lo fort-control.lo fort-dim.lo \
 	fort-genatt.lo fort-geninq.lo fort-genvar.lo fort-lib.lo \
 	fort-misc.lo fort-v2compat.lo fort-vario.lo fort-var1io.lo \
@@ -222,21 +222,21 @@ am__define_uniq_tagged_files = \
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing aclocal-1.14
+ACLOCAL = ${SHELL} /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing aclocal-1.14
 ALLOCA = 
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
 AR = ar
-AUTOCONF = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing autoconf
-AUTOHEADER = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing autoheader
-AUTOMAKE = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing automake-1.14
+AUTOCONF = ${SHELL} /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing autoconf
+AUTOHEADER = ${SHELL} /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing autoheader
+AUTOMAKE = ${SHELL} /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing automake-1.14
 AWK = gawk
 BUILD_INTERNAL_DOCS = no
-CC = mpiicc
+CC = icc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -O3 -xHost -ip -no-prec-div -static-intel -Difort -fPIC -DLONGLONG_IS_LONG
+CFLAGS = -O3 -xHost -ip -no-prec-div -I/home/yymmt/moltypes/include -fPIC -DLONGLONG_IS_LONG
 CPP = icc -E
-CPPFLAGS = -I/home/yamamoto/local/devel/moltypes/include -fPIC
+CPPFLAGS = -O3 -xHost -ip -no-prec-div -I/home/yymmt/moltypes/include -fPIC
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
@@ -250,18 +250,18 @@ ECHO_N = -n
 ECHO_T = 
 EGREP = /bin/grep -E
 EXEEXT = 
-F77 = mpiifort
-FC = mpiifort
-FCFLAGS = -g
+F77 = ifort
+FC = ifort
+FCFLAGS = -O3 -xHost -ip -no-prec-div -I/home/yymmt/moltypes/include -fPIC
 FCFLAGS_f90 = 
-FFLAGS = -O3 -xHost -ip -no-prec-div -static-intel -fPIC
+FFLAGS = -g
 FGREP = /bin/grep -F
 GREP = /bin/grep
 HAS_DAP = yes
 HAS_F03 = yes
 HAS_F90 = no
 HAS_NC2 = yes
-HAS_NC4 = yes
+HAS_NC4 = no
 HAVE_DOT = NO
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
@@ -269,20 +269,20 @@ INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LD = /usr/bin/ld -m elf_x86_64
-LDFLAGS = -L/home/yamamoto/local/devel/moltypes/lib
+LDFLAGS = -L/home/yymmt/moltypes/lib
 LIBOBJS = 
-LIBS = -lnetcdf -lhdf5_hl -lhdf5 -lz -lsz -lcurl
+LIBS = -lnetcdf 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = 
 LN_S = ln -s
 LTLIBOBJS = 
 MAINT = #
-MAKEINFO = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing makeinfo
+MAKEINFO = ${SHELL} /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /bin/mkdir -p
 MOD_FLAG = -I
-NC_FLIBS = -lnetcdff -L/home/yamamoto/local/devel/moltypes/lib -lnetcdf -lnetcdf -lhdf5_hl -lhdf5 -lz -lsz -lcurl
-NC_LIBS = -L/home/yamamoto/local/devel/moltypes/lib -lnetcdf -lnetcdf -lhdf5_hl -lhdf5 -lz -lsz -lcurl
+NC_FLIBS = -lnetcdff -L/home/yymmt/moltypes/lib -lnetcdf -lnetcdf 
+NC_LIBS = -L/home/yymmt/moltypes/lib -lnetcdf -lnetcdf 
 NM = /usr/bin/nm -B
 NMEDIT = 
 NMFLAGS = 
@@ -304,12 +304,12 @@ SET_MAKE =
 SHELL = /bin/sh
 STRIP = strip
 VERSION = 4.4.4
-abs_builddir = /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/libsrc
-abs_srcdir = /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/libsrc
-abs_top_builddir = /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4
-abs_top_srcdir = /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4
+abs_builddir = /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/libsrc
+abs_srcdir = /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/libsrc
+abs_top_builddir = /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4
+abs_top_srcdir = /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4
 ac_ct_AR = ar
-ac_ct_CC = mpiicc
+ac_ct_CC = icc
 ac_ct_DUMPBIN = 
 ac_ct_F77 = 
 ac_ct_FC = 
@@ -338,7 +338,7 @@ host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/install-sh
+install_sh = ${SHELL} /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -347,7 +347,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /home/yamamoto/local/devel/moltypes
+prefix = /home/yymmt/moltypes
 program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin

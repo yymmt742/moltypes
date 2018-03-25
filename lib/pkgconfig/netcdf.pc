@@ -1,8 +1,8 @@
-prefix=/home/yamamoto/local/devel/moltypes
+prefix=/home/yymmt/moltypes
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
-ccompiler=mpiicc
+ccompiler=icc
 
 Name: netcdf
 Description: NetCDF Client Library for C

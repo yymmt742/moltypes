@@ -27,3 +27,16 @@ CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=mpiicc CFLAGS=-O3 -xHo
 CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=mpiicc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel -Difort LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lnetcdf -lhdf5_hl -lhdf5 -lz -lcurl
 CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include CC=mpiicc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel -Difort LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lnetcdf -lhdf5_hl -lhdf5 -lz -lcurl
 CPPFLAGS=-I/home/yamamoto/local/devel/moltypes/include -fPIC CC=mpiicc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel -Difort -fPIC LDFLAGS=-L/home/yamamoto/local/devel/moltypes/lib LIBS=-lhdf5_hl -lhdf5 -lz -lsz -lcurl
+CPPFLAGS=-I/home/yymmt/moltypes/include -fPIC CC=mpiicc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel -Difort -fPIC LDFLAGS=-L/home/yymmt/moltypes/lib LIBS=-lhdf5_hl -lhdf5 -lz -lsz -lcurl
+CPPFLAGS= CC=gcc CFLAGS= LDFLAGS= LIBS=-lcurl 
+CPPFLAGS= CC=gcc CFLAGS= LDFLAGS= LIBS=-lcurl 
+CPPFLAGS= CC=gcc CFLAGS= LDFLAGS= LIBS=-lcurl 
+CPPFLAGS= CC=gcc CFLAGS= LDFLAGS= LIBS=-lcurl 
+CPPFLAGS=-I/home/yymmt/moltypes/include -fPIC CC=icc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel -Difort -fPIC LDFLAGS=-L/home/yymmt/moltypes/lib LIBS=-lhdf5_hl -lhdf5 -lz -lsz -lcurl
+CPPFLAGS=-I/home/yymmt/moltypes/include -fPIC CC=icc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel -Difort -fPIC LDFLAGS=-L/home/yymmt/moltypes/lib LIBS=-lhdf5_hl -lhdf5 -lz -lsz -lcurl
+CPPFLAGS= CC=icc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel -Difort -I/home/yymmt/moltypes/include -fPIC LDFLAGS=-L/home/yymmt/moltypes/lib LIBS=-lhdf5_hl -lhdf5 -lz -lsz -lcurl
+CPPFLAGS= CC=icc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel -Difort -I/home/yymmt/moltypes/include -fPIC LDFLAGS=-L/home/yymmt/moltypes/lib LIBS=-lhdf5_hl -lhdf5 -lz -lsz -lcurl
+CPPFLAGS= CC=icc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel -Difort -I/home/yymmt/moltypes/include -fPIC LDFLAGS=-L/home/yymmt/moltypes/lib LIBS=-lhdf5_hl -lhdf5 -lz -lsz -lcurl
+CPPFLAGS= CC=icc CFLAGS=-O3 -xHost -ip -no-prec-div -I/home/yymmt/moltypes/include -fPIC LDFLAGS=-L/home/yymmt/moltypes/lib LIBS=-lhdf5_hl -lhdf5 -lz -lsz -lcurl
+CPPFLAGS= CC=icc CFLAGS=-O3 -xHost -ip -no-prec-div -I/home/yymmt/moltypes/include -fPIC LDFLAGS=-L/home/yymmt/moltypes/lib LIBS=-lcurl 
+CPPFLAGS=-O3 -xHost -ip -no-prec-div -I/home/yymmt/moltypes/include -fPIC CC=icc CFLAGS=-O3 -xHost -ip -no-prec-div -I/home/yymmt/moltypes/include -fPIC LDFLAGS=-L/home/yymmt/moltypes/lib LIBS=-lcurl 

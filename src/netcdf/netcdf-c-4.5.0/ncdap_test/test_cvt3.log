@@ -1,5 +1,6 @@
-topsrcdir=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0
-*** Test: var conversions on URL: file:///home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdap_test/testdata3/test.02
+topsrcdir=/home/yymmt/moltypes/src/netcdf/netcdf-c-4.5.0
+*** Test: var conversions on URL: file:///home/yymmt/moltypes/src/netcdf/netcdf-c-4.5.0/ncdap_test/testdata3/test.02
+*** testing: string3
 *** testing: ch_data
 *** testing: int8_data
 *** testing: uint8_data

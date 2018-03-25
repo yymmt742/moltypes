@@ -29,7 +29,7 @@ EXIT_SUCCESS=0
 EXIT_FAILURE=1
 
 # Where the tool is installed.
-prefix="${prefix:-/home/yamamoto/local/devel/moltypes}"
+prefix="${prefix:-/home/yymmt/moltypes}"
 PARALLEL=yes		# Am I in parallel mode?
 AR="ar"
 RANLIB="ranlib"

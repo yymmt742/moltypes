@@ -24,7 +24,7 @@
 ## then modify them accordingly to represent the new paths.               ##
 ##                                                                        ##
 ############################################################################
-prefix="/home/yamamoto/local/devel/moltypes"
+prefix="/home/yymmt/moltypes"
 exec_prefix="${prefix}"
 libdir="${exec_prefix}/lib"
 includedir="${prefix}/include"
@@ -89,9 +89,9 @@ CLINKERBASE="mpiicc"
 # paths and libraries from AM_LDFLAGS, LDFLAGS, AM_LIBS or LIBS carried in 
 # from the hdf5 build. The order of the flags is intended to give precedence
 # to the user's flags.
-H5BLD_CFLAGS=" -O3 -xHost -ip -no-prec-div -static-intel -fPIC"
-H5BLD_CPPFLAGS=" -I/home/yamamoto/local/devel/moltypes/include -I/home/yamamoto/local/devel/moltypes/include"
-H5BLD_LDFLAGS=" -L/home/yamamoto/local/devel/moltypes/lib -L/home/yamamoto/local/devel/moltypes/lib"
+H5BLD_CFLAGS=" -O3 -xHost -ip -no-prec-div -static-intel -I/home/yymmt/moltypes/include -fPIC"
+H5BLD_CPPFLAGS=" -I/home/yymmt/moltypes/include "
+H5BLD_LDFLAGS=" -L/home/yymmt/moltypes/lib -L/home/yymmt/moltypes/lib"
 H5BLD_LIBS="-lz -ldl -lm "
 
 CC="${HDF5_CC:-$CCBASE}"

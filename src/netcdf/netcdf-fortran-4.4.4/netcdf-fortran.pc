@@ -1,9 +1,9 @@
-prefix=/home/yamamoto/local/devel/moltypes
+prefix=/home/yymmt/moltypes
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
-ccompiler=mpiicc
-fcompiler=mpiifort
+ccompiler=icc
+fcompiler=ifort
 
 Name: netcdf-fortran
 Description: NetCDF Client Library for Fortran

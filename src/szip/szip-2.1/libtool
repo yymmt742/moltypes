@@ -44,7 +44,7 @@ available_tags=" CXX F77"
 
 # ### BEGIN LIBTOOL CONFIG
 
-# Libtool was configured on host yymmt.kuchem.kyoto-u.ac.jp:
+# Libtool was configured on host miharu14.kuchem.kyoto-u.ac.jp:
 
 # Shell to use when invoking shell scripts.
 SHELL="/bin/sh"
@@ -325,10 +325,10 @@ variables_saved_for_relink="PATH LD_LIBRARY_PATH LD_RUN_PATH GCC_EXEC_PREFIX COM
 link_all_deplibs=unknown
 
 # Compile-time system search path for libraries
-sys_lib_search_path_spec=" /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/lib/intel64_lin /usr/lib64"
+sys_lib_search_path_spec=" /opt/intel/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64_lin /usr/lib64"
 
 # Run-time system search path for libraries
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib64/atlas /usr/lib64/ctapi /usr/local/cuda-9.0/targets/x86_64-linux/lib hwcap 1 nosegneg hwcap 1 nosegneg hwcap 1 nosegneg hwcap 1 nosegneg hwcap 1 nosegneg /usr/local/lib /usr/local/lib64 /home/yamamoto/local/ifort/lib /home/yamamoto/local/gfortran63/lib /usr/lib64/mysql /usr/lib64/nvidia /usr/lib64/octave/3.4.3 /usr/lib64/qt-3.3/lib /usr/lib64/tcl8.5 /usr/lib64/xulrunner /opt/intel/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64_lin/ "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib64/atlas /usr/local/cuda-8.0/targets/x86_64-linux/lib hwcap 1 nosegneg hwcap 1 nosegneg /usr/lib64/mysql /usr/lib64/nvidia /usr/lib64/qt-3.3/lib /usr/local/lib /usr/local/lib64 /usr/lib64/xulrunner "
 
 # Fix the shell variable $srcfile for the compiler.
 fix_srcfile_path=""
@@ -7215,7 +7215,7 @@ disable_libs=static
 # End:
 # ### BEGIN LIBTOOL TAG CONFIG: CXX
 
-# Libtool was configured on host yymmt.kuchem.kyoto-u.ac.jp:
+# Libtool was configured on host miharu14.kuchem.kyoto-u.ac.jp:
 
 # Shell to use when invoking shell scripts.
 SHELL="/bin/sh"
@@ -7397,11 +7397,11 @@ striplib="strip --strip-unneeded"
 
 # Dependencies to place before the objects being linked to create a
 # shared library.
-predep_objects="-mIPOPT_obj_output_file_name=/tmp/ipo_icpcnkFlNT.o -mGLOB_obj_output_file=/tmp/ipo_icpcnkFlNT.o"
+predep_objects="-mIPOPT_obj_output_file_name=/tmp/ipo_icpcW3wog6.o -mGLOB_obj_output_file=/tmp/ipo_icpcW3wog6.o"
 
 # Dependencies to place after the objects being linked to create a
 # shared library.
-postdep_objects="/usr/lib/../lib64/crti.o /usr/local/lib/gcc/x86_64-unknown-linux-gnu/4.8.4/crtbeginS.o /usr/local/lib/gcc/x86_64-unknown-linux-gnu/4.8.4/crtendS.o /usr/lib/../lib64/crtn.o"
+postdep_objects="/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbeginS.o /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtendS.o /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o"
 
 # Dependencies to place before the objects being linked to create a
 # shared library.
@@ -7409,7 +7409,7 @@ predeps=""
 
 # Dependencies to place after the objects being linked to create a
 # shared library.
-postdeps="-L/opt/intel/compilers_and_libraries_2017.2.174/linux/ipp/lib/intel64 -L/opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/lib/intel64_lin -L/opt/intel/compilers_and_libraries_2017.2.174/linux/mkl/lib/intel64_lin -L/opt/intel/compilers_and_libraries_2017.2.174/linux/tbb/lib/intel64/gcc4.7 -L/opt/intel/compilers_and_libraries_2017.2.174/linux/daal/lib/intel64_lin -L/opt/intel/compilers_and_libraries_2017.2.174/linux/ipp/lib/intel64 -L/opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/lib/intel64_lin -L/opt/intel/compilers_and_libraries_2017.2.174/linux/mkl/lib/intel64_lin -L/opt/intel/compilers_and_libraries_2017.2.174/linux/tbb/lib/intel64/gcc4.7 -L/opt/intel/compilers_and_libraries_2017.2.174/linux/daal/lib/intel64_lin -L/opt/intel/compilers_and_libraries_2017.2.174/linux/daal/../tbb/lib/intel64_lin/gcc4.4 -L/opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/lib/intel64_lin -L/usr/local/lib/gcc/x86_64-unknown-linux-gnu/4.8.4/ -L/usr/local/lib/gcc/x86_64-unknown-linux-gnu/4.8.4/../../../../lib64 -L/usr/local/lib/gcc/x86_64-unknown-linux-gnu/4.8.4/../../../../lib64/ -L/lib/../lib64 -L/lib/../lib64/ -L/usr/lib/../lib64 -L/usr/lib/../lib64/ -L/opt/intel/compilers_and_libraries_2017.2.174/linux/ipp/lib/intel64/ -L/opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/lib/intel64_lin/ -L/opt/intel/compilers_and_libraries_2017.2.174/linux/mkl/lib/intel64_lin/ -L/opt/intel/compilers_and_libraries_2017.2.174/linux/tbb/lib/intel64/gcc4.7/ -L/opt/intel/compilers_and_libraries_2017.2.174/linux/daal/lib/intel64_lin/ -L/opt/intel/compilers_and_libraries_2017.2.174/linux/daal/../tbb/lib/intel64_lin/gcc4.4/ -L/usr/local/lib/gcc/x86_64-unknown-linux-gnu/4.8.4/../../../ -L/lib64 -L/lib/ -L/usr/lib64 -L/usr/lib -limf -lsvml -lirng -lstdc++ -lm -lipgo -ldecimal -lcilkrts -lstdc++ -lgcc -lgcc_s -lintlc -lsvml -lc -lgcc -lgcc_s -lirc_s -ldl -lc"
+postdeps="-L/opt/intel/compilers_and_libraries_2016.4.258/linux/ipp/lib/intel64 -L/opt/intel/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64 -L/opt/intel/compilers_and_libraries_2016.4.258/linux/mkl/lib/intel64 -L/opt/intel/compilers_and_libraries_2016.4.258/linux/tbb/lib/intel64/gcc4.4 -L/opt/intel/compilers_and_libraries_2016.4.258/linux/daal/lib/intel64_lin -L/opt/intel/compilers_and_libraries_2016.4.258/linux/daal/../tbb/lib/intel64_lin/gcc4.4 -L/opt/intel/compilers_and_libraries_2016.4.258/linux/daal/../compiler/lib/intel64_lin -L/opt/intel/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64_lin -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7/ -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/ -L/lib/../lib64 -L/lib/../lib64/ -L/usr/lib/../lib64 -L/usr/lib/../lib64/ -L/opt/intel/compilers_and_libraries_2016.4.258/linux/ipp/lib/intel64/ -L/opt/intel/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64/ -L/opt/intel/compilers_and_libraries_2016.4.258/linux/mkl/lib/intel64/ -L/opt/intel/compilers_and_libraries_2016.4.258/linux/tbb/lib/intel64/gcc4.4/ -L/opt/intel/compilers_and_libraries_2016.4.258/linux/daal/lib/intel64_lin/ -L/opt/intel/compilers_and_libraries_2016.4.258/linux/daal/../tbb/lib/intel64_lin/gcc4.4/ -L/opt/intel/compilers_and_libraries_2016.4.258/linux/daal/../compiler/lib/intel64_lin/ -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../ -L/lib64 -L/lib/ -L/usr/lib64 -L/usr/lib -limf -lsvml -lirng -lstdc++ -lm -lipgo -ldecimal -lcilkrts -lstdc++ -lgcc -lgcc_s -lintlc -lsvml -lc -lgcc -lgcc_s -lirc_s -ldl -lc"
 
 # The library search path used internally by the compiler when linking
 # a shared library.
@@ -7493,10 +7493,10 @@ variables_saved_for_relink="PATH LD_LIBRARY_PATH LD_RUN_PATH GCC_EXEC_PREFIX COM
 link_all_deplibs=unknown
 
 # Compile-time system search path for libraries
-sys_lib_search_path_spec=" /opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/lib/intel64_lin /usr/lib64"
+sys_lib_search_path_spec=" /opt/intel/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64_lin /usr/lib64"
 
 # Run-time system search path for libraries
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib64/atlas /usr/lib64/ctapi /usr/local/cuda-9.0/targets/x86_64-linux/lib hwcap 1 nosegneg hwcap 1 nosegneg hwcap 1 nosegneg hwcap 1 nosegneg hwcap 1 nosegneg /usr/local/lib /usr/local/lib64 /home/yamamoto/local/ifort/lib /home/yamamoto/local/gfortran63/lib /usr/lib64/mysql /usr/lib64/nvidia /usr/lib64/octave/3.4.3 /usr/lib64/qt-3.3/lib /usr/lib64/tcl8.5 /usr/lib64/xulrunner /opt/intel/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64_lin/ "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib64/atlas /usr/local/cuda-8.0/targets/x86_64-linux/lib hwcap 1 nosegneg hwcap 1 nosegneg /usr/lib64/mysql /usr/lib64/nvidia /usr/lib64/qt-3.3/lib /usr/local/lib /usr/local/lib64 /usr/lib64/xulrunner "
 
 # Fix the shell variable $srcfile for the compiler.
 fix_srcfile_path=""
@@ -7520,7 +7520,7 @@ include_expsyms=""
 
 # ### BEGIN LIBTOOL TAG CONFIG: F77
 
-# Libtool was configured on host yymmt.kuchem.kyoto-u.ac.jp:
+# Libtool was configured on host miharu14.kuchem.kyoto-u.ac.jp:
 
 # Shell to use when invoking shell scripts.
 SHELL="/bin/sh"
@@ -7804,7 +7804,7 @@ link_all_deplibs=unknown
 sys_lib_search_path_spec=""
 
 # Run-time system search path for libraries
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib64/atlas /usr/lib64/ctapi /usr/local/cuda-9.0/targets/x86_64-linux/lib hwcap 1 nosegneg hwcap 1 nosegneg hwcap 1 nosegneg hwcap 1 nosegneg hwcap 1 nosegneg /usr/local/lib /usr/local/lib64 /home/yamamoto/local/ifort/lib /home/yamamoto/local/gfortran63/lib /usr/lib64/mysql /usr/lib64/nvidia /usr/lib64/octave/3.4.3 /usr/lib64/qt-3.3/lib /usr/lib64/tcl8.5 /usr/lib64/xulrunner /opt/intel/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64_lin/ "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib64/atlas /usr/local/cuda-8.0/targets/x86_64-linux/lib hwcap 1 nosegneg hwcap 1 nosegneg /usr/lib64/mysql /usr/lib64/nvidia /usr/lib64/qt-3.3/lib /usr/local/lib /usr/local/lib64 /usr/lib64/xulrunner "
 
 # Fix the shell variable $srcfile for the compiler.
 fix_srcfile_path=""

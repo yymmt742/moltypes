@@ -92,7 +92,7 @@
 #if 0
   Set USE_NETCDF4 to defined - include netCDF4 code
 #endif
-#define USE_NETCDF4 1
+/* #undef USE_NETCDF4 */
 
 #if 0
   Set HAVE_TS29113_SUPPORT to defined - TS29113 types (like CPTRDIFF_T) defined

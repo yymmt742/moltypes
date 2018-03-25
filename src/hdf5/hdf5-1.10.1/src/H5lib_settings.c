@@ -15,8 +15,8 @@
  * help@hdfgroup.org.                                                        *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
- * Created:		Jan 15, 2018
- *			yamamoto yuki <yymmt@yymmt.kuchem.kyoto-u.ac.jp>
+ * Created:		Mar 25, 2018
+ *			root <root@miharu14.kuchem.kyoto-u.ac.jp>
  *
  * Purpose:		This machine-generated source code contains
  *			information about the library build configuration
@@ -36,12 +36,12 @@ char H5libhdf5_settings[]=
 	"General Information:\n"
 	"-------------------\n"
 	"                   HDF5 Version: 1.10.1\n"
-	"                  Configured on: Mon Jan 15 04:04:46 JST 2018\n"
-	"                  Configured by: yymmt@yymmt.kuchem.kyoto-u.ac.jp\n"
+	"                  Configured on: Sun Mar 25 16:30:31 JST 2018\n"
+	"                  Configured by: root@miharu14.kuchem.kyoto-u.ac.jp\n"
 	"                    Host system: x86_64-unknown-linux-gnu\n"
-	"              Uname information: Linux yymmt.kuchem.kyoto-u.ac.jp 2.6.32-696.16.1.el6.x86_64 #1 SMP Wed Nov 15 16:51:15 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux\n"
+	"              Uname information: Linux miharu14.kuchem.kyoto-u.ac.jp 2.6.32-696.1.1.el6.x86_64 #1 SMP Tue Apr 11 17:13:24 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux\n"
 	"                       Byte sex: little-endian\n"
-	"             Installation point: /home/yamamoto/local/devel/moltypes\n"
+	"             Installation point: /home/yymmt/moltypes\n"
 	"\n"
 	"Compiling Options:\n"
 	"------------------\n"
@@ -55,9 +55,9 @@ char H5libhdf5_settings[]=
 	"----------------\n"
 	"                      Libraries: static, shared\n"
 	"  Statically Linked Executables: \n"
-	"                        LDFLAGS: -L/home/yamamoto/local/devel/moltypes/lib\n"
+	"                        LDFLAGS: -L/home/yymmt/moltypes/lib\n"
 	"                     H5_LDFLAGS: \n"
-	"                     AM_LDFLAGS:  -L/home/yamamoto/local/devel/moltypes/lib\n"
+	"                     AM_LDFLAGS:  -L/home/yymmt/moltypes/lib\n"
 	"                Extra libraries: -lz -ldl -lm \n"
 	"                       Archiver: ar\n"
 	"                         Ranlib: ranlib\n"
@@ -65,12 +65,12 @@ char H5libhdf5_settings[]=
 	"Languages:\n"
 	"----------\n"
 	"                              C: yes\n"
-	"                     C Compiler: /opt/intel/compilers_and_libraries_2017.2.174/linux/mpi/intel64/bin/mpiicc ( Intel(R) C Intel(R) 64 Compiler Version 17.0.2.174 Build 20170213)\n"
-	"                       CPPFLAGS: -I/home/yamamoto/local/devel/moltypes/include\n"
+	"                     C Compiler: /opt/intel/compilers_and_libraries_2018.1.163/linux/mpi/intel64/bin/mpiicc\n"
+	"                       CPPFLAGS: \n"
 	"                    H5_CPPFLAGS: -D_GNU_SOURCE -D_POSIX_C_SOURCE=200112L   -DNDEBUG -UH5_DEBUG_API\n"
-	"                    AM_CPPFLAGS:  -I/home/yamamoto/local/devel/moltypes/include\n"
-	"                        C Flags: -O3 -xHost -ip -no-prec-div -static-intel -fPIC\n"
-	"                     H5 C Flags:   -std=c99 -Wcheck -Wall  -Wl,-s  -O3\n"
+	"                    AM_CPPFLAGS:  -I/home/yymmt/moltypes/include\n"
+	"                        C Flags: -O3 -xHost -ip -no-prec-div -static-intel -I/home/yymmt/moltypes/include -fPIC\n"
+	"                     H5 C Flags:     \n"
 	"                     AM C Flags: \n"
 	"               Shared C Library: yes\n"
 	"               Static C Library: yes\n"

@@ -3,21 +3,21 @@
 # This forms the basis for the nf-config utility, which tells you
 # various things about the netCDF fortran installation.
 
-prefix=/home/yamamoto/local/devel/moltypes
+prefix=/home/yymmt/moltypes
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
 
-cc="mpiicc"
-fc="mpiifort"
-cflags=" -I${includedir} -I/home/yamamoto/local/devel/moltypes/include -fPIC" 
+cc="icc"
+fc="ifort"
+cflags=" -I${includedir} -O3 -xHost -ip -no-prec-div -I/home/yymmt/moltypes/include -fPIC" 
 fflags="-I${includedir}"
 has_dap="yes"
 has_nc2="yes"
-has_nc4="yes"
+has_nc4="no"
 has_f90="no"
 has_f03="yes"
-flibs="-L${libdir} -lnetcdff -L/home/yamamoto/local/devel/moltypes/lib -lnetcdf -lnetcdf -lhdf5_hl -lhdf5 -lz -lsz -lcurl"
+flibs="-L${libdir} -lnetcdff -L/home/yymmt/moltypes/lib -lnetcdf -lnetcdf "
 version="netCDF-Fortran 4.4.4"
 
 usage()

@@ -89,21 +89,21 @@ host_triplet = x86_64-unknown-linux-gnu
 target_triplet = x86_64-unknown-linux-gnu
 
 # Use netcdf4.f90 to build the library.
-am__append_1 = module_netcdf4_nc_interfaces.f90 \
-                         module_netcdf4_nf_interfaces.F90 module_netcdf4_f03.f90 \
-                         nf_lib.c nf_nc4.f90
+#am__append_1 = module_netcdf4_nc_interfaces.f90 \
+#                         module_netcdf4_nf_interfaces.F90 module_netcdf4_f03.f90 \
+#                         nf_lib.c nf_nc4.f90
 
 
 # add nf_logging to build
 #am__append_2 = nf_logging.F90
-am__append_3 = netcdf4.f90
+#am__append_3 = netcdf4.f90
 # These are the extra netCDF-4 F90 source files.
-am__append_4 = netcdf4_func.f90 netcdf4_externals.f90 netcdf4_visibility.f90 \
-                              netcdf4.f90 netcdf4_eightbyte.f90 \
-                              netcdf4_variables.f90 netcdf4_file.f90 \
-                              netcdf4_overloads.f90
+#am__append_4 = netcdf4_func.f90 netcdf4_externals.f90 netcdf4_visibility.f90 \
+#                              netcdf4.f90 netcdf4_eightbyte.f90 \
+#                              netcdf4_variables.f90 netcdf4_file.f90 \
+#                              netcdf4_overloads.f90
 
-#am__append_5 = netcdf.f90 netcdf3_file.f90
+am__append_5 = netcdf.f90 netcdf3_file.f90
 
 #endif !BUILD_F03
 am__append_6 = nf_v2compat.c module_netcdf_fortv2_c_interfaces.f90 nf_fortv2.f90
@@ -115,8 +115,8 @@ am__append_8 = NETCDF_NC_DATA.mod NETCDF_NC_INTERFACES.mod NETCDF_NF_DATA.mod \
 
 am__append_9 = netcdf_fortv2_c_interfaces.mod
 am__append_10 = NETCDF_FORTV2_C_INTERFACES.mod
-am__append_11 = netcdf4_nc_interfaces.mod netcdf4_nf_interfaces.mod netcdf4_f03.mod
-am__append_12 = NETCDF4_NC_INTERFACES.mod NETCDF4_NF_INTERFACES.mod NETCDF4_F03.mod
+#am__append_11 = netcdf4_nc_interfaces.mod netcdf4_nf_interfaces.mod netcdf4_f03.mod
+#am__append_12 = NETCDF4_NC_INTERFACES.mod NETCDF4_NF_INTERFACES.mod NETCDF4_F03.mod
 #am__append_13 = $(UCHEADERS) $(UCCOMMON) $(LCHEADERS) $(LCCOMMON)
 am__append_14 = $(LCHEADERS) $(LCCOMMON)
 subdir = fortran
@@ -174,12 +174,12 @@ am__libnetcdff_la_SOURCES_DIST = typeSizes.f90 \
 	nf_lib.c nf_nc4.f90 nf_logging.F90 netcdf4.f90 netcdf.f90 \
 	netcdf3_file.f90 nf_v2compat.c \
 	module_netcdf_fortv2_c_interfaces.f90 nf_fortv2.f90
-am__objects_1 = module_netcdf4_nc_interfaces.lo \
-	module_netcdf4_nf_interfaces.lo \
-	module_netcdf4_f03.lo nf_lib.lo nf_nc4.lo
+#am__objects_1 = module_netcdf4_nc_interfaces.lo \
+#	module_netcdf4_nf_interfaces.lo \
+#	module_netcdf4_f03.lo nf_lib.lo nf_nc4.lo
 #am__objects_2 = nf_logging.lo
-am__objects_3 = netcdf4.lo
-#am__objects_4 = netcdf.lo netcdf3_file.lo
+#am__objects_3 = netcdf4.lo
+am__objects_4 = netcdf.lo netcdf3_file.lo
 am__objects_5 = nf_v2compat.lo \
 	module_netcdf_fortv2_c_interfaces.lo \
 	nf_fortv2.lo
@@ -286,21 +286,21 @@ am__define_uniq_tagged_files = \
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing aclocal-1.14
+ACLOCAL = ${SHELL} /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing aclocal-1.14
 ALLOCA = 
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
 AR = ar
-AUTOCONF = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing autoconf
-AUTOHEADER = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing autoheader
-AUTOMAKE = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing automake-1.14
+AUTOCONF = ${SHELL} /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing autoconf
+AUTOHEADER = ${SHELL} /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing autoheader
+AUTOMAKE = ${SHELL} /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing automake-1.14
 AWK = gawk
 BUILD_INTERNAL_DOCS = no
-CC = mpiicc
+CC = icc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -O3 -xHost -ip -no-prec-div -static-intel -Difort -fPIC -DLONGLONG_IS_LONG
+CFLAGS = -O3 -xHost -ip -no-prec-div -I/home/yymmt/moltypes/include -fPIC -DLONGLONG_IS_LONG
 CPP = icc -E
-CPPFLAGS = -I/home/yamamoto/local/devel/moltypes/include -fPIC
+CPPFLAGS = -O3 -xHost -ip -no-prec-div -I/home/yymmt/moltypes/include -fPIC
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
@@ -314,18 +314,18 @@ ECHO_N = -n
 ECHO_T = 
 EGREP = /bin/grep -E
 EXEEXT = 
-F77 = mpiifort
-FC = mpiifort
-FCFLAGS = -g
+F77 = ifort
+FC = ifort
+FCFLAGS = -O3 -xHost -ip -no-prec-div -I/home/yymmt/moltypes/include -fPIC
 FCFLAGS_f90 = 
-FFLAGS = -O3 -xHost -ip -no-prec-div -static-intel -fPIC
+FFLAGS = -g
 FGREP = /bin/grep -F
 GREP = /bin/grep
 HAS_DAP = yes
 HAS_F03 = yes
 HAS_F90 = no
 HAS_NC2 = yes
-HAS_NC4 = yes
+HAS_NC4 = no
 HAVE_DOT = NO
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
@@ -333,20 +333,20 @@ INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LD = /usr/bin/ld -m elf_x86_64
-LDFLAGS = -L/home/yamamoto/local/devel/moltypes/lib
+LDFLAGS = -L/home/yymmt/moltypes/lib
 LIBOBJS = 
-LIBS = -lnetcdf -lhdf5_hl -lhdf5 -lz -lsz -lcurl
+LIBS = -lnetcdf 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = 
 LN_S = ln -s
 LTLIBOBJS = 
 MAINT = #
-MAKEINFO = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing makeinfo
+MAKEINFO = ${SHELL} /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /bin/mkdir -p
 MOD_FLAG = -I
-NC_FLIBS = -lnetcdff -L/home/yamamoto/local/devel/moltypes/lib -lnetcdf -lnetcdf -lhdf5_hl -lhdf5 -lz -lsz -lcurl
-NC_LIBS = -L/home/yamamoto/local/devel/moltypes/lib -lnetcdf -lnetcdf -lhdf5_hl -lhdf5 -lz -lsz -lcurl
+NC_FLIBS = -lnetcdff -L/home/yymmt/moltypes/lib -lnetcdf -lnetcdf 
+NC_LIBS = -L/home/yymmt/moltypes/lib -lnetcdf -lnetcdf 
 NM = /usr/bin/nm -B
 NMEDIT = 
 NMFLAGS = 
@@ -368,12 +368,12 @@ SET_MAKE =
 SHELL = /bin/sh
 STRIP = strip
 VERSION = 4.4.4
-abs_builddir = /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/fortran
-abs_srcdir = /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/fortran
-abs_top_builddir = /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4
-abs_top_srcdir = /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4
+abs_builddir = /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/fortran
+abs_srcdir = /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/fortran
+abs_top_builddir = /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4
+abs_top_srcdir = /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4
 ac_ct_AR = ar
-ac_ct_CC = mpiicc
+ac_ct_CC = icc
 ac_ct_DUMPBIN = 
 ac_ct_F77 = 
 ac_ct_FC = 
@@ -402,7 +402,7 @@ host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/install-sh
+install_sh = ${SHELL} /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -411,7 +411,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /home/yamamoto/local/devel/moltypes
+prefix = /home/yymmt/moltypes
 program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
@@ -474,8 +474,8 @@ CLEANFILES = netcdf_nc_data.mod netcdf_nc_interfaces.mod \
 	$(LCCOMMON)
 DISTCLEANFILES = nfconfig1.inc nfconfig.inc netcdf.inc
 libnetcdff_la_LDFLAGS = $(AM_LDFLAGS) -version-number 6:1:1
-#NETCDF_O = netcdf.o
-NETCDF_O = netcdf4.o
+NETCDF_O = netcdf.o
+#NETCDF_O = netcdf4.o
 #libnetcdff_la_LIBADD = ${top_builddir}/libsrc/libnetcdfc.la
 
 # Some fortran compilers change the file names of .mod files to all
@@ -891,9 +891,9 @@ netcdf_f03.mod: module_netcdf_f03.o
 netcdf_fortv2_c_interfaces.mod: module_netcdf_fortv2_c_interfaces.o
 #endif !UPPER_CASE_MOD
 
-netcdf4_nc_interfaces.mod: module_netcdf4_nc_interfaces.o
-netcdf4_nf_interfaces.mod: module_netcdf4_nf_interfaces.o
-netcdf4_f03.mod: module_netcdf4_f03.o
+#netcdf4_nc_interfaces.mod: module_netcdf4_nc_interfaces.o
+#netcdf4_nf_interfaces.mod: module_netcdf4_nf_interfaces.o
+#netcdf4_f03.mod: module_netcdf4_f03.o
 
 #$(UCHEADERS): $(LCHEADERS)
 #	for lc in $(LCHEADERS) ; do \
@@ -911,9 +911,9 @@ typesizes.mod: typeSizes.o
 netcdf.inc: $(top_srcdir)/fortran/netcdf2.inc $(top_srcdir)/fortran/netcdf3.inc $(top_srcdir)/fortran/netcdf4.inc
 	echo '!     NetCDF-3.' > netcdf.inc
 	cat $(top_srcdir)/fortran/netcdf3.inc >> netcdf.inc
-	echo >> netcdf.inc
-	echo '!     NetCDF-4.' >> netcdf.inc
-	cat $(top_srcdir)/fortran/netcdf4.inc >> netcdf.inc
+#	echo >> netcdf.inc
+#	echo '!     NetCDF-4.' >> netcdf.inc
+#	cat $(top_srcdir)/fortran/netcdf4.inc >> netcdf.inc
 	echo >> netcdf.inc
 	echo '!     NetCDF-2.' >> netcdf.inc
 	cat $(top_srcdir)/fortran/netcdf2.inc >> netcdf.inc

@@ -17,7 +17,7 @@ old_library='libnetcdff.a'
 inherited_linker_flags=''
 
 # Libraries that this one depends upon.
-dependency_libs=' -L/home/yamamoto/local/devel/moltypes/lib /home/yamamoto/local/devel/moltypes/lib/libnetcdf.la /home/yamamoto/local/devel/moltypes/lib/libhdf5_hl.la /home/yamamoto/local/devel/moltypes/lib/libhdf5.la -ldl -lz /home/yamamoto/local/devel/moltypes/lib/libsz.la -lm -lcurl'
+dependency_libs=' -L/home/yymmt/moltypes/lib /home/yymmt/moltypes/lib/libnetcdf.la -lm -lcurl'
 
 # Names of additional weak libraries provided by this library
 weak_library_names=''
@@ -38,4 +38,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/home/yamamoto/local/devel/moltypes/lib'
+libdir='/home/yymmt/moltypes/lib'

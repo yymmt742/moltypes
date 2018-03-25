@@ -2,8 +2,8 @@
    netCDF 4.5.0: examples/C/test-suite.log
 =============================================
 
-# TOTAL: 10
-# PASS:  10
+# TOTAL: 6
+# PASS:  6
 # SKIP:  0
 # XFAIL: 0
 # FAIL:  0

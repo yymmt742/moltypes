@@ -32,7 +32,7 @@ EXIT_FAILURE=1
 
 # Where the tool is installed.
 # default is relative path to installed location of the tools
-prefix="${prefix:-/home/yamamoto/local/devel/moltypes}"
+prefix="${prefix:-/home/yymmt/moltypes}"
 PARALLEL=yes             # Am I in parallel mode?
 AR="ar"
 RANLIB="ranlib"

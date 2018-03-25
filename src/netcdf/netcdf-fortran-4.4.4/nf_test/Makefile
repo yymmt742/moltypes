@@ -100,49 +100,49 @@ am__append_2 = tst_f77_v2
 # Add these netCDF-4 test programs.
 
 # Add these netCDF-4 f90 test programs.
-am__append_3 = ftst_vars ftst_vars2 ftst_vars3 \
-	ftst_vars4 ftst_vars5 ftst_vars6 ftst_types \
-	ftst_types2 ftst_types3 ftst_groups \
-	ftst_path ftst_rengrps f90tst_vars tst_types \
-	tst_types2 f90tst_vars_vlen tst_f90_nc4 \
-	f90tst_grps f90tst_fill f90tst_fill2 \
-	f90tst_vars3 f90tst_vars4 f90tst_vars2 \
-	f90tst_path f90tst_rengrps
-am__append_4 = ftst_vars ftst_vars2 ftst_vars3 \
-	ftst_vars4 ftst_vars5 ftst_vars6 ftst_types \
-	ftst_types2 ftst_types3 ftst_groups \
-	ftst_path ftst_rengrps f90tst_vars tst_types \
-	tst_types2 f90tst_vars_vlen tst_f90_nc4 \
-	f90tst_grps f90tst_fill f90tst_fill2 \
-	f90tst_vars3 f90tst_vars4 f90tst_vars2 \
-	f90tst_path f90tst_rengrps
+#am__append_3 = ftst_vars ftst_vars2 ftst_vars3 \
+#	ftst_vars4 ftst_vars5 ftst_vars6 ftst_types \
+#	ftst_types2 ftst_types3 ftst_groups \
+#	ftst_path ftst_rengrps f90tst_vars tst_types \
+#	tst_types2 f90tst_vars_vlen tst_f90_nc4 \
+#	f90tst_grps f90tst_fill f90tst_fill2 \
+#	f90tst_vars3 f90tst_vars4 f90tst_vars2 \
+#	f90tst_path f90tst_rengrps
+#am__append_4 = ftst_vars ftst_vars2 ftst_vars3 \
+#	ftst_vars4 ftst_vars5 ftst_vars6 ftst_types \
+#	ftst_types2 ftst_types3 ftst_groups \
+#	ftst_path ftst_rengrps f90tst_vars tst_types \
+#	tst_types2 f90tst_vars_vlen tst_f90_nc4 \
+#	f90tst_grps f90tst_fill f90tst_fill2 \
+#	f90tst_vars3 f90tst_vars4 f90tst_vars2 \
+#	f90tst_path f90tst_rengrps
 
 # This is a netCDF-4 V2 test program.
-am__append_5 = ftst_v2
-am__append_6 = ftst_v2
+#am__append_5 = ftst_v2
+#am__append_6 = ftst_v2
 
 # This is the netCDF-4 F90 large file test.
-#am__append_7 = tst_flarge
-#am__append_8 = tst_flarge
+##am__append_7 = tst_flarge
+##am__append_8 = tst_flarge
 
 # This is an f90 benchmark.
-#am__append_9 = tst_io
-#am__append_10 = tst_io
+##am__append_9 = tst_io
+##am__append_10 = tst_io
 
 # Test parallel I/O.
 #f90tst_parallel_fill_SOURCES = f90tst_parallel_fill.f90
 
 # Test parallel I/O for F77.
-am__append_11 = f90tst_parallel \
-	f90tst_parallel2 \
-	f90tst_parallel3 \
-	f90tst_nc4_par \
-	ftst_parallel \
-	ftst_parallel_nasa
+##am__append_11 = f90tst_parallel \
+##	f90tst_parallel2 \
+##	f90tst_parallel3 \
+##	f90tst_nc4_par \
+##	ftst_parallel \
+##	ftst_parallel_nasa
 #f90tst_parallel_fill
-am__append_12 =  \
-	run_f90_par_test.sh \
-	run_f77_par_test.sh
+##am__append_12 =  \
+##	run_f90_par_test.sh \
+##	run_f77_par_test.sh
 
 # This is the fortran v2 test. It depends on the utilities being built
 # to generate it's input file.
@@ -164,34 +164,34 @@ CONFIG_HEADER = $(top_builddir)/config.h \
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__EXEEXT_1 = tst_f77_v2$(EXEEXT)
-am__EXEEXT_2 = ftst_vars$(EXEEXT) \
-	ftst_vars2$(EXEEXT) ftst_vars3$(EXEEXT) \
-	ftst_vars4$(EXEEXT) ftst_vars5$(EXEEXT) \
-	ftst_vars6$(EXEEXT) ftst_types$(EXEEXT) \
-	ftst_types2$(EXEEXT) ftst_types3$(EXEEXT) \
-	ftst_groups$(EXEEXT) ftst_path$(EXEEXT) \
-	ftst_rengrps$(EXEEXT) f90tst_vars$(EXEEXT) \
-	tst_types$(EXEEXT) tst_types2$(EXEEXT) \
-	f90tst_vars_vlen$(EXEEXT) \
-	tst_f90_nc4$(EXEEXT) f90tst_grps$(EXEEXT) \
-	f90tst_fill$(EXEEXT) f90tst_fill2$(EXEEXT) \
-	f90tst_vars3$(EXEEXT) f90tst_vars4$(EXEEXT) \
-	f90tst_vars2$(EXEEXT) f90tst_path$(EXEEXT) \
-	f90tst_rengrps$(EXEEXT)
-am__EXEEXT_3 = ftst_v2$(EXEEXT)
-#am__EXEEXT_4 =  \
-#	tst_flarge$(EXEEXT)
-#am__EXEEXT_5 =  \
-#	tst_io$(EXEEXT)
-am__EXEEXT_6 = f90tst_parallel$(EXEEXT) \
-	f90tst_parallel2$(EXEEXT) \
-	f90tst_parallel3$(EXEEXT) \
-	f90tst_nc4_par$(EXEEXT) \
-	ftst_parallel$(EXEEXT) \
-	ftst_parallel_nasa$(EXEEXT)
+#am__EXEEXT_2 = ftst_vars$(EXEEXT) \
+#	ftst_vars2$(EXEEXT) ftst_vars3$(EXEEXT) \
+#	ftst_vars4$(EXEEXT) ftst_vars5$(EXEEXT) \
+#	ftst_vars6$(EXEEXT) ftst_types$(EXEEXT) \
+#	ftst_types2$(EXEEXT) ftst_types3$(EXEEXT) \
+#	ftst_groups$(EXEEXT) ftst_path$(EXEEXT) \
+#	ftst_rengrps$(EXEEXT) f90tst_vars$(EXEEXT) \
+#	tst_types$(EXEEXT) tst_types2$(EXEEXT) \
+#	f90tst_vars_vlen$(EXEEXT) \
+#	tst_f90_nc4$(EXEEXT) f90tst_grps$(EXEEXT) \
+#	f90tst_fill$(EXEEXT) f90tst_fill2$(EXEEXT) \
+#	f90tst_vars3$(EXEEXT) f90tst_vars4$(EXEEXT) \
+#	f90tst_vars2$(EXEEXT) f90tst_path$(EXEEXT) \
+#	f90tst_rengrps$(EXEEXT)
+#am__EXEEXT_3 = ftst_v2$(EXEEXT)
+##am__EXEEXT_4 =  \
+##	tst_flarge$(EXEEXT)
+##am__EXEEXT_5 =  \
+##	tst_io$(EXEEXT)
+##am__EXEEXT_6 = f90tst_parallel$(EXEEXT) \
+##	f90tst_parallel2$(EXEEXT) \
+##	f90tst_parallel3$(EXEEXT) \
+##	f90tst_nc4_par$(EXEEXT) \
+##	ftst_parallel$(EXEEXT) \
+##	ftst_parallel_nasa$(EXEEXT)
 am__EXEEXT_7 = ftest$(EXEEXT)
 am__f90tst_fill_SOURCES_DIST = f90tst_fill.f90
-am_f90tst_fill_OBJECTS = f90tst_fill.$(OBJEXT)
+#am_f90tst_fill_OBJECTS = f90tst_fill.$(OBJEXT)
 f90tst_fill_OBJECTS = $(am_f90tst_fill_OBJECTS)
 f90tst_fill_LDADD = $(LDADD)
 f90tst_fill_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
@@ -200,69 +200,69 @@ am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
 am__v_lt_0 = --silent
 am__v_lt_1 = 
 am__f90tst_fill2_SOURCES_DIST = f90tst_fill2.f90
-am_f90tst_fill2_OBJECTS = f90tst_fill2.$(OBJEXT)
+#am_f90tst_fill2_OBJECTS = f90tst_fill2.$(OBJEXT)
 f90tst_fill2_OBJECTS = $(am_f90tst_fill2_OBJECTS)
 f90tst_fill2_LDADD = $(LDADD)
 f90tst_fill2_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f90tst_grps_SOURCES_DIST = f90tst_grps.f90
-am_f90tst_grps_OBJECTS = f90tst_grps.$(OBJEXT)
+#am_f90tst_grps_OBJECTS = f90tst_grps.$(OBJEXT)
 f90tst_grps_OBJECTS = $(am_f90tst_grps_OBJECTS)
 f90tst_grps_LDADD = $(LDADD)
 f90tst_grps_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f90tst_nc4_par_SOURCES_DIST = f90tst_nc4_par.f90
-am_f90tst_nc4_par_OBJECTS = f90tst_nc4_par.$(OBJEXT)
+##am_f90tst_nc4_par_OBJECTS = f90tst_nc4_par.$(OBJEXT)
 f90tst_nc4_par_OBJECTS = $(am_f90tst_nc4_par_OBJECTS)
 f90tst_nc4_par_LDADD = $(LDADD)
 f90tst_nc4_par_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f90tst_parallel_SOURCES_DIST = f90tst_parallel.f90
-am_f90tst_parallel_OBJECTS = f90tst_parallel.$(OBJEXT)
+##am_f90tst_parallel_OBJECTS = f90tst_parallel.$(OBJEXT)
 f90tst_parallel_OBJECTS = $(am_f90tst_parallel_OBJECTS)
 f90tst_parallel_LDADD = $(LDADD)
 f90tst_parallel_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f90tst_parallel2_SOURCES_DIST = f90tst_parallel2.f90
-am_f90tst_parallel2_OBJECTS = f90tst_parallel2.$(OBJEXT)
+##am_f90tst_parallel2_OBJECTS = f90tst_parallel2.$(OBJEXT)
 f90tst_parallel2_OBJECTS = $(am_f90tst_parallel2_OBJECTS)
 f90tst_parallel2_LDADD = $(LDADD)
 f90tst_parallel2_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f90tst_parallel3_SOURCES_DIST = f90tst_parallel3.f90
-am_f90tst_parallel3_OBJECTS = f90tst_parallel3.$(OBJEXT)
+##am_f90tst_parallel3_OBJECTS = f90tst_parallel3.$(OBJEXT)
 f90tst_parallel3_OBJECTS = $(am_f90tst_parallel3_OBJECTS)
 f90tst_parallel3_LDADD = $(LDADD)
 f90tst_parallel3_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f90tst_path_SOURCES_DIST = f90tst_path.f90
-am_f90tst_path_OBJECTS = f90tst_path.$(OBJEXT)
+#am_f90tst_path_OBJECTS = f90tst_path.$(OBJEXT)
 f90tst_path_OBJECTS = $(am_f90tst_path_OBJECTS)
 f90tst_path_LDADD = $(LDADD)
 f90tst_path_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f90tst_rengrps_SOURCES_DIST = f90tst_rengrps.f90
-am_f90tst_rengrps_OBJECTS =  \
-	f90tst_rengrps.$(OBJEXT)
+#am_f90tst_rengrps_OBJECTS =  \
+#	f90tst_rengrps.$(OBJEXT)
 f90tst_rengrps_OBJECTS = $(am_f90tst_rengrps_OBJECTS)
 f90tst_rengrps_LDADD = $(LDADD)
 f90tst_rengrps_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f90tst_vars_SOURCES_DIST = f90tst_vars.f90
-am_f90tst_vars_OBJECTS = f90tst_vars.$(OBJEXT)
+#am_f90tst_vars_OBJECTS = f90tst_vars.$(OBJEXT)
 f90tst_vars_OBJECTS = $(am_f90tst_vars_OBJECTS)
 f90tst_vars_LDADD = $(LDADD)
 f90tst_vars_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f90tst_vars2_SOURCES_DIST = f90tst_vars2.f90
-am_f90tst_vars2_OBJECTS = f90tst_vars2.$(OBJEXT)
+#am_f90tst_vars2_OBJECTS = f90tst_vars2.$(OBJEXT)
 f90tst_vars2_OBJECTS = $(am_f90tst_vars2_OBJECTS)
 f90tst_vars2_LDADD = $(LDADD)
 f90tst_vars2_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f90tst_vars3_SOURCES_DIST = f90tst_vars3.f90
-am_f90tst_vars3_OBJECTS = f90tst_vars3.$(OBJEXT)
+#am_f90tst_vars3_OBJECTS = f90tst_vars3.$(OBJEXT)
 f90tst_vars3_OBJECTS = $(am_f90tst_vars3_OBJECTS)
 f90tst_vars3_LDADD = $(LDADD)
 f90tst_vars3_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f90tst_vars4_SOURCES_DIST = f90tst_vars4.f90
-am_f90tst_vars4_OBJECTS = f90tst_vars4.$(OBJEXT)
+#am_f90tst_vars4_OBJECTS = f90tst_vars4.$(OBJEXT)
 f90tst_vars4_OBJECTS = $(am_f90tst_vars4_OBJECTS)
 f90tst_vars4_LDADD = $(LDADD)
 f90tst_vars4_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f90tst_vars_vlen_SOURCES_DIST = f90tst_vars_vlen.f90
-am_f90tst_vars_vlen_OBJECTS =  \
-	f90tst_vars_vlen.$(OBJEXT)
+#am_f90tst_vars_vlen_OBJECTS =  \
+#	f90tst_vars_vlen.$(OBJEXT)
 f90tst_vars_vlen_OBJECTS = $(am_f90tst_vars_vlen_OBJECTS)
 f90tst_vars_vlen_LDADD = $(LDADD)
 f90tst_vars_vlen_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
@@ -276,187 +276,187 @@ ftest_LDADD = $(LDADD)
 ftest_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__ftst_groups_SOURCES_DIST = ftst_groups.F fortlib.c handle_err.F \
 	f03lib_f_interfaces.f90 f03lib.c
+##am_ftst_groups_OBJECTS =  \
+##	ftst_groups.$(OBJEXT) \
+##	fortlib.$(OBJEXT) \
+##	handle_err.$(OBJEXT)
 #am_ftst_groups_OBJECTS =  \
 #	ftst_groups.$(OBJEXT) \
-#	fortlib.$(OBJEXT) \
+#	f03lib_f_interfaces.$(OBJEXT) \
+#	f03lib.$(OBJEXT) \
 #	handle_err.$(OBJEXT)
-am_ftst_groups_OBJECTS =  \
-	ftst_groups.$(OBJEXT) \
-	f03lib_f_interfaces.$(OBJEXT) \
-	f03lib.$(OBJEXT) \
-	handle_err.$(OBJEXT)
 ftst_groups_OBJECTS = $(am_ftst_groups_OBJECTS)
 ftst_groups_LDADD = $(LDADD)
 ftst_groups_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__ftst_parallel_SOURCES_DIST = ftst_parallel.F
-am_ftst_parallel_OBJECTS =  \
-	ftst_parallel.$(OBJEXT)
+##am_ftst_parallel_OBJECTS =  \
+##	ftst_parallel.$(OBJEXT)
 ftst_parallel_OBJECTS = $(am_ftst_parallel_OBJECTS)
 ftst_parallel_LDADD = $(LDADD)
 ftst_parallel_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__ftst_parallel_nasa_SOURCES_DIST = ftst_parallel_nasa.F
-am_ftst_parallel_nasa_OBJECTS = ftst_parallel_nasa.$(OBJEXT)
+##am_ftst_parallel_nasa_OBJECTS = ftst_parallel_nasa.$(OBJEXT)
 ftst_parallel_nasa_OBJECTS = $(am_ftst_parallel_nasa_OBJECTS)
 ftst_parallel_nasa_LDADD = $(LDADD)
 ftst_parallel_nasa_DEPENDENCIES =  \
 	${top_builddir}/fortran/libnetcdff.la
 am__ftst_path_SOURCES_DIST = ftst_path.F fortlib.c handle_err.F \
 	f03lib_f_interfaces.f90 f03lib.c
+##am_ftst_path_OBJECTS =  \
+##	ftst_path.$(OBJEXT) \
+##	fortlib.$(OBJEXT) \
+##	handle_err.$(OBJEXT)
 #am_ftst_path_OBJECTS =  \
 #	ftst_path.$(OBJEXT) \
-#	fortlib.$(OBJEXT) \
+#	f03lib_f_interfaces.$(OBJEXT) \
+#	f03lib.$(OBJEXT) \
 #	handle_err.$(OBJEXT)
-am_ftst_path_OBJECTS =  \
-	ftst_path.$(OBJEXT) \
-	f03lib_f_interfaces.$(OBJEXT) \
-	f03lib.$(OBJEXT) \
-	handle_err.$(OBJEXT)
 ftst_path_OBJECTS = $(am_ftst_path_OBJECTS)
 ftst_path_LDADD = $(LDADD)
 ftst_path_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__ftst_rengrps_SOURCES_DIST = ftst_rengrps.F fortlib.c handle_err.F \
 	f03lib_f_interfaces.f90 f03lib.c
+##am_ftst_rengrps_OBJECTS =  \
+##	ftst_rengrps.$(OBJEXT) \
+##	fortlib.$(OBJEXT) \
+##	handle_err.$(OBJEXT)
 #am_ftst_rengrps_OBJECTS =  \
 #	ftst_rengrps.$(OBJEXT) \
-#	fortlib.$(OBJEXT) \
+#	f03lib_f_interfaces.$(OBJEXT) \
+#	f03lib.$(OBJEXT) \
 #	handle_err.$(OBJEXT)
-am_ftst_rengrps_OBJECTS =  \
-	ftst_rengrps.$(OBJEXT) \
-	f03lib_f_interfaces.$(OBJEXT) \
-	f03lib.$(OBJEXT) \
-	handle_err.$(OBJEXT)
 ftst_rengrps_OBJECTS = $(am_ftst_rengrps_OBJECTS)
 ftst_rengrps_LDADD = $(LDADD)
 ftst_rengrps_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__ftst_types_SOURCES_DIST = ftst_types.F fortlib.c handle_err.F \
 	f03lib_f_interfaces.f90 f03lib.c
+##am_ftst_types_OBJECTS =  \
+##	ftst_types.$(OBJEXT) \
+##	fortlib.$(OBJEXT) \
+##	handle_err.$(OBJEXT)
 #am_ftst_types_OBJECTS =  \
 #	ftst_types.$(OBJEXT) \
-#	fortlib.$(OBJEXT) \
+#	f03lib_f_interfaces.$(OBJEXT) \
+#	f03lib.$(OBJEXT) \
 #	handle_err.$(OBJEXT)
-am_ftst_types_OBJECTS =  \
-	ftst_types.$(OBJEXT) \
-	f03lib_f_interfaces.$(OBJEXT) \
-	f03lib.$(OBJEXT) \
-	handle_err.$(OBJEXT)
 ftst_types_OBJECTS = $(am_ftst_types_OBJECTS)
 ftst_types_LDADD = $(LDADD)
 ftst_types_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__ftst_types2_SOURCES_DIST = ftst_types2.F fortlib.c handle_err.F \
 	f03lib_f_interfaces.f90 f03lib.c
+##am_ftst_types2_OBJECTS =  \
+##	ftst_types2.$(OBJEXT) \
+##	fortlib.$(OBJEXT) \
+##	handle_err.$(OBJEXT)
 #am_ftst_types2_OBJECTS =  \
 #	ftst_types2.$(OBJEXT) \
-#	fortlib.$(OBJEXT) \
+#	f03lib_f_interfaces.$(OBJEXT) \
+#	f03lib.$(OBJEXT) \
 #	handle_err.$(OBJEXT)
-am_ftst_types2_OBJECTS =  \
-	ftst_types2.$(OBJEXT) \
-	f03lib_f_interfaces.$(OBJEXT) \
-	f03lib.$(OBJEXT) \
-	handle_err.$(OBJEXT)
 ftst_types2_OBJECTS = $(am_ftst_types2_OBJECTS)
 ftst_types2_LDADD = $(LDADD)
 ftst_types2_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__ftst_types3_SOURCES_DIST = ftst_types3.F fortlib.c handle_err.F \
 	f03lib_f_interfaces.f90 f03lib.c
+##am_ftst_types3_OBJECTS =  \
+##	ftst_types3.$(OBJEXT) \
+##	fortlib.$(OBJEXT) \
+##	handle_err.$(OBJEXT)
 #am_ftst_types3_OBJECTS =  \
 #	ftst_types3.$(OBJEXT) \
-#	fortlib.$(OBJEXT) \
+#	f03lib_f_interfaces.$(OBJEXT) \
+#	f03lib.$(OBJEXT) \
 #	handle_err.$(OBJEXT)
-am_ftst_types3_OBJECTS =  \
-	ftst_types3.$(OBJEXT) \
-	f03lib_f_interfaces.$(OBJEXT) \
-	f03lib.$(OBJEXT) \
-	handle_err.$(OBJEXT)
 ftst_types3_OBJECTS = $(am_ftst_types3_OBJECTS)
 ftst_types3_LDADD = $(LDADD)
 ftst_types3_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__ftst_v2_SOURCES_DIST = ftst_v2.F
-am_ftst_v2_OBJECTS =  \
-	ftst_v2.$(OBJEXT)
+#am_ftst_v2_OBJECTS =  \
+#	ftst_v2.$(OBJEXT)
 ftst_v2_OBJECTS = $(am_ftst_v2_OBJECTS)
 ftst_v2_LDADD = $(LDADD)
 ftst_v2_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__ftst_vars_SOURCES_DIST = ftst_vars.F fortlib.c handle_err.F \
 	f03lib_f_interfaces.f90 f03lib.c
+##am_ftst_vars_OBJECTS =  \
+##	ftst_vars.$(OBJEXT) \
+##	fortlib.$(OBJEXT) \
+##	handle_err.$(OBJEXT)
 #am_ftst_vars_OBJECTS =  \
 #	ftst_vars.$(OBJEXT) \
-#	fortlib.$(OBJEXT) \
+#	f03lib_f_interfaces.$(OBJEXT) \
+#	f03lib.$(OBJEXT) \
 #	handle_err.$(OBJEXT)
-am_ftst_vars_OBJECTS =  \
-	ftst_vars.$(OBJEXT) \
-	f03lib_f_interfaces.$(OBJEXT) \
-	f03lib.$(OBJEXT) \
-	handle_err.$(OBJEXT)
 ftst_vars_OBJECTS = $(am_ftst_vars_OBJECTS)
 ftst_vars_LDADD = $(LDADD)
 ftst_vars_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__ftst_vars2_SOURCES_DIST = ftst_vars2.F fortlib.c handle_err.F \
 	f03lib_f_interfaces.f90 f03lib.c
+##am_ftst_vars2_OBJECTS =  \
+##	ftst_vars2.$(OBJEXT) \
+##	fortlib.$(OBJEXT) \
+##	handle_err.$(OBJEXT)
 #am_ftst_vars2_OBJECTS =  \
 #	ftst_vars2.$(OBJEXT) \
-#	fortlib.$(OBJEXT) \
+#	f03lib_f_interfaces.$(OBJEXT) \
+#	f03lib.$(OBJEXT) \
 #	handle_err.$(OBJEXT)
-am_ftst_vars2_OBJECTS =  \
-	ftst_vars2.$(OBJEXT) \
-	f03lib_f_interfaces.$(OBJEXT) \
-	f03lib.$(OBJEXT) \
-	handle_err.$(OBJEXT)
 ftst_vars2_OBJECTS = $(am_ftst_vars2_OBJECTS)
 ftst_vars2_LDADD = $(LDADD)
 ftst_vars2_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__ftst_vars3_SOURCES_DIST = ftst_vars3.F fortlib.c handle_err.F \
 	f03lib_f_interfaces.f90 f03lib.c
+##am_ftst_vars3_OBJECTS =  \
+##	ftst_vars3.$(OBJEXT) \
+##	fortlib.$(OBJEXT) \
+##	handle_err.$(OBJEXT)
 #am_ftst_vars3_OBJECTS =  \
 #	ftst_vars3.$(OBJEXT) \
-#	fortlib.$(OBJEXT) \
+#	f03lib_f_interfaces.$(OBJEXT) \
+#	f03lib.$(OBJEXT) \
 #	handle_err.$(OBJEXT)
-am_ftst_vars3_OBJECTS =  \
-	ftst_vars3.$(OBJEXT) \
-	f03lib_f_interfaces.$(OBJEXT) \
-	f03lib.$(OBJEXT) \
-	handle_err.$(OBJEXT)
 ftst_vars3_OBJECTS = $(am_ftst_vars3_OBJECTS)
 ftst_vars3_LDADD = $(LDADD)
 ftst_vars3_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__ftst_vars4_SOURCES_DIST = ftst_vars4.F fortlib.c handle_err.F \
 	f03lib_f_interfaces.f90 f03lib.c
+##am_ftst_vars4_OBJECTS =  \
+##	ftst_vars4.$(OBJEXT) \
+##	fortlib.$(OBJEXT) \
+##	handle_err.$(OBJEXT)
 #am_ftst_vars4_OBJECTS =  \
 #	ftst_vars4.$(OBJEXT) \
-#	fortlib.$(OBJEXT) \
+#	f03lib_f_interfaces.$(OBJEXT) \
+#	f03lib.$(OBJEXT) \
 #	handle_err.$(OBJEXT)
-am_ftst_vars4_OBJECTS =  \
-	ftst_vars4.$(OBJEXT) \
-	f03lib_f_interfaces.$(OBJEXT) \
-	f03lib.$(OBJEXT) \
-	handle_err.$(OBJEXT)
 ftst_vars4_OBJECTS = $(am_ftst_vars4_OBJECTS)
 ftst_vars4_LDADD = $(LDADD)
 ftst_vars4_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__ftst_vars5_SOURCES_DIST = ftst_vars5.F fortlib.c handle_err.F \
 	f03lib_f_interfaces.f90 f03lib.c
+##am_ftst_vars5_OBJECTS =  \
+##	ftst_vars5.$(OBJEXT) \
+##	fortlib.$(OBJEXT) \
+##	handle_err.$(OBJEXT)
 #am_ftst_vars5_OBJECTS =  \
 #	ftst_vars5.$(OBJEXT) \
-#	fortlib.$(OBJEXT) \
+#	f03lib_f_interfaces.$(OBJEXT) \
+#	f03lib.$(OBJEXT) \
 #	handle_err.$(OBJEXT)
-am_ftst_vars5_OBJECTS =  \
-	ftst_vars5.$(OBJEXT) \
-	f03lib_f_interfaces.$(OBJEXT) \
-	f03lib.$(OBJEXT) \
-	handle_err.$(OBJEXT)
 ftst_vars5_OBJECTS = $(am_ftst_vars5_OBJECTS)
 ftst_vars5_LDADD = $(LDADD)
 ftst_vars5_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__ftst_vars6_SOURCES_DIST = ftst_vars6.F fortlib.c handle_err.F \
 	f03lib_f_interfaces.f90 f03lib.c
+##am_ftst_vars6_OBJECTS =  \
+##	ftst_vars6.$(OBJEXT) \
+##	fortlib.$(OBJEXT) \
+##	handle_err.$(OBJEXT)
 #am_ftst_vars6_OBJECTS =  \
 #	ftst_vars6.$(OBJEXT) \
-#	fortlib.$(OBJEXT) \
+#	f03lib_f_interfaces.$(OBJEXT) \
+#	f03lib.$(OBJEXT) \
 #	handle_err.$(OBJEXT)
-am_ftst_vars6_OBJECTS =  \
-	ftst_vars6.$(OBJEXT) \
-	f03lib_f_interfaces.$(OBJEXT) \
-	f03lib.$(OBJEXT) \
-	handle_err.$(OBJEXT)
 ftst_vars6_OBJECTS = $(am_ftst_vars6_OBJECTS)
 ftst_vars6_LDADD = $(LDADD)
 ftst_vars6_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
@@ -486,29 +486,29 @@ tst_f90_OBJECTS = $(am_tst_f90_OBJECTS)
 tst_f90_LDADD = $(LDADD)
 tst_f90_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__tst_f90_nc4_SOURCES_DIST = tst_f90_nc4.f90
-am_tst_f90_nc4_OBJECTS = tst_f90_nc4.$(OBJEXT)
+#am_tst_f90_nc4_OBJECTS = tst_f90_nc4.$(OBJEXT)
 tst_f90_nc4_OBJECTS = $(am_tst_f90_nc4_OBJECTS)
 tst_f90_nc4_LDADD = $(LDADD)
 tst_f90_nc4_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__tst_flarge_SOURCES_DIST = tst_flarge.f90
-#am_tst_flarge_OBJECTS =  \
-#	tst_flarge.$(OBJEXT)
+##am_tst_flarge_OBJECTS =  \
+##	tst_flarge.$(OBJEXT)
 tst_flarge_OBJECTS = $(am_tst_flarge_OBJECTS)
 tst_flarge_LDADD = $(LDADD)
 tst_flarge_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__tst_io_SOURCES_DIST = tst_io.f90
-#am_tst_io_OBJECTS =  \
-#	tst_io.$(OBJEXT)
+##am_tst_io_OBJECTS =  \
+##	tst_io.$(OBJEXT)
 tst_io_OBJECTS = $(am_tst_io_OBJECTS)
 tst_io_LDADD = $(LDADD)
 tst_io_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__tst_types_SOURCES_DIST = tst_types.f90
-am_tst_types_OBJECTS = tst_types.$(OBJEXT)
+#am_tst_types_OBJECTS = tst_types.$(OBJEXT)
 tst_types_OBJECTS = $(am_tst_types_OBJECTS)
 tst_types_LDADD = $(LDADD)
 tst_types_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__tst_types2_SOURCES_DIST = tst_types2.f90
-am_tst_types2_OBJECTS = tst_types2.$(OBJEXT)
+#am_tst_types2_OBJECTS = tst_types2.$(OBJEXT)
 tst_types2_OBJECTS = $(am_tst_types2_OBJECTS)
 tst_types2_LDADD = $(LDADD)
 tst_types2_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
@@ -853,21 +853,21 @@ TEST_LOG_DRIVER = $(SHELL) $(top_srcdir)/test-driver
 TEST_LOG_COMPILE = $(TEST_LOG_COMPILER) $(AM_TEST_LOG_FLAGS) \
 	$(TEST_LOG_FLAGS)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing aclocal-1.14
+ACLOCAL = ${SHELL} /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing aclocal-1.14
 ALLOCA = 
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
 AR = ar
-AUTOCONF = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing autoconf
-AUTOHEADER = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing autoheader
-AUTOMAKE = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing automake-1.14
+AUTOCONF = ${SHELL} /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing autoconf
+AUTOHEADER = ${SHELL} /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing autoheader
+AUTOMAKE = ${SHELL} /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing automake-1.14
 AWK = gawk
 BUILD_INTERNAL_DOCS = no
-CC = mpiicc
+CC = icc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -O3 -xHost -ip -no-prec-div -static-intel -Difort -fPIC -DLONGLONG_IS_LONG
+CFLAGS = -O3 -xHost -ip -no-prec-div -I/home/yymmt/moltypes/include -fPIC -DLONGLONG_IS_LONG
 CPP = icc -E
-CPPFLAGS = -I/home/yamamoto/local/devel/moltypes/include -fPIC
+CPPFLAGS = -O3 -xHost -ip -no-prec-div -I/home/yymmt/moltypes/include -fPIC
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
@@ -881,18 +881,18 @@ ECHO_N = -n
 ECHO_T = 
 EGREP = /bin/grep -E
 EXEEXT = 
-F77 = mpiifort
-FC = mpiifort
-FCFLAGS = -g
+F77 = ifort
+FC = ifort
+FCFLAGS = -O3 -xHost -ip -no-prec-div -I/home/yymmt/moltypes/include -fPIC
 FCFLAGS_f90 = 
-FFLAGS = -O3 -xHost -ip -no-prec-div -static-intel -fPIC
+FFLAGS = -g
 FGREP = /bin/grep -F
 GREP = /bin/grep
 HAS_DAP = yes
 HAS_F03 = yes
 HAS_F90 = no
 HAS_NC2 = yes
-HAS_NC4 = yes
+HAS_NC4 = no
 HAVE_DOT = NO
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
@@ -900,20 +900,20 @@ INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LD = /usr/bin/ld -m elf_x86_64
-LDFLAGS = -L/home/yamamoto/local/devel/moltypes/lib
+LDFLAGS = -L/home/yymmt/moltypes/lib
 LIBOBJS = 
-LIBS = -lnetcdf -lhdf5_hl -lhdf5 -lz -lsz -lcurl
+LIBS = -lnetcdf 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = 
 LN_S = ln -s
 LTLIBOBJS = 
 MAINT = #
-MAKEINFO = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing makeinfo
+MAKEINFO = ${SHELL} /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /bin/mkdir -p
 MOD_FLAG = -I
-NC_FLIBS = -lnetcdff -L/home/yamamoto/local/devel/moltypes/lib -lnetcdf -lnetcdf -lhdf5_hl -lhdf5 -lz -lsz -lcurl
-NC_LIBS = -L/home/yamamoto/local/devel/moltypes/lib -lnetcdf -lnetcdf -lhdf5_hl -lhdf5 -lz -lsz -lcurl
+NC_FLIBS = -lnetcdff -L/home/yymmt/moltypes/lib -lnetcdf -lnetcdf 
+NC_LIBS = -L/home/yymmt/moltypes/lib -lnetcdf -lnetcdf 
 NM = /usr/bin/nm -B
 NMEDIT = 
 NMFLAGS = 
@@ -935,12 +935,12 @@ SET_MAKE =
 SHELL = /bin/sh
 STRIP = strip
 VERSION = 4.4.4
-abs_builddir = /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/nf_test
-abs_srcdir = /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/nf_test
-abs_top_builddir = /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4
-abs_top_srcdir = /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4
+abs_builddir = /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/nf_test
+abs_srcdir = /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/nf_test
+abs_top_builddir = /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4
+abs_top_srcdir = /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4
 ac_ct_AR = ar
-ac_ct_CC = mpiicc
+ac_ct_CC = icc
 ac_ct_DUMPBIN = 
 ac_ct_F77 = 
 ac_ct_FC = 
@@ -969,7 +969,7 @@ host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/install-sh
+install_sh = ${SHELL} /home/yymmt/moltypes/src/netcdf/netcdf-fortran-4.4.4/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -978,7 +978,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /home/yamamoto/local/devel/moltypes
+prefix = /home/yymmt/moltypes
 program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
@@ -1012,52 +1012,52 @@ nf_test_SOURCES = f03lib_f_interfaces.f90 test_get.m4 test_put.m4 nf_error.F nf_
 # Need access to top_srcdir
 TESTS_ENVIRONMENT = TOPSRCDIR=${abs_top_srcdir}
 tst_f77_v2_SOURCES = tst_f77_v2.F
-#ftst_types_SOURCES = ftst_types.F fortlib.c handle_err.F
-ftst_types_SOURCES = ftst_types.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-#ftst_types2_SOURCES = ftst_types2.F fortlib.c handle_err.F
-ftst_types2_SOURCES = ftst_types2.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-#ftst_types3_SOURCES = ftst_types3.F fortlib.c handle_err.F
-ftst_types3_SOURCES = ftst_types3.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-#ftst_vars_SOURCES = ftst_vars.F fortlib.c handle_err.F
-ftst_vars_SOURCES = ftst_vars.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-#ftst_vars2_SOURCES = ftst_vars2.F fortlib.c handle_err.F
-ftst_vars2_SOURCES = ftst_vars2.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-#ftst_vars3_SOURCES = ftst_vars3.F fortlib.c handle_err.F
-ftst_vars3_SOURCES = ftst_vars3.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-#ftst_vars4_SOURCES = ftst_vars4.F fortlib.c handle_err.F
-ftst_vars4_SOURCES = ftst_vars4.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-#ftst_vars5_SOURCES = ftst_vars5.F fortlib.c handle_err.F
-ftst_vars5_SOURCES = ftst_vars5.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-#ftst_vars6_SOURCES = ftst_vars6.F fortlib.c handle_err.F
-ftst_vars6_SOURCES = ftst_vars6.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-#ftst_groups_SOURCES = ftst_groups.F fortlib.c handle_err.F
-ftst_groups_SOURCES = ftst_groups.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-#ftst_path_SOURCES = ftst_path.F fortlib.c handle_err.F
-ftst_path_SOURCES = ftst_path.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-#ftst_rengrps_SOURCES = ftst_rengrps.F fortlib.c handle_err.F
-ftst_rengrps_SOURCES = ftst_rengrps.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
-f90tst_vars_SOURCES = f90tst_vars.f90
-tst_types_SOURCES = tst_types.f90
-tst_types2_SOURCES = tst_types2.f90
-tst_f90_nc4_SOURCES = tst_f90_nc4.f90
-f90tst_vars_vlen_SOURCES = f90tst_vars_vlen.f90
-f90tst_grps_SOURCES = f90tst_grps.f90
-f90tst_path_SOURCES = f90tst_path.f90
-f90tst_rengrps_SOURCES = f90tst_rengrps.f90
-f90tst_fill_SOURCES = f90tst_fill.f90
-f90tst_fill2_SOURCES = f90tst_fill2.f90
-f90tst_vars2_SOURCES = f90tst_vars2.f90
-f90tst_vars3_SOURCES = f90tst_vars3.f90
-f90tst_vars4_SOURCES = f90tst_vars4.f90
-ftst_v2_SOURCES = ftst_v2.F
-#tst_flarge_SOURCES = tst_flarge.f90
-#tst_io_SOURCES = tst_io.f90
-f90tst_parallel_SOURCES = f90tst_parallel.f90
-f90tst_parallel2_SOURCES = f90tst_parallel2.f90
-f90tst_parallel3_SOURCES = f90tst_parallel3.f90
-f90tst_nc4_par_SOURCES = f90tst_nc4_par.f90
-ftst_parallel_SOURCES = ftst_parallel.F
-ftst_parallel_nasa_SOURCES = ftst_parallel_nasa.F
+##ftst_types_SOURCES = ftst_types.F fortlib.c handle_err.F
+#ftst_types_SOURCES = ftst_types.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
+##ftst_types2_SOURCES = ftst_types2.F fortlib.c handle_err.F
+#ftst_types2_SOURCES = ftst_types2.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
+##ftst_types3_SOURCES = ftst_types3.F fortlib.c handle_err.F
+#ftst_types3_SOURCES = ftst_types3.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
+##ftst_vars_SOURCES = ftst_vars.F fortlib.c handle_err.F
+#ftst_vars_SOURCES = ftst_vars.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
+##ftst_vars2_SOURCES = ftst_vars2.F fortlib.c handle_err.F
+#ftst_vars2_SOURCES = ftst_vars2.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
+##ftst_vars3_SOURCES = ftst_vars3.F fortlib.c handle_err.F
+#ftst_vars3_SOURCES = ftst_vars3.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
+##ftst_vars4_SOURCES = ftst_vars4.F fortlib.c handle_err.F
+#ftst_vars4_SOURCES = ftst_vars4.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
+##ftst_vars5_SOURCES = ftst_vars5.F fortlib.c handle_err.F
+#ftst_vars5_SOURCES = ftst_vars5.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
+##ftst_vars6_SOURCES = ftst_vars6.F fortlib.c handle_err.F
+#ftst_vars6_SOURCES = ftst_vars6.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
+##ftst_groups_SOURCES = ftst_groups.F fortlib.c handle_err.F
+#ftst_groups_SOURCES = ftst_groups.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
+##ftst_path_SOURCES = ftst_path.F fortlib.c handle_err.F
+#ftst_path_SOURCES = ftst_path.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
+##ftst_rengrps_SOURCES = ftst_rengrps.F fortlib.c handle_err.F
+#ftst_rengrps_SOURCES = ftst_rengrps.F f03lib_f_interfaces.f90 f03lib.c handle_err.F
+#f90tst_vars_SOURCES = f90tst_vars.f90
+#tst_types_SOURCES = tst_types.f90
+#tst_types2_SOURCES = tst_types2.f90
+#tst_f90_nc4_SOURCES = tst_f90_nc4.f90
+#f90tst_vars_vlen_SOURCES = f90tst_vars_vlen.f90
+#f90tst_grps_SOURCES = f90tst_grps.f90
+#f90tst_path_SOURCES = f90tst_path.f90
+#f90tst_rengrps_SOURCES = f90tst_rengrps.f90
+#f90tst_fill_SOURCES = f90tst_fill.f90
+#f90tst_fill2_SOURCES = f90tst_fill2.f90
+#f90tst_vars2_SOURCES = f90tst_vars2.f90
+#f90tst_vars3_SOURCES = f90tst_vars3.f90
+#f90tst_vars4_SOURCES = f90tst_vars4.f90
+#ftst_v2_SOURCES = ftst_v2.F
+##tst_flarge_SOURCES = tst_flarge.f90
+##tst_io_SOURCES = tst_io.f90
+##f90tst_parallel_SOURCES = f90tst_parallel.f90
+##f90tst_parallel2_SOURCES = f90tst_parallel2.f90
+##f90tst_parallel3_SOURCES = f90tst_parallel3.f90
+##f90tst_nc4_par_SOURCES = f90tst_nc4_par.f90
+##ftst_parallel_SOURCES = ftst_parallel.F
+##ftst_parallel_nasa_SOURCES = ftst_parallel_nasa.F
 #ftest_SOURCES = ftest.F fortlib.c
 ftest_SOURCES = ftest.F f03lib.c
 tst_f90_SOURCES = tst_f90.f90

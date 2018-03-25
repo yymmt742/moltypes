@@ -45,7 +45,7 @@ TAR=tar
 SHELL=/bin/sh
 EXE=
 
-prefix =/home/yamamoto/local/devel/moltypes
+prefix =/home/yymmt/moltypes
 exec_prefix =${prefix}
 libdir =${exec_prefix}/lib
 sharedlibdir =${libdir}

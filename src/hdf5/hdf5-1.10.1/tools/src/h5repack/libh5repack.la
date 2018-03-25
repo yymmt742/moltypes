@@ -17,7 +17,7 @@ old_library='libh5repack.a'
 inherited_linker_flags=''
 
 # Libraries that this one depends upon.
-dependency_libs=' -L/home/yamamoto/local/devel/moltypes/lib /home/yamamoto/local/devel/moltypes/src/hdf5/hdf5-1.10.1/src/libhdf5.la -lz -ldl -lm'
+dependency_libs=' -L/home/yymmt/moltypes/lib /home/yymmt/moltypes/src/hdf5/hdf5-1.10.1/src/libhdf5.la -lz -ldl -lm'
 
 # Names of additional weak libraries provided by this library
 weak_library_names=''
@@ -39,4 +39,4 @@ dlpreopen=''
 
 # Directory that this library needs to be installed in:
 libdir=''
-relink_command="(cd /home/yamamoto/local/devel/moltypes/src/hdf5/hdf5-1.10.1/tools/src/h5repack; /bin/sh \"/home/yamamoto/local/devel/moltypes/src/hdf5/hdf5-1.10.1/libtool\"  --silent --tag CC --mode=relink mpiicc -std=c99 -Wcheck -Wall -Wl,-s -O3 -O3 -xHost -ip -no-prec-div -static-intel -fPIC -L/home/yamamoto/local/devel/moltypes/lib -L/home/yamamoto/local/devel/moltypes/lib -o libh5repack.la h5repack.lo h5repack_copy.lo h5repack_filters.lo h5repack_opttable.lo h5repack_parse.lo h5repack_refs.lo h5repack_verify.lo ../../../tools/lib/libh5tools.la ../../../test/libh5test.la ../../../src/libhdf5.la -lz -ldl -lm @inst_prefix_dir@)"
+relink_command="(cd /home/yymmt/moltypes/src/hdf5/hdf5-1.10.1/tools/src/h5repack; /bin/sh \"/home/yymmt/moltypes/src/hdf5/hdf5-1.10.1/libtool\"  --silent --tag CC --mode=relink mpiicc -O3 -xHost -ip -no-prec-div -static-intel -I/home/yymmt/moltypes/include -fPIC -L/home/yymmt/moltypes/lib -L/home/yymmt/moltypes/lib -o libh5repack.la h5repack.lo h5repack_copy.lo h5repack_filters.lo h5repack_opttable.lo h5repack_parse.lo h5repack_refs.lo h5repack_verify.lo ../../../tools/lib/libh5tools.la ../../../test/libh5test.la ../../../src/libhdf5.la -lz -ldl -lm @inst_prefix_dir@)"

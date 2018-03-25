@@ -43,7 +43,7 @@
 #define ENABLE_DAP 1
 
 /* if true, build DAP4 Client */
-#define ENABLE_DAP4 1
+/* #undef ENABLE_DAP4 */
 
 /* if true, enable DAP group names */
 #define ENABLE_DAP_GROUPS 1
@@ -58,7 +58,7 @@
 #define EXTRA_TESTS 1
 
 /* use HDF5 1.6 API */
-#define H5_USE_16_API 1
+/* #undef H5_USE_16_API */
 
 /* Define to 1 if you have `alloca', as a function or macro. */
 #define HAVE_ALLOCA 1
@@ -136,28 +136,28 @@
 #define HAVE_GETTIMEOFDAY 1
 
 /* Define to 1 if you have the `H5free_memory' function. */
-#define HAVE_H5FREE_MEMORY 1
+/* #undef HAVE_H5FREE_MEMORY */
 
 /* Define to 1 if you have the `H5Pget_fapl_mpio' function. */
-#define HAVE_H5PGET_FAPL_MPIO 1
+/* #undef HAVE_H5PGET_FAPL_MPIO */
 
 /* Define to 1 if you have the `H5Pget_fapl_mpiposix' function. */
 /* #undef HAVE_H5PGET_FAPL_MPIPOSIX */
 
 /* Define to 1 if you have the `H5Pset_all_coll_metadata_ops' function. */
-#define HAVE_H5PSET_ALL_COLL_METADATA_OPS 1
+/* #undef HAVE_H5PSET_ALL_COLL_METADATA_OPS */
 
 /* Define to 1 if you have the `H5Pset_deflate' function. */
-#define HAVE_H5PSET_DEFLATE 1
+/* #undef HAVE_H5PSET_DEFLATE */
 
 /* Define to 1 if you have the `H5Pset_libver_bounds' function. */
-#define HAVE_H5PSET_LIBVER_BOUNDS 1
+/* #undef HAVE_H5PSET_LIBVER_BOUNDS */
 
 /* Define to 1 if you have the `H5Z_SZIP' function. */
 /* #undef HAVE_H5Z_SZIP */
 
 /* Define to 1 if you have the <hdf5.h> header file. */
-#define HAVE_HDF5_H 1
+/* #undef HAVE_HDF5_H */
 
 /* Define to 1 if the system has the type `int64'. */
 /* #undef HAVE_INT64 */
@@ -169,7 +169,7 @@
 /* #undef HAVE_LIBDF */
 
 /* Define to 1 if you have the `dl' library (-ldl). */
-#define HAVE_LIBDL 1
+/* #undef HAVE_LIBDL */
 
 /* Define to 1 if you have the `jpeg' library (-ljpeg). */
 /* #undef HAVE_LIBJPEG */
@@ -190,7 +190,7 @@
 /* #undef HAVE_LONGLONG */
 
 /* Define to 1 if the system has the type `long long int'. */
-#define HAVE_LONG_LONG_INT 1
+/* #undef HAVE_LONG_LONG_INT */
 
 /* Define to 1 if you have the <malloc.h> header file. */
 #define HAVE_MALLOC_H 1
@@ -346,7 +346,7 @@
 #define HAVE_UNISTD_H 1
 
 /* Define to 1 if the system has the type `unsigned long long int'. */
-#define HAVE_UNSIGNED_LONG_LONG_INT 1
+/* #undef HAVE_UNSIGNED_LONG_LONG_INT */
 
 /* Define to 1 if the system has the type `ushort'. */
 #define HAVE_USHORT 1
@@ -358,17 +358,17 @@
 #define HAVE__BOOL 1
 
 /* if true, use collective metadata ops in parallel netCDF-4 */
-#define HDF5_HAS_COLL_METADATA_OPS 1
+/* #undef HDF5_HAS_COLL_METADATA_OPS */
 
 /* if true, H5free_memory() will be used to free hdf5-allocated memory in
    nc4file. */
-#define HDF5_HAS_H5FREE 1
+/* #undef HDF5_HAS_H5FREE */
 
 /* if true, netcdf4 file properties will be set using H5Pset_libver_bounds */
-#define HDF5_HAS_LIBVER_BOUNDS 1
+/* #undef HDF5_HAS_LIBVER_BOUNDS */
 
 /* if true, hdf5 has parallelism enabled */
-#define HDF5_PARALLEL 1
+/* #undef HDF5_PARALLEL */
 
 /* if true, include JNA bug fix */
 /* #undef JNA */
@@ -524,25 +524,25 @@
 /* #undef USE_HDF4_FILE_TESTS */
 
 /* if true, enable dynamic loading support */
-#define USE_LIBDL 1
+/* #undef USE_LIBDL */
 
 /* if true, use mmap for in-memory files */
 /* #undef USE_MMAP */
 
 /* if true, build netCDF-4 */
-#define USE_NETCDF4 1
+/* #undef USE_NETCDF4 */
 
 /* build the netCDF version 2 API */
 #define USE_NETCDF_2 1
 
 /* if true, pnetcdf or parallel netcdf-4 is in use */
-#define USE_PARALLEL 1
+/* #undef USE_PARALLEL */
 
 /* if true, parallel netcdf-4 is in use */
-#define USE_PARALLEL4 1
+/* #undef USE_PARALLEL4 */
 
 /* if true, compile in parallel netCDF-4 based on MPI/IO */
-#define USE_PARALLEL_MPIO 1
+/* #undef USE_PARALLEL_MPIO */
 
 /* if true, compile in parallel netCDF-4 based on MPI/POSIX */
 /* #undef USE_PARALLEL_POSIX */
@@ -557,7 +557,7 @@
 /* #undef USE_SZIP */
 
 /* if true, compile in zlib compression in netCDF-4 variables */
-#define USE_ZLIB 1
+/* #undef USE_ZLIB */
 
 /* Version number of package */
 #define VERSION "4.5.0"

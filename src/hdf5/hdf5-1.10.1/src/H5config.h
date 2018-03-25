@@ -122,7 +122,7 @@
 /* #undef HAVE_FILTER_SZIP */
 
 /* Determine if __float128 is available */
-#define HAVE_FLOAT128 1
+/* #undef HAVE_FLOAT128 */
 
 /* Define to 1 if you have the `flock' function. */
 #define HAVE_FLOCK 1
@@ -243,7 +243,7 @@
 /* #undef HAVE_PTHREAD_H */
 
 /* Define to 1 if you have the <quadmath.h> header file. */
-#define HAVE_QUADMATH_H 1
+/* #undef HAVE_QUADMATH_H */
 
 /* Define to 1 if you have the `random' function. */
 #define HAVE_RANDOM 1
@@ -460,7 +460,7 @@
 #define PACKAGE_VERSION "1.10.1"
 
 /* Determine the maximum decimal precision in C */
-#define PAC_C_MAX_REAL_PRECISION 33
+#define PAC_C_MAX_REAL_PRECISION 18
 
 /* Define Fortran Maximum Real Decimal Precision */
 /* #undef PAC_FC_MAX_REAL_PRECISION */

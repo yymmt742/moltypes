@@ -1,7 +1,7 @@
 set -e
 
-TOPSRCDIR=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0
-TOPBUILDDIR=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0
+TOPSRCDIR=/home/yymmt/moltypes/src/netcdf/netcdf-c-4.5.0
+TOPBUILDDIR=/home/yymmt/moltypes/src/netcdf/netcdf-c-4.5.0
 
 # Figure out various locations in the src/build tree.
 # This is relatively fragile code and is essentially

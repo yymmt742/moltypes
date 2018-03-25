@@ -15,8 +15,8 @@
  * help@hdfgroup.org.                                                        *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
- * Created:		Jan 15, 2018
- *			yamamoto yuki <yymmt@yymmt.kuchem.kyoto-u.ac.jp>
+ * Created:		Mar 25, 2018
+ *			root <root@miharu14.kuchem.kyoto-u.ac.jp>
  *
  * Purpose:		This machine-generated source code contains
  *			information about the various integer and

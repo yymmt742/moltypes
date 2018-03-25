@@ -10,16 +10,6 @@ ok.
 *** Tests successful!
 PASS: diskless netCDF classic file without persistence
 
-**** Test diskless netCDF enhanced file without persistence
-
-*** Testing the diskless API.
-*** testing diskless file with scalar vars...ok.
-ok.
-*** testing creation of simple diskless file...ok.
-*** testing diskless file with scalar vars and type conversion...ok.
-*** Tests successful!
-PASS: diskless netCDF enhanced file without persistence
-
 **** Test diskless netCDF classic file with persistence
 
 *** Testing the diskless API.
@@ -30,21 +20,6 @@ PASS: diskless netCDF enhanced file without persistence
 *** Tests successful!
 **** tst_diskless.nc created
 PASS: diskless netCDF classic file with persistence
-
-**** Test diskless netCDF enhanced file with persistence
-
-*** Testing the diskless API.
-*** testing diskless file with scalar vars...ok.
-ok.
-*** testing creation of simple diskless file...ok.
-*** testing diskless file with scalar vars and type conversion...ok.
-*** Tests successful!
-**** tst_diskless.nc created
-PASS: diskless netCDF enhanced file with persistence
-
-**** Test extended enhanced diskless netCDF with persistence
-**** tst_diskless2.nc created
-PASS: extended enhanced diskless netCDF with persistence
 
 **** Testing nc_open in-memory (diskless) files
 

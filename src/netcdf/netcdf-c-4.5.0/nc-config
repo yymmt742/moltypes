@@ -4,26 +4,26 @@
 # various things about the netCDF installation. This code was
 # contributed by netCDF user Arlindo DaSilva. Thanks Arlindo!
 
-prefix=/home/yamamoto/local/devel/moltypes
+prefix=/home/yymmt/moltypes
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
 
-cc="mpiicc"
-cflags="-I${includedir} -I/home/yamamoto/local/devel/moltypes/include -fPIC"
+cc="icc"
+cflags="-I${includedir} -O3 -xHost -ip -no-prec-div -I/home/yymmt/moltypes/include -fPIC"
 libs="-L${libdir} -lnetcdf"
 
 has_dap="yes"
-has_dap4="yes"
+has_dap4="no"
 has_nc2="yes"
-has_nc4="yes"
+has_nc4="no"
 has_hdf4="no"
 has_pnetcdf="no"
-has_hdf5="yes"
+has_hdf5="no"
 has_logging="no"
 has_cdf5="no"
-has_szlib="no"
-has_parallel="yes"
+has_szlib=""
+has_parallel="no"
 version="netCDF 4.5.0"
 
 

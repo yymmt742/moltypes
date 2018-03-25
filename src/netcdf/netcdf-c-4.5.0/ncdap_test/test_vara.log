@@ -1,4 +1,4 @@
-topsrcdir=/home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0
-test_vara: url=file:///home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-c-4.5.0/ncdap_test/testdata3/test.06
+topsrcdir=/home/yymmt/moltypes/src/netcdf/netcdf-c-4.5.0
+test_vara: url=file:///home/yymmt/moltypes/src/netcdf/netcdf-c-4.5.0/ncdap_test/testdata3/test.06
 *** PASS
 PASS test_vara (exit status: 0)
