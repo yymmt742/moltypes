@@ -3,9 +3,11 @@ module spur_vector_chr
   implicit none
   private
   public :: vector_chr
+  public :: assignment(=)
 !
   integer(4),parameter       :: mxl_def = 0
   integer(4),parameter       :: tot_def = 0
+  integer(4),parameter       :: NAN = HUGE(tot_def)
 !
   type,extends(stackmanager) :: vector_chr
     private
@@ -21,13 +23,20 @@ module spur_vector_chr
     procedure           :: maxlen      => CMaxlen
     procedure           :: memory      => Cmemory
     procedure           :: total       => Ctotal
-    procedure           :: at          => CAt
+    procedure,private   :: CAt_idx
+    procedure,private   :: CAt_range
+    generic             :: at          => CAt_idx, CAt_range
     procedure           :: lookup      => CLookUp
+    procedure           :: small       => CSmall
+    procedure           :: large       => CLarge
+    procedure,private   :: CTonum_int4
+    procedure,private   :: CTonum_real
+    procedure,private   :: CTonum_dble
+    generic             :: tonum       => CTonum_int4,CTonum_real,CTonum_dble
     procedure           :: sort        => Csort
     procedure           :: uniq        => Cuniq
-    procedure,private   :: CJoin_direct
-    procedure,private   :: CJoin_delim
-    generic             :: join        => CJoin_direct,CJoin_delim
+    procedure           :: join        => CJoin
+    procedure           :: textwrap    => CTextwrap
     procedure           :: split       => CSplit
     procedure           :: find        => CFind
     procedure           :: ShrinkToFit => CShrinkToFit
@@ -35,6 +44,10 @@ module spur_vector_chr
     final               :: CDestractor
   end type vector_chr
 !
+  interface assignment(=)
+    module procedure CAssign, C1Assign,&
+                   & VecAssign
+  end interface assignment(=)
 contains
   pure subroutine CExpand(this)
   class(vector_chr),intent(inout) :: this
@@ -84,6 +97,38 @@ contains
 !---------------------------------------------------------!
 !       Routines for Assign varue.                        !
 !---------------------------------------------------------!
+  pure subroutine CAssign(LHS,RHS)
+  use spur_string
+  class(vector_chr),intent(inout) :: LHS
+  character(*),intent(in)         :: RHS
+    call CDestractor(LHS) ; call LHS%push(RHS)
+  end subroutine CAssign
+!
+  pure subroutine C1Assign(LHS,RHS)
+  use spur_string
+  class(vector_chr),intent(inout) :: LHS
+  character(*),intent(in)         :: RHS(:)
+    call CDestractor(LHS) ; call LHS%push(RHS)
+  end subroutine C1Assign
+!
+  pure subroutine VecAssign(LHS,RHS)
+  class(vector_chr),intent(inout) :: LHS
+  class(vector_chr),intent(in)    :: RHS
+    call CDestractor(LHS)
+    LHS%mxl  = RHS%mxl
+    LHS%tot  = RHS%tot
+    LHS%tail = RHS%tail
+    call stack_reserve(LHS,RHS%size())
+    if(allocated(RHS%p))then
+      allocate(LHS%p(size(RHS%p,1),size(RHS%p,2)))
+      LHS%p = RHS%p
+    endif
+    if(allocated(RHS%c))then
+      allocate(character(len(RHS%c))::LHS%c)
+      LHS%c = RHS%c
+    endif
+  end subroutine VecAssign
+!
   pure subroutine CPush(this,var)
   class(vector_chr),intent(inout) :: this
   character(*),intent(in)         :: var
@@ -151,13 +196,28 @@ contains
     endif
   end function Clen
 !
-  pure elemental function CAt(this,idx) result(res)
+  pure elemental function CAt_idx(this,idx) result(res)
   class(vector_chr),intent(in) :: this
   integer(4),intent(in)        :: idx
   character(this%len(idx))     :: res
-    if(idx<1.or.idx>this%size()) RETURN
+    if(idx<1.or.idx>this%size())then
+      res = '' ; RETURN
+    endif
     res = this%c(this%p(1,idx):this%p(2,idx))
-  end function CAt
+  end function CAt_idx
+!
+  pure function CAt_range(this,lb,ub) result(res)
+  class(vector_chr),intent(in) :: this
+  integer(4),intent(in)        :: lb,ub
+  character(this%mxl)          :: res(maxval([0,ub-lb+1],1))
+  integer                      :: i,j
+    j = 0
+    do i=lb,ub
+      if(i<1.or.i>this%size()) CYCLE
+      j = j + 1
+      res(j) = this%c(this%p(1,i):this%p(2,i))
+    enddo
+  end function CAt_range
 !
   pure function CLookUp(this) result(res)
   class(vector_chr),intent(in) :: this
@@ -168,30 +228,87 @@ contains
     enddo
   end function CLookUp
 !
-  pure function CJoin_direct(this) result(res)
+  pure elemental function CSmall(this,idx) result(res)
+  use spur_string_neaten
   class(vector_chr),intent(in) :: this
-  character(this%tot)          :: res
-  integer                      :: i,p(2)
-    p = 0
-    do i=1,this%size()
-      p(1) = p(2) + 1 ; p(2) = p(2) + this%len(i)
-      res(p(1):p(2)) = this%c(this%p(1,i):this%p(2,i))
-    enddo
-  end function CJoin_direct
+  integer(4),intent(in)        :: idx
+  character(this%len(idx))     :: res
+    if(idx<1.or.idx>this%size()) RETURN
+    res = small(this%c(this%p(1,idx):this%p(2,idx)))
+  end function CSmall
 !
-  pure function CJoin_delim(this,delimiter) result(res)
+  pure elemental function CLarge(this,idx) result(res)
+  use spur_string_neaten
   class(vector_chr),intent(in) :: this
-  character(*),intent(in)      :: delimiter
-  character(this%tot+maxval([len(delimiter)*(this%size()-1),0],1)) :: res
-  integer                      :: i,p(3)
-    if(this%size()<1) RETURN
-    p(1) = 1 ; p(2) = this%len(1) ; p(3) = len(delimiter)
-    res(p(1):p(2)) = this%c(this%p(1,1):this%p(2,1))
-    do i=2,this%size()
-      p(1) = p(2) + 1 ; p(2) = p(2) + p(3) + this%len(i)
-      res(p(1):p(2)) = delimiter//this%c(this%p(1,i):this%p(2,i))
+  integer(4),intent(in)        :: idx
+  character(this%len(idx))     :: res
+    if(idx<1.or.idx>this%size()) RETURN
+    res = large(this%c(this%p(1,idx):this%p(2,idx)))
+  end function CLarge
+!
+  pure elemental integer(4) function CTonum_int4(this,idx,dumm) result(res)
+  use spur_string_tonum
+  class(vector_chr),intent(in) :: this
+  integer(4),intent(in)        :: idx
+  integer(4),intent(in)        :: dumm
+    if(idx<1.or.idx>this%size()) RETURN
+    res = tonum_int4(this%c(this%p(1,idx):this%p(2,idx)),dumm)
+  end function CTonum_int4
+!
+  pure elemental integer(4) function CTonum_real(this,idx,dumm) result(res)
+  use spur_string_tonum
+  class(vector_chr),intent(in) :: this
+  integer(4),intent(in)        :: idx
+  real,intent(in)              :: dumm
+    if(idx<1.or.idx>this%size()) RETURN
+    res = tonum_real(this%c(this%p(1,idx):this%p(2,idx)),dumm)
+  end function CTonum_real
+!
+  pure elemental integer(4) function CTonum_dble(this,idx,dumm) result(res)
+  use spur_string_tonum
+  class(vector_chr),intent(in) :: this
+  integer(4),intent(in)        :: idx
+  double precision,intent(in)  :: dumm
+    if(idx<1.or.idx>this%size()) RETURN
+    res = tonum_dble(this%c(this%p(1,idx):this%p(2,idx)),dumm)
+  end function CTonum_dble
+!
+  pure function CJoin(this,lb,ub,inc,delimiter) result(res)
+  use spur_itertools
+  class(vector_chr),intent(in)     :: this
+  integer,intent(in),optional      :: lb,ub,inc
+  character(*),intent(in),optional :: delimiter
+  character(:),allocatable         :: res,ldel
+  integer                          :: llb,lub,linc,nword
+  integer                          :: head,tail,jlen,dlen
+  integer                          :: i
+    if(this%size()<1)then
+      allocate(character(0)::res) ; RETURN
+    endif
+!
+    allocate(character(0)::ldel)
+    if(present(delimiter)) ldel = delimiter
+    dlen = len(ldel)
+!
+    if(present(lb))then        ; llb  = lb
+    else                       ; llb  = 1           ; endif
+    if(present(ub))then        ; lub  = ub
+    else                       ; lub  = this%size() ; endif
+    if(present(inc))then       ; linc = inc
+    else                       ; linc = 1           ; endif
+!
+    call IterScope(this%size(),llb,lub,linc,nword)
+    jlen = sum([(this%len(i),i=llb,lub,linc)]) + dlen*(this%size()-1)
+    allocate(character(jlen)::res)
+!
+    head = 1 ; tail = this%len(llb)
+    res(head:tail) = this%c(this%p(1,llb):this%p(2,llb))
+    do i=llb+linc,lub,linc
+      head = tail + 1 ; tail = tail + dlen + this%len(i)
+      res(head:tail) = ldel//this%c(this%p(1,i):this%p(2,i))
     enddo
-  end function CJoin_delim
+    deallocate(ldel)
+  end function CJoin
 !
   pure subroutine CSplit(this,var,delimiter,pickup)
   class(vector_chr),intent(inout)       :: this
@@ -291,7 +408,7 @@ contains
       endif
     enddo
     this%p(:,j+1:) = 0
-    call stack_reserve(this,count(isNew))
+    call stack_reshape(this,count(isNew))
   end subroutine CUniq
 !
   pure subroutine CSort(this,reverse)
@@ -356,6 +473,71 @@ contains
     if(first<i-1) call qs_down(this,first,i-1)
     if(j+1<last)  call qs_down(this,j+1,last)
   end subroutine qs_down
+!
+  subroutine CTextWrap(this,text,width,delimiter)
+  use spur_vector_int4
+  class(vector_chr),intent(inout)       :: this
+  character(*),intent(in)               :: text
+  integer,intent(in)                    :: width
+  character(*),intent(in),optional      :: delimiter
+  type(vector_chr)                      :: words
+  type(vector_int4)                     :: head,tail
+  integer,allocatable                   :: minima(:),lengths(:),breaks(:)
+  integer,allocatable                   :: slack(:,:)
+  integer                               :: width2
+  integer                               :: i, j, x
+    if(present(delimiter))then
+      call CSplit(words,text,delimiter)
+    else
+      call CSplit(words,text)
+    endif
+    if(words%size()<1) RETURN
+!
+    allocate(lengths(words%size()))
+    allocate(slack(words%size(),words%size()))
+    allocate(minima(words%size()+1),breaks(words%size()))
+!
+    width2 = width + 1
+    minima = NAN ; minima(1) = 0  ; breaks = 1
+!
+    lengths = words%len([(i,i=1,words%size())])
+!
+    slack = 0
+    do j = 1,words%size()
+      slack(j,j) = width2 - lengths(j)
+      do i = j+1,words%size()
+        slack(j,i) = slack(j,i-1) - lengths(i) - 1
+      enddo
+    enddo
+!
+    do j = 1,words%size()
+      do i = j,1,-1
+        if(slack(i,j)<0)then
+          EXIT
+        else
+          x = minima(i) + slack(i,j)**2
+        endif
+        if(minima(j+1)>x)then
+          minima(j+1) = x
+          breaks(j) = i
+        endif
+      enddo
+    enddo
+!
+    j = words%size() + 1
+    do while(j>1)
+      i = breaks(j-1)
+      call head%push(i) ; call tail%push(j-1)
+      j = i
+    enddo
+!
+    do i = head%size(),1,-1
+      call this%push(words%join(lb=head%at(i),ub=tail%at(i),delimiter=' '))
+    enddo
+    deallocate(lengths,slack,minima,breaks)
+    call words%clear()
+    call head%clear() ; call tail%clear()
+  end subroutine CTextwrap
 !
   pure elemental subroutine CClear(this)
   class(vector_chr),intent(inout) :: this

@@ -121,7 +121,6 @@ module moltypes_amberprmtop
         read(fdata%devn(),CFMT,err=101) this%IPOL
       endif
 !
-print*,this%natoms()
       call fdata%quit() ; call fdata%connect()
 !
       do

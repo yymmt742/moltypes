@@ -82,56 +82,56 @@ contains
   pure subroutine IAssign(LHS,RHS)
   class(vector_int4),intent(inout) :: LHS
   integer(4),intent(in)            :: RHS
-    call I4Destractor(LHS) ; call LHS%reserve(1) ; LHS%at(1) = RHS
+    call I4Destractor(LHS) ; call LHS%push(RHS)
   end subroutine IAssign
 !
   pure subroutine I1Assign(LHS,RHS)
   class(vector_int4),intent(inout) :: LHS
   integer(4),intent(in)            :: RHS(:)
-    call I4Destractor(LHS) ; call LHS%reserve(size(RHS)) ; LHS%at = RHS
+    call I4Destractor(LHS) ; call LHS%push(RHS)
   end subroutine I1Assign
 !
   pure subroutine RAssign(LHS,RHS)
   class(vector_int4),intent(inout) :: LHS
   real,intent(in)                  :: RHS
-    call I4Destractor(LHS) ; call LHS%reserve(1) ; LHS%at(1) = nint(RHS)
+    call I4Destractor(LHS) ; call LHS%push(nint(RHS))
   end subroutine RAssign
 !
   pure subroutine R1Assign(LHS,RHS)
   class(vector_int4),intent(inout) :: LHS
   real,intent(in)                  :: RHS(:)
-    call I4Destractor(LHS) ; call LHS%reserve(size(RHS)) ; LHS%at = nint(RHS)
+    call I4Destractor(LHS) ; call LHS%push(nint(RHS))
   end subroutine R1Assign
 !
   pure subroutine DAssign(LHS,RHS)
   class(vector_int4),intent(inout) :: LHS
   double precision,intent(in)      :: RHS
-    call I4Destractor(LHS) ; call LHS%reserve(1) ; LHS%at(1) = nint(RHS)
+    call I4Destractor(LHS) ; call LHS%push(nint(RHS))
   end subroutine DAssign
 !
   pure subroutine D1Assign(LHS,RHS)
   class(vector_int4),intent(inout) :: LHS
   double precision,intent(in)      :: RHS(:)
-    call I4Destractor(LHS) ; call LHS%reserve(size(RHS)) ; LHS%at = nint(RHS)
+    call I4Destractor(LHS) ; call LHS%push(nint(RHS))
   end subroutine D1Assign
 !
   pure subroutine LAssign(LHS,RHS)
   class(vector_int4),intent(inout) :: LHS
   logical,intent(in)               :: RHS
-    call I4Destractor(LHS) ; call LHS%reserve(1) ; LHS%at(1) = RHS
+    call I4Destractor(LHS) ; call LHS%push(RHS)
   end subroutine LAssign
 !
   pure subroutine L1Assign(LHS,RHS)
   class(vector_int4),intent(inout) :: LHS
   logical,intent(in)               :: RHS(:)
-    call I4Destractor(LHS) ; call LHS%reserve(size(RHS)) ; LHS%at = RHS
+    call I4Destractor(LHS) ; call LHS%push(RHS)
   end subroutine L1Assign
 !
   pure subroutine CAssign(LHS,RHS)
   use spur_string
   class(vector_int4),intent(inout) :: LHS
   character(*),intent(in)          :: RHS
-    call I4Destractor(LHS) ; call LHS%reserve(1) ; LHS%at(1) = tonum(RHS,I4Dummy)
+    call I4Destractor(LHS) ; call LHS%push(tonum(RHS,I4Dummy))
   end subroutine CAssign
 !
   pure subroutine C1Assign(LHS,RHS)
@@ -139,17 +139,13 @@ contains
   class(vector_int4),intent(inout) :: LHS
   character(*),intent(in)         :: RHS(:)
   integer                         :: i
-    call I4Destractor(LHS) ; call LHS%reserve(size(RHS))
-    LHS%at = tonum(RHS,[(I4Dummy,i=1,size(RHS))])
+    call I4Destractor(LHS) ; call LHS%push([(I4Dummy,i=1,size(RHS))])
   end subroutine C1Assign
 !
   pure subroutine ArrayAssign(LHS,RHS)
   class(vector_int4),intent(inout) :: LHS
   class(vector_int4),intent(in)    :: RHS
-    call I4Destractor(LHS)
-    call LHS%reserve(RHS%size())
-    call I4Expand(LHS)
-    if(allocated(RHS%at)) LHS%at = RHS%at
+    call I4Destractor(LHS) ; call LHS%push(RHS%lookup())
   end subroutine ArrayAssign
 !
   pure subroutine IPush(this,var)
@@ -271,7 +267,7 @@ contains
         j = j + 1 ; this%at(j) = this%at(i)
       endif
     enddo
-    call stack_reserve(this,count(isNew))
+    call stack_reshape(this,count(isNew))
   end subroutine IUniq
 !
   pure subroutine ISort(this,reverse)

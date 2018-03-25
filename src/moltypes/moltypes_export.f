@@ -3,7 +3,8 @@ module moltypes_export
   use moltypes
   implicit none
   private
-  public :: ExportAs,ExportXYZ,ExportMdcrd,ExportRST7,ExportAmberNetcdf
+  public :: ExportXYZ,ExportMdcrd,ExportRST7
+  public :: GenerateAmberNetcdf,ExportAmberNetcdf
 !
   character(12),parameter :: DEFAULT_NAME = 'default_name'
 !
@@ -14,72 +15,7 @@ module moltypes_export
   integer,parameter       :: cell_spatial     =  3
   integer,parameter       :: label            =  5
   integer,parameter       :: cell_angular     =  3
-!
-  interface ExportAs
-    module procedure  MoltypeExport_Single,MoltypeExport_Array
-  end interface ExportAs
-!
 contains
-  subroutine MoltypeExport_Single(this,path,overwrite)
-  use spur_pathname
-  class(moltype),intent(inout)            :: this
-  character(*),intent(in)                 :: path
-  logical,intent(in),optional             :: overwrite
-  type(pathname)                          :: fpath
-    call fpath%fetch(path)
-    if(CheckAbort(fpath%isnotWritable(),IO_NOTWRITABLE,path)) RETURN
-    if(present(overwrite))then
-      call MoltypeExport(this,fpath,overwrite)
-    else
-      call MoltypeExport(this,fpath)
-    endif
-  end subroutine MoltypeExport_Single
-!
-  subroutine MoltypeExport_Array(this,path,overwrite)
-  use spur_pathname
-  class(moltype),intent(inout)            :: this
-  character(*),intent(in)                 :: path(:)
-  logical,intent(in),optional             :: overwrite
-  type(pathname)                          :: fpath
-  integer                                 :: i
-    do i = lbound(path,1),ubound(path,1)
-      call fpath%fetch(path(i))
-      if(CheckAbort(fpath%isnotWritable(),IO_NOTWRITABLE,path(i))) CYCLE
-      if(present(overwrite))then
-        call MoltypeExport(this,fpath,overwrite)
-      else
-        call MoltypeExport(this,fpath)
-      endif
-    enddo
-  end subroutine MoltypeExport_Array
-!
-  subroutine MoltypeExport(this,fpath,overwrite)
-  use spur_pathname
-  class(moltype),intent(inout)     :: this
-  type(pathname) ,intent(in)       :: fpath
-  logical,intent(in),optional      :: overwrite
-  logical                          :: lo
-    if(this%natoms()<=0) RETURN
-    call RoutineNameIs('MOLTYPES_EXPORT')
-    lo = .TRUE. ; if(present(overwrite)) lo = overwrite
-    select case(fpath%extension())
-    case('netcdf','nc')
-      call ExportAmberNetcdf(fpath%is(),this%natoms(),this%nframes(),    &
-     &                       xyz=this%xyz(),box=dble(this%box()),        &
-     &                       ang=dble(this%boxang()),overwrite=lo)
-    case('mdcrd','crd')
-      call ExportMdcrd(fpath%is(),this%natoms(),this%nframes(),          &
-     &                 this%xyz(),this%box(),this%boxang(),overwrite=lo)
-    case('rst7','restrt')
-      call ExportRST7(fpath%is(),this%natoms(),                          &
-     &                this%xyz(this%nframes()),this%box(this%nframes()), &
-     &                this%boxang(this%nframes()))
-    case default
-      call ExportXYZ(fpath%is(),this%natoms(),this%nframes(),this%xyz(), &
-     &               this%inq('name','XX  '),overwrite=lo)
-    end select
-  end subroutine MoltypeExport
-!
   subroutine ExportXYZ(path,natm,nframe,xyz,atm,title,ffmt,overwrite)
   use spur_stdio
   character(*),intent(in)              :: path
@@ -95,7 +31,7 @@ contains
     if(CheckAbort(natm<=0,IO_NATOMERR))RETURN
     call fout%fetch(path)
     if(present(overwrite))then
-      if(overwrite) call fout%generate()
+      if(overwrite.and.path/='') call fout%generate()
     endif
     call fout%append()
  
@@ -185,86 +121,143 @@ contains
 100 if(CheckAbort(.TRUE.,IO_WRITERR)) RETURN
   end subroutine ExportRST7
 !
-  subroutine ExportAmberNetcdf(path,natm,nframe,xyz,box,ang,time,overwrite)
-  use spur_string, only : ToStr
+  subroutine GenerateAmberNetcdf(path,natm,xyz,vel,frc,box,ang,time)
   use spur_ncio
+  use spur_string, only : tostr
   character(*),intent(in)              :: path
-  integer,intent(in)                   :: natm,nframe
-  real,intent(in),optional             :: xyz(spatial,natm,nframe)
-  double precision,intent(in),optional :: box(spatial,nframe),ang(spatial,nframe)
-  real,intent(in),optional             :: time(nframe)
-  logical,intent(in),optional          :: overwrite
+  integer,intent(in)                   :: natm
+  logical,intent(in),optional          :: xyz,vel,frc,box,ang,time
   type(ncio)                           :: ncout
-  logical                              :: create
-  integer                              :: frame
+  logical                              :: spatial,cell_spatial,cell_angular
     call RoutineNameIs('EXPORT_AMBERNETCDF')
     ncout%terminates_at_abnormal = terminates_default
-    if(CheckAbort(natm<=0,IO_NATOMERR,path)) RETURN
+    if(CheckAbort(natm<1,IO_NATOMERR,path)) RETURN
+    spatial = .TRUE. ; cell_spatial = .TRUE. ; cell_angular = .TRUE.
 !
     call ncout%fetch(path)
 !
-    create = ncout%isnotExist()
-    if(present(overwrite)) create = overwrite.or.create
+    call ncout%generate()
+    call ncout%add_dimension('frame,spatial=3,atom='//ToStr(natm)//&
+                            &',cell_spatial=3,label=5,cell_angular=3')
 !
-    if(create)then
-      call ncout%generate()
-      call ncout%add_dimension('frame,spatial=3,atom='//ToStr(natm)//&
-                              &',cell_spatial=3,label=5,cell_angular=3')
-!
-      if(present(time))then
+    if(present(time))then
+      if(time)then
         call ncout%add_variable('float :: time[frame]')
         call ncout%put_attribute('time :: units=picosecond')
       endif
-      if(present(xyz))then
-        call ncout%add_variable('char  :: spatial[spatial]')
+    endif
+    if(present(xyz))then
+      if(xyz)then
+        spatial = spatial_set(spatial)
         call ncout%add_variable('float :: coordinates [spatial,atom,frame]')
         call ncout%put_attribute('coordinates :: units=angstrom')
       endif
-      if(present(box))then
-        call ncout%add_variable( 'char  :: cell_spatial[cell_spatial]')
+    endif
+    if(present(vel))then
+      if(vel)then
+        spatial = spatial_set(spatial)
+        call ncout%add_variable('float :: velocities [spatial,atom,frame]')
+      endif
+    endif
+    if(present(frc))then
+      if(frc)then
+        spatial = spatial_set(spatial)
+        call ncout%add_variable('float :: forces [spatial,atom,frame]')
+      endif
+    endif
+    if(present(box))then
+      if(box)then
+        cell_spatial = cell_spatial_set(cell_spatial)
         call ncout%add_variable( 'double:: cell_lengths[cell_spatial,frame]')
         call ncout%put_attribute('cell_lengths :: units=angstrom')
       endif
-      if(present(ang))then
-        call ncout%add_variable( 'char  :: cell_angular[label,cell_angular]')
+    endif
+    if(present(ang))then
+      if(ang)then
+        cell_angular = cell_angular_set(cell_angular)
         call ncout%add_variable( 'double:: cell_angles [cell_angular,frame]')
         call ncout%put_attribute('cell_angles :: units=degree')
       endif
-!
-      call ncout%put_attribute('title=default_name')
-      call ncout%put_attribute('application=AMBER')
-      call ncout%put_attribute('program=moltypes')
-      call ncout%put_attribute('programVersion=1.0')
-      call ncout%put_attribute('Conventions=AMBER')
-      call ncout%put_attribute('ConventionVersion=1.0')
-!
-      if(present(xyz))then
-        call ncout%put('spatial',["x","y","z"],from=[1])
-      endif
-      if(present(box))then
-        call ncout%put('cell_spatial',["a","b","c"],from=[1])
-      endif
-      if(present(ang))then
-        call ncout%put('cell_angular',reshape(["a","l","p","h","a","b","e","t","a"," ","g","a","m","m","a"],[5,3]),from=[1,1])
-      endif
-      call ncout%quit()
     endif
-    if(CheckAbort(ncout%iserr(),IO_NCFMTERR,path)) RETURN
+!
+    call ncout%put_attribute('title=default_name')
+    call ncout%put_attribute('application=AMBER')
+    call ncout%put_attribute('program=moltypes')
+    call ncout%put_attribute('programVersion=1.0')
+    call ncout%put_attribute('Conventions=AMBER')
+    call ncout%put_attribute('ConventionVersion=1.0')
+!
+    if(.not.spatial)      call ncout%put('spatial',["x","y","z"],from=[1])
+    if(.not.cell_spatial) call ncout%put('cell_spatial',["a","b","c"],from=[1])
+    if(.not.cell_angular) call ncout%put('cell_angular',reshape(["a","l","p","h","a","b","e","t","a"," ","g","a","m","m","a"],[5,3]),from=[1,1])
+    call ncout%quit()
+  contains
+    logical function spatial_set(spatial)
+    logical,intent(in) :: spatial
+      if(spatial) call ncout%add_variable('char  :: spatial[spatial]')
+      spatial_set = .FALSE.
+    end function spatial_set
+!
+    logical function cell_spatial_set(cell_spatial)
+    logical,intent(in) :: cell_spatial
+      if(cell_spatial) call ncout%add_variable( 'char  :: cell_spatial[cell_spatial]')
+      cell_spatial_set = .FALSE.
+    end function cell_spatial_set
+!
+    logical function cell_angular_set(cell_angular)
+    logical,intent(in) :: cell_angular
+      if(cell_angular) call ncout%add_variable( 'char  :: cell_angular[label,cell_angular]')
+      cell_angular_set = .FALSE.
+    end function cell_angular_set
+  end subroutine GenerateAmberNetcdf
+
+  subroutine ExportAmberNetcdf(path,natm,nframe,xyz,vel,frc,box,ang,time)
+  use spur_ncio
+  character(*),intent(in)              :: path
+  integer,intent(in)                   :: natm,nframe
+  real,intent(in),optional             :: xyz(:,:,:),vel(:,:,:),frc(:,:,:)
+  double precision,intent(in),optional :: box(spatial,nframe),ang(spatial,nframe)
+  real,intent(in),optional             :: time(:)
+  type(ncio)                           :: ncout
+  integer                              :: frame
+    call RoutineNameIs('EXPORT_AMBERNETCDF')
+    ncout%terminates_at_abnormal = terminates_default
+    if(CheckAbort(natm<1,IO_NATOMERR,path)) RETURN
+!
+    call ncout%fetch(path) ; if(CheckAbort(ncout%iserr(),IO_NCFMTERR,path)) RETURN
+!
+    if(ncout%isnotExist()) RETURN
 !
     call ncout%Loadheader()
     frame = ncout%dim_length('frame') + 1
 !
     if(present(time))then
-      call ncout%put('time',time,from=[frame])
+      if(all(shape(time)>=[nframe])) call ncout%put('time',time,from=[frame])
     endif
     if(present(xyz))then
-      call ncout%put('coordinates',xyz(1:spatial,1:natm,1:nframe),from=[1,1,frame])
+      if(all(shape(xyz)>=[spatial,natm,nframe]))then
+        call ncout%put('coordinates',xyz(1:spatial,1:natm,1:nframe),from=[1,1,frame])
+      endif
+    endif
+    if(present(vel))then
+      if(all(shape(vel)>=[spatial,natm,nframe]))then
+        call ncout%put('velocities',vel(1:spatial,1:natm,1:nframe),from=[1,1,frame])
+      endif
+    endif
+    if(present(frc))then
+      if(all(shape(frc)>=[spatial,natm,nframe]))then
+        call ncout%put('forces',vel(1:spatial,1:natm,1:nframe),from=[1,1,frame])
+      endif
     endif
     if(present(box))then
-      call ncout%put('cell_lengths',box(1:cell_spatial,1:nframe),from=[1,frame])
+      if(all(shape(box)>=[spatial,nframe]))then
+         call ncout%put('cell_lengths',box(1:cell_spatial,1:nframe),from=[1,frame])
+      endif
     endif
     if(present(ang))then
-      call ncout%put('cell_angles',ang(1:cell_spatial,1:nframe),from=[1,frame])
+      if(all(shape(ang)>=[spatial,nframe]))then
+        call ncout%put('cell_angles',ang(1:cell_spatial,1:nframe),from=[1,frame])
+      endif
     endif
     call ncout%quit()
     if(CheckAbort(ncout%iserr(),IO_NCFMTERR)) RETURN

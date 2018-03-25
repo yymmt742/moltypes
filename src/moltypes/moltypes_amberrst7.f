@@ -1,6 +1,5 @@
 module moltypes_amberrst7
   use moltypes_errorhandler
-  use spur_vector
   use spur_pathname
   use spur_stdio
   use spur_ncio
@@ -19,51 +18,19 @@ module moltypes_amberrst7
 !
   type AmberRst7
     private
-    integer                             :: natom = atom_def, nnode  = node_def
-    integer                             :: nmask = atom_def, nframe = frame_def
-    integer                             :: stat  = MOLTYPES_NOERR, stack  = node_def
+    integer,public                      :: natoms = atom_def, nframes = frame_def
+    integer,public                      :: nnode  = node_def, stack  = node_def
+    integer                             :: stat  = MOLTYPES_NOERR
     type(pathname),allocatable          :: node(:)
-    real,allocatable,public             :: xyz(:,:,:)
-    real,allocatable,public             :: vel(:,:,:)
-    real,allocatable,public             :: time(:)
-    double precision,allocatable,public :: box(:,:),ang(:,:)
     logical,public                      :: terminates_at_abnormal = .FALSE.
   contains
-    procedure,private :: AmbRstFmtWrite
-    generic           :: WRITE(formatted)   => AmbRstFmtWrite
     procedure         :: fetch        => AmbRstFetch
     procedure         :: load         => AmbRstLoad
-    procedure         :: nframes      => AmbRstNframes
-    procedure         :: natoms       => AmbRstNatoms
-    procedure         :: nnodes       => AmbRstNnodes
     procedure         :: isErr        => AmbRstIsErr
     procedure         :: clear        => AmbRstClear
     final             :: AmbRstDestractor
   end type AmberRst7
 contains
-  subroutine AmbRstFmtWrite(this,unit,iotype,v_list,iostat,iomsg)
-  use spur_string
-  class(AmberRst7),intent(in)  :: this
-  integer,intent(in)           :: unit
-  character(*),intent(in)      :: iotype
-  integer,intent(in)           :: v_list(:)
-  integer,intent(out)          :: iostat
-  character(*),intent(inout)   :: iomsg
-  character(:),allocatable     :: space
-  integer                      :: i,dig
-    iostat = 0
-    if(this%nnode<=0)then
-      write(unit,'(a)',iostat=iostat,iomsg=iomsg) 'HERE IS EMPTY CONTAINER' ; RETURN
-    endif
-    dig = digit(this%nnode)
-    write(unit,'(a,i0,a,i0,a,/)',iostat=iostat,iomsg=iomsg) 'HERE CONTAINS ',this%natom,' ATOMS / ',this%nnode,' FILES'
-    allocate(character(dig+3)::space) ; space(:) = ''
-    do i=1,this%nnode
-      if(iostat/=0) RETURN
-      write(unit,'(2a,/)',iostat=iostat,iomsg=iomsg) '['//padding(i,dig)//'] ',this%node(i)%is()
-    enddo
-  end subroutine AmbRstFmtWrite
-!
   subroutine AmbRstFetch(this,path)
   class(AmberRst7),intent(inout) :: this
   character(*),intent(in)        :: path
@@ -78,9 +45,8 @@ contains
     else
       call AmbRstFetchAscii(this,path)
     endif
-    this%nmask = this%natom
     if(this%isErr()) this%nnode = this%nnode - 1
-    this%nframe = this%nnode
+    this%nframes = this%nnode
   contains
     subroutine AmbRstFetchNetcdf(this,path)
     class(AmberRst7),intent(inout)    :: this
@@ -96,24 +62,25 @@ contains
       call this%node(using)%put_caption(baff%get_attribute("title"))
       invalid = ANY([baff%iserr(),spatial/=spatial_def,cell_spatial/=cell_spatial_def,&
           &          cell_angular/=cell_angular_def,label/=label_def,atom<=0,frame<0])
-      if(this%natom==atom_def) this%natom = atom
-      invalid = invalid.or.this%natom/=atom
+      if(this%natoms==atom_def) this%natoms = atom
+      invalid = invalid.or.this%natoms/=atom
       call CheckAmbRst(this,invalid,IO_NCFMTERR,using)
     end subroutine AmbRstFetchNetcdf
 !
     subroutine AmbRstFetchAscii(this,path)
+    use spur_vector_chr
     class(AmberRst7),intent(inout)    :: this
     character(*),intent(in)           :: path
     type(stdio)                       :: baff
-    type(vector_character)            :: words
+    type(vector_chr)                  :: words
     integer                           :: atom
       baff%terminates_at_abnormal = this%terminates_at_abnormal
       call baff%fetch(path)
       call baff%load(maxline=2)
       call this%node(using)%put_caption(baff%gets())
-      call words%split(baff%gets()) ; atom = words%ToInt(1)
-      if(this%natom==atom_def) this%natom = atom
-      call CheckAmbRst(this,baff%iserr().or.this%natom/=atom.or.atom<=0,IO_FMTERR,using)
+      call words%split(baff%gets()) ; atom = words%tonum(1,0)
+      if(this%natoms==atom_def) this%natoms = atom
+      call CheckAmbRst(this,baff%iserr().or.this%natoms/=atom.or.atom<=0,IO_FMTERR,using)
     end subroutine AmbRstFetchAscii
   end subroutine AmbRstFetch
 !
@@ -131,150 +98,150 @@ contains
     call move_alloc(from=swp,to=this%node)
   end subroutine StackExtention
 !
-  subroutine AmbRstLoad(this,lb,ub,inc,mask)
+  subroutine AmbRstLoad(this,xyz,vel,box,ang,time,lb,ub,inc,mask)
   use spur_itertools, only : IterScope
-  class(AmberRst7),intent(inout)  :: this
-  integer,intent(in),optional     :: lb,ub,inc
-  logical,intent(in),optional     :: mask(:)
-  logical,allocatable             :: lmask(:)
-  integer                         :: llb,lub,linc,using
+  use spur_shapeshifter
+  class(AmberRst7),intent(inout)          :: this
+  real,intent(inout),allocatable,optional :: xyz(:,:,:),vel(:,:,:)
+  real,intent(inout),allocatable,optional :: box(:,:),ang(:,:),time(:)
+  integer,intent(in),optional             :: lb,ub,inc
+  logical,intent(in),optional             :: mask(:)
+  logical,allocatable                     :: lmask(:)
+  integer                                 :: nframes,nmask
+  integer                                 :: llb,lub,linc
+  integer                                 :: i,using
     call RoutineNameIs('AMBERRST7_LOAD')
     if(this%isErr().or.this%nnode<=0)RETURN
     llb  = 1          ; if(present(lb))  llb  = lb
     lub  = this%nnode ; if(present(ub))  lub  = ub
     linc = 1          ; if(present(inc)) linc = inc
 !
-    call IterScope(this%nnode,llb,lub,linc,this%nframe)
+    call IterScope(this%nnode,llb,lub,linc,nframes)
 !
-    allocate(lmask(this%natom)) ; lmask = .TRUE.
-    if(present(mask)) lmask = CompleteMask(this,mask)
-    this%nmask = count(lmask)
+    allocate(lmask(this%natoms)) ; lmask = .TRUE.
+    if(present(mask)) lmask = CompleteMask(mask,this%natoms)
+    nmask = count(lmask)
 !
-    if(LT_shape(shape(this%xyz),[spatial_def,this%nmask,this%nframe]))then
-      if(allocated(this%xyz)) deallocate(this%xyz)
-      allocate(this%xyz(spatial_def,this%nmask,this%nframe))
-      if(allocated(this%vel)) deallocate(this%vel)
-      allocate(this%vel(spatial_def,this%nmask,this%nframe))
+    if(present(xyz))then
+      if(LT_shape(shape(xyz),[spatial_def,nmask,nframes]))then
+        if(allocated(xyz)) deallocate(xyz) ; allocate(xyz(spatial_def,nmask,nframes))
+      endif
     endif
-    if(LT_shape(shape(this%time),[this%nframe]))then
-      if(allocated(this%time)) deallocate(this%time) ; allocate(this%time(this%nframe))
-      if(allocated(this%box))  deallocate(this%box)  ; allocate(this%box(cell_spatial_def,this%nframe))
-      if(allocated(this%ang))  deallocate(this%ang)  ; allocate(this%ang(cell_angular_def,this%nframe))
+    if(present(vel))then
+      if(LT_shape(shape(vel),[spatial_def,nmask,nframes]))then
+        if(allocated(vel)) deallocate(vel) ; allocate(vel(spatial_def,nmask,nframes))
+      endif
+    endif
+    if(present(box))then
+      if(LT_shape(shape(box),[cell_spatial_def,nframes]))then
+        if(allocated(box)) deallocate(box) ; allocate(box(cell_spatial_def,nframes))
+      endif
+    endif
+    if(present(ang))then
+      if(LT_shape(shape(ang),[cell_angular_def,nframes]))then
+        if(allocated(ang)) deallocate(ang) ; allocate(ang(cell_angular_def,nframes))
+      endif
+    endif
+    if(present(time))then
+      if(size(time)<=nframes)then
+        if(allocated(time)) deallocate(time) ; allocate(time(nframes))
+      endif
     endif
 !
+    i = 0
     do using=llb,lub,linc
+      i = i + 1
       if(this%node(using)%isBinary())then
-        call AmbRstLoadNetcdf(this,lmask)
+        call AmbRstLoadNetcdf(this,lmask,i)
       else
-        call AmbRstLoadAscii(this,lmask)
+        call AmbRstLoadAscii(this,lmask,i)
       endif
     enddo
   contains
-    subroutine AmbRstLoadAscii(this,mask)
+    subroutine AmbRstLoadAscii(this,mask,frame)
+    use spur_vector_chr
     class(AmberRst7),intent(inout)    :: this
-    logical,intent(in)                :: mask(this%natom)
-    real                              :: tmp(6*(this%natom+1))
+    logical,intent(in)                :: mask(this%natoms)
+    integer,intent(in)                :: frame
+    real                              :: tmp(6*(this%natoms+1))
     type(stdio)                       :: baff
-    type(vector_character)            :: words
+    type(vector_chr)                  :: words
     character(80)                     :: line
     integer                           :: i,j,k,is
       call baff%fetch(this%node(using)%is())
       call baff%connect()
       read(baff%devn(),'(a)',err=100,iostat=is) line
       read(baff%devn(),'(a)',err=100,iostat=is) line
-      call words%split(line) ; this%time(using) = words%ToReal(2)
+      call words%split(line)
+      if(present(time)) time(frame) = words%tonum(2,0.0)
       read(baff%devn(),'(6F12.7)',err=100,iostat=is) tmp
 !
-      j = 0
-      do i=1,this%natom
-        if(mask(i))then
-          j = j + 1 ; k = 3 * i
-          this%xyz(:,j,using) = tmp(k-2:k)
-        endif
-      enddo
-      if(is<0)then
-        this%vel(:,:,using) = 0.0
-        this%box(:,using) = tmp(3*this%natom+1:3*this%natom+3)
-        this%ang(:,using) = tmp(3*this%natom+4:3*this%natom+6)
-      elseif(is==0)then
+      if(present(xyz))then
         j = 0
-        do i=1,this%natom
+        do i=1,this%natoms
           if(mask(i))then
-            j = j + 1 ; k = 3 * (i + this%natom)
-            this%vel(:,j,using) = tmp(k-2:k)
+            j = j + 1 ; k = 3 * i
+            xyz(:,j,frame) = tmp(k-2:k)
           endif
         enddo
-        this%box(:,using) = tmp(6*this%natom+1:6*this%natom+3)
-        this%ang(:,using) = tmp(6*this%natom+4:6*this%natom+6)
+      endif
+      if(is<0)then
+        if(present(vel)) vel(:,:,frame) = 0.0
+        if(present(box)) box(:,frame) = tmp(3*this%natoms+1:3*this%natoms+3)
+        if(present(ang)) ang(:,frame) = tmp(3*this%natoms+4:3*this%natoms+6)
+      elseif(is==0)then
+        j = 0
+        if(present(vel))then
+          do i=1,this%natoms
+            if(mask(i))then
+              j = j + 1 ; k = 3 * (i + this%natoms)
+              vel(:,j,frame) = tmp(k-2:k)
+            endif
+          enddo
+        endif
+        if(present(box)) box(:,frame) = tmp(6*this%natoms+1:6*this%natoms+3)
+        if(present(ang)) ang(:,frame) = tmp(6*this%natoms+4:6*this%natoms+6)
       endif
       RETURN
 100   continue
       call CheckAmbRst(this,.TRUE.,IO_FMTERR,using)
     end subroutine AmbRstLoadAscii
 !
-    subroutine AmbRstLoadNetcdf(this,mask)
+    subroutine AmbRstLoadNetcdf(this,mask,frame)
     class(AmberRst7),intent(inout)    :: this
-    logical,intent(in)                :: mask(this%natom)
+    logical,intent(in)                :: mask(this%natoms)
+    integer,intent(in)                :: frame
     type(ncio)                        :: baff
-    real                              :: tmp(3,this%natom,1)
-    integer                           :: frame
+    real                              :: tmp(3,this%natoms,1)
+    integer                           :: last
     integer                           :: i,j,k,l,m
       call baff%fetch(this%node(using)%is())
-      frame = baff%dim_length('frame')
-      call baff%get('time',this%time(using:using),from=[frame])
-      call baff%get('coordinates',tmp(:,:,:),from=[1,1,frame])
-      j = 0
-      do i=1,this%natom
-        if(mask(i))then
-          j = j + 1 ; this%xyz(:,j,using)=tmp(:,i,1)
-        endif
-      enddo
-      tmp = 0.0
-      call baff%get('velocities',tmp(:,:,:),from=[1,1,frame])
-      j = 0
-      do i=1,this%natom
-        if(mask(i))then
-          j = j + 1 ; this%vel(:,j,using)=tmp(:,i,1)
-        endif
-      enddo
-      call baff%get('cell_lengths',this%box(:,using:using),from=[1,frame])
-      call baff%get('cell_angles', this%ang(:,using:using),from=[1,frame])
+      last = baff%dim_length('frame')
+      call baff%get('time',time(frame:frame),from=[last])
+      if(present(xyz))then
+        call baff%get('coordinates',tmp(:,:,:),from=[1,1,last])
+        j = 0
+        do i=1,this%natoms
+          if(mask(i))then
+            j = j + 1 ; xyz(:,j,frame)=tmp(:,i,1)
+          endif
+        enddo
+      endif
+      if(present(vel))then
+        tmp = 0.0
+        call baff%get('velocities',tmp(:,:,:),from=[1,1,last])
+        j = 0
+        do i=1,this%natoms
+          if(mask(i))then
+            j = j + 1 ; vel(:,j,frame)=tmp(:,i,1)
+          endif
+        enddo
+      endif
+      if(present(box)) call baff%get('cell_lengths',box(:,frame:frame),from=[1,last])
+      if(present(ang)) call baff%get('cell_angles', ang(:,frame:frame),from=[1,last])
       call CheckAmbRst(this,baff%isErr(),IO_FMTERR,using)
     end subroutine AmbRstLoadNetcdf
-!
-    pure function CompleteMask(this,mask) result(res)
-    class(AmberRst7),intent(in) :: this
-    logical,intent(in)          :: mask(:)
-    logical                     :: res(this%natom)
-    integer                     :: l,u,s
-      l = lbound(mask,1) ; u = ubound(mask,1) ; s = u - l + 1
-      if(s>this%natom)then
-        res(:) = mask(:l+this%natom-1)
-      else
-        res(:s) = mask ; if(s<this%natom) res(s+1:) = .FALSE.
-      endif
-    end function CompleteMask
-!
-    pure logical function LT_shape(L,R) result(res)
-    integer,intent(in) :: L(:),R(:)
-    integer            :: i,N
-      N = minval([size(L),size(R)],1)
-      do i=1,N-1
-        res = L(i) /= R(i) ; if(res) RETURN
-      enddo
-      res = L(N) < R(N)
-    end function LT_shape
   end subroutine AmbRstLoad
-!
-  pure integer function AmbRstNatoms(this) result(res)
-  class(AmberRst7),intent(in)  :: this
-    res = this%nmask
-  end function AmbRstNatoms
-!
-  pure integer function AmbRstNframes(this) result(res)
-  class(AmberRst7),intent(in)  :: this
-    res = this%nframe
-  end function AmbRstNframes
 !
   pure integer function AmbRstNnodes(this) result(res)
   class(AmberRst7),intent(in)  :: this
@@ -305,15 +272,10 @@ contains
 !
   subroutine AmbRstClear(this)
   class(AmberRst7),intent(inout)  :: this
-    this%natom = atom_def ; this%nnode  = node_def
-    this%nmask = atom_def ; this%nframe = frame_def
-    this%stat  = MOLTYPES_NOERR ; this%stack  = node_def
+    this%natoms = atom_def ; this%nframes = frame_def
+    this%nnode  = node_def ; this%stack  = node_def
+    this%stat  = MOLTYPES_NOERR
     if(allocated(this%node)) deallocate(this%node)
-    if(allocated(this%xyz))  deallocate(this%xyz)
-    if(allocated(this%vel))  deallocate(this%vel)
-    if(allocated(this%time)) deallocate(this%time)
-    if(allocated(this%box))  deallocate(this%box)
-    if(allocated(this%ang))  deallocate(this%ang)
   end subroutine AmbRstClear
 !
   subroutine AmbRstDestractor(this)

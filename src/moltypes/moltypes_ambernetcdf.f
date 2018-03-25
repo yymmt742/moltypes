@@ -8,11 +8,11 @@ module moltypes_ambernetcdf
 !
   integer,parameter  :: node_def         =-1
   integer,parameter  :: frame_def        =-1
-  integer,parameter  :: spatial_def      =3
+  integer,parameter  :: spatial_def      = 3
   integer,parameter  :: atom_def         =-1
-  integer,parameter  :: cell_spatial_def =3
-  integer,parameter  :: label_def        =5
-  integer,parameter  :: cell_angular_def =3
+  integer,parameter  :: cell_spatial_def = 3
+  integer,parameter  :: label_def        = 5
+  integer,parameter  :: cell_angular_def = 3
 !
   type AmberNetcdfNode
     type(ncio)               :: path
@@ -30,60 +30,19 @@ module moltypes_ambernetcdf
   type AmberNetcdf
     private
     type(AmberNetcdfNode),allocatable   :: Node(:)
-    integer                             :: nnode = node_def, stack  = node_def
-    integer                             :: natom = atom_def, nframe = frame_def
-    integer                             :: nmask = atom_def, total = frame_def
+    integer,public                      :: nnode  = node_def, stack   = node_def
+    integer,public                      :: natoms = atom_def, nframes = frame_def
     integer                             :: stat  = MOLTYPES_NOERR
     integer,allocatable                 :: head(:)
-    real,allocatable,public             :: xyz(:,:,:),vel(:,:,:)
-    real,allocatable,public             :: frc(:,:,:),time(:)
-    double precision,allocatable,public :: box(:,:),ang(:,:)
     logical,public                      :: terminates_at_abnormal = terminates_default
-    logical,public                      :: load_time = .FALSE.
-    logical,public                      :: load_xyz  = .TRUE.
-    logical,public                      :: load_vel  = .FALSE.
-    logical,public                      :: load_frc  = .FALSE.
-    logical,public                      :: load_box  = .TRUE.
-    logical,public                      :: load_ang  = .FALSE.
   contains
-    procedure,private :: AncFmtWrite
-    generic           :: WRITE(formatted)   => AncFmtWrite
     procedure         :: fetch              => AncFetch
     procedure         :: load               => AncLoad
-    procedure         :: nnodes             => AncNnodes
-    procedure         :: nframes            => AncNframes
-    procedure         :: natoms             => AncNatoms
     procedure         :: isErr              => AncIsErr
     procedure         :: clear              => AncClear
     final             :: AncDestractor
   end type AmberNetcdf
 contains
-  subroutine AncFmtWrite(this,unit,iotype,v_list,iostat,iomsg)
-  use spur_string
-  class(AmberNetcdf),intent(in):: this
-  integer,intent(in)           :: unit
-  character(*),intent(in)      :: iotype
-  integer,intent(in)           :: v_list(:)
-  integer,intent(out)          :: iostat
-  character(*),intent(inout)   :: iomsg
-  character(:),allocatable     :: space
-  integer                      :: i,dig
-    iostat = 0
-    if(this%nnode<=0)then
-      write(unit,'(a)',iostat=iostat,iomsg=iomsg) 'HERE IS EMPTY CONTAINER' ; RETURN
-    endif
-!
-    write(unit,'(a,i0,a,i0,a,/)',iostat=iostat,iomsg=iomsg) 'HERE CONTAINS ',this%natom,' ATOMS / ',this%total,' FRAMES'
-    dig = digit(this%nnode)
-    allocate(character(dig+3)::space) ; space(:) = ''
-    do i=1,this%nnode
-      if(iostat/=0) RETURN
-      write(unit,'(2a,/)',iostat=iostat,iomsg=iomsg) '['//padding(i,dig)//'] ',this%node(i)%path%is()
-      write(unit,'(2a,i0)',iostat=iostat,iomsg=iomsg)   space,'NATOM  = ',this%node(i)%atom
-      write(unit,'(2a,i0,/)',iostat=iostat,iomsg=iomsg) space,'NFRAME = ',this%node(i)%frame
-    enddo
-  end subroutine AncFmtWrite
-!
   subroutine AncFetch(this,path)
   class(AmberNetcdf),intent(inout)  :: this
   character(*),intent(in)           :: path
@@ -109,14 +68,13 @@ contains
       this%nnode = this%nnode - 1 ; using = this%nnode ; RETURN
     endif
 !
-    if(this%natom==atom_def)then
-      this%natom = this%Node(using)%atom ; this%nmask = this%natom
+    if(this%natoms==atom_def)then
+      this%natoms = this%Node(using)%atom
     endif
     if(this%Node(using)%frame==0) RETURN
-    if(this%total==frame_def) this%total = 0
-    this%head(using) = this%total
-    this%total  = this%total + this%Node(using)%frame
-    this%nframe = this%total
+    if(this%nframes==frame_def) this%nframes = 0
+    this%head(using) = this%nframes
+    this%nframes = this%nframes + this%Node(using)%frame
   contains
     logical function Invalid(Node) result(res)
       type(AmberNetcdfNode) :: Node
@@ -125,8 +83,8 @@ contains
           &      Node%cell_angular/=cell_angular_def,&
           &      Node%label/=label_def,&
           &      Node%atom<=0,Node%frame<0])
-      if(this%natom==atom_def) RETURN
-      res = res.or.this%natom/=Node%atom
+      if(this%natoms==atom_def) RETURN
+      res = res.or.this%natoms/=Node%atom
     end function Invalid
 !
     pure subroutine StackExtention(this)
@@ -151,100 +109,77 @@ contains
     end subroutine StackExtention
   end subroutine AncFetch
 !
-  pure integer function AncNnodes(this) result(res)
-  class(AmberNetcdf),intent(in)  :: this
-    res = this%nnode
-  end function AncNnodes
-!
-  pure integer function AncNatoms(this) result(res)
-  class(AmberNetcdf),intent(in)  :: this
-    res = this%nmask
-  end function AncNatoms
-!
-  pure integer function AncNframes(this) result(res)
-  class(AmberNetcdf),intent(in)  :: this
-    res = this%nframe
-  end function AncNframes
-!
-  subroutine AncLoad(this,lb,ub,inc,mask)
+  subroutine AncLoad(this,xyz,vel,frc,box,ang,time,lb,ub,inc,mask)
   use spur_itertools, only : IterScope
   use spur_shapeshifter
-  class(AmberNetcdf),intent(inout)  :: this
-  integer,intent(in),optional       :: lb,ub,inc
-  logical,intent(in),optional       :: mask(:)
-  logical,allocatable               :: lmask(:,:)
-  logical                           :: usemask
-  integer                           :: llb,lub,linc
-  integer                           :: i,j,k,using
-    if(this%total<=0)RETURN
-    call RoutineNameIs('LOAD_AMBERNetCDF')
+  class(AmberNetcdf),intent(inout)        :: this
+  real,intent(inout),allocatable,optional :: xyz(:,:,:),vel(:,:,:),frc(:,:,:),time(:)
+  real,intent(inout),allocatable,optional :: box(:,:),ang(:,:)
+  integer,intent(in),optional             :: lb,ub,inc
+  logical,intent(in),optional             :: mask(:)
+  logical,allocatable                     :: lmask(:,:)
+  integer                                 :: nframes,nmask
+  integer                                 :: llb,lub,linc
+  integer                                 :: i,j,k,using
+    if(this%nframes<1)RETURN
+    call RoutineNameIs('LOAD_AMBERNETCDF')
 !
     llb  =  1 ; if(present(lb))  llb  = lb
     lub  = -1 ; if(present(ub))  lub  = ub
     linc =  1 ; if(present(inc)) linc = inc
-    call IterScope(this%total,llb,lub,linc,this%nframe)
 !
-    allocate(lmask(spatial_def,this%natom)) ; lmask = .TRUE.
-    if(present(mask)) lmask = SpreadMask(mask,this%natom,spatial_def)
+    call IterScope(this%nframes,llb,lub,linc,nframes)
 !
-    this%nmask = count(lmask)/3
-    usemask = present(mask).and.this%nmask/=this%natom
+    allocate(lmask(spatial_def,this%natoms)) ; lmask = .TRUE.
+    if(present(mask)) lmask = SpreadMask(mask,this%natoms,spatial_def)
 !
-    if(LT_shape(shape(this%xyz),[spatial_def,this%nmask,this%nframe]))then
-      if(allocated(this%xyz)) deallocate(this%xyz)
-      if(this%load_xyz) allocate(this%xyz(spatial_def,this%nmask,this%nframe))
+    nmask = count(lmask)/3 ; if(nmask<=0) RETURN
+!
+    if(present(xyz))then
+      if(present(mask).and.nmask/=this%natoms)then
+        call get3d_mask(this,'coordinates',llb,lub,linc,spatial_def,nmask,nframes,this%natoms,lmask,xyz)
+      else
+        call get3d(this,'coordinates',llb,lub,linc,spatial_def,nmask,nframes,xyz)
+      endif
     endif
-    if(LT_shape(shape(this%vel),[spatial_def,this%nmask,this%nframe]))then
-      if(allocated(this%vel)) deallocate(this%vel)
-      if(this%load_vel) allocate(this%vel(spatial_def,this%nmask,this%nframe))
+    if(present(vel))then
+      if(present(mask).and.nmask/=this%natoms)then
+        call get3d_mask(this,'velocities',llb,lub,linc,spatial_def,nmask,nframes,this%natoms,lmask,vel)
+      else
+        call get3d(this,'velocities',llb,lub,linc,spatial_def,nmask,nframes,vel)
+      endif
     endif
-    if(LT_shape(shape(this%frc),[spatial_def,this%nmask,this%nframe]))then
-      if(allocated(this%frc)) deallocate(this%frc)
-      if(this%load_frc) allocate(this%frc(spatial_def,this%nmask,this%nframe))
+    if(present(frc))then
+      if(present(mask).and.nmask/=this%natoms)then
+        call get3d_mask(this,'forces',llb,lub,linc,spatial_def,nmask,nframes,this%natoms,lmask,frc)
+      else
+        call get3d(this,'forces',llb,lub,linc,spatial_def,nmask,nframes,frc)
+      endif
     endif
 !
-    if(LT_shape(shape(this%time),[this%nframe]))then
-      if(allocated(this%time)) deallocate(this%time)
-      if(this%load_time) allocate(this%time(this%nframe))
-    endif
-    if(LT_shape(shape(this%box),[cell_spatial_def,this%nframe]))then
-      if(allocated(this%box))  deallocate(this%box)
-      if(this%load_box)  allocate(this%box(cell_spatial_def,this%nframe))
-    endif
-    if(LT_shape(shape(this%ang),[cell_angular_def,this%nframe]))then
-      if(allocated(this%ang))  deallocate(this%ang)
-      if(this%load_ang)  allocate(this%ang(cell_angular_def,this%nframe))
-    endif
-    if(this%nmask<=0) RETURN
+    if(present(time)) call get1d(this,'time',llb,lub,linc,nframes,time)
 !
-    if(this%load_time)then
-      call get1d(this,'time',llb,lub,linc,this%time)
+    if(present(box))then
+      call get2d(this,'cell_lengths',llb,lub,linc,cell_spatial_def,nframes,box)
     endif
-    if(this%load_box)then
-      call get2d(this,'cell_lengths',llb,lub,linc,this%box)
+    if(present(ang))then
+      call get2d(this,'cell_angles',llb,lub,linc,cell_spatial_def,nframes,ang)
     endif
-    if(this%load_ang)then
-      call get2d(this,'cell_angles',llb,lub,linc,this%ang)
-    endif
-    if(this%load_xyz)then
-      call get3d(this,'coordinates',llb,lub,linc,usemask,lmask,this%xyz)
-    endif
-    if(this%load_vel)then
-      call get3d(this,'velocities',llb,lub,linc,usemask,lmask,this%vel)
-    endif
-    if(this%load_frc)then
-      call get3d(this,'forces',llb,lub,linc,usemask,lmask,this%frc)
-    endif
+!
     do using=1,this%nnode
       if(CheckNode(this%Node(using),IO_NCFMTERR)) RETURN
     enddo
   contains
-    subroutine get1d(this,var,llb,lub,linc,val)
+    subroutine get1d(this,var,llb,lub,linc,s1,val)
     class(AmberNetcdf),intent(inout)  :: this
     character(*),intent(in)           :: var
     integer,intent(in)                :: llb,lub,linc
-    real,intent(out)                  :: val(:)
+    integer,intent(in)                :: s1
+    real,intent(inout),allocatable    :: val(:)
     integer                           :: at,i,j
+      if(size(val)<=s1)then
+        if(allocated(val)) deallocate(val) ; allocate(val(s1))
+      endif
       j = 0
       do i=llb,lub,linc
         using = cued(this%nnode,this%head(1:this%nnode),i)
@@ -254,12 +189,16 @@ contains
       enddo
     end subroutine get1d
 !
-    subroutine get2d(this,var,llb,lub,linc,val)
+    subroutine get2d(this,var,llb,lub,linc,s1,s2,val)
     class(AmberNetcdf),intent(inout)  :: this
     character(*),intent(in)           :: var
     integer,intent(in)                :: llb,lub,linc
-    double precision,intent(out)      :: val(:,:)
+    integer,intent(in)                :: s1,s2
+    real,intent(inout),allocatable    :: val(:,:)
     integer                           :: at,i,j
+      if(LT_shape(shape(val),[s1,s2]))then
+        if(allocated(val)) deallocate(val) ; allocate(val(s1,s2))
+      endif
       j = 0
       do i=llb,lub,linc
         using = cued(this%nnode,this%head(1:this%nnode),i)
@@ -269,27 +208,46 @@ contains
       enddo
     end subroutine get2d
 !
-    subroutine get3d(this,var,llb,lub,linc,usemask,mask,val)
+    subroutine get3d(this,var,llb,lub,linc,s1,s2,s3,val)
     class(AmberNetcdf),intent(inout)  :: this
     character(*),intent(in)           :: var
     integer,intent(in)                :: llb,lub,linc
-    logical,intent(in)                :: usemask,mask(spatial_def,this%natom)
-    real,intent(out)                  :: val(:,:,:)
-    real                              :: tmp(spatial_def,this%natom,1)
+    integer,intent(in)                :: s1,s2,s3
+    real,intent(inout),allocatable    :: val(:,:,:)
     integer                           :: at,i,j
+      if(LT_shape(shape(val),[s1,s2,s3]))then
+        if(allocated(val)) deallocate(val) ; allocate(val(s1,s2,s3))
+      endif
       j = 0
       do i=llb,lub,linc
         using = cued(this%nnode,this%head(1:this%nnode),i)
         at    = i - this%head(using) ; j = j + 1
-        if(usemask)then
-          call this%node(using)%path%get(var,tmp,from=[1,1,at])
-          val(:,:,j) = reshape(pack(tmp(:,:,1),mask),[spatial_def,this%natom])
-        else
-          call this%node(using)%path%get(var,val(:,:,j:j),from=[1,1,at])
-        endif
+        call this%node(using)%path%get(var,val(:,:,j:j),from=[1,1,at])
         call this%node(using)%path%quit()
       enddo
     end subroutine get3d
+!
+    subroutine get3d_mask(this,var,llb,lub,linc,s1,s2,s3,natoms,mask,val)
+    class(AmberNetcdf),intent(inout)  :: this
+    character(*),intent(in)           :: var
+    integer,intent(in)                :: llb,lub,linc
+    integer,intent(in)                :: s1,s2,s3,natoms
+    logical,intent(in)                :: mask(s1,natoms)
+    real,intent(inout),allocatable    :: val(:,:,:)
+    real                              :: tmp(s1,natoms,1)
+    integer                           :: at,i,j
+      if(LT_shape(shape(val),[s1,s2,s3]))then
+        if(allocated(val)) deallocate(val) ; allocate(val(s1,s2,s3))
+      endif
+      j = 0
+      do i=llb,lub,linc
+        using = cued(this%nnode,this%head(1:this%nnode),i)
+        at    = i - this%head(using) ; j = j + 1
+        call this%node(using)%path%get(var,tmp,from=[1,1,at])
+        val(:,:,j) = reshape(pack(tmp(:,:,1),mask),[spatial_def,this%natoms])
+        call this%node(using)%path%quit()
+      enddo
+    end subroutine get3d_mask
 !
     pure integer function cued(n,header,idx) result(res)
     integer,intent(in) :: n,header(n),idx
@@ -300,6 +258,20 @@ contains
       enddo
     end function cued
   end subroutine AncLoad
+!
+  pure logical function AncIsERR(this) result (res)
+  class(AmberNetcdf),intent(in) :: this
+    res = this%stat /= MOLTYPES_NOERR
+  end function AncIsERR
+!
+  subroutine AncClear(this)
+  class(AmberNetcdf),intent(inout)  :: this
+    this%nnode  = node_def ; this%stack   = node_def
+    this%natoms = atom_def ; this%nframes = frame_def
+    this%stat  = MOLTYPES_NOERR
+    if(allocated(this%Node)) deallocate(this%Node)
+    if(allocated(this%head)) deallocate(this%head)
+  end subroutine AncClear
 !
   logical function CheckAnc(this,test,ierr) result(res)
   class(AmberNetcdf),intent(inout) :: this
@@ -329,26 +301,6 @@ contains
       call exit(ierr)
     endif
   end function CheckNode
-!
-  pure logical function AncIsERR(this) result (res)
-  class(AmberNetcdf),intent(in) :: this
-    res = this%stat /= MOLTYPES_NOERR
-  end function AncIsERR
-!
-  subroutine AncClear(this)
-  class(AmberNetcdf),intent(inout)  :: this
-    this%nnode = node_def ; this%stack  = node_def
-    this%natom = atom_def ; this%nframe = frame_def
-    this%nmask = atom_def ; this%total = frame_def
-    this%stat  = MOLTYPES_NOERR
-    if(allocated(this%Node)) deallocate(this%Node)
-    if(allocated(this%head)) deallocate(this%head)
-    if(allocated(this%xyz))  deallocate(this%xyz)
-    if(allocated(this%vel))  deallocate(this%vel)
-    if(allocated(this%frc))  deallocate(this%frc)
-    if(allocated(this%box))  deallocate(this%box)
-    if(allocated(this%ang))  deallocate(this%ang)
-  end subroutine AncClear
 !
   subroutine NodeDestractor(this)
   type(AmberNetcdfNode),intent(inout) :: this

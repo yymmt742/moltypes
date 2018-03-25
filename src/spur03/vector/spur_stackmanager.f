@@ -2,7 +2,8 @@ module spur_stackmanager
   implicit none
   private
   public :: stackmanager
-  public :: stack_push,stack_pop,stack_reserve,stack_shrinktofit,stack_clear
+  public :: stack_push,stack_pop,stack_reserve,stack_reshape,&
+        &   stack_shrinktofit,stack_clear
 !
 ! default values
   integer(4),parameter  :: sl_def    =  0            ! head index
@@ -65,10 +66,16 @@ contains
     call stack_extension(this)
   end subroutine stack_pop
 !
-  pure elemental subroutine stack_reserve(this,length)
+  pure elemental subroutine stack_reshape(this,length)
   class(stackmanager),intent(inout) :: this
   integer(4),intent(in)             :: length
     this%length = maxval([length,sl_def],1)
+    this%stack  = maxval([length,ss_def],1)
+  end subroutine stack_reshape
+!
+  pure elemental subroutine stack_reserve(this,length)
+  class(stackmanager),intent(inout) :: this
+  integer(4),intent(in)             :: length
     this%stack  = maxval([length,ss_def],1)
   end subroutine stack_reserve
 !

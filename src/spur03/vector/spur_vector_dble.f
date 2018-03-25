@@ -77,44 +77,44 @@ contains
   pure subroutine IAssign(LHS,RHS)
   class(vector_dble),intent(inout) :: LHS
   integer(4),intent(in)            :: RHS
-    call DDestractor(LHS) ; call LHS%reserve(1) ; LHS%at(1) = dble(RHS)
+    call DDestractor(LHS) ; call LHS%push(dble(RHS))
   end subroutine IAssign
 !
   pure subroutine I1Assign(LHS,RHS)
   class(vector_dble),intent(inout) :: LHS
   integer(4),intent(in)            :: RHS(:)
-    call DDestractor(LHS) ; call LHS%reserve(size(RHS)) ; LHS%at = dble(RHS)
+    call DDestractor(LHS) ; call LHS%push(dble(RHS))
   end subroutine I1Assign
 !
   pure subroutine RAssign(LHS,RHS)
   class(vector_dble),intent(inout) :: LHS
   real,intent(in)                  :: RHS
-    call DDestractor(LHS) ; call LHS%reserve(1) ; LHS%at(1) = dble(RHS)
+    call DDestractor(LHS) ; call LHS%push(dble(RHS))
   end subroutine RAssign
 !
   pure subroutine R1Assign(LHS,RHS)
   class(vector_dble),intent(inout) :: LHS
   real,intent(in)                  :: RHS(:)
-    call DDestractor(LHS) ; call LHS%reserve(size(RHS)) ; LHS%at = dble(RHS)
+    call DDestractor(LHS) ; call LHS%push(dble(RHS))
   end subroutine R1Assign
 !
   pure subroutine DAssign(LHS,RHS)
   class(vector_dble),intent(inout) :: LHS
   double precision,intent(in)      :: RHS
-    call DDestractor(LHS) ; call LHS%reserve(1) ; LHS%at(1) = RHS
+    call DDestractor(LHS) ; call LHS%push(RHS)
   end subroutine DAssign
 !
   pure subroutine D1Assign(LHS,RHS)
   class(vector_dble),intent(inout) :: LHS
   double precision,intent(in)      :: RHS(:)
-    call DDestractor(LHS) ; call LHS%reserve(size(RHS)) ; LHS%at = RHS
+    call DDestractor(LHS) ; call LHS%push(RHS)
   end subroutine D1Assign
 !
   pure subroutine CAssign(LHS,RHS)
   use spur_string
   class(vector_dble),intent(inout) :: LHS
   character(*),intent(in)          :: RHS
-    call DDestractor(LHS) ; call LHS%reserve(1) ; LHS%at(1) = tonum(RHS,DDummy)
+    call DDestractor(LHS) ; call LHS%push(tonum(RHS,DDummy))
   end subroutine CAssign
 !
   pure subroutine C1Assign(LHS,RHS)
@@ -122,17 +122,13 @@ contains
   class(vector_dble),intent(inout) :: LHS
   character(*),intent(in)         :: RHS(:)
   integer                         :: i
-    call DDestractor(LHS) ; call LHS%reserve(size(RHS))
-    LHS%at = tonum(RHS,[(DDummy,i=1,size(RHS))])
+    call DDestractor(LHS) ; call LHS%push(tonum(RHS,[(DDummy,i=1,size(RHS))]))
   end subroutine C1Assign
 !
   pure subroutine ArrayAssign(LHS,RHS)
   class(vector_dble),intent(inout) :: LHS
   class(vector_dble),intent(in)    :: RHS
-    call DDestractor(LHS)
-    call LHS%reserve(RHS%size())
-    call DExpand(LHS)
-    if(allocated(RHS%at)) LHS%at = RHS%at
+    call DDestractor(LHS) ; call LHS%push(RHS%lookup())
   end subroutine ArrayAssign
 !
   pure subroutine IPush(this,var)

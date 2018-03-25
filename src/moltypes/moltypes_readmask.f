@@ -1,6 +1,9 @@
 module moltypes_readmask
   use moltypes_errorhandler
-  use spur_vector
+  use spur_vector_int4
+  use spur_vector_chr
+  use spur_vector_real
+  use spur_string
   use spur_string_neaten, only : small
   implicit none
   private
@@ -23,9 +26,9 @@ module moltypes_readmask
   private
     integer                             :: natm = NATM_NULL,stat = RMSK_EMPTY
     integer                             :: cnid=0,inid=0,rnid=0
-    type(vector_character)              :: ckey,ikey,rkey
-    type(vector_character),allocatable  :: cvar(:),cunq(:)
-    type(vector_integer),allocatable    :: ivar(:),iunq(:)
+    type(vector_chr)                    :: ckey,ikey,rkey
+    type(vector_chr),allocatable        :: cvar(:),cunq(:)
+    type(vector_int4),allocatable       :: ivar(:),iunq(:)
     type(vector_real),allocatable       :: rvar(:)
     logical,public                      :: terminates_at_abnormal = terminates_default
   contains
@@ -41,7 +44,9 @@ module moltypes_readmask
     procedure         :: nuniqint        => RmskNUniqInt
     procedure         :: showuniqint     => RmskShowUniqInt
     procedure         :: showreal        => RmskShowReal
-    procedure         :: parse           => RmskParse
+    procedure,private :: RmskParse
+    procedure,private :: RmskParse1d
+    generic           :: parse           => RmskParse, RmskParse1d
     procedure         :: inq_key         => RmskInqkey
     procedure         :: isempty         => RmskIsEmpty
     procedure         :: iserr           => RmskIsErr
@@ -59,7 +64,8 @@ contains
     this%natm = natm
     call this%ikey%push(KWD_INDEX) ; this%inid=1
     allocate(this%ivar(this%inid),this%iunq(this%inid))
-    this%ivar(this%inid) = [(i,i=1,natm)] ;  this%iunq(this%inid) = this%ivar(1)%uniq()
+    this%ivar(this%inid) = [(i,i=1,natm)] ;  this%iunq(this%inid) = this%ivar(1)
+    call this%iunq(this%inid)%uniq() ; call this%iunq(this%inid)%shrinktofit()
     this%stat = MOLTYPES_NOERR
   end subroutine RmskInit
 !
@@ -68,7 +74,7 @@ contains
   character(*),intent(in)            :: word
   character(*),intent(in)            :: var(:)
   integer                            :: kid,old
-  type(vector_character),allocatable :: swp(:)
+  type(vector_chr),allocatable       :: swp(:)
     call RoutineNameIs('READMASK_DEFKWD')
     if(CheckRmsk(this,size(var)/=this%natm,RMSK_INVALID_NVAR))RETURN
     if(this%ckey%find(small(word))==0) call this%ckey%push(small(word)) ; kid = this%ckey%find(small(word))
@@ -82,7 +88,8 @@ contains
       allocate(swp(this%cnid)) ; if(old>0) swp(1:old) = this%cunq(1:old)
       call move_alloc(from=swp,to=this%cunq)
     endif
-    this%cvar(kid) = var ;  this%cunq(kid) = this%cvar(kid)%uniq()
+    this%cvar(kid) = var ;  this%cunq(kid) = var
+    call this%cunq(kid)%uniq() ; call this%cunq(kid)%shrinktofit()
   end subroutine RmskDefKwd_chr
 !
   subroutine RmskDefKwd_int(this,word,var)
@@ -90,7 +97,7 @@ contains
   character(*),intent(in)            :: word
   integer,intent(in)                 :: var(:)
   integer                            :: kid,old
-  type(vector_integer),allocatable   :: swp(:)
+  type(vector_int4),allocatable      :: swp(:)
     call RoutineNameIs('READMASK_DEFKWD')
     if(CheckRmsk(this,size(var)/=this%natm,RMSK_INVALID_NVAR))RETURN
     if(this%ikey%find(small(word))==0) call this%ikey%push(small(word)) ; kid = this%ikey%find(small(word))
@@ -104,7 +111,8 @@ contains
       allocate(swp(this%inid)) ; if(old>0) swp(1:old) = this%iunq(1:old)
       call move_alloc(from=swp,to=this%iunq)
     endif
-    this%ivar(kid) = var ;  this%iunq(kid) = this%ivar(kid)%uniq()
+    this%ivar(kid) = var ;  this%iunq(kid) = var
+    call this%iunq(kid)%uniq() ; call this%iunq(kid)%shrinktofit()
   end subroutine RmskDefKwd_int
 !
   subroutine RmskDefKwd_real(this,word,var)
@@ -127,7 +135,7 @@ contains
     this%rvar(kid) = var
   end subroutine RmskDefKwd_real
 !
-  function RmskShowInt(this,word) result(res)
+  pure function RmskShowInt(this,word) result(res)
   class(ReadMask),intent(in)    :: this
   character(*),intent(in)       :: word
   integer,allocatable           :: res(:)
@@ -161,7 +169,7 @@ contains
     endif
   end function RmskShowUniqInt
 !
-  function RmskShowReal(this,word) result(res)
+  pure function RmskShowReal(this,word) result(res)
   class(ReadMask),intent(in) :: this
   character(*),intent(in)    :: word
   real,allocatable           :: res(:)
@@ -172,7 +180,7 @@ contains
     res = this%rvar(kid)%lookup()
   end function RmskShowReal
 !
-  function RmskShowChr(this,word) result(res)
+  pure function RmskShowChr(this,word) result(res)
   class(ReadMask),intent(in)                   :: this
   character(*),intent(in)                      :: word
   character(RmskChrlen(this,word)),allocatable :: res(:)
@@ -213,27 +221,34 @@ contains
   integer                    :: kid
     kid = this%ckey%find(small(word))
     if(kid==0)then ; res = 0
-    else           ; res = this%cvar(kid)%maxlength()
+    else           ; res = this%cvar(kid)%maxlen()
     endif
   end function RmskChrlen
 !
-  function RmskParse(this,Str) result(res)
-  class(ReadMask),intent(inout)  :: this
-  character(*),intent(in)        :: str
-  logical,allocatable            :: res(:),tmp(:)
-  type(vector_character)         :: words,kwd
-  type(vector_integer)           :: head,tail
-  logical                        :: A,O,N,D
-  integer                        :: i,j,kid
-    call RoutineNameIs('READMASK_PARSE')
-    if(CheckRmsk(this,this%isEmpty(),RMSK_UNDIFINED_PARSE))RETURN
-    if(this%isErr())then
-      allocate(res(1)) ; res = .FALSE. ; RETURN
-    endif
-    allocate(res(this%natm),tmp(this%natm)) ; res = .TRUE.
-    call words%split(str,[" ",","],pickup=['!''&','|','*','~'])
+  pure function RmskParse1d(this,str) result(res)
+  class(ReadMask),intent(in)     :: this
+  character(*),intent(in)        :: str(:)
+  logical                        :: res(maxval([this%natm,0],1))
+  integer                        :: i
+    res = .FALSE.
+    do i=lbound(str,1),ubound(str,1)
+      res = IOR(res,RmskParse(this,Str(i)))
+    enddo
+  end function RmskParse1d
 !
+  pure function RmskParse(this,Str) result(res)
+  class(ReadMask),intent(in)     :: this
+  character(*),intent(in)        :: str
+  logical                        :: res(maxval([this%natm,0],1))
+  logical                        :: tmp(maxval([this%natm,0],1))
+  type(vector_chr)               :: words,kwd
+  type(vector_int4)              :: head,tail
+  logical                        :: A,O,N,D,stat
+  integer                        :: i,j,kid
+    res = .TRUE. ; if(this%isEmpty().or.this%isErr()) RETURN
+    call words%split(str,delimiter=" ,",pickup='!&|*~')
     if(words%size()==0) RETURN
+!
     call head%push(1) ; call kwd%push(words%small(1))
     do i=2,words%size()
       if(ANY_KWD(this,words%small(i)))then
@@ -242,14 +257,13 @@ contains
     enddo
     call tail%push(words%size())
 !
-    if(words%size()==0) RETURN
+    stat = .FALSE.
     A = .FALSE. ; O = .FALSE. ; N = .FALSE. ; D = .FALSE.
 !
     do i=1,head%size()
 !Keywords that does not requir argument
-      if(this%isErr()) EXIT
       if(any(kwd%at(i)==KWD_OPERATOR))then
-        if(head%at(i)/=tail%at(i)) this%stat = RMSK_ILLEGAL_PARSE
+        stat = head%at(i)/=tail%at(i) ; if(stat) EXIT
         if(    any(kwd%at(i)==KWD_ALL ))then
           Tmp = .TRUE.
         elseif(any(kwd%at(i)==KWD_NONE))then
@@ -257,7 +271,7 @@ contains
         elseif(any(kwd%at(i)==KWD_NOT ))then
           N = not(N) ; CYCLE
         elseif(any(kwd%at(i)==[KWD_AND,KWD_OR,KWD_NAND,KWD_NOR]))then
-          if(i==1.or.i==kwd%size().or.A.or.O) this%stat = RMSK_ILLEGAL_PARSE
+          stat = i==1.or.i==kwd%size().or.A.or.O ; if(stat) EXIT
           A = ANY(kwd%at(i) == [KWD_AND,KWD_NAND])
           O = ANY(kwd%at(i) == [KWD_OR, KWD_NOR ])
           if(ANY(kwd%at(i) ==  [KWD_NAND,KWD_NOR])) N = not(N)
@@ -265,20 +279,18 @@ contains
         endif
 !Keywords that require arguments
       else
-        if(head%at(i)==tail%at(i))then
-          this%stat = RMSK_ILLEGAL_PARSE ; EXIT
-        endif
+        stat = head%at(i)==tail%at(i) ; if(stat) EXIT
         if(any(kwd%at(i)==this%ckey%lookup()))then
           kid = this%ckey%find(kwd%at(i))
-          call mask_chr(this,kid,words%scope(head%at(i)+1,tail%at(i)),tmp)
+          call mask_chr(this,kid,words%at(head%at(i)+1,tail%at(i)),tmp)
         elseif(any(kwd%at(i)==this%ikey%lookup()))then
           kid = this%ikey%find(kwd%at(i))
-          if(kid>0) call mask_int(this,kid,words%scope(head%at(i)+1,tail%at(i)),tmp)
+          if(kid>0) call mask_int(this,kid,words%at(head%at(i)+1,tail%at(i)),tmp)
         elseif(any(kwd%at(i)==this%rkey%lookup()))then
           kid = this%rkey%find(kwd%at(i))
-          if(kid>0) call mask_real(this,kid,words%scope(head%at(i)+1,tail%at(i)),tmp)
+          if(kid>0) call mask_real(this,kid,words%at(head%at(i)+1,tail%at(i)),tmp)
         else
-          this%stat = RMSK_ILLEGAL_PARSE ; EXIT
+          stat = .TRUE. ; EXIT
         endif
       endif
 !
@@ -287,10 +299,10 @@ contains
       if(A)then     ; res = IAND(res,Tmp) ; A = .FALSE. ; CYCLE
       elseif(O)then ; res = IOR(res,Tmp)  ; O = .FALSE. ; CYCLE 
       endif
-      if(D) this%stat = RMSK_ILLEGAL_PARSE
+      stat = D ; if(stat) EXIT
       res = tmp ; D = .TRUE.
     enddo
-    if(this%isErr()) res = .FALSE.
+    if(stat) res = .FALSE.
   end function RmskParse
 !
   pure logical function ANY_KWD(this,word) result(res)
@@ -305,18 +317,18 @@ contains
   pure subroutine mask_chr(this,kid,words,tmp)
   class(ReadMask),intent(in)        :: this
   integer,intent(in)                :: kid
-  type(vector_character),intent(in) :: words
+  character(*),intent(in)           :: words(:)
   logical,intent(out)               :: tmp(:)
-  type(vector_integer)              :: list
+  type(vector_int4)                 :: list
   integer                           :: i,j,N,Nold
   logical                           :: to
     tmp = .FALSE. ; to = .FALSE.
-    do i=1,words%size()
-      if(any(words%small(i)==KWD_TO))then
+    do i=1,size(words)
+      if(any(small(words(i))==KWD_TO))then
         if(to) CYCLE ; Nold = N
-        to = .TRUE. ; if(i<words%size())CYCLE ; N = this%cunq(kid)%size()
+        to = .TRUE. ; if(i<size(words))CYCLE ; N = this%cunq(kid)%size()
       else
-        N = this%cunq(kid)%find(words%at(i)) ; if(N==0) RETURN
+        N = this%cunq(kid)%find(words(i)) ; if(N==0) RETURN
       endif
       if(to.and.Nold>N) RETURN ; if(.not.to)Nold = N
       to=.FALSE. ; call list%push([(j,j=Nold,N)])
@@ -330,22 +342,22 @@ contains
   pure subroutine mask_int(this,kid,words,tmp)
   class(ReadMask),intent(in)        :: this
   integer,intent(in)                :: kid
-  type(vector_character),intent(in) :: words
+  character(*),intent(in)           :: words(:)
   logical,intent(out)               :: tmp(:)
-  type(vector_integer)              :: list
+  type(vector_int4)                 :: list
   integer                           :: i,j,N,Nold
   logical                           :: to
     tmp = .FALSE. ; to = .FALSE.
     to = .FALSE. ; Nold = 1 ; N = 1
-    do i=1,words%size()
-      if(any(words%small(i)==KWD_TO))then
+    do i=1,size(words)
+      if(any(small(words(i))==KWD_TO))then
         if(to) CYCLE ; Nold = N
-        to = .TRUE. ; if(i<words%size())CYCLE ; N = this%iunq(kid)%size()
+        to = .TRUE. ; if(i<size(words))CYCLE ; N = this%iunq(kid)%size()
       else
-        N = (words%Toint(i))
+        N = tonum(words(i),0)
         if(N>this%natm)then   ; N = this%natm
-        elseif(N==0)then ; N = 1
-        elseif(N<0)then  ; N = modulo(N,maxval([this%natm,1],1)) + 1
+        elseif(N==0)then      ; N = 1
+        elseif(N<0)then       ; N = modulo(N,maxval([this%natm,1],1)) + 1
         endif
       endif
       if(to.and.Nold>N) RETURN ; if(.not.to) Nold = N
@@ -357,28 +369,27 @@ contains
     enddo
    end subroutine mask_int
 !
-  subroutine mask_real(this,kid,words,tmp)
-  !pure subroutine mask_real(this,kid,words,tmp)
+  pure subroutine mask_real(this,kid,words,tmp)
   class(ReadMask),intent(in)        :: this
   integer,intent(in)                :: kid
-  type(vector_character),intent(in) :: words
+  character(*),intent(in)           :: words(:)
   logical,intent(out)               :: tmp(:)
-  type(vector_integer)              :: list
+  type(vector_int4)                 :: list
   integer                           :: i,j
   real                              :: Rmax,Rmin
   logical                           :: to,rn
     tmp = .FALSE. ; to = .FALSE. ; rn = .FALSE.
     to = .FALSE. ; Rmin = -HUGE(0.0) ; Rmax = HUGE(0.0)
-    do i=1,words%size()
-      if(any(words%small(i)==KWD_TO))then
+    do i=1,size(words)
+      if(any(small(words(i))==KWD_TO))then
         if(to) CYCLE
-        to = .TRUE. ; if(i<words%size())CYCLE
+        to = .TRUE. ; if(i<size(words))CYCLE
         Rmax = HUGE(0.0) ; rn = .TRUE.
       else
         if(to)then
-          Rmax = words%ToReal(i) ; rn = .TRUE.
+          Rmax = tonum(words(i),0.0) ; rn = .TRUE.
         else
-          Rmin = words%ToReal(i)
+          Rmin = tonum(words(i),0.0)
         endif
       endif
       if(.not.rn) CYCLE ; if(.not.to) Rmax = Rmin

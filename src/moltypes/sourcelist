@@ -4,10 +4,7 @@ FSOURCES=moltypes_errorhandler.f\
          moltypes_amberrst7.f\
          moltypes_xyz.f\
          moltypes_readmask.f\
-         moltypes.f\
          moltypes_export.f\
-         moltypes_process.f\
+         moltypes.f\
+         moltypes_perser.f\
 
-TEST_FILES=test_moltypes.f
-TEST_TARGET=tsts
-TEST_DIR=../../test
