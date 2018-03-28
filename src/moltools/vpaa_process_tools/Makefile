@@ -8,7 +8,7 @@ ifeq (${FC},gfortran)
 endif
 
 ifeq (${FC},ifort)
-	FFLAGS  += -O3 -xHOST -free -qopenmp
+	FFLAGS  += -O3 -xHOST -free -qopenmp -traceback
 endif
 
 .SUFFIXES:.o .f

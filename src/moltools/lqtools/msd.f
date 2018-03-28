@@ -28,31 +28,29 @@ contains
     call trj1%fetch(arg%args())
     call trj1%atomselect(mask=arg%optargs('-m',1))
 !
-    nframe = trj0%nfetchframes()
+    nmax = trj0%nfetchframes()
+    natm = trj0%nfetchatoms()
 !
-    nmax   = minval([arg%optargi('-u',1),nframe])
-    if(nmax<1)   nmax = nframe
+    nsum   = minval([arg%optargi('-u',1),nmax]) ; if(nsum<1)   nsum = nmax
 !
     call fio%fetch(arg%optargs('-o',1))
     if(fio%is()/='') call fio%generate()
-    write(fio%devn(),'(2f16.9)') 0.0,0.0
 !
-    i = 2
+    i = nmax
+    j = 2
 !
-    do while(i<=nframe)
-      j = nframe - i + 1
+    do while(i>=nsum)
+      i = nmax - j + 1
+      nstep = i/nsum + 1
 !
-      nsum  = minval([i,nmax])
-      nstep = j/nsum + 1
+      call trj0%load(ub=i,stride=nstep) ; call trj0%centering_coordinates()
+      call trj1%load(lb=j,stride=nstep) ; call trj1%centering_coordinates()
+      nframe = trj0%nframes()
 !
-      call trj0%load(lb=1,ub=j,stride=nstep)
-      call trj0%centering_coordinates()
-      call trj1%load(lb=i,ub=nframe,stride=nstep)
-      call trj1%centering_coordinates()
-!
-      write(fio%devn(),'(2f16.9)') real(i-1)*arg%optargf('-s',1),&
-&           msd_calc(trj1%natoms(),trj1%nframes(),trj0%xyz(:,:,:trj0%nframes()),trj1%xyz(:,:,:trj1%nframes()))
-      i = i + 10**(int(log10(real(i))))
+      write(fio%devn(),'(f10.4,f16.9,a,i0,a)') real(j-1)*arg%optargf('-s',1),&
+&           msd_calc(natm,nframe,trj0%xyz(:,:,:nframe),trj1%xyz(:,:,:nframe)),&
+&           ' (',trj0%nframes(),' frames)'
+      j = j + 10**(int(log10(real(j))))
     enddo
   end subroutine compute
 !

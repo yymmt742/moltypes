@@ -109,10 +109,11 @@ contains
     end subroutine StackExtention
   end subroutine AncFetch
 !
-  subroutine AncLoad(this,xyz,vel,frc,box,ang,time,lb,ub,inc,mask)
+  subroutine AncLoad(this,atm,frame,xyz,vel,frc,box,ang,time,lb,ub,inc,mask)
   use spur_itertools, only : IterScope
   use spur_shapeshifter
   class(AmberNetcdf),intent(inout)        :: this
+  integer,intent(inout),optional          :: atm,frame
   real,intent(inout),allocatable,optional :: xyz(:,:,:),vel(:,:,:),frc(:,:,:),time(:)
   real,intent(inout),allocatable,optional :: box(:,:),ang(:,:)
   integer,intent(in),optional             :: lb,ub,inc
@@ -169,6 +170,8 @@ contains
     do using=1,this%nnode
       if(CheckNode(this%Node(using),IO_NCFMTERR)) RETURN
     enddo
+    if(present(atm))   atm   = nmask
+    if(present(frame)) frame = nframes
   contains
     subroutine get1d(this,var,llb,lub,linc,s1,val)
     class(AmberNetcdf),intent(inout)  :: this

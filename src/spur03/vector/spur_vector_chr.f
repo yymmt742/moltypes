@@ -298,7 +298,7 @@ contains
     else                       ; linc = 1           ; endif
 !
     call IterScope(this%size(),llb,lub,linc,nword)
-    jlen = sum([(this%len(i),i=llb,lub,linc)]) + dlen*(this%size()-1)
+    jlen = sum([(this%len(i),i=llb,lub,linc)]) + dlen*(nword-1)
     allocate(character(jlen)::res)
 !
     head = 1 ; tail = this%len(llb)
@@ -474,12 +474,13 @@ contains
     if(j+1<last)  call qs_down(this,j+1,last)
   end subroutine qs_down
 !
-  subroutine CTextWrap(this,text,width,delimiter)
+  pure subroutine CTextWrap(this,text,width,delimiter)
   use spur_vector_int4
   class(vector_chr),intent(inout)       :: this
   character(*),intent(in)               :: text
   integer,intent(in)                    :: width
   character(*),intent(in),optional      :: delimiter
+  character(width)                      :: tmp
   type(vector_chr)                      :: words
   type(vector_int4)                     :: head,tail
   integer,allocatable                   :: minima(:),lengths(:),breaks(:)
@@ -512,11 +513,8 @@ contains
 !
     do j = 1,words%size()
       do i = j,1,-1
-        if(slack(i,j)<0)then
-          EXIT
-        else
-          x = minima(i) + slack(i,j)**2
-        endif
+        if(slack(i,j)<0) EXIT
+        x = minima(i) + slack(i,j)**2
         if(minima(j+1)>x)then
           minima(j+1) = x
           breaks(j) = i
@@ -532,7 +530,8 @@ contains
     enddo
 !
     do i = head%size(),1,-1
-      call this%push(words%join(lb=head%at(i),ub=tail%at(i),delimiter=' '))
+      tmp = trim(words%join(lb=head%at(i),ub=tail%at(i),delimiter=' '))
+      call this%push(tmp)
     enddo
     deallocate(lengths,slack,minima,breaks)
     call words%clear()

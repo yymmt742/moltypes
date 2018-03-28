@@ -55,11 +55,11 @@ contains
 !
     if(arg%option('-m')) call mt%atomselect(arg%optargs('-m',1))
 !
-    natm = mt%natoms() ; nres = mt%nresidues() ; ntrj = mt%nframes()
+    natm = mt%nfetchatoms() ; nres = mt%nresidues() ; ntrj = mt%nfetchframes()
 !
-    if(CheckAbort(logf,natm<=0,1,'natom is zero.')) RETURN
-    if(CheckAbort(logf,nres<=0,1,'nres is zero.'))  RETURN
-    if(CheckAbort(logf,ntrj<=0,1,'ntrj is zero.'))  RETURN
+    if(CheckAbort(logf,natm<1,1,'natom is zero.')) RETURN
+    if(CheckAbort(logf,nres<1,1,'nres is zero.'))  RETURN
+    if(CheckAbort(logf,ntrj<1,1,'ntrj is zero.'))  RETURN
 !
     nmol = natm / nres
     revn = 1.0 / natm
@@ -79,12 +79,15 @@ contains
     call PrintHeader(logf,arg%args(),natm,nres,ntrj,nflp,nswp,ncpy,nkey)
 !
     allocate(vswp(nres,nswp),vflp(nmol))
-!
     vswp = permutation(nres,nres,nswp,[(i,i=1,nres)])
 !
     call logf%puts('* >> CONSTRUCTING SWAPING MATRIX')
-    do i=1,nswp
-      write(logf%devn(),'(A,I6,A,*(i0,","),A)',err=100) '| ',i,'  [',vswp(:,i),']'
+    do j=1,nswp
+      write(logf%devn(),'(A,I6,A,I0)',err=100,advance='no') '| ',j,'  [',vswp(1,j)
+      do i=2,nres
+        write(logf%devn(),'(A,I0)',err=100,advance='no') ',',vswp(i,j)
+      enddo
+      write(logf%devn(),'(A)',err=100) ']'
     enddo
     call logf%break()
 !
@@ -100,7 +103,7 @@ contains
     vflp = load_vflp(logf,nmol,arg%optargs('-flp',1),mt%inq('name','XX  '))
     call mt%load() ; call mt%centering_coordinates()
 !
-    X = reshape(mt%xyz(:,:,1:ntrj),[3,nmol,nres,ntrj]) ; call mt%clear()
+    X = reshape(mt%xyz(:,:,:ntrj),[3,nmol,nres,ntrj]) ; call mt%clear()
     FLPX  = mol_flip(nmol,nres,ntrj,vflp,X)
 !
     call logf%puts('* >> CHECK FLIPING VECTOR')
@@ -221,17 +224,17 @@ contains
     call dat%quit()
     RETURN
 100 CONTINUE
-    if(CheckAbort(logf,natm<=0,1,'natom is zero.')) RETURN
+    if(CheckAbort(logf,.TRUE.,1,'OUTPUT ERROR')) RETURN
   end subroutine compute_vpaa_rmsd
 !
   function load_vflp(logf,nmol,swpin,atmnam) result(res)
   use spur_stdio
-  use spur_vector
+  use spur_vector_chr
   type(stdio),intent(inout) :: logf
   integer,intent(in)        :: nmol
   character(*),intent(in)   :: swpin,atmnam(nmol)
   type(stdio)               :: sio
-  type(vector_character)    :: atm,swpatm
+  type(vector_chr)          :: atm,swpatm
   integer                   :: res(nmol),i,j,k
     atm = atmnam
     res = [(i,i=1,nmol)]

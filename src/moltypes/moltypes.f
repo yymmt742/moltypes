@@ -326,32 +326,23 @@ contains
     case(MODE_NETCDF)
       if(this%load_xyz)then
         if(umask)then
-          call this%nc(N_ALLOC)%load(xyz=this%xyz,lb=llb,ub=lub,inc=linc,mask=this%mask)
+          call this%nc(N_ALLOC)%load(atm=this%natm,frame=this%nframe,xyz=this%xyz,lb=llb,ub=lub,inc=linc,mask=this%mask)
         else
-          call this%nc(N_ALLOC)%load(xyz=this%xyz,lb=llb,ub=lub,inc=linc)
-        endif
-        if(allocated(this%xyz))then
-          this%natm  = size(this%xyz,2) ; this%nframe = size(this%xyz,3)
+          call this%nc(N_ALLOC)%load(atm=this%natm,frame=this%nframe,xyz=this%xyz,lb=llb,ub=lub,inc=linc)
         endif
       endif
       if(this%load_vel)then
         if(umask)then
-          call this%nc(N_ALLOC)%load(vel=this%vel,lb=llb,ub=lub,inc=linc,mask=this%mask)
+          call this%nc(N_ALLOC)%load(atm=this%natm,frame=this%nframe,vel=this%vel,lb=llb,ub=lub,inc=linc,mask=this%mask)
         else
-          call this%nc(N_ALLOC)%load(vel=this%vel,lb=llb,ub=lub,inc=linc)
-        endif
-        if(allocated(this%vel))then
-          this%natm  = size(this%vel,2) ; this%nframe = size(this%vel,3)
+          call this%nc(N_ALLOC)%load(atm=this%natm,frame=this%nframe,vel=this%vel,lb=llb,ub=lub,inc=linc)
         endif
       endif
       if(this%load_frc)then
         if(umask)then
-          call this%nc(N_ALLOC)%load(frc=this%frc,lb=llb,ub=lub,inc=linc,mask=this%mask)
+          call this%nc(N_ALLOC)%load(atm=this%natm,frame=this%nframe,frc=this%frc,lb=llb,ub=lub,inc=linc,mask=this%mask)
         else
-          call this%nc(N_ALLOC)%load(frc=this%frc,lb=llb,ub=lub,inc=linc)
-        endif
-        if(allocated(this%frc))then
-          this%natm  = size(this%frc,2) ; this%nframe = size(this%frc,3)
+          call this%nc(N_ALLOC)%load(atm=this%natm,frame=this%nframe,frc=this%frc,lb=llb,ub=lub,inc=linc)
         endif
       endif
       if(this%load_box)  call this%nc(N_ALLOC)%load(box=this%box,lb=llb,ub=lub,inc=linc)
@@ -439,12 +430,10 @@ contains
   class(moltype),intent(in)        :: this
   character(*),intent(in)          :: key,dumm
   character(len(dumm)),allocatable :: res(:)
-    allocate(res(maxval([0,this%natm],1)))
-    if(.not.allocated(this%mp).or.this%natm<1) RETURN
+    allocate(res(this%nfetchatoms())) ; res = dumm
+    if(.not.allocated(this%mp).or.this%nfetchatoms()<1) RETURN
     if(this%mp(N_ALLOC)%inq_key(key,'c'))then
       res = pack(this%mp(N_ALLOC)%showchr(key),this%mask)
-    else
-      res = dumm
     endif
   end function MtInq_chr
 !
@@ -453,8 +442,8 @@ contains
   character(*),intent(in)   :: key
   integer,intent(in)        :: dumm
   integer,allocatable       :: res(:)
-    allocate(res(maxval([0,this%natm],1)))
-    if(.not.allocated(this%mp).or.this%natm<1) RETURN
+    allocate(res(this%nfetchatoms()))
+    if(.not.allocated(this%mp).or.this%nfetchatoms()<1) RETURN
     if(this%mp(N_ALLOC)%inq_key(key,'i'))then
       res = pack(this%mp(N_ALLOC)%showint(key),this%mask)
     else
@@ -467,8 +456,8 @@ contains
   character(*),intent(in)   :: key
   real,intent(in)           :: dumm
   real,allocatable          :: res(:)
-    allocate(res(maxval([0,this%natm],1)))
-    if(.not.allocated(this%mp).or.this%natm<1) RETURN
+    allocate(res(this%nfetchatoms()))
+    if(.not.allocated(this%mp).or.this%nfetchatoms()<1) RETURN
     if(this%mp(N_ALLOC)%inq_key(key,'r'))then
       res = pack(this%mp(N_ALLOC)%showreal(key),this%mask)
     else
@@ -517,7 +506,7 @@ contains
     if(allocated(this%prmtop))deallocate(this%prmtop)
     if(allocated(this%nc))    deallocate(this%nc)
     if(allocated(this%rst7))  deallocate(this%rst7)
-!    if(allocated(this%xyzfmt))deallocate(this%xyzfmt)
+    if(allocated(this%xyzfmt))deallocate(this%xyzfmt)
     if(allocated(this%mask))  deallocate(this%mask)
     this%terminates_at_abnormal = terminates_default
   end subroutine MtClear

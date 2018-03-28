@@ -16,6 +16,7 @@ module moltypes_perser
     procedure,private :: centering_all
     procedure,private :: centering_mask
     generic           :: centering_coordinates => centering_all, centering_mask
+    procedure         :: center_of_residue
     procedure         :: unwrap_coordinates
   end type molperser
 contains
@@ -108,53 +109,67 @@ contains
     enddo
   end subroutine centering_mask
 !
-! pure function center_of_residue(this,mask) result(res)
-! class(moltype),intent(in)        :: this
-! character(*),intent(in),optional :: mask
-! real,allocatable                 :: res(:,:,:)
-! integer,allocatable              :: resid(:)
-! integer                          :: i,j,natm,nres,nframe
-! logical,allocatable              :: selection(:)
-! real                             :: com(3),revn
-!   natm  = this%natoms() ; nframe = this%nframes() ; nres  = this%nresidues()
-!   allocate(res(3,nres,nframe))
-!   if(natm<=0.or.nframe<=0) RETURN
+  pure function center_of_residue(this,mask) result(res)
+  use spur_vector_real
+  use spur_vector_int4
+  class(molperser),intent(in)      :: this
+  character(*),intent(in),optional :: mask
+  real,allocatable                 :: res(:,:,:)
+  integer                          :: natm,nres,ntrj
+  integer                          :: i,j,k,nmax,nmsk
+  type(vector_int4)                :: resid,resuq,reseq
+  type(vector_real)                :: num
+  logical,allocatable              :: slct(:)
+    natm = this%natoms()
+    nres = this%nresidues()
+    ntrj = this%nframes()
+    if(any([natm,nres,ntrj]<1))then
+      allocate(res(spatial,nres,ntrj))
+      res = 0.0 ; RETURN
+    endif
 !
-!   allocate(resid(nres)) ; resid = this%inq('resid',1)
-!   call comcalc(natm,nres,maxval(resid,1),nframe,this%xyz(),resid,res)
-! contains
-!   pure subroutine comcalc(natm,nres,nmax,nframe,xyz,resid,res)
-!   integer,intent(in)           :: natm,nres,nmax,nframe
-!   real,intent(in)              :: xyz(3,natm,nframe)
-!   integer,intent(in)           :: resid(natm)
-!   real,intent(out)             :: res(3,nres,nframe)
-!   real                         :: num(nmax)
-!   logical                      :: mask(nmax)
-!   integer                      :: k
-!     num = 0.0
-!     do k=1,NATM
-!       num(resid(k)) = num(resid(k)) + 1.0
-!     enddo
-!     mask = num<1.0E-10
-!     do k=1,nmax
-!       if(mask(k))cycle ; num(k) = 1.0 / num(k)
-!     enddo
+    allocate(slct(natm))
 !
-!     do concurrent (k=1:nframe) ; block
-!       integer :: i,j,k
-!       real    :: com(3,nmax)
-!       com = 0.0
-!       do i=1,NATM
-!         com(:,resid(i)) = com(:,resid(i)) + xyz(:,i,k)
-!       enddo
-!       j = 0
-!       do i=1,nmax
-!         if(mask(i)) CYCLE
-!         j = j + 1 ; res(:,j,k) = com(:,i) * num(i)
-!       enddo
-!     end block ; enddo
-!   end subroutine comcalc
-! end function center_of_residue
+    if(present(mask))then
+      slct = this%atommask(mask)
+    else
+      slct = .TRUE.
+    endif
+!
+    resid = this%inq('resid',1)
+    reseq = resid%lookup()
+    resuq = pack(resid%lookup(),slct) ; call resuq%uniq()
+!
+    resid%at = 0
+!
+    k = 0
+    do i=1,resuq%size()
+      k = k + 1
+      do j=1,reseq%size()
+        if(resuq%at(i)==reseq%at(j).and.slct(j)) resid%at(j) = k
+      enddo
+    enddo
+    call reseq%clear() ; call resuq%clear()
+!
+    nmax  = maxval(resid%lookup(),1)
+    allocate(res(spatial,nmax,ntrj))
+    res = 0.0 ; if(nmax<1) RETURN
+!
+    do i=1,nmax
+      j  = count(resid%lookup()==i.and.slct)
+      if(j>0) call num%push(1.0/real(j))
+    enddo
+!
+    do j=1,ntrj
+      do i=1,natm
+        if(slct(i)) res(:,resid%at(i),j) = res(:,resid%at(i),j) + this%xyz(:,i,j)
+      enddo
+      do i=1,nmax
+        res(:,i,j) = res(:,i,j) * num%at(i)
+      enddo
+    enddo
+    deallocate(slct)
+  end function center_of_residue
 !
   pure subroutine unwrap_coordinates(this)
   class(molperser),intent(inout) :: this

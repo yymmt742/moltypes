@@ -37,7 +37,7 @@ contains
     if(op%option("-m")) call mt%atomselect(op%optargs('-m',1))
 !
     call IterScope(mt%nfetchframes(),lb,ub,inc,num)
-    if(op%option('-o')) call PrintInfomation(mt,op,lb,ub,inc,num)
+    if(op%option("--dry-run").or.op%option('-o')) call PrintInfomation(mt,op,lb,ub,inc,num)
 !
     if(op%option("--dry-run")) RETURN
 !
@@ -66,7 +66,8 @@ contains
   type(vector_chr)            :: args
   integer                     :: i
     write(STDOUT,'(a,i0,a,i0,a)') 'Fetched trajectry ',mt%nfetchframes(),' frames / ',mt%nfetchatoms(),' atoms'
-    call args%textwrap(join(op%args(),' '),78,delimiter=' ')
+    call args%textwrap(join(op%args(),' '),78)
+    !call args%textwrap(join(op%args(),' '),78,delimiter=' ')
     write(STDOUT,'(a)') 'Here is Input Files'
     do i = 1,args%size()
       write(STDOUT,'(a)') "| "//args%at(i)
