@@ -89,33 +89,51 @@ contains
 100 if(CheckAbort(.TRUE.,IO_WRITERR)) RETURN
    end subroutine ExportMdcrd
 !
-  subroutine ExportRST7(path,natm,xyz,box,ang,vel,time,title)
+  subroutine ExportRST7(path,natm,nframe,xyz,vel,box,ang,time,title)
   use spur_stdio
   character(*),intent(in)              :: path
-  integer,intent(in)                   :: natm
-  real,intent(in)                      :: xyz(spatial,natm),box(spatial)
-  real,intent(in),optional             :: vel(spatial,natm),ang(spatial),time
+  integer,intent(in)                   :: natm,nframe
+  real,intent(in)                      :: xyz(:,:,:)
+  real,intent(in),optional             :: vel(:,:,:),box(:,:),ang(:,:),time(:)
   character(*),intent(in),optional     :: title
   character(:),allocatable             :: ltitle
-  real                                 :: ltime,lang(spatial)
+  real                                 :: ltime,lboxang(2*spatial)
   type(stdio)                          :: fout
     call RoutineNameIs('EXPORT_AMBERRST7')
-    if(CheckAbort(natm<=0,IO_NATOMERR))RETURN
-    call fout%fetch(path) ; call fout%generate()
+    if(CheckAbort(natm<1,IO_NATOMERR))RETURN
+    if(all(shape(xyz)<[spatial,natm,nframe])) RETURN
 !
-    if(present(time))then ; ltime = time
-    else ; ltime = 0.0 ; endif
-    if(present(ang))then  ; lang  = ang
-    else ; lang = 90.0 ; endif
+    call fout%fetch(path)
+    if(fout%is()/='') call fout%generate()
+!
     allocate(character(0)::ltitle)
     if(present(title))then ; ltitle = title
     else ; ltitle = DEFAULT_NAME ; endif
 !
+    ltime = -1.0
+    if(present(time).and.present(vel))then
+      if(all(shape(vel)>=[spatial,natm,nframe])) ltime = time(nframe)
+    endif
+!
+    lboxang = [0.0,0.0,0.0,90.0,90.0,90.0]
+    if(present(box))then
+      if(all(shape(box)>=[spatial,nframe])) lboxang(:spatial)   = box(:,nframe)
+    endif
+    if(present(ang))then
+      if(all(shape(ang)>=[spatial,nframe])) lboxang(spatial+1:) = ang(:,nframe)
+    endif
+!
     call fout%puts(ltitle)
-    write(fout%devn(),'(I5,5E15.7)',ERR=100) natm,ltime
-    write(fout%devn(),'(6F12.7)',ERR=100)   xyz
-    if(present(vel)) write(fout%devn(),'(6F12.7)',ERR=100) vel
-    write(fout%devn(),'(6F12.7)',ERR=100) box,lang
+    if(ltime>=0.0)then
+      write(fout%devn(),'(I5,5E15.7)',ERR=100) natm,ltime
+    else
+      write(fout%devn(),'(I5)',ERR=100) natm
+    endif
+    write(fout%devn(),'(6F12.7)',ERR=100) xyz(:,:,nframe)
+    if(present(vel))then
+      if(all(shape(vel)>=[spatial,natm,nframe])) write(fout%devn(),'(6F12.7)',ERR=100) vel(:,:,nframe)
+    endif
+    write(fout%devn(),'(6F12.7)',ERR=100) lboxang
     call fout%quit() ; RETURN
 100 if(CheckAbort(.TRUE.,IO_WRITERR)) RETURN
   end subroutine ExportRST7

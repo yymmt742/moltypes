@@ -119,9 +119,10 @@ contains
   pure function MtAtomMask(this,mask) result(res)
   class(moltype),intent(in)    :: this
   character(*),intent(in)      :: mask
-  logical                      :: res(maxval([0,this%natm],1))
+  logical,allocatable          :: res(:)
+    allocate(res(this%nfetchatoms()))
     res = .FALSE.
-    if(.not.allocated(this%mp)) RETURN
+    if(.not.allocated(this%mp).or.this%nfetchatoms()<1) RETURN
     res = pack(this%mp(N_ALLOC)%parse(mask),this%mask)
   end function MtAtomMask
 !
@@ -130,19 +131,21 @@ contains
   class(moltype),intent(in)    :: this
   character(*),intent(in)      :: mask
   integer,intent(in)           :: dim
-  logical                      :: res(maxval([0,dim],1),maxval([0,this%natm],1))
+  logical,allocatable          :: res(:,:)
+    allocate(res(maxval([0,dim],1),this%nfetchatoms()))
     res = .FALSE.
-    if(.not.allocated(this%mp).or.this%natm<1) RETURN
-    res = SpreadMask(pack(this%mp(N_ALLOC)%parse(mask),this%mask),this%natm,dim)
+    if(.not.allocated(this%mp).or.this%nfetchatoms()<1) RETURN
+    res = SpreadMask(pack(this%mp(N_ALLOC)%parse(mask),this%mask),this%nfetchatoms(),dim)
   end function MtAtomMask_x
 !
   pure function MtAtomMask_1d(this,mask) result(res)
   class(moltype),intent(in)    :: this
   character(*),intent(in)      :: mask(:)
-  logical                      :: res(maxval([0,this%natm],1))
+  logical,allocatable          :: res(:)
   integer                      :: i
+    allocate(res(this%nfetchatoms()))
     res = .FALSE.
-    if(.not.allocated(this%mp)) RETURN
+    if(.not.allocated(this%mp).or.this%nfetchatoms()<1) RETURN
     res = pack(this%mp(N_ALLOC)%parse(mask),this%mask)
   end function MtAtomMask_1d
 !
@@ -151,11 +154,12 @@ contains
   class(moltype),intent(in)    :: this
   character(*),intent(in)      :: mask(:)
   integer,intent(in)           :: dim
-  logical                      :: res(maxval([0,dim],1),maxval([0,this%natm],1))
+  logical,allocatable          :: res(:,:)
   integer                      :: i
+    allocate(res(maxval([0,dim],1),this%nfetchatoms()))
     res = .FALSE.
-    if(.not.allocated(this%mp).or.this%natm<1) RETURN
-    res = IOR(res,SpreadMask(pack(this%mp(N_ALLOC)%parse(mask),this%mask),this%natm,dim))
+    if(.not.allocated(this%mp).or.this%nfetchatoms()<1) RETURN
+    res = IOR(res,SpreadMask(pack(this%mp(N_ALLOC)%parse(mask),this%mask),this%nfetchatoms(),dim))
   end function MtAtomMask_1dx
 !
   subroutine MtFetch_Single(this,path)
@@ -297,10 +301,9 @@ contains
 !   case('mdcrd','crd')
 !     call ExportMdcrd(fpath%is(),this%natm(),this%nframe(),          &
 !    &                 this%xyz(),this%box(),this%boxang(),overwrite=lo)
-!   case('rst7','restrt')
-!     call ExportRST7(fpath%is(),this%natm(),                          &
-!    &                this%xyz(this%nframe()),this%box(this%nframe()), &
-!    &                this%boxang(this%nframe()))
+    case('rst7','restrt')
+      call ExportRST7(fpath%is(),this%natm,this%nframe,this%xyz,this%vel, &
+     &                this%box,this%ang,this%time)
     case default
       if(allocated(this%xyz)) call ExportXYZ(fpath%is(),this%natm,this%nframe,this%xyz,this%inq('name','XX  '),overwrite=lo)
     end select

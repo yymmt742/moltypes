@@ -22,9 +22,9 @@ contains
   integer                  :: ratma,ratm,rres
   integer                  :: dig1,dig2,dig3,progres
   character(:),allocatable :: residmol,residref
-  real,allocatable         :: X(:,:),integral(:,:),breakdown(:,:)
-  real                     :: box(3),rcpbox(3),revn,step
-  integer,allocatable      :: label(:),memo(:),seq(:)
+  real,allocatable         :: integral(:,:),breakdown(:,:)
+  real                     :: rcpbox(3),revn,step
+  integer,allocatable      :: label(:),memo(:),seq(:),resid(:)
   logical,allocatable      :: mola(:,:),mol(:,:),refa(:,:),ref(:,:)
   logical,allocatable      :: molwrt(:,:),refwrt(:,:)
   integer                  :: nclu,rclu,nsum,serial
@@ -44,7 +44,6 @@ contains
     threshold = op%optargf('-t',1) ; threshold2 = threshold * threshold
     step      = op%optargf('-s',1)
 !
-    mt%terminates_at_abnormal = .TRUE.
     call mt%fetch(op%args())
 !
     call GetResidlist(mt,op%optargs('-mol',1),residmol)
@@ -52,32 +51,33 @@ contains
 !
     call mt%atomselect(op%optargs('-mol',1))
     nres = mt%nresidues()
-    natm = mt%natoms()
+    natm = mt%nfetchatoms()
     if(nres>0) natm = natm/nres 
     call mt%atomselect(residmol)
-    natma = mt%natoms()
+    natma = mt%nfetchatoms()
     if(nres>0) natma = natma/nres 
     call mt%atomselect(op%optargs('-ref',1))
     rres = mt%nresidues()
-    ratm = mt%natoms()
+    ratm = mt%nfetchatoms()
     if(rres>0) ratm = ratm/rres 
     call mt%atomselect(residref)
-    ratma = mt%natoms()
+    ratma = mt%nfetchatoms()
     if(rres>0) ratma = ratma/rres 
     call mt%atomselect([residmol,residref])
-    nxyz = mt%natoms()
+    nxyz = mt%nfetchatoms()
     nrrs = nres + rres
-    ntrj = mt%nframes()
+    ntrj = mt%nfetchframes()
     if(natm<=0.or.nres<=1.or.ntrj<=0) call Abort(1)
 !
-    allocate(X(3,nxyz))
     allocate(mola(3,nxyz),mol(3,nxyz),refa(3,nxyz),ref(3,nxyz))
     allocate(molwrt(3,nxyz),refwrt(3,nxyz))
+    allocate(resid(nxyz))
     allocate(label(nrrs),memo(nrrs),seq(nrrs))
     allocate(breakdown(2:nres,0:rres),integral(2:nres,0:rres))
     allocate(new(nrrs),old(nrrs,nrrs))
     allocate(character(0)::nout)
 !
+    resid = mt%inq('resid',1)
     mola  = mt%atommask(residmol,3)
     mol   = mt%atommask(op%optargs('-mol',1),3)
     refa  = mt%atommask(residref,3)
@@ -111,7 +111,7 @@ contains
       do j=1,nrrs
         new = j==label
         nclu = count(new(1:nres)) ; rclu = count(new) - nclu
-        if(nclu<=1)CYCLE
+        if(nclu<2)CYCLE
         breakdown(nclu,rclu) = breakdown(nclu,rclu) + 1.0
         integral(nclu,rclu)  = integral(nclu,rclu)  + revn
 !
@@ -126,8 +126,8 @@ contains
         endif
 !
         nsum = natma*nclu + ratma*rclu
-        molwrt = filter(nxyz,natma,nres,pack(seq,new),mola)
-        refwrt = filter(nxyz,ratma,rres,pack(seq,new),refa)
+        molwrt = filter(nxyz,natma,nres,pack(seq,new),mola,resid)
+        refwrt = filter(nxyz,ratma,rres,pack(seq,new),refa,resid)
 !
         if(rclu>0)then
           nout = cutlog%basename()//padding(nclu,dig1,'0')//'with'//padding(rclu,dig2,'0')//'guest/'&
@@ -138,9 +138,9 @@ contains
         endif
         call CatchSnap(nout,nsum,&
                      & wrap(natma,nclu,ratma,rclu,&
-                     & reshape(pack(X,molwrt),[3,natma,nclu]),&
-                     & reshape(pack(X,refwrt),[3,ratma,rclu]),&
-                     & box,rcpbox))
+                     & reshape(pack(mt%xyz(:,:,1),molwrt),[3,natma,nclu]),&
+                     & reshape(pack(mt%xyz(:,:,1),refwrt),[3,ratma,rclu]),&
+                     & mt%box(:,1),rcpbox))
 !
         old(:,j) = new
       enddo
@@ -175,20 +175,13 @@ contains
     call PrintCounter(ntrj,ntrj,progres)
   end subroutine compute_trjcut
 !
-  function filter(nxyz,natm,nres,seq,mol) result(res)
-  integer,intent(in) :: nxyz,natm,nres,seq(:)
+  function filter(nxyz,natm,nres,seq,mol,resid) result(res)
+  integer,intent(in) :: nxyz,natm,nres,seq(:),resid(:)
   logical,intent(in) :: mol(3,nxyz)
   logical            :: res(3,nxyz)
-  integer            :: i,atm,resid
-    atm = 1 ; resid = 1
+  integer            :: i
     do i=1,nxyz
-      res(:,i) = any(resid==seq)
-      if(all(mol(:,i)))then
-        atm = atm + 1
-        if(atm>natm)then
-          atm = 1 ; resid = resid + 1
-        endif
-      endif
+      res(:,i) = all(mol(:,i)).and.any(resid(i)==seq)
     enddo
   end function filter
 !
@@ -298,25 +291,17 @@ contains
   real                     :: res(3,natm*nres+ratm*rres)
   real                     :: com(3,nres+rres),revn,ccom(3),ofs(3)
   integer                  :: i,j,k,iter
-    com  = 0.0
-!
     revn = 1.0 / real(natm)
-    do j=1,nres
-      do i=1,natm
-        com(:,j) = com(:,j) + crd(:,i,j)
-      enddo
-      com(:,j) = com(:,j) * revn
+    do i=1,nres
+      com(:,i) = sum(crd(:,:,i),dim=2) * revn
     enddo
 !
-    k = nres
     if(rres>0)then
       revn = 1.0 / dble(ratm)
-      do j=1,rres
-        k=k+1
-        do i=1,ratm
-          com(:,k) = com(:,k) + refcrd(:,i,j)
-        enddo
-        com(:,k) = com(:,k) * revn
+      j = nres
+      do i=1,rres
+        j=j+1
+        com(:,j) = sum(refcrd(:,:,i),dim=2) * revn
       enddo
     endif
 !
@@ -325,7 +310,7 @@ contains
 !
     k = 0
     do j=1,nres
-      ofs =  com(:,j) - ccom      ; ofs = - ccom - box * anint(ofs * rcpbox)
+      ofs =  com(:,j) - ccom ; ofs = - ccom - box * anint(ofs * rcpbox)
       do i=1,natm
         k=k+1
         res(:,k) = crd(:,i,j) + ofs
