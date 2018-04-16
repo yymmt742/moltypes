@@ -450,7 +450,6 @@ contains
   character(*),intent(in)              :: substring
   logical,intent(in),optional          :: reload
   character(:),allocatable             :: res
-  character(MAXLINE)                   :: Line
   integer                              :: id
     allocate(character(0)::res) ; if(len_trim(substring)==0) RETURN
     if(this%baff%size()==0) RETURN

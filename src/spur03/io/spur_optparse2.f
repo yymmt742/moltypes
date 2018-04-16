@@ -5,15 +5,15 @@ use spur_vector_chr
   public :: optparse2
 !  public :: assignment(=)
 !
-  character(10),parameter :: RoutineName = "Optparser:"
+  integer,parameter       :: LENARG      = 256
   character(14),parameter :: help_def    = 'no help entry.'
   character(4),parameter  :: Metavar_def = 'FILE'
   integer,save            :: Maxlen      = 0
 !
   type OptNode
-    type(vector_chr)     :: s, arg, def
-    logical                    :: isExist = .FALSE.
-    integer                    :: Narg = 0
+    type(vector_chr)      :: s, arg, def
+    logical               :: isExist = .FALSE.
+    integer               :: Narg = 0
   contains
     final     :: OptNodeDestractor
   end type OptNode
@@ -63,25 +63,25 @@ contains
 !XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 !                    Getopt ROUTINEs                       
 !XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-! subroutine OptInit(this)
-! class(Optparse),intent(inout)   :: this
-! character(256)                  :: Arg
-! type(vector_character)          :: optlist
-! integer                         :: i,j,is,Narg,slash
-!   Narg = COMMAND_ARGUMENT_COUNT()
-!   call this%CommandArg%clear()
+  subroutine OptInit(this)
+  class(Optparse2),intent(inout)  :: this
+  type(vector_chr)                :: optlist
+  character(LENARG)               :: arg
+  integer                         :: i,j,is,lenarg,Narg
+    Narg = COMMAND_ARGUMENT_COUNT()
+    call this%CommandArg%clear()
 !
-!   call GET_COMMAND_ARGUMENT(0,Arg,status=is)
-!   if(.not.allocated(this%ScriptName))allocate(character(0)::this%ScriptName)
-!   if(.not.allocated(this%VersionNumber))allocate(character(0)::this%VersionNumber)
-!   slash = index(Arg,"/",back=.TRUE.)
-!   this%ScriptName = trim(Arg(slash+1:)) ; this%hasArg = .TRUE.
-!   do i=1,Narg
-!     call GET_COMMAND_ARGUMENT(i,Arg,status=is)
-!     call this%CommandArg%split(trim(Arg),["="])
-!   enddo
-!   maxlen = maxval([6,maxlen,this%CommandArg%maxlength()],1) ; RETURN
-! end subroutine OptInit
+    call GET_COMMAND_ARGUMENT(0,length=lenarg)
+    if(allocated(this%ScriptName)) deallocate(this%ScriptName)
+    allocate(character(lenarg) :: this%ScriptName)
+    if(lenarg>0) call GET_COMMAND_ARGUMENT(0,value=this%ScriptName,status=is)
+!
+    do i=1,Narg
+      call GET_COMMAND_ARGUMENT(i,Arg,status=is)
+      if(is==0) call this%CommandArg%split(trim(Arg),"=")
+    enddo
+    maxlen = maxval([6,this%CommandArg%maxlen()],1) ; RETURN
+  end subroutine OptInit
 !
 ! subroutine Optparser(this,help,version)
 ! use,intrinsic :: ISO_FORTRAN_ENV, only : ERROR_UNIT

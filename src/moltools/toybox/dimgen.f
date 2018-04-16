@@ -34,14 +34,14 @@ double precision             :: RotMatrix(3,3)
   if(arg%option('-h')) call loadtxt(arg%optargs('-h',1),header)
   if(arg%option('-f')) call loadtxt(arg%optargs('-f',1),footer)
 !
-  sftx = [ 0.2d0, 0.4d0, 0.6d0, 0.8d0]
-  sfty = [ 0.2d0, 0.4d0, 0.6d0, 0.8d0]
-  sftz = [ 3.0d0, 3.2d0, 3.4d0, 3.6d0, 3.8d0, 4.0d0, 4.2d0, 4.4d0, 4.6d0, 4.8d0]
-  angx = [ 0.d0,  10.d0, 20.d0, 30.d0, 40.d0, 50.d0, 60.d0, 70.d0, 80.d0, 90.d0]
-  angy = [ -5.d0,  0.d0,  5.d0]
-  angz = [ -5.d0,  0.d0,  5.d0]
+  sftx = [ 0.2d0, 0.4d0, 0.6d0, 0.8d0, 1.0d0, 1.2d0, 1.4d0, 1.6d0, 1.8d0, 2.0d0, 2.2d0, 2.4d0, 2.6d0, 2.8d0, 3.0d0, 3.5d0, 4.0d0, 5.0d0, 6.0d0, 8.0d0, 12.0d0]
+  sfty = [ 0.d0]
+  sftz = [ 3.0d0, 3.2d0, 3.4d0, 3.6d0, 3.8d0, 4.0d0, 4.5d0, 5.0d0, 5.5d0, 6.0d0]
+  angx = [ 0.d0 ]
+  angy = [ 0.d0 ]
+  angz = [ 0.d0 ]
   nnt  = 3.5d0**2
-  coff = 10.0d0**2
+  coff = 99.0d0**2
 !
   call dat%fetch(trim(arg%optargs('-o',1))//'.xyz')
   call dat%generate()
@@ -66,9 +66,9 @@ double precision             :: RotMatrix(3,3)
   call dat%quit()
 contains
   subroutine loadcrd()
-  use moltypes
+  use moltypes_perser
   use moltypes_process
-  type(moltype)        :: trj
+  type(molperser)      :: trj
   integer              :: i
     call trj%fetch(arg%args())
     call trj%load()
@@ -95,8 +95,8 @@ contains
         atz(i) = -1.d0 ; hvy(i) = .FALSE.
       end select
     enddo
-    call centering_coordinates(trj)
-    crd  = trj%xyz(1)
+    call trj%centering_coordinates()
+    crd  = trj%xyz(:,:,1)
     cpy  = crd
   end subroutine loadcrd
 
