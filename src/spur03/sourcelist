@@ -1,5 +1,6 @@
 FSOURCES=itertools/spur_itertools.f\
          itertools/spur_shapeshifter.f\
+         math/spur_mathconst_dble.f\
          math/spur_matcalc.f\
          string/spur_string_digit.f\
          string/spur_string_neaten.f\

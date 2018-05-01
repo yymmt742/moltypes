@@ -19,6 +19,7 @@ module spur_stackmanager
     procedure           :: size           => SSize
     procedure           :: max_size       => SMaxsize
     procedure           :: capacity       => SCapacity
+    procedure           :: erace          => SErace
     procedure           :: empty          => SEmpty
   end type stackmanager
 !
@@ -42,6 +43,11 @@ contains
   class(stackmanager),intent(in) :: this
     res = this%length==sl_def
   end function SEmpty
+!
+  pure subroutine SErace(this)
+  class(stackmanager),intent(inout) :: this
+    this%length = sl_def
+  end subroutine SErace
 !
   pure subroutine stack_extension(this)
   class(stackmanager),intent(inout) :: this

@@ -19,7 +19,7 @@ use spur_ioerrorhandler
   integer,parameter         :: LOAD_MEM    =  0
 !
 !---
-  integer,parameter         :: MAXLINE    = 1028
+  integer,parameter         :: MAXLINE    = 65536
   logical,save              :: DEVTABLE(DEVLB:DEVUB) = .true.
 !
   type,extends(pathname) :: stdio
@@ -68,6 +68,7 @@ use spur_ioerrorhandler
     procedure         :: iseof          => StdioIsEOF
     procedure         :: iserr          => StdioIsERR
     procedure         :: clear          => StdioClear
+    procedure         :: lookup         => StdioLookup
     final             :: StdioDestractor
   end type stdio
 contains
@@ -286,12 +287,12 @@ contains
     if(present(num)) res = ToStr(num)//res
   end function STRFMT
 !
-  subroutine StdioLoad(this,maxline,maxbyte)
+  subroutine StdioLoad(this,maxn,maxb)
   class(stdio),intent(inout)  :: this
-  integer,intent(in),optional :: maxline,maxbyte
+  integer,intent(in),optional :: maxn,maxb
   integer                     :: is,bload,lload
   integer                     :: lmax,bmax,lsign,bsign
-  character(2056)             :: line
+  character(MAXLINE)          :: line
     call this%baff%clear() ; this%iseek = 0
     if(this%isnotReading()) call this%Connect()
     if(this%stat==IO_EMPTYPATH)then
@@ -300,8 +301,8 @@ contains
     call RoutineNameIs('STDIO_LOAD')
     lload = 0 ; lmax = 0 ; lsign = 0
     bload = 0 ; bmax = 0 ; bsign = 0
-    if(present(maxline)) lmax = maxval([maxline,0],1)
-    if(present(maxbyte)) bmax = maxval([maxbyte,0],1)
+    if(present(maxn)) lmax = maxval([maxn,0],1)
+    if(present(maxb)) bmax = maxval([maxb,0],1)
     if(bmax>0) bsign = 1
     if(lmax>0) lsign = 1
 !
@@ -511,6 +512,13 @@ contains
   class(Stdio),intent(inout) :: this
     this%iseek = 0
   end subroutine StdioReload
+!
+  pure function StdioLookUp(this) result(res)
+  class(Stdio),intent(in)       :: this
+  character(this%baff%maxlen()) :: res(this%baff%size())
+  integer                       :: i
+    res = this%baff%lookup()
+  end function StdioLookUp
 !
 ! pure function StdioGets_idx(this,idx) result(res)
 ! class(stdio),intent(in)           :: this

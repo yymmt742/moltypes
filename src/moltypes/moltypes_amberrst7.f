@@ -76,7 +76,7 @@ contains
     integer                           :: atom
       baff%terminates_at_abnormal = this%terminates_at_abnormal
       call baff%fetch(path)
-      call baff%load(maxline=2)
+      call baff%load(maxn=2)
       call this%node(using)%put_caption(baff%gets())
       call words%split(baff%gets()) ; atom = words%tonum(1,0)
       if(this%natoms==atom_def) this%natoms = atom

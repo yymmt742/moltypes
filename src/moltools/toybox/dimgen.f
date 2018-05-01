@@ -1,5 +1,6 @@
 program dimgen
-use spur_vector
+use spur_vector_chr
+use spur_vector_dble
 use spur_optparse
 use spur_stdio
 implicit none
@@ -8,10 +9,11 @@ double precision,parameter :: AngRad = Pi/180.d0
 double precision,parameter :: RadAng = 180.d0/Pi
 
 type(optparse)               :: arg
-type(stdio)                  :: dat
-type(vector_character)       :: header,footer
-type(vector_double)          :: sftx,sfty,sftz
-type(vector_double)          :: angx,angy,angz
+type(stdio)                  :: header,footer
+type(stdio)                  :: inp,dat
+type(vector_chr)             :: words
+type(vector_dble)            :: sftx,sfty,sftz
+type(vector_dble)            :: angx,angy,angz
 integer                      :: natm,datm
 character(4),allocatable     :: anm(:)
 double precision,allocatable :: atz(:),crd(:,:),cpy(:,:)
@@ -24,24 +26,41 @@ character(12)                :: fxyz
 double precision             :: RotMatrix(3,3)
 
   call arg%add_option("-m",narg=1,metavar='MaskString',help='Load mask string, like as vmd.')
-  call arg%add_option("-h",narg=1,metavar='headerfile',help='header file.')
-  call arg%add_option("-f",narg=1,metavar='footerfile',help='footer file.')
-  call arg%add_option("-o",narg=1,metavar='outputfile',help='output file.')
+  call arg%add_option("-h",narg=1,metavar='file',help='header file.')
+  call arg%add_option("-f",narg=1,metavar='file',help='footer file.')
+  call arg%add_option("-i",narg=1,metavar='file',help='input file.')
+  call arg%add_option("-n",narg=1,metavar='value',def=['3.5'],help='neigbor value. default 3.5.')
+  call arg%add_option("-c",narg=1,metavar='value',def=['999.0'],help='cutoff value. default 999.0')
+  call arg%add_option("-o",narg=1,metavar='string',help='output file.')
   call arg%parser()
   if(arg%narg()==0) call arg%call_usage()
 !
   call loadcrd()
-  if(arg%option('-h')) call loadtxt(arg%optargs('-h',1),header)
-  if(arg%option('-f')) call loadtxt(arg%optargs('-f',1),footer)
 !
-  sftx = [ 0.2d0, 0.4d0, 0.6d0, 0.8d0, 1.0d0, 1.2d0, 1.4d0, 1.6d0, 1.8d0, 2.0d0, 2.2d0, 2.4d0, 2.6d0, 2.8d0, 3.0d0, 3.5d0, 4.0d0, 5.0d0, 6.0d0, 8.0d0, 12.0d0]
-  sfty = [ 0.d0]
-  sftz = [ 3.0d0, 3.2d0, 3.4d0, 3.6d0, 3.8d0, 4.0d0, 4.5d0, 5.0d0, 5.5d0, 6.0d0]
-  angx = [ 0.d0 ]
-  angy = [ 0.d0 ]
-  angz = [ 0.d0 ]
-  nnt  = 3.5d0**2
-  coff = 99.0d0**2
+  if(arg%option('-h'))then
+    call header%fetch(arg%optargs('-h',1)) ; call header%load()
+  endif
+  if(arg%option('-f'))then
+    call footer%fetch(arg%optargs('-f',1)) ; call footer%load()
+  endif
+!
+  call inp%fetch(arg%optargs('-i',1)) ; call inp%load()
+  call words%clear() ; call words%split(inp%gets())
+  sftx = [(words%tonum(i,0.d0),i=1,words%size())]
+  call words%clear() ; call words%split(inp%gets())
+  sfty = [(words%tonum(i,0.d0),i=1,words%size())]
+  call words%clear() ; call words%split(inp%gets())
+  sftz = [(words%tonum(i,0.d0),i=1,words%size())]
+  call words%clear() ; call words%split(inp%gets())
+  angx = [(words%tonum(i,0.d0),i=1,words%size())]
+  call words%clear() ; call words%split(inp%gets())
+  angy = [(words%tonum(i,0.d0),i=1,words%size())]
+  call words%clear() ; call words%split(inp%gets())
+  angz = [(words%tonum(i,0.d0),i=1,words%size())]
+  call inp%quit()
+!
+  nnt  = arg%optargd('-n',1)**2
+  coff = arg%optargd('-c',1)**2
 !
   call dat%fetch(trim(arg%optargs('-o',1))//'.xyz')
   call dat%generate()
@@ -99,40 +118,27 @@ contains
     crd  = trj%xyz(:,:,1)
     cpy  = crd
   end subroutine loadcrd
-
-  subroutine loadtxt(f,v)
-  use spur_stdio
-  character(*),intent(in)              :: f
-  type(vector_character),intent(inout) :: v
-  type(stdio)                          :: fio
-  integer                              :: i
-    call fio%fetch(f)
-    call fio%load()
-    do i=1,fio%nlines()
-      call v%push(fio%gets())
-    enddo
-  end subroutine loadtxt
- 
+!
   subroutine writegamin()
   type(stdio)                 :: fio
   integer                     :: i
     call fio%fetch(trim(arg%optargs('-o',1))//'_'//fxyz//fabc//'.inp')
     call fio%generate()
-    write(fio%devn(),'(x,a)') header%lookup()
+    write(fio%devn(),'(a)') header%lookup()
     call fio%puts(' $DATA')
     call fio%puts('')
     call fio%puts('C1')
     write(dat%devn(),'(i0,/,a)') datm,fxyz//fabc
     do i=1,natm
-      write(fio%devn(),'(a,f4.1,3f16.9)') anm(i),atz(i),crd(:,i)
+      write(fio%devn(),'(x,a,f4.1,3f16.9)') anm(i),atz(i),crd(:,i)
       write(dat%devn(),'(a,3f16.9)') anm(i),crd(:,i)
     enddo
     do i=1,natm
-      write(fio%devn(),'(a,f4.1,3f16.9)') anm(i),atz(i),cpy(:,i)+sft
+      write(fio%devn(),'(x,a,f4.1,3f16.9)') anm(i),atz(i),cpy(:,i)+sft
       write(dat%devn(),'(a,3f16.9)') anm(i),cpy(:,i)+sft
     enddo
     call fio%puts(' $END')
-    write(fio%devn(),'(x,a)') footer%lookup()
+    write(fio%devn(),'(a)') footer%lookup()
     call fio%quit()
   end subroutine writegamin
 

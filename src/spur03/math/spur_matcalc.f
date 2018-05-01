@@ -18,15 +18,15 @@ implicit none
   end interface refmat
 !
   interface det
-    module procedure ddet3,rdet3
+    module procedure  ddet3,rdet3
   end interface det
 !
   interface svd
-    module procedure rsvd,dsvd
+    module procedure ssvd,dsvd
   end interface svd
 !
   interface sye
-    module procedure dsye
+    module procedure ssye,dsye
   end interface sye
 contains
   pure function rcov(d1,d2,n,X,Y) result(res)
@@ -59,17 +59,15 @@ contains
     enddo
   end function dcov
 !
-  function ridm(d) result(res)
+  pure function ridm(d) result(res)
   integer,intent(in) :: d
   real               :: res(d,d)
   integer            :: i
-!$omp parallel do private(i)
     do i=1,d
       res(:i-1,i) = 0.0
       res(i,i)    = 1.0
       res(i+1:,i) = 0.0
     enddo
-!$omp end parallel do
   end function ridm
 !
   function rrfm(d) result(res)
@@ -92,7 +90,7 @@ contains
         &-X(1,3)*X(2,2)*X(3,1)-X(1,2)*X(2,1)*X(3,3)-X(1,1)*X(2,3)*X(3,2)
   end function ddet3
 !
-  subroutine rsvd(A,N,S,U,VT)
+  subroutine ssvd(A,N,S,U,VT)
   integer,intent(in) :: N
   real,intent(inout) :: A(N,N)
   real,intent(out)   :: S(N),U(N,N),VT(N,N)
@@ -103,7 +101,7 @@ contains
     LWork=Int(WorkSpace(1))
     deallocate(WorkSpace) ; allocate(WorkSpace(1:LWork))
     CALL SGESVD('S','S',N,N,A,N,S,U,N,VT,N,WorkSpace,LWork,Info)
-  end subroutine rsvd
+  end subroutine ssvd
 !
   subroutine dsvd(a,n,s,u,vt)
   integer,intent(in)             :: N
@@ -117,6 +115,23 @@ contains
     deallocate(WorkSpace) ; allocate(WorkSpace(1:LWork))
     CALL DGESVD('S','S',N,N,A,N,S,U,N,VT,N,WorkSpace,LWork,Info)
   end subroutine dsvd
+!
+  subroutine SSYE(A,EV,N)
+  real,intent(inout)             :: A(N,N)
+  real,intent(out)               :: EV(N)
+  integer,intent(in)             :: N
+  real,allocatable               :: WorkSpace(:)
+  integer                        :: lda,lwork,liwork
+  integer                        :: info
+    LWork=-1
+    allocate(WorkSpace(1))
+    WorkSpace=0
+    CALL SSYEV('V','L',N,A,N,EV,WorkSpace,LWork,Info)
+    LWork=Int(WorkSpace(1))
+!
+    deallocate(WorkSpace) ; allocate(WorkSpace(1:LWork))
+    CALL SSYEV('V','L',N,A,N,EV,WorkSpace,LWork,Info)
+  end subroutine SSYE
 !
   subroutine DSYE(A,EV,N)
   double precision,intent(inout) :: A(N,N)

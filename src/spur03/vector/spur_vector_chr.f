@@ -246,29 +246,32 @@ contains
     res = large(this%c(this%p(1,idx):this%p(2,idx)))
   end function CLarge
 !
-  pure elemental integer(4) function CTonum_int4(this,idx,dumm) result(res)
+  pure elemental function CTonum_int4(this,idx,dumm) result(res)
   use spur_string_tonum
   class(vector_chr),intent(in) :: this
   integer(4),intent(in)        :: idx
   integer(4),intent(in)        :: dumm
+  integer(4)                   :: res
     if(idx<1.or.idx>this%size()) RETURN
     res = tonum_int4(this%c(this%p(1,idx):this%p(2,idx)),dumm)
   end function CTonum_int4
 !
-  pure elemental integer(4) function CTonum_real(this,idx,dumm) result(res)
+  pure elemental function CTonum_real(this,idx,dumm) result(res)
   use spur_string_tonum
   class(vector_chr),intent(in) :: this
   integer(4),intent(in)        :: idx
   real,intent(in)              :: dumm
+  real                         :: res
     if(idx<1.or.idx>this%size()) RETURN
     res = tonum_real(this%c(this%p(1,idx):this%p(2,idx)),dumm)
   end function CTonum_real
 !
-  pure elemental integer(4) function CTonum_dble(this,idx,dumm) result(res)
+  pure elemental function CTonum_dble(this,idx,dumm) result(res)
   use spur_string_tonum
   class(vector_chr),intent(in) :: this
   integer(4),intent(in)        :: idx
   double precision,intent(in)  :: dumm
+  double precision             :: res
     if(idx<1.or.idx>this%size()) RETURN
     res = tonum_dble(this%c(this%p(1,idx):this%p(2,idx)),dumm)
   end function CTonum_dble
