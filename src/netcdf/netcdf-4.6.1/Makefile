@@ -270,7 +270,7 @@ CC = icc
 CCDEPMODE = depmode=gcc3
 CC_VERSION = /opt/intel/compilers_and_libraries_2018.1.163/linux/bin/intel64/icc
 CFLAGS = -O3 -xHost -ip -no-prec-div -static-intel -Difort -fPIC
-CONFIG_DATE = Mon May 21 09:57:46 JST 2018
+CONFIG_DATE = Tue May 22 20:24:17 JST 2018
 CPP = icc -E
 CPPFLAGS = -I/home/yamamoto/local/devel/github/moltypes/include -fPIC
 CYGPATH_W = echo
@@ -293,9 +293,9 @@ EXEEXT =
 FGREP = /bin/grep -F
 GREP = /bin/grep
 HAS_CDF5 = yes
-HAS_DAP = yes
-HAS_DAP2 = yes
-HAS_DAP4 = yes
+HAS_DAP = no
+HAS_DAP2 = no
+HAS_DAP4 = no
 HAS_DISKLESS = yes
 HAS_ERANGE_FILL = no
 HAS_HDF4 = no
@@ -333,8 +333,8 @@ MKDIR_P = /bin/mkdir -p
 MSVC = 
 NC_ENABLE_DOXYGEN_PDF_OUTPUT = 
 NC_HAS_CDF5 = 1
-NC_HAS_DAP2 = 1
-NC_HAS_DAP4 = 1
+NC_HAS_DAP2 = 0
+NC_HAS_DAP4 = 0
 NC_HAS_DISKLESS = 1
 NC_HAS_ERANGE_FILL = 0
 NC_HAS_HDF4 = 0
@@ -467,11 +467,11 @@ LIBSRC4_DIR = libsrc4
 NC_TEST4 = nc_test4
 
 # Build the dap2 client
-OCLIB = oc2
-DAP2 = libdap2
-NCDAP2TESTDIR = ncdap_test
-DAP4 = libdap4
-NCDAP4TESTDIR = dap4_test
+#OCLIB = oc2
+#DAP2 = libdap2
+#NCDAP2TESTDIR = ncdap_test
+#DAP4 = libdap4
+#NCDAP4TESTDIR = dap4_test
 
 # Build pnetcdf
 #LIBSRCP = libsrcp

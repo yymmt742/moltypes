@@ -92,7 +92,7 @@ target_triplet = x86_64-unknown-linux-gnu
 # All netCDF-4 F77 functions are in one code file.
 am__append_3 = fort-nc4.c
 am__append_4 = -DNETCDF4=TRUE
-am__append_5 = -DDAP=TRUE
+#am__append_5 = -DDAP=TRUE
 #am__append_6 = -DPARALLEL_IO=TRUE
 subdir = libsrc
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
@@ -257,7 +257,7 @@ FCFLAGS_f90 =
 FFLAGS = -O3 -xHost -ip -no-prec-div -static-intel -fPIC
 FGREP = /bin/grep -F
 GREP = /bin/grep
-HAS_DAP = yes
+HAS_DAP = no
 HAS_F03 = yes
 HAS_F90 = no
 HAS_NC2 = yes

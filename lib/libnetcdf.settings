@@ -4,7 +4,7 @@
 # General
 -------
 NetCDF Version:		4.6.1
-Configured On:		Mon May 21 09:57:46 JST 2018
+Configured On:		Tue May 22 20:24:17 JST 2018
 Host System:		x86_64-pc-linux-gnu
 Build Directory: 	/home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1
 Install Prefix:         /home/yamamoto/local/devel/github/moltypes
@@ -29,8 +29,8 @@ HDF4 Support:		no
 NetCDF-4 API:		yes
 NC-4 Parallel Support:	no
 PNetCDF Support:	no
-DAP2 Support:		yes
-DAP4 Support:		yes
+DAP2 Support:		no
+DAP4 Support:		no
 Diskless Support:	yes
 MMap Support:		no
 JNA Support:		no

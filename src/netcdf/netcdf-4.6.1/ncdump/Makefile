@@ -106,12 +106,12 @@ POST_UNINSTALL = :
 build_triplet = x86_64-pc-linux-gnu
 host_triplet = x86_64-pc-linux-gnu
 target_triplet = x86_64-pc-linux-gnu
-am__append_1 = -I${top_srcdir}/oc2
+#am__append_1 = -I${top_srcdir}/oc2
 bin_PROGRAMS = ncdump$(EXEEXT) nccopy$(EXEEXT) $(am__EXEEXT_1)
 noinst_PROGRAMS = nc4print$(EXEEXT)
 
 # Conditionally build the ocprint program, but do not install
-am__append_2 = ocprint
+#am__append_2 = ocprint
 check_PROGRAMS = rewrite-scalar$(EXEEXT) \
 	ref_ctest$(EXEEXT) ref_ctest64$(EXEEXT) \
 	ncdump$(EXEEXT) tst_utf8$(EXEEXT) \
@@ -164,7 +164,7 @@ mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
-am__EXEEXT_1 = ocprint$(EXEEXT)
+#am__EXEEXT_1 = ocprint$(EXEEXT)
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(man1dir)"
 am__EXEEXT_2 =  \
 	tst_fileinfo$(EXEEXT) \
@@ -214,7 +214,7 @@ nctrunc_OBJECTS = nctrunc.$(OBJEXT)
 nctrunc_LDADD = $(LDADD)
 nctrunc_DEPENDENCIES = ${top_builddir}/liblib/libnetcdf.la
 am__ocprint_SOURCES_DIST = ocprint.c
-am_ocprint_OBJECTS = ocprint.$(OBJEXT)
+#am_ocprint_OBJECTS = ocprint.$(OBJEXT)
 ocprint_OBJECTS = $(am_ocprint_OBJECTS)
 ocprint_LDADD = $(LDADD)
 ocprint_DEPENDENCIES = ${top_builddir}/liblib/libnetcdf.la
@@ -665,7 +665,7 @@ CC = icc
 CCDEPMODE = depmode=gcc3
 CC_VERSION = /opt/intel/compilers_and_libraries_2018.1.163/linux/bin/intel64/icc
 CFLAGS = -O3 -xHost -ip -no-prec-div -static-intel -Difort -fPIC
-CONFIG_DATE = Mon May 21 09:57:46 JST 2018
+CONFIG_DATE = Tue May 22 20:24:17 JST 2018
 CPP = icc -E
 CPPFLAGS = -I/home/yamamoto/local/devel/github/moltypes/include -fPIC
 CYGPATH_W = echo
@@ -688,9 +688,9 @@ EXEEXT =
 FGREP = /bin/grep -F
 GREP = /bin/grep
 HAS_CDF5 = yes
-HAS_DAP = yes
-HAS_DAP2 = yes
-HAS_DAP4 = yes
+HAS_DAP = no
+HAS_DAP2 = no
+HAS_DAP4 = no
 HAS_DISKLESS = yes
 HAS_ERANGE_FILL = no
 HAS_HDF4 = no
@@ -728,8 +728,8 @@ MKDIR_P = /bin/mkdir -p
 MSVC = 
 NC_ENABLE_DOXYGEN_PDF_OUTPUT = 
 NC_HAS_CDF5 = 1
-NC_HAS_DAP2 = 1
-NC_HAS_DAP4 = 1
+NC_HAS_DAP2 = 0
+NC_HAS_DAP4 = 0
 NC_HAS_DISKLESS = 1
 NC_HAS_ERANGE_FILL = 0
 NC_HAS_HDF4 = 0
@@ -846,7 +846,7 @@ nccopy_SOURCES = nccopy.c nciter.c nciter.h chunkspec.h chunkspec.c     \
 utils.h utils.c dimmap.h dimmap.c
 
 nc4print_SOURCES = nc4print.c
-ocprint_SOURCES = ocprint.c
+#ocprint_SOURCES = ocprint.c
 
 # This is the man page.
 man_MANS = ncdump.1 nccopy.1

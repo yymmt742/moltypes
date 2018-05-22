@@ -100,34 +100,34 @@ POST_UNINSTALL = :
 build_triplet = x86_64-pc-linux-gnu
 host_triplet = x86_64-pc-linux-gnu
 target_triplet = x86_64-pc-linux-gnu
-am__append_1 = -I${top_srcdir}/oc2
+#am__append_1 = -I${top_srcdir}/oc2
 check_PROGRAMS = $(am__EXEEXT_1) $(am__EXEEXT_2)
 TESTS = $(am__EXEEXT_1) $(am__append_4) $(am__append_6) \
 	$(am__EXEEXT_3) $(am__append_8) $(am__EXEEXT_4) \
 	$(am__append_10)
-am__append_2 = t_dap3a test_cvt3 test_vara
-am__append_3 = t_dap3a test_cvt3 test_vara
-am__append_4 = tst_ncdap3.sh
+#am__append_2 = t_dap3a test_cvt3 test_vara
+#am__append_3 = t_dap3a test_cvt3 test_vara
+#am__append_4 = tst_ncdap3.sh
 
 # remote tests are optional
 # because the server may be down or inaccessible
-am__append_5 =  \
-	findtestserver \
-	test_partvar \
-	test_nstride_cached \
-	t_misc \
-	test_varm3 \
-	t_ncf330
-am__append_6 = tst_ber.sh tst_remote3.sh tst_formatx.sh testurl.sh
-am__append_7 = test_partvar
-#am__append_8 = tst_longremote3.sh
+##am__append_5 =  \
+##	findtestserver \
+##	test_partvar \
+##	test_nstride_cached \
+##	t_misc \
+##	test_varm3 \
+##	t_ncf330
+##am__append_6 = tst_ber.sh tst_remote3.sh tst_formatx.sh testurl.sh
+##am__append_7 = test_partvar
+###am__append_8 = tst_longremote3.sh
 #TESTS += t_ncf330
-am__append_9 =  \
-	test_varm3 \
-	test_nstride_cached \
-	t_misc
-#am__append_10 = testbasicauth.sh \
-#	testcontainerauth.sh
+##am__append_9 =  \
+##	test_varm3 \
+##	test_nstride_cached \
+##	t_misc
+###am__append_10 = testbasicauth.sh \
+###	testcontainerauth.sh
 subdir = ncdap_test
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
@@ -141,16 +141,16 @@ mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
-am__EXEEXT_1 = t_dap3a$(EXEEXT) test_cvt3$(EXEEXT) \
-	test_vara$(EXEEXT)
-am__EXEEXT_2 = findtestserver$(EXEEXT) \
-	test_partvar$(EXEEXT) \
-	test_nstride_cached$(EXEEXT) \
-	t_misc$(EXEEXT) \
-	test_varm3$(EXEEXT) \
-	t_ncf330$(EXEEXT)
+#am__EXEEXT_1 = t_dap3a$(EXEEXT) test_cvt3$(EXEEXT) \
+#	test_vara$(EXEEXT)
+##am__EXEEXT_2 = findtestserver$(EXEEXT) \
+##	test_partvar$(EXEEXT) \
+##	test_nstride_cached$(EXEEXT) \
+##	t_misc$(EXEEXT) \
+##	test_varm3$(EXEEXT) \
+##	t_ncf330$(EXEEXT)
 am__findtestserver_SOURCES_DIST = findtestserver.c
-am_findtestserver_OBJECTS = findtestserver.$(OBJEXT)
+##am_findtestserver_OBJECTS = findtestserver.$(OBJEXT)
 findtestserver_OBJECTS = $(am_findtestserver_OBJECTS)
 findtestserver_LDADD = $(LDADD)
 findtestserver_DEPENDENCIES = ${top_builddir}/liblib/libnetcdf.la
@@ -163,7 +163,7 @@ t_dap3a_OBJECTS = $(am_t_dap3a_OBJECTS)
 t_dap3a_LDADD = $(LDADD)
 t_dap3a_DEPENDENCIES = ${top_builddir}/liblib/libnetcdf.la
 am__t_misc_SOURCES_DIST = t_misc.c
-am_t_misc_OBJECTS = t_misc.$(OBJEXT)
+##am_t_misc_OBJECTS = t_misc.$(OBJEXT)
 t_misc_OBJECTS = $(am_t_misc_OBJECTS)
 t_misc_LDADD = $(LDADD)
 t_misc_DEPENDENCIES = ${top_builddir}/liblib/libnetcdf.la
@@ -176,13 +176,13 @@ test_cvt3_OBJECTS = $(am_test_cvt3_OBJECTS)
 test_cvt3_LDADD = $(LDADD)
 test_cvt3_DEPENDENCIES = ${top_builddir}/liblib/libnetcdf.la
 am__test_nstride_cached_SOURCES_DIST = test_nstride_cached.c
-am_test_nstride_cached_OBJECTS = test_nstride_cached.$(OBJEXT)
+##am_test_nstride_cached_OBJECTS = test_nstride_cached.$(OBJEXT)
 test_nstride_cached_OBJECTS = $(am_test_nstride_cached_OBJECTS)
 test_nstride_cached_LDADD = $(LDADD)
 test_nstride_cached_DEPENDENCIES =  \
 	${top_builddir}/liblib/libnetcdf.la
 am__test_partvar_SOURCES_DIST = test_partvar.c
-am_test_partvar_OBJECTS = test_partvar.$(OBJEXT)
+##am_test_partvar_OBJECTS = test_partvar.$(OBJEXT)
 test_partvar_OBJECTS = $(am_test_partvar_OBJECTS)
 test_partvar_LDADD = $(LDADD)
 test_partvar_DEPENDENCIES = ${top_builddir}/liblib/libnetcdf.la
@@ -191,7 +191,7 @@ test_vara_OBJECTS = $(am_test_vara_OBJECTS)
 test_vara_LDADD = $(LDADD)
 test_vara_DEPENDENCIES = ${top_builddir}/liblib/libnetcdf.la
 am__test_varm3_SOURCES_DIST = test_varm3.c
-am_test_varm3_OBJECTS = test_varm3.$(OBJEXT)
+##am_test_varm3_OBJECTS = test_varm3.$(OBJEXT)
 test_varm3_OBJECTS = $(am_test_varm3_OBJECTS)
 test_varm3_LDADD = $(LDADD)
 test_varm3_DEPENDENCIES = ${top_builddir}/liblib/libnetcdf.la
@@ -466,10 +466,10 @@ am__set_TESTS_bases = \
   bases=`for i in $$bases; do echo $$i; done | sed 's/\.log$$//'`; \
   bases=`echo $$bases`
 RECHECK_LOGS = $(TEST_LOGS)
-am__EXEEXT_3 = test_partvar$(EXEEXT)
-am__EXEEXT_4 = test_varm3$(EXEEXT) \
-	test_nstride_cached$(EXEEXT) \
-	t_misc$(EXEEXT)
+##am__EXEEXT_3 = test_partvar$(EXEEXT)
+##am__EXEEXT_4 = test_varm3$(EXEEXT) \
+##	test_nstride_cached$(EXEEXT) \
+##	t_misc$(EXEEXT)
 TEST_SUITE_LOG = test-suite.log
 LOG_DRIVER = $(SHELL) $(top_srcdir)/test-driver
 LOG_COMPILE = $(LOG_COMPILER) $(AM_LOG_FLAGS) $(LOG_FLAGS)
@@ -537,7 +537,7 @@ CC = icc
 CCDEPMODE = depmode=gcc3
 CC_VERSION = /opt/intel/compilers_and_libraries_2018.1.163/linux/bin/intel64/icc
 CFLAGS = -O3 -xHost -ip -no-prec-div -static-intel -Difort -fPIC
-CONFIG_DATE = Mon May 21 09:57:46 JST 2018
+CONFIG_DATE = Tue May 22 20:24:17 JST 2018
 CPP = icc -E
 CPPFLAGS = -I/home/yamamoto/local/devel/github/moltypes/include -fPIC
 CYGPATH_W = echo
@@ -560,9 +560,9 @@ EXEEXT =
 FGREP = /bin/grep -F
 GREP = /bin/grep
 HAS_CDF5 = yes
-HAS_DAP = yes
-HAS_DAP2 = yes
-HAS_DAP4 = yes
+HAS_DAP = no
+HAS_DAP2 = no
+HAS_DAP4 = no
 HAS_DISKLESS = yes
 HAS_ERANGE_FILL = no
 HAS_HDF4 = no
@@ -600,8 +600,8 @@ MKDIR_P = /bin/mkdir -p
 MSVC = 
 NC_ENABLE_DOXYGEN_PDF_OUTPUT = 
 NC_HAS_CDF5 = 1
-NC_HAS_DAP2 = 1
-NC_HAS_DAP4 = 1
+NC_HAS_DAP2 = 0
+NC_HAS_DAP4 = 0
 NC_HAS_DISKLESS = 1
 NC_HAS_ERANGE_FILL = 0
 NC_HAS_HDF4 = 0
@@ -715,11 +715,11 @@ LDADD = ${top_builddir}/liblib/libnetcdf.la
 t_dap3a_SOURCES = t_dap3a.c t_srcdir.h
 test_cvt3_SOURCES = test_cvt.c t_srcdir.h
 test_vara_SOURCES = test_vara.c t_srcdir.h
-findtestserver_SOURCES = findtestserver.c
-test_partvar_SOURCES = test_partvar.c
-test_varm3_SOURCES = test_varm3.c
-test_nstride_cached_SOURCES = test_nstride_cached.c
-t_misc_SOURCES = t_misc.c
+##findtestserver_SOURCES = findtestserver.c
+##test_partvar_SOURCES = test_partvar.c
+##test_varm3_SOURCES = test_varm3.c
+##test_nstride_cached_SOURCES = test_nstride_cached.c
+##t_misc_SOURCES = t_misc.c
 
 # Need to add subdirs
 SUBDIRS = testdata3 expected3 expectremote3

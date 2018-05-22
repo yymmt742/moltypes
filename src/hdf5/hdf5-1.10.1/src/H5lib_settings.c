@@ -15,7 +15,7 @@
  * help@hdfgroup.org.                                                        *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
- * Created:		May 21, 2018
+ * Created:		May 22, 2018
  *			yamamoto yuki <yymmt@yymmt.kuchem.kyoto-u.ac.jp>
  *
  * Purpose:		This machine-generated source code contains
@@ -36,7 +36,7 @@ char H5libhdf5_settings[]=
 	"General Information:\n"
 	"-------------------\n"
 	"                   HDF5 Version: 1.10.1\n"
-	"                  Configured on: Mon May 21 06:34:22 JST 2018\n"
+	"                  Configured on: Tue May 22 19:07:06 JST 2018\n"
 	"                  Configured by: yymmt@yymmt.kuchem.kyoto-u.ac.jp\n"
 	"                    Host system: x86_64-unknown-linux-gnu\n"
 	"              Uname information: Linux yymmt.kuchem.kyoto-u.ac.jp 2.6.32-696.28.1.el6.x86_64 #1 SMP Wed May 9 23:09:02 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux\n"

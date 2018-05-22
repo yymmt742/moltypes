@@ -88,7 +88,7 @@ POST_UNINSTALL = :
 build_triplet = x86_64-unknown-linux-gnu
 host_triplet = x86_64-unknown-linux-gnu
 target_triplet = x86_64-unknown-linux-gnu
-am__append_1 = -DDAP=TRUE
+#am__append_1 = -DDAP=TRUE
 #am__append_2 = -DPARALLEL_IO=TRUE
 subdir = docs
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
@@ -192,7 +192,7 @@ FCFLAGS_f90 =
 FFLAGS = -O3 -xHost -ip -no-prec-div -static-intel -fPIC
 FGREP = /bin/grep -F
 GREP = /bin/grep
-HAS_DAP = yes
+HAS_DAP = no
 HAS_F03 = yes
 HAS_F90 = no
 HAS_NC2 = yes

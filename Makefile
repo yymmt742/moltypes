@@ -3,12 +3,18 @@ include $(CONFIG_FILE)
 
 all: setup
 
-setup: spur03 moltypes moltools
+setup: spur03 moltypes
+
+zlib:
+	(cd src/zlib && make)
+
+szip:
+	(cd src/szip && make)
+
+hdf5:
+	(cd src/hdf5 && make)
 
 netcdf:
-#	(cd src/zlib && make)
-#	(cd src/szip && make)
-#	(cd src/hdf5 && make)
 	(cd src/netcdf && make)
 
 fnv:
@@ -19,9 +25,6 @@ spur03:
 
 moltypes:
 	(cd src/moltypes && make)
-
-moltools:
-	(cd src/moltools && make)
 
 test:
 	(cd src/test && make && make test)

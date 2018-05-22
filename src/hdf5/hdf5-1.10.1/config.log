@@ -256,7 +256,7 @@ PGI_TERM=trace,abort
 PIPESTATUS=([0]="0")
 PKG_CONFIG_PATH=/opt/intel/compilers_and_libraries_2018.1.163/linux/mkl/bin/pkgconfig:/opt/intel/compilers_and_libraries_2018.1.163/linux/mkl/bin/pkgconfig:/opt/intel/compilers_and_libraries_2018.1.163/linux/mkl/bin/pkgconfig:/opt/intel/compilers_and_libraries_2018.1.163/linux/mkl/bin/pkgconfig:/opt/intel/compilers_and_libraries_2018.1.163/linux/mkl/bin/pkgconfig:/opt/intel/compilers_and_libraries_2018.1.163/linux/mkl/bin/pkgconfig:/opt/intel/compilers_and_libraries_2018.1.163/linux/mkl/bin/pkgconfig:/opt/intel/compilers_and_libraries_2018.1.163/linux/mkl/bin/pkgconfig
 POSIXLY_CORRECT=y
-PPID=19510
+PPID=812
 PS1='$ '
 PS2='> '
 PS4='+ '
@@ -823,7 +823,7 @@ am_lf='
 '
 am_make=make
 am_missing_run='${SHELL} /home/yamamoto/local/devel/github/moltypes/src/hdf5/hdf5-1.10.1/bin/missing '
-am_sleep_pid=19623
+am_sleep_pid=925
 as_basename=basename
 as_bourne_compatible='if test -n "${ZSH_VERSION+set}" && (emulate sh) >/dev/null 2>&1; then :
   emulate sh
@@ -1993,7 +1993,7 @@ configure:17547: result: immediate
 configure:17657: checking for shl_load
 configure:17657: icc -o conftest  -O3 -xHost -ip -no-prec-div -static-intel -fPIC  -I/home/yamamoto/local/devel/github/moltypes/include  -L/home/yamamoto/local/devel/github/moltypes/lib conftest.c  >&5
 icc: 警告 #10237: -lcilkrts はダイナミックにリンクされました。スタティック・ライブラリーは利用できません。
-/tmp/iccZJFUcD.o: In function `main':
+/tmp/iccueQG0d.o: In function `main':
 conftest.c:(.text+0x32): undefined reference to `shl_load'
 configure:17657: $? = 1
 configure: failed program was:
@@ -3206,7 +3206,7 @@ configure:28106: result: no
 configure:28117: checking for _getvideoconfig
 configure:28117: icc -o conftest     -O3 -xHost -ip -no-prec-div -static-intel -fPIC -D_GNU_SOURCE -D_POSIX_C_SOURCE=200112L     -I/home/yamamoto/local/devel/github/moltypes/include -I/home/yamamoto/local/devel/github/moltypes/include  -L/home/yamamoto/local/devel/github/moltypes/lib -L/home/yamamoto/local/devel/github/moltypes/lib conftest.c -lz -ldl -lm  >&5
 icc: 警告 #10237: -lcilkrts はダイナミックにリンクされました。スタティック・ライブラリーは利用できません。
-/tmp/iccQhsoVB.o: In function `main':
+/tmp/icc8w3v8o.o: In function `main':
 conftest.c:(.text+0x32): undefined reference to `_getvideoconfig'
 configure:28117: $? = 1
 configure: failed program was:
@@ -3360,7 +3360,7 @@ configure:28117: result: no
 configure:28117: checking for gettextinfo
 configure:28117: icc -o conftest     -O3 -xHost -ip -no-prec-div -static-intel -fPIC -D_GNU_SOURCE -D_POSIX_C_SOURCE=200112L     -I/home/yamamoto/local/devel/github/moltypes/include -I/home/yamamoto/local/devel/github/moltypes/include  -L/home/yamamoto/local/devel/github/moltypes/lib -L/home/yamamoto/local/devel/github/moltypes/lib conftest.c -lz -ldl -lm  >&5
 icc: 警告 #10237: -lcilkrts はダイナミックにリンクされました。スタティック・ライブラリーは利用できません。
-/tmp/iccMEAYo2.o: In function `main':
+/tmp/iccnXri2L.o: In function `main':
 conftest.c:(.text+0x32): undefined reference to `gettextinfo'
 configure:28117: $? = 1
 configure: failed program was:
@@ -3514,7 +3514,7 @@ configure:28117: result: no
 configure:28133: checking for GetConsoleScreenBufferInfo
 configure:28133: icc -o conftest     -O3 -xHost -ip -no-prec-div -static-intel -fPIC -D_GNU_SOURCE -D_POSIX_C_SOURCE=200112L     -I/home/yamamoto/local/devel/github/moltypes/include -I/home/yamamoto/local/devel/github/moltypes/include  -L/home/yamamoto/local/devel/github/moltypes/lib -L/home/yamamoto/local/devel/github/moltypes/lib conftest.c -lz -ldl -lm  >&5
 icc: 警告 #10237: -lcilkrts はダイナミックにリンクされました。スタティック・ライブラリーは利用できません。
-/tmp/icciNRcpp.o: In function `main':
+/tmp/iccOqYTbc.o: In function `main':
 conftest.c:(.text+0x32): undefined reference to `GetConsoleScreenBufferInfo'
 configure:28133: $? = 1
 configure: failed program was:
@@ -3673,7 +3673,7 @@ configure:28133: result: yes
 configure:28147: checking for _scrsize
 configure:28147: icc -o conftest     -O3 -xHost -ip -no-prec-div -static-intel -fPIC -D_GNU_SOURCE -D_POSIX_C_SOURCE=200112L     -I/home/yamamoto/local/devel/github/moltypes/include -I/home/yamamoto/local/devel/github/moltypes/include  -L/home/yamamoto/local/devel/github/moltypes/lib -L/home/yamamoto/local/devel/github/moltypes/lib conftest.c -lz -ldl -lm  >&5
 icc: 警告 #10237: -lcilkrts はダイナミックにリンクされました。スタティック・ライブラリーは利用できません。
-/tmp/iccNt9uU8.o: In function `main':
+/tmp/icc6PVqHV.o: In function `main':
 conftest.c:(.text+0x32): undefined reference to `_scrsize'
 configure:28147: $? = 1
 configure: failed program was:
@@ -4097,7 +4097,7 @@ configure:28285: result: yes
 configure:28299: checking for library containing clock_gettime
 configure:28338: icc -o conftest     -O3 -xHost -ip -no-prec-div -static-intel -fPIC -D_GNU_SOURCE -D_POSIX_C_SOURCE=200112L     -I/home/yamamoto/local/devel/github/moltypes/include -I/home/yamamoto/local/devel/github/moltypes/include  -L/home/yamamoto/local/devel/github/moltypes/lib -L/home/yamamoto/local/devel/github/moltypes/lib conftest.c -lz -ldl -lm  >&5
 icc: 警告 #10237: -lcilkrts はダイナミックにリンクされました。スタティック・ライブラリーは利用できません。
-/tmp/iccoRdMaS.o: In function `main':
+/tmp/icciEe7pD.o: In function `main':
 conftest.c:(.text+0x30): undefined reference to `clock_gettime'
 configure:28338: $? = 1
 configure: failed program was:
@@ -4305,7 +4305,7 @@ configure:28390: result: yes
 configure:28390: checking for setsysinfo
 configure:28390: icc -o conftest     -O3 -xHost -ip -no-prec-div -static-intel -fPIC -D_GNU_SOURCE -D_POSIX_C_SOURCE=200112L     -I/home/yamamoto/local/devel/github/moltypes/include -I/home/yamamoto/local/devel/github/moltypes/include  -L/home/yamamoto/local/devel/github/moltypes/lib -L/home/yamamoto/local/devel/github/moltypes/lib conftest.c -lrt -lz -ldl -lm  >&5
 icc: 警告 #10237: -lcilkrts はダイナミックにリンクされました。スタティック・ライブラリーは利用できません。
-/tmp/iccGWXLCi.o: In function `main':
+/tmp/icc0jSUbU.o: In function `main':
 conftest.c:(.text+0x32): undefined reference to `setsysinfo'
 configure:28390: $? = 1
 configure: failed program was:
@@ -4497,7 +4497,7 @@ configure:28402: result: yes
 configure:28402: checking for sigsetjmp
 configure:28402: icc -o conftest     -O3 -xHost -ip -no-prec-div -static-intel -fPIC -D_GNU_SOURCE -D_POSIX_C_SOURCE=200112L     -I/home/yamamoto/local/devel/github/moltypes/include -I/home/yamamoto/local/devel/github/moltypes/include  -L/home/yamamoto/local/devel/github/moltypes/lib -L/home/yamamoto/local/devel/github/moltypes/lib conftest.c -lrt -lz -ldl -lm  >&5
 icc: 警告 #10237: -lcilkrts はダイナミックにリンクされました。スタティック・ライブラリーは利用できません。
-/tmp/iccIpbMsf.o: In function `main':
+/tmp/iccnwLSIR.o: In function `main':
 conftest.c:(.text+0x3d): undefined reference to `sigsetjmp'
 configure:28402: $? = 1
 configure: failed program was:
@@ -6194,7 +6194,7 @@ CCDEPMODE='depmode=gcc3'
 CC_VERSION='/opt/intel/compilers_and_libraries_2018.1.163/linux/bin/intel64/icc'
 CFLAGS='-O3 -xHost -ip -no-prec-div -static-intel -fPIC'
 CODESTACK='no'
-CONFIG_DATE='Mon May 21 06:34:22 JST 2018'
+CONFIG_DATE='Tue May 22 19:07:06 JST 2018'
 CONFIG_MODE=''
 CONFIG_USER='yymmt@yymmt.kuchem.kyoto-u.ac.jp'
 CPP='icc -E'

@@ -291,9 +291,9 @@ contains
     case('netcdf','nc')
       if(fpath%isnotExist().or.lo)then
         call GenerateAmberNetcdf(fpath%is(),this%natm, &
-           &                     allocated(this%xyz),allocated(this%vel), &
-           &                     allocated(this%frc),allocated(this%box), &
-           &                     allocated(this%ang),allocated(this%time))
+           &   allocated(this%xyz),allocated(this%vel), &
+           &   allocated(this%frc),allocated(this%box), &
+           &   allocated(this%ang),allocated(this%time))
       endif
       call ExportAmberNetcdf(fpath%is(),this%natm,this%nframe,    &
          &                   this%xyz,this%vel,this%frc,             &

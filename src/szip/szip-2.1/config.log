@@ -636,7 +636,7 @@ conftest.c(53): warning #2959: function prototype is missing the argument types
   main ()
   ^
 
-/tmp/iccFmcGWr.o: In function `main':
+/tmp/iccru04PD.o: In function `main':
 conftest.c:(.text+0x32): undefined reference to `shl_load'
 configure:9568: $? = 1
 configure: failed program was:
@@ -1041,7 +1041,7 @@ conftest.c(58): warning #2959: function prototype is missing the argument types
   main ()
   ^
 
-/tmp/iccdW6jkv.o: In function `main':
+/tmp/iccn7tzwC.o: In function `main':
 conftest.c:(.text+0x32): undefined reference to `_doprnt'
 configure:20337: $? = 1
 configure: failed program was:

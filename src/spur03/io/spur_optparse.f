@@ -92,17 +92,18 @@ contains
     if(this%use_help) call this%add_option(opt_help,help=desc_help)
     if(this%use_vern) call this%add_option(opt_vern,help=desc_vern)
 !
-    sft = 1
+    sft = 0
     do j=1,carg%size()
       pnt = HMhash32(this,trim(carg%at(j)))
       if(.not.allocated(this%node(pnt)%opt)) CYCLE
       this%node(pnt)%isexist = .TRUE.
+      sft = j
       do i=j+1,minval([j+this%node(pnt)%narg,carg%size()],1)
         call this%node(pnt)%arg%push(carg%at(i))
         sft = i
       enddo
     enddo
-    do i=sft,carg%size()
+    do i=sft+1,carg%size()
       call this%arg%push(carg%at(i))
       this%mxl = maxval([this%mxl,len_trim(carg%at(i))],1)
     enddo
@@ -218,11 +219,12 @@ contains
     end subroutine nodeinit
   end subroutine OptAdd
 !
-  subroutine OptPrintUsage(this)
-  class(optparse)          :: this
-  type(vector_chr)         :: list
-  character(:),allocatable :: indent
-  integer                  :: i,j,k
+  subroutine OptPrintUsage(this,stat)
+  class(optparse)             :: this
+  integer,intent(in),optional :: stat
+  type(vector_chr)            :: list
+  character(:),allocatable    :: indent
+  integer                     :: i,j,k
     if(this%unset) call this%parser()
     if(allocated(this%desc)) call this%dat%puts(this%srpt//" :: "//this%desc)
     allocate(character(0)::indent)
@@ -242,11 +244,14 @@ contains
       indent(:) = '       '//this%optlist%at(i)
       call this%dat%puts(indent//" : "//trim(this%help%at(i)))
     enddo
+    if(present(stat)) call exit(stat)
   end subroutine OptPrintUsage
 !
-  subroutine OptPrintVersion(this)
+  subroutine OptPrintVersion(this,stat)
   class(optparse),intent(inout) :: this
+  integer,intent(in),optional   :: stat
     call this%dat%puts(this%srpt//' : '//this%vern)
+    if(present(stat)) call exit(stat)
   end subroutine OptPrintVersion
 !
   elemental function optoption(this,str) result(res)
@@ -435,7 +440,7 @@ contains
     do i=1,this%stack
       res = modulo(abs(res),this%stack)+1
       if(this%node(res)%opt==key) RETURN
-      if(.not.allocated(this%node))   RETURN
+      if(.not.allocated(this%node(res)%opt))   RETURN
     enddo
   end function HMhash32
 !

@@ -63,8 +63,7 @@ contains
       if(CheckAbort(this,is/=0,IO_MKDIRERR,this%is()))RETURN
     endif
 !
-    mode = IOR(nf90_clobber,nf90_64bit_offset)
-    this%io = nf90_create(this%Is(),cmode=mode,ncid=this%ncid)
+    this%io = nf90_create(this%is(),cmode=nf90_clobber,ncid=this%ncid)
     if(CheckAbort(this,ierr=IO_OPENERR,filename=this%is()))RETURN
     this%stat = IO_DEFINING
   end subroutine NcGenerate

@@ -100,22 +100,22 @@ POST_UNINSTALL = :
 build_triplet = x86_64-pc-linux-gnu
 host_triplet = x86_64-pc-linux-gnu
 target_triplet = x86_64-pc-linux-gnu
-am__append_1 = -I${top_srcdir}/oc2
+#am__append_1 = -I${top_srcdir}/oc2
 check_PROGRAMS = $(am__EXEEXT_1) $(am__EXEEXT_2)
 
 # WARNING: these are unit tests, so they will not
 # appear in CMakeLists.txt
-am__append_2 = test_parse test_meta test_data
-am__append_3 = test_parse.sh
+#am__append_2 = test_parse test_meta test_data
+#am__append_3 = test_parse.sh
 
 # These rely on ncdump
-am__append_4 = test_raw.sh \
-	test_meta.sh \
-	test_data.sh
+#am__append_4 = test_raw.sh \
+#	test_meta.sh \
+#	test_data.sh
 
 # Note: This program name was changed to findtestserver4
 # to avoid cmake complaint about duplicate targets.
-am__append_5 = findtestserver4
+##am__append_5 = findtestserver4
 subdir = dap4_test
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
@@ -129,11 +129,11 @@ mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
-am__EXEEXT_1 = test_parse$(EXEEXT) \
-	test_meta$(EXEEXT) test_data$(EXEEXT)
-am__EXEEXT_2 = findtestserver4$(EXEEXT)
+#am__EXEEXT_1 = test_parse$(EXEEXT) \
+#	test_meta$(EXEEXT) test_data$(EXEEXT)
+##am__EXEEXT_2 = findtestserver4$(EXEEXT)
 am__findtestserver4_SOURCES_DIST = findtestserver4.c
-am_findtestserver4_OBJECTS = findtestserver4.$(OBJEXT)
+##am_findtestserver4_OBJECTS = findtestserver4.$(OBJEXT)
 findtestserver4_OBJECTS = $(am_findtestserver4_OBJECTS)
 findtestserver4_LDADD = $(LDADD)
 findtestserver4_DEPENDENCIES = ${top_builddir}/liblib/libnetcdf.la
@@ -142,17 +142,17 @@ am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
 am__v_lt_0 = --silent
 am__v_lt_1 = 
 am__test_data_SOURCES_DIST = test_data.c test_common.h
-am_test_data_OBJECTS = test_data.$(OBJEXT)
+#am_test_data_OBJECTS = test_data.$(OBJEXT)
 test_data_OBJECTS = $(am_test_data_OBJECTS)
 test_data_LDADD = $(LDADD)
 test_data_DEPENDENCIES = ${top_builddir}/liblib/libnetcdf.la
 am__test_meta_SOURCES_DIST = test_meta.c test_common.h
-am_test_meta_OBJECTS = test_meta.$(OBJEXT)
+#am_test_meta_OBJECTS = test_meta.$(OBJEXT)
 test_meta_OBJECTS = $(am_test_meta_OBJECTS)
 test_meta_LDADD = $(LDADD)
 test_meta_DEPENDENCIES = ${top_builddir}/liblib/libnetcdf.la
 am__test_parse_SOURCES_DIST = test_parse.c test_common.h
-am_test_parse_OBJECTS = test_parse.$(OBJEXT)
+#am_test_parse_OBJECTS = test_parse.$(OBJEXT)
 test_parse_OBJECTS = $(am_test_parse_OBJECTS)
 test_parse_LDADD = $(LDADD)
 test_parse_DEPENDENCIES = ${top_builddir}/liblib/libnetcdf.la
@@ -444,7 +444,7 @@ CC = icc
 CCDEPMODE = depmode=gcc3
 CC_VERSION = /opt/intel/compilers_and_libraries_2018.1.163/linux/bin/intel64/icc
 CFLAGS = -O3 -xHost -ip -no-prec-div -static-intel -Difort -fPIC
-CONFIG_DATE = Mon May 21 09:57:46 JST 2018
+CONFIG_DATE = Tue May 22 20:24:17 JST 2018
 CPP = icc -E
 CPPFLAGS = -I/home/yamamoto/local/devel/github/moltypes/include -fPIC
 CYGPATH_W = echo
@@ -467,9 +467,9 @@ EXEEXT =
 FGREP = /bin/grep -F
 GREP = /bin/grep
 HAS_CDF5 = yes
-HAS_DAP = yes
-HAS_DAP2 = yes
-HAS_DAP4 = yes
+HAS_DAP = no
+HAS_DAP2 = no
+HAS_DAP4 = no
 HAS_DISKLESS = yes
 HAS_ERANGE_FILL = no
 HAS_HDF4 = no
@@ -507,8 +507,8 @@ MKDIR_P = /bin/mkdir -p
 MSVC = 
 NC_ENABLE_DOXYGEN_PDF_OUTPUT = 
 NC_HAS_CDF5 = 1
-NC_HAS_DAP2 = 1
-NC_HAS_DAP4 = 1
+NC_HAS_DAP2 = 0
+NC_HAS_DAP4 = 0
 NC_HAS_DISKLESS = 1
 NC_HAS_ERANGE_FILL = 0
 NC_HAS_HDF4 = 0
@@ -615,10 +615,10 @@ AM_TESTS_ENVIRONMENT = export TOPSRCDIR=${abs_top_srcdir}; export TOPBUILDDIR=${
 TEST_EXTENSIONS = .sh
 LDADD = ${top_builddir}/liblib/libnetcdf.la
 TESTS = $(am__append_3) $(am__append_4)
-test_parse_SOURCES = test_parse.c test_common.h
-test_meta_SOURCES = test_meta.c test_common.h
-test_data_SOURCES = test_data.c test_common.h
-findtestserver4_SOURCES = findtestserver4.c
+#test_parse_SOURCES = test_parse.c test_common.h
+#test_meta_SOURCES = test_meta.c test_common.h
+#test_data_SOURCES = test_data.c test_common.h
+##findtestserver4_SOURCES = findtestserver4.c
 #TESTS += test_remote.sh
 EXTRA_DIST = test_parse.sh test_meta.sh test_data.sh \
              test_raw.sh test_remote.sh test_hyrax.sh \
@@ -1121,11 +1121,11 @@ uninstall-am:
 
 
 # Note which tests depend on other tests. Necessary for make -j check.
-test_raw.log: test_parse.log
-test_meta.log: test_raw.log
-test_data.log: test_meta.log
-  # relies on ncdump
-  # Disabled until the testserver is stable
+#test_raw.log: test_parse.log
+#test_meta.log: test_raw.log
+#test_data.log: test_meta.log
+##  # relies on ncdump
+##  # Disabled until the testserver is stable
 
 .daprc:
 	echo "#DAPRC" >.daprc

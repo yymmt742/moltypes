@@ -81,7 +81,7 @@
 #define HAVE_NETCDF_H 1
 
 /* Define to 1 if you have the `oc_open' function. */
-#define HAVE_OC_OPEN 1
+/* #undef HAVE_OC_OPEN */
 
 /* Define to 1 if the system has the type `ptrdiff_t'. */
 #define HAVE_PTRDIFF_T 1

@@ -104,7 +104,7 @@
 +++ ncgenc04=/home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/c0_4.cdl
 +++ cd /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump
 ++ set -e
-++ RESULTSDIR=./results_15024
+++ RESULTSDIR=./results_30479
 ++ cdl=/home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl
 ++ expected=/home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/expected
 ++ case "x${KFLAG}" in
@@ -130,7 +130,7 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 ++ failcount=0
 ++ passcount=0
 ++ xfailcount=0
-++ rm -fr ./results_15024
+++ rm -fr ./results_30479
 + ALLXFAIL='ref_tst_chardata ref_const_test ref_tst_unlim2  ref_tst_special_atts3 ref_tst_special_atts'
 + test 3 = 3
 + test 1 = 4
@@ -138,8 +138,8 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimtest1 ref_keyword'
 + echo '*** Testing ncgen with -k1'
 *** Testing ncgen with -k1
-+ mkdir ./results_15024
-+ cd ./results_15024
++ mkdir ./results_30479
++ cd ./results_30479
 + for x in '${TESTSET}'
 + test 0 = 1
 + specflag=
@@ -160,8 +160,8 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${ALLXFAIL}'
 + test xref_tst_special_atts = xnc_enddef
 + rm -f nc_enddef.nc nc_enddef.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o nc_enddef_15024.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/nc_enddef.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n nc_enddef nc_enddef_15024.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o nc_enddef_30479.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/nc_enddef.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n nc_enddef nc_enddef_30479.nc
 + sed s/e+0/e+/g
 + test x = x1 -a x = x
 + diff -b -w /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/expected/nc_enddef.dmp nc_enddef.dmp
@@ -190,9 +190,9 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${ALLXFAIL}'
 + test xref_tst_special_atts = xref_tst_unicode
 + rm -f ref_tst_unicode.nc ref_tst_unicode.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_unicode_15024.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_tst_unicode.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_unicode ref_tst_unicode_15024.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_unicode_30479.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_tst_unicode.cdl
 + sed s/e+0/e+/g
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_unicode ref_tst_unicode_30479.nc
 + test x = x1 -a x = x
 + diff -b -w /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/expected/ref_tst_unicode.dmp ref_tst_unicode.dmp
 + ok=1
@@ -220,8 +220,8 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${ALLXFAIL}'
 + test xref_tst_special_atts = xref_tst_utf8
 + rm -f ref_tst_utf8.nc ref_tst_utf8.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_utf8_15024.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_tst_utf8.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_utf8 ref_tst_utf8_15024.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_utf8_30479.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_tst_utf8.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_utf8 ref_tst_utf8_30479.nc
 + sed s/e+0/e+/g
 + test x = x1 -a x = x
 + diff -b -w /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/expected/ref_tst_utf8.dmp ref_tst_utf8.dmp
@@ -250,8 +250,8 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${ALLXFAIL}'
 + test xref_tst_special_atts = xsimple_xy
 + rm -f simple_xy.nc simple_xy.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o simple_xy_15024.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/simple_xy.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n simple_xy simple_xy_15024.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o simple_xy_30479.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/simple_xy.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n simple_xy simple_xy_30479.nc
 + sed s/e+0/e+/g
 + test x = x1 -a x = x
 + diff -b -w /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/expected/simple_xy.dmp simple_xy.dmp
@@ -280,8 +280,8 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${ALLXFAIL}'
 + test xref_tst_special_atts = xsmall
 + rm -f small.nc small.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o small_15024.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/small.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n small small_15024.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o small_30479.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/small.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n small small_30479.nc
 + sed s/e+0/e+/g
 + test x = x1 -a x = x
 + diff -b -w /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/expected/small.dmp small.dmp
@@ -310,9 +310,9 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${ALLXFAIL}'
 + test xref_tst_special_atts = xnc_sync
 + rm -f nc_sync.nc nc_sync.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o nc_sync_15024.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/nc_sync.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n nc_sync nc_sync_15024.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o nc_sync_30479.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/nc_sync.cdl
 + sed s/e+0/e+/g
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n nc_sync nc_sync_30479.nc
 + test x = x1 -a x = x
 + diff -b -w /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/expected/nc_sync.dmp nc_sync.dmp
 + ok=1
@@ -340,9 +340,9 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${ALLXFAIL}'
 + test xref_tst_special_atts = xref_tst_small
 + rm -f ref_tst_small.nc ref_tst_small.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_small_15024.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_tst_small.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_small ref_tst_small_15024.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_small_30479.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_tst_small.cdl
 + sed s/e+0/e+/g
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_small ref_tst_small_30479.nc
 + test x = x1 -a x = x
 + diff -b -w /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/expected/ref_tst_small.dmp ref_tst_small.dmp
 + ok=1
@@ -370,8 +370,8 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${ALLXFAIL}'
 + test xref_tst_special_atts = xsmall2
 + rm -f small2.nc small2.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o small2_15024.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/small2.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n small2 small2_15024.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o small2_30479.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/small2.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n small2 small2_30479.nc
 + sed s/e+0/e+/g
 + test x = x1 -a x = x
 + diff -b -w /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/expected/small2.dmp small2.dmp
@@ -400,9 +400,9 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${ALLXFAIL}'
 + test xref_tst_special_atts = xtst_ncml
 + rm -f tst_ncml.nc tst_ncml.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o tst_ncml_15024.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/tst_ncml.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n tst_ncml tst_ncml_15024.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o tst_ncml_30479.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/tst_ncml.cdl
 + sed s/e+0/e+/g
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n tst_ncml tst_ncml_30479.nc
 + test x = x1 -a x = x
 + diff -b -w /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/expected/tst_ncml.dmp tst_ncml.dmp
 + ok=1
@@ -430,8 +430,8 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${ALLXFAIL}'
 + test xref_tst_special_atts = xn3time
 + rm -f n3time.nc n3time.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o n3time_15024.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/n3time.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n n3time n3time_15024.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o n3time_30479.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/n3time.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n n3time n3time_30479.nc
 + sed s/e+0/e+/g
 + test x = x1 -a x = x
 + diff -b -w /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/expected/n3time.dmp n3time.dmp
@@ -461,9 +461,9 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${ALLXFAIL}'
 + test xref_tst_special_atts = xref_tst_chardata
 + rm -f ref_tst_chardata.nc ref_tst_chardata.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_chardata_15024.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_tst_chardata.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_chardata ref_tst_chardata_15024.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_chardata_30479.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_tst_chardata.cdl
 + sed s/e+0/e+/g
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_chardata ref_tst_chardata_30479.nc
 + test x1 = x1 -a x = x
 + diff -b -bw /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/expected/ref_tst_chardata.dmp ref_tst_chardata.dmp
 + ok=0
@@ -493,9 +493,9 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${ALLXFAIL}'
 + test xref_tst_special_atts = xref_tst_nul3
 + rm -f ref_tst_nul3.nc ref_tst_nul3.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_nul3_15024.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_tst_nul3.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_nul3 ref_tst_nul3_15024.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_nul3_30479.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_tst_nul3.cdl
 + sed s/e+0/e+/g
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_nul3 ref_tst_nul3_30479.nc
 + test x = x1 -a x = x
 + diff -b -w /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/expected/ref_tst_nul3.dmp ref_tst_nul3.dmp
 + ok=1
@@ -523,8 +523,8 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${ALLXFAIL}'
 + test xref_tst_special_atts = xref_tst_long_charconst
 + rm -f ref_tst_long_charconst.nc ref_tst_long_charconst.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_long_charconst_15024.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_tst_long_charconst.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_long_charconst ref_tst_long_charconst_15024.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_long_charconst_30479.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_tst_long_charconst.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_long_charconst ref_tst_long_charconst_30479.nc
 + sed s/e+0/e+/g
 + test x = x1 -a x = x
 + diff -b -w /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/expected/ref_tst_long_charconst.dmp ref_tst_long_charconst.dmp
@@ -553,9 +553,9 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${ALLXFAIL}'
 + test xref_tst_special_atts = xtst_chararray
 + rm -f tst_chararray.nc tst_chararray.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o tst_chararray_15024.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/tst_chararray.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o tst_chararray_30479.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/tst_chararray.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n tst_chararray tst_chararray_30479.nc
 + sed s/e+0/e+/g
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n tst_chararray tst_chararray_15024.nc
 + test x = x1 -a x = x
 + diff -b -w /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/expected/tst_chararray.dmp tst_chararray.dmp
 + ok=1
@@ -583,8 +583,8 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${ALLXFAIL}'
 + test xref_tst_special_atts = xunlimtest1
 + rm -f unlimtest1.nc unlimtest1.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o unlimtest1_15024.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/unlimtest1.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n unlimtest1 unlimtest1_15024.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o unlimtest1_30479.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/unlimtest1.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n unlimtest1 unlimtest1_30479.nc
 + sed s/e+0/e+/g
 + test x = x1 -a x = x
 + diff -b -w /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/expected/unlimtest1.dmp unlimtest1.dmp
@@ -613,8 +613,8 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${ALLXFAIL}'
 + test xref_tst_special_atts = xref_keyword
 + rm -f ref_keyword.nc ref_keyword.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_keyword_15024.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_keyword.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_keyword ref_keyword_15024.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_keyword_30479.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_keyword.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_keyword ref_keyword_30479.nc
 + sed s/e+0/e+/g
 + test x = x1 -a x = x
 + diff -b -w /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/expected/ref_keyword.dmp ref_keyword.dmp
@@ -630,7 +630,7 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + okcount=16
 + echo '*** PASSED: 16/16 ; 1 expected failures ; 0 unexpected failures'
 *** PASSED: 16/16 ; 1 expected failures ; 0 unexpected failures
-+ rm -rf ./results_15024
++ rm -rf ./results_30479
 + test 0 -gt 0
 + exit 0
 + test x/home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump = x
@@ -737,7 +737,7 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 +++ ncgenc04=/home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/c0_4.cdl
 +++ cd /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump
 ++ set -e
-++ RESULTSDIR=./results_15560
+++ RESULTSDIR=./results_31016
 ++ cdl=/home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl
 ++ expected=/home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/expected
 ++ case "x${KFLAG}" in
@@ -763,15 +763,15 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 ++ failcount=0
 ++ passcount=0
 ++ xfailcount=0
-++ rm -fr ./results_15560
+++ rm -fr ./results_31016
 + test 3 = 3
 + TESTSET='nc_enddef ref_tst_unicode ref_tst_utf8 simple_xy small nc_sync ref_tst_small small2 tst_ncml
 n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimtest1 ref_keyword bigf1 bigf2 bigr1 bigr2 '
 + test 1 = 4
 + echo '*** Cycle testing ncgen with -k1'
 *** Cycle testing ncgen with -k1
-+ mkdir ./results_15560
-+ cd ./results_15560
++ mkdir ./results_31016
++ cd ./results_31016
 + for x in '${TESTSET}'
 + test x0 = x1
 + specflag=
@@ -788,15 +788,15 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${XFAILTESTS}'
 + test xref_tst_unlim2 = xnc_enddef
 + test 0 = 1
-+ rm -f nc_enddef_15560.nc nc_enddef_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o nc_enddef_15560.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/nc_enddef.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n nc_enddef nc_enddef_15560.nc
-+ rm -f nc_enddef_15560.nc
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o nc_enddef_15560.nc nc_enddef_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n nc_enddef nc_enddef_15560.nc
-+ diff -b -w nc_enddef_15560.dmp nc_enddef_15560.dmp2
++ rm -f nc_enddef_31016.nc nc_enddef_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o nc_enddef_31016.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/nc_enddef.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n nc_enddef nc_enddef_31016.nc
++ rm -f nc_enddef_31016.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o nc_enddef_31016.nc nc_enddef_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n nc_enddef nc_enddef_31016.nc
++ diff -b -w nc_enddef_31016.dmp nc_enddef_31016.dmp2
 + ok=1
-+ rm -f nc_enddef_15560.nc nc_enddef_15560.dmp
++ rm -f nc_enddef_31016.nc nc_enddef_31016.dmp
 + test x1 = x1
 + test x0 = x1
 ++ expr 0 + 1
@@ -817,15 +817,15 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${XFAILTESTS}'
 + test xref_tst_unlim2 = xref_tst_unicode
 + test 0 = 1
-+ rm -f ref_tst_unicode_15560.nc ref_tst_unicode_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_unicode_15560.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_tst_unicode.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_unicode ref_tst_unicode_15560.nc
-+ rm -f ref_tst_unicode_15560.nc
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_unicode_15560.nc ref_tst_unicode_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_unicode ref_tst_unicode_15560.nc
-+ diff -b -w ref_tst_unicode_15560.dmp ref_tst_unicode_15560.dmp2
++ rm -f ref_tst_unicode_31016.nc ref_tst_unicode_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_unicode_31016.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_tst_unicode.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_unicode ref_tst_unicode_31016.nc
++ rm -f ref_tst_unicode_31016.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_unicode_31016.nc ref_tst_unicode_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_unicode ref_tst_unicode_31016.nc
++ diff -b -w ref_tst_unicode_31016.dmp ref_tst_unicode_31016.dmp2
 + ok=1
-+ rm -f ref_tst_unicode_15560.nc ref_tst_unicode_15560.dmp
++ rm -f ref_tst_unicode_31016.nc ref_tst_unicode_31016.dmp
 + test x1 = x1
 + test x0 = x1
 ++ expr 1 + 1
@@ -846,15 +846,15 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${XFAILTESTS}'
 + test xref_tst_unlim2 = xref_tst_utf8
 + test 0 = 1
-+ rm -f ref_tst_utf8_15560.nc ref_tst_utf8_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_utf8_15560.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_tst_utf8.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_utf8 ref_tst_utf8_15560.nc
-+ rm -f ref_tst_utf8_15560.nc
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_utf8_15560.nc ref_tst_utf8_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_utf8 ref_tst_utf8_15560.nc
-+ diff -b -w ref_tst_utf8_15560.dmp ref_tst_utf8_15560.dmp2
++ rm -f ref_tst_utf8_31016.nc ref_tst_utf8_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_utf8_31016.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_tst_utf8.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_utf8 ref_tst_utf8_31016.nc
++ rm -f ref_tst_utf8_31016.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_utf8_31016.nc ref_tst_utf8_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_utf8 ref_tst_utf8_31016.nc
++ diff -b -w ref_tst_utf8_31016.dmp ref_tst_utf8_31016.dmp2
 + ok=1
-+ rm -f ref_tst_utf8_15560.nc ref_tst_utf8_15560.dmp
++ rm -f ref_tst_utf8_31016.nc ref_tst_utf8_31016.dmp
 + test x1 = x1
 + test x0 = x1
 ++ expr 2 + 1
@@ -875,15 +875,15 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${XFAILTESTS}'
 + test xref_tst_unlim2 = xsimple_xy
 + test 0 = 1
-+ rm -f simple_xy_15560.nc simple_xy_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o simple_xy_15560.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/simple_xy.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n simple_xy simple_xy_15560.nc
-+ rm -f simple_xy_15560.nc
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o simple_xy_15560.nc simple_xy_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n simple_xy simple_xy_15560.nc
-+ diff -b -w simple_xy_15560.dmp simple_xy_15560.dmp2
++ rm -f simple_xy_31016.nc simple_xy_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o simple_xy_31016.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/simple_xy.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n simple_xy simple_xy_31016.nc
++ rm -f simple_xy_31016.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o simple_xy_31016.nc simple_xy_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n simple_xy simple_xy_31016.nc
++ diff -b -w simple_xy_31016.dmp simple_xy_31016.dmp2
 + ok=1
-+ rm -f simple_xy_15560.nc simple_xy_15560.dmp
++ rm -f simple_xy_31016.nc simple_xy_31016.dmp
 + test x1 = x1
 + test x0 = x1
 ++ expr 3 + 1
@@ -904,15 +904,15 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${XFAILTESTS}'
 + test xref_tst_unlim2 = xsmall
 + test 0 = 1
-+ rm -f small_15560.nc small_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o small_15560.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/small.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n small small_15560.nc
-+ rm -f small_15560.nc
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o small_15560.nc small_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n small small_15560.nc
-+ diff -b -w small_15560.dmp small_15560.dmp2
++ rm -f small_31016.nc small_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o small_31016.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/small.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n small small_31016.nc
++ rm -f small_31016.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o small_31016.nc small_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n small small_31016.nc
++ diff -b -w small_31016.dmp small_31016.dmp2
 + ok=1
-+ rm -f small_15560.nc small_15560.dmp
++ rm -f small_31016.nc small_31016.dmp
 + test x1 = x1
 + test x0 = x1
 ++ expr 4 + 1
@@ -933,15 +933,15 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${XFAILTESTS}'
 + test xref_tst_unlim2 = xnc_sync
 + test 0 = 1
-+ rm -f nc_sync_15560.nc nc_sync_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o nc_sync_15560.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/nc_sync.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n nc_sync nc_sync_15560.nc
-+ rm -f nc_sync_15560.nc
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o nc_sync_15560.nc nc_sync_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n nc_sync nc_sync_15560.nc
-+ diff -b -w nc_sync_15560.dmp nc_sync_15560.dmp2
++ rm -f nc_sync_31016.nc nc_sync_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o nc_sync_31016.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/nc_sync.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n nc_sync nc_sync_31016.nc
++ rm -f nc_sync_31016.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o nc_sync_31016.nc nc_sync_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n nc_sync nc_sync_31016.nc
++ diff -b -w nc_sync_31016.dmp nc_sync_31016.dmp2
 + ok=1
-+ rm -f nc_sync_15560.nc nc_sync_15560.dmp
++ rm -f nc_sync_31016.nc nc_sync_31016.dmp
 + test x1 = x1
 + test x0 = x1
 ++ expr 5 + 1
@@ -962,15 +962,15 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${XFAILTESTS}'
 + test xref_tst_unlim2 = xref_tst_small
 + test 0 = 1
-+ rm -f ref_tst_small_15560.nc ref_tst_small_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_small_15560.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_tst_small.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_small ref_tst_small_15560.nc
-+ rm -f ref_tst_small_15560.nc
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_small_15560.nc ref_tst_small_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_small ref_tst_small_15560.nc
-+ diff -b -w ref_tst_small_15560.dmp ref_tst_small_15560.dmp2
++ rm -f ref_tst_small_31016.nc ref_tst_small_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_small_31016.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_tst_small.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_small ref_tst_small_31016.nc
++ rm -f ref_tst_small_31016.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_small_31016.nc ref_tst_small_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_small ref_tst_small_31016.nc
++ diff -b -w ref_tst_small_31016.dmp ref_tst_small_31016.dmp2
 + ok=1
-+ rm -f ref_tst_small_15560.nc ref_tst_small_15560.dmp
++ rm -f ref_tst_small_31016.nc ref_tst_small_31016.dmp
 + test x1 = x1
 + test x0 = x1
 ++ expr 6 + 1
@@ -991,15 +991,15 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${XFAILTESTS}'
 + test xref_tst_unlim2 = xsmall2
 + test 0 = 1
-+ rm -f small2_15560.nc small2_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o small2_15560.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/small2.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n small2 small2_15560.nc
-+ rm -f small2_15560.nc
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o small2_15560.nc small2_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n small2 small2_15560.nc
-+ diff -b -w small2_15560.dmp small2_15560.dmp2
++ rm -f small2_31016.nc small2_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o small2_31016.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/small2.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n small2 small2_31016.nc
++ rm -f small2_31016.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o small2_31016.nc small2_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n small2 small2_31016.nc
++ diff -b -w small2_31016.dmp small2_31016.dmp2
 + ok=1
-+ rm -f small2_15560.nc small2_15560.dmp
++ rm -f small2_31016.nc small2_31016.dmp
 + test x1 = x1
 + test x0 = x1
 ++ expr 7 + 1
@@ -1020,15 +1020,15 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${XFAILTESTS}'
 + test xref_tst_unlim2 = xtst_ncml
 + test 0 = 1
-+ rm -f tst_ncml_15560.nc tst_ncml_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o tst_ncml_15560.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/tst_ncml.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n tst_ncml tst_ncml_15560.nc
-+ rm -f tst_ncml_15560.nc
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o tst_ncml_15560.nc tst_ncml_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n tst_ncml tst_ncml_15560.nc
-+ diff -b -w tst_ncml_15560.dmp tst_ncml_15560.dmp2
++ rm -f tst_ncml_31016.nc tst_ncml_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o tst_ncml_31016.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/tst_ncml.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n tst_ncml tst_ncml_31016.nc
++ rm -f tst_ncml_31016.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o tst_ncml_31016.nc tst_ncml_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n tst_ncml tst_ncml_31016.nc
++ diff -b -w tst_ncml_31016.dmp tst_ncml_31016.dmp2
 + ok=1
-+ rm -f tst_ncml_15560.nc tst_ncml_15560.dmp
++ rm -f tst_ncml_31016.nc tst_ncml_31016.dmp
 + test x1 = x1
 + test x0 = x1
 ++ expr 8 + 1
@@ -1049,15 +1049,15 @@ n3time ref_tst_chardata ref_tst_nul3 ref_tst_long_charconst tst_chararray unlimt
 + for t in '${XFAILTESTS}'
 + test xref_tst_unlim2 = xn3time
 + test 0 = 1
-+ rm -f n3time_15560.nc n3time_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o n3time_15560.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/n3time.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n n3time n3time_15560.nc
-+ rm -f n3time_15560.nc
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o n3time_15560.nc n3time_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n n3time n3time_15560.nc
-+ diff -b -w n3time_15560.dmp n3time_15560.dmp2
++ rm -f n3time_31016.nc n3time_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o n3time_31016.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/n3time.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n n3time n3time_31016.nc
++ rm -f n3time_31016.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o n3time_31016.nc n3time_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n n3time n3time_31016.nc
++ diff -b -w n3time_31016.dmp n3time_31016.dmp2
 + ok=1
-+ rm -f n3time_15560.nc n3time_15560.dmp
++ rm -f n3time_31016.nc n3time_31016.dmp
 + test x1 = x1
 + test x0 = x1
 ++ expr 9 + 1
@@ -1099,15 +1099,15 @@ xfail test: ref_tst_chardata: ignored
 + for t in '${XFAILTESTS}'
 + test xref_tst_unlim2 = xref_tst_nul3
 + test 0 = 1
-+ rm -f ref_tst_nul3_15560.nc ref_tst_nul3_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_nul3_15560.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_tst_nul3.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_nul3 ref_tst_nul3_15560.nc
-+ rm -f ref_tst_nul3_15560.nc
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_nul3_15560.nc ref_tst_nul3_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_nul3 ref_tst_nul3_15560.nc
-+ diff -b -w ref_tst_nul3_15560.dmp ref_tst_nul3_15560.dmp2
++ rm -f ref_tst_nul3_31016.nc ref_tst_nul3_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_nul3_31016.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_tst_nul3.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_nul3 ref_tst_nul3_31016.nc
++ rm -f ref_tst_nul3_31016.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_nul3_31016.nc ref_tst_nul3_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_nul3 ref_tst_nul3_31016.nc
++ diff -b -w ref_tst_nul3_31016.dmp ref_tst_nul3_31016.dmp2
 + ok=1
-+ rm -f ref_tst_nul3_15560.nc ref_tst_nul3_15560.dmp
++ rm -f ref_tst_nul3_31016.nc ref_tst_nul3_31016.dmp
 + test x1 = x1
 + test x0 = x1
 ++ expr 10 + 1
@@ -1128,15 +1128,15 @@ xfail test: ref_tst_chardata: ignored
 + for t in '${XFAILTESTS}'
 + test xref_tst_unlim2 = xref_tst_long_charconst
 + test 0 = 1
-+ rm -f ref_tst_long_charconst_15560.nc ref_tst_long_charconst_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_long_charconst_15560.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_tst_long_charconst.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_long_charconst ref_tst_long_charconst_15560.nc
-+ rm -f ref_tst_long_charconst_15560.nc
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_long_charconst_15560.nc ref_tst_long_charconst_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_long_charconst ref_tst_long_charconst_15560.nc
-+ diff -b -w ref_tst_long_charconst_15560.dmp ref_tst_long_charconst_15560.dmp2
++ rm -f ref_tst_long_charconst_31016.nc ref_tst_long_charconst_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_long_charconst_31016.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_tst_long_charconst.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_long_charconst ref_tst_long_charconst_31016.nc
++ rm -f ref_tst_long_charconst_31016.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_tst_long_charconst_31016.nc ref_tst_long_charconst_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_tst_long_charconst ref_tst_long_charconst_31016.nc
++ diff -b -w ref_tst_long_charconst_31016.dmp ref_tst_long_charconst_31016.dmp2
 + ok=1
-+ rm -f ref_tst_long_charconst_15560.nc ref_tst_long_charconst_15560.dmp
++ rm -f ref_tst_long_charconst_31016.nc ref_tst_long_charconst_31016.dmp
 + test x1 = x1
 + test x0 = x1
 ++ expr 11 + 1
@@ -1157,15 +1157,15 @@ xfail test: ref_tst_chardata: ignored
 + for t in '${XFAILTESTS}'
 + test xref_tst_unlim2 = xtst_chararray
 + test 0 = 1
-+ rm -f tst_chararray_15560.nc tst_chararray_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o tst_chararray_15560.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/tst_chararray.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n tst_chararray tst_chararray_15560.nc
-+ rm -f tst_chararray_15560.nc
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o tst_chararray_15560.nc tst_chararray_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n tst_chararray tst_chararray_15560.nc
-+ diff -b -w tst_chararray_15560.dmp tst_chararray_15560.dmp2
++ rm -f tst_chararray_31016.nc tst_chararray_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o tst_chararray_31016.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/tst_chararray.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n tst_chararray tst_chararray_31016.nc
++ rm -f tst_chararray_31016.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o tst_chararray_31016.nc tst_chararray_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n tst_chararray tst_chararray_31016.nc
++ diff -b -w tst_chararray_31016.dmp tst_chararray_31016.dmp2
 + ok=1
-+ rm -f tst_chararray_15560.nc tst_chararray_15560.dmp
++ rm -f tst_chararray_31016.nc tst_chararray_31016.dmp
 + test x1 = x1
 + test x0 = x1
 ++ expr 12 + 1
@@ -1186,15 +1186,15 @@ xfail test: ref_tst_chardata: ignored
 + for t in '${XFAILTESTS}'
 + test xref_tst_unlim2 = xunlimtest1
 + test 0 = 1
-+ rm -f unlimtest1_15560.nc unlimtest1_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o unlimtest1_15560.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/unlimtest1.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n unlimtest1 unlimtest1_15560.nc
-+ rm -f unlimtest1_15560.nc
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o unlimtest1_15560.nc unlimtest1_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n unlimtest1 unlimtest1_15560.nc
-+ diff -b -w unlimtest1_15560.dmp unlimtest1_15560.dmp2
++ rm -f unlimtest1_31016.nc unlimtest1_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o unlimtest1_31016.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/unlimtest1.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n unlimtest1 unlimtest1_31016.nc
++ rm -f unlimtest1_31016.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o unlimtest1_31016.nc unlimtest1_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n unlimtest1 unlimtest1_31016.nc
++ diff -b -w unlimtest1_31016.dmp unlimtest1_31016.dmp2
 + ok=1
-+ rm -f unlimtest1_15560.nc unlimtest1_15560.dmp
++ rm -f unlimtest1_31016.nc unlimtest1_31016.dmp
 + test x1 = x1
 + test x0 = x1
 ++ expr 13 + 1
@@ -1215,15 +1215,15 @@ xfail test: ref_tst_chardata: ignored
 + for t in '${XFAILTESTS}'
 + test xref_tst_unlim2 = xref_keyword
 + test 0 = 1
-+ rm -f ref_keyword_15560.nc ref_keyword_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_keyword_15560.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_keyword.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_keyword ref_keyword_15560.nc
-+ rm -f ref_keyword_15560.nc
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_keyword_15560.nc ref_keyword_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_keyword ref_keyword_15560.nc
-+ diff -b -w ref_keyword_15560.dmp ref_keyword_15560.dmp2
++ rm -f ref_keyword_31016.nc ref_keyword_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_keyword_31016.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/ref_keyword.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_keyword ref_keyword_31016.nc
++ rm -f ref_keyword_31016.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o ref_keyword_31016.nc ref_keyword_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n ref_keyword ref_keyword_31016.nc
++ diff -b -w ref_keyword_31016.dmp ref_keyword_31016.dmp2
 + ok=1
-+ rm -f ref_keyword_15560.nc ref_keyword_15560.dmp
++ rm -f ref_keyword_31016.nc ref_keyword_31016.dmp
 + test x1 = x1
 + test x0 = x1
 ++ expr 14 + 1
@@ -1244,15 +1244,15 @@ xfail test: ref_tst_chardata: ignored
 + for t in '${XFAILTESTS}'
 + test xref_tst_unlim2 = xbigf1
 + test 0 = 1
-+ rm -f bigf1_15560.nc bigf1_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o bigf1_15560.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/bigf1.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n bigf1 bigf1_15560.nc
-+ rm -f bigf1_15560.nc
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o bigf1_15560.nc bigf1_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n bigf1 bigf1_15560.nc
-+ diff -b -w bigf1_15560.dmp bigf1_15560.dmp2
++ rm -f bigf1_31016.nc bigf1_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o bigf1_31016.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/bigf1.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n bigf1 bigf1_31016.nc
++ rm -f bigf1_31016.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o bigf1_31016.nc bigf1_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n bigf1 bigf1_31016.nc
++ diff -b -w bigf1_31016.dmp bigf1_31016.dmp2
 + ok=1
-+ rm -f bigf1_15560.nc bigf1_15560.dmp
++ rm -f bigf1_31016.nc bigf1_31016.dmp
 + test x1 = x1
 + test x0 = x1
 ++ expr 15 + 1
@@ -1273,15 +1273,15 @@ xfail test: ref_tst_chardata: ignored
 + for t in '${XFAILTESTS}'
 + test xref_tst_unlim2 = xbigf2
 + test 0 = 1
-+ rm -f bigf2_15560.nc bigf2_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o bigf2_15560.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/bigf2.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n bigf2 bigf2_15560.nc
-+ rm -f bigf2_15560.nc
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o bigf2_15560.nc bigf2_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n bigf2 bigf2_15560.nc
-+ diff -b -w bigf2_15560.dmp bigf2_15560.dmp2
++ rm -f bigf2_31016.nc bigf2_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o bigf2_31016.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/bigf2.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n bigf2 bigf2_31016.nc
++ rm -f bigf2_31016.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o bigf2_31016.nc bigf2_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n bigf2 bigf2_31016.nc
++ diff -b -w bigf2_31016.dmp bigf2_31016.dmp2
 + ok=1
-+ rm -f bigf2_15560.nc bigf2_15560.dmp
++ rm -f bigf2_31016.nc bigf2_31016.dmp
 + test x1 = x1
 + test x0 = x1
 ++ expr 16 + 1
@@ -1302,15 +1302,15 @@ xfail test: ref_tst_chardata: ignored
 + for t in '${XFAILTESTS}'
 + test xref_tst_unlim2 = xbigr1
 + test 0 = 1
-+ rm -f bigr1_15560.nc bigr1_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o bigr1_15560.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/bigr1.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n bigr1 bigr1_15560.nc
-+ rm -f bigr1_15560.nc
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o bigr1_15560.nc bigr1_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n bigr1 bigr1_15560.nc
-+ diff -b -w bigr1_15560.dmp bigr1_15560.dmp2
++ rm -f bigr1_31016.nc bigr1_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o bigr1_31016.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/bigr1.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n bigr1 bigr1_31016.nc
++ rm -f bigr1_31016.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o bigr1_31016.nc bigr1_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n bigr1 bigr1_31016.nc
++ diff -b -w bigr1_31016.dmp bigr1_31016.dmp2
 + ok=1
-+ rm -f bigr1_15560.nc bigr1_15560.dmp
++ rm -f bigr1_31016.nc bigr1_31016.dmp
 + test x1 = x1
 + test x0 = x1
 ++ expr 17 + 1
@@ -1331,15 +1331,15 @@ xfail test: ref_tst_chardata: ignored
 + for t in '${XFAILTESTS}'
 + test xref_tst_unlim2 = xbigr2
 + test 0 = 1
-+ rm -f bigr2_15560.nc bigr2_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o bigr2_15560.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/bigr2.cdl
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n bigr2 bigr2_15560.nc
-+ rm -f bigr2_15560.nc
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o bigr2_15560.nc bigr2_15560.dmp
-+ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n bigr2 bigr2_15560.nc
-+ diff -b -w bigr2_15560.dmp bigr2_15560.dmp2
++ rm -f bigr2_31016.nc bigr2_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o bigr2_31016.nc /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/cdl/bigr2.cdl
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n bigr2 bigr2_31016.nc
++ rm -f bigr2_31016.nc
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncgen/ncgen -b -k1 -o bigr2_31016.nc bigr2_31016.dmp
++ /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -n bigr2 bigr2_31016.nc
++ diff -b -w bigr2_31016.dmp bigr2_31016.dmp2
 + ok=1
-+ rm -f bigr2_15560.nc bigr2_15560.dmp
++ rm -f bigr2_31016.nc bigr2_31016.dmp
 + test x1 = x1
 + test x0 = x1
 ++ expr 18 + 1
@@ -1351,7 +1351,7 @@ xfail test: ref_tst_chardata: ignored
 + okcount=20
 + echo '*** PASSED: 20/20 ; 0 unexpected failures; 1 expected failures ignored'
 *** PASSED: 20/20 ; 0 unexpected failures; 1 expected failures ignored
-+ rm -rf ./results_15560
++ rm -rf ./results_31016
 + test 0 -gt 0
 + exit 0
 SUCCESS!!

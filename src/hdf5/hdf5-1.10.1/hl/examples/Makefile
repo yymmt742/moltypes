@@ -391,7 +391,7 @@ CCDEPMODE = depmode=gcc3
 CC_VERSION = /opt/intel/compilers_and_libraries_2018.1.163/linux/bin/intel64/icc
 CFLAGS = -O3 -xHost -ip -no-prec-div -static-intel -fPIC
 CODESTACK = no
-CONFIG_DATE = Mon May 21 06:34:22 JST 2018
+CONFIG_DATE = Tue May 22 19:07:06 JST 2018
 CONFIG_MODE = 
 CONFIG_USER = yymmt@yymmt.kuchem.kyoto-u.ac.jp
 CPP = icc -E

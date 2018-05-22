@@ -156,9 +156,9 @@ contains
     spatial = .TRUE. ; cell_spatial = .TRUE. ; cell_angular = .TRUE.
 !
     call ncout%fetch(path)
-!
     call ncout%generate()
-    call ncout%add_dimension('frame,spatial=3,atom='//ToStr(natm)//&
+!
+    call ncout%add_dimension('frame,spatial=3,atom='//tostr(natm)//&
                             &',cell_spatial=3,label=5,cell_angular=3')
 !
     if(present(time))then

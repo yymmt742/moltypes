@@ -4,10 +4,10 @@ include $(CONFIG_FILE)
 all: netcdf_c netcdf_fortran
 
 netcdf_c:
-	(cd netcdf-4.6.1 && ./configure --with-hdf5=${MOLTYPES_ROOT} --with-zlib=${MOLTYPES_ROOT} --with-szlib=${MOLTYPES_ROOT} --prefix=${MOLTYPES_ROOT} && make && make check && make install)
+	(cd netcdf-4.6.1 && ./configure --enable-netcdf-4 --disable-dap --prefix=${MOLTYPES_ROOT} && make && make check && make install)
 
 netcdf_fortran:
-	(cd netcdf-fortran-4.4.4 && ./configure --with-hdf5=${MOLTYPES_ROOT} --with-zlib=${MOLTYPES_ROOT} --with-szlib=${MOLTYPES_ROOT} --prefix=${MOLTYPES_ROOT}  && make && make install)
+	(cd netcdf-fortran-4.4.4 && ./configure --enable-netcdf4 --disable-dap --prefix=${MOLTYPES_ROOT}  && make && make install)
 
 .PHONY: clean
 clean:
