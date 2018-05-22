@@ -1,0 +1,9 @@
+
+*** Checking HDF5 group functions.
+*** Checking out root group...ok.
+*** Checking out H5Gmove...ok.
+*** Checking out sub-groups...ok.
+*** Checking out UTF8 named sub-group...ok.
+*** Checking out UTF8 named sub-group with group creation ordering...ok.
+*** Tests successful!
+PASS tst_h_grps (exit status: 0)

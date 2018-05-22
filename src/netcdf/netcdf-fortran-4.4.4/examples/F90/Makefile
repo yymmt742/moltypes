@@ -100,9 +100,9 @@ TESTS = $(am__EXEEXT_1) $(am__EXEEXT_3) $(am__append_5) \
 
 
 # Optionally add parallel i/o examples.
-am__append_4 = simple_xy_par_wr simple_xy_par_rd simple_xy_par_wr2
-am__append_5 = run_f90_par_examples.sh
-am__append_6 = simple_xy_par.nc
+#am__append_4 = simple_xy_par_wr simple_xy_par_rd simple_xy_par_wr2
+#am__append_5 = run_f90_par_examples.sh
+#am__append_6 = simple_xy_par.nc
 
 # NetCDF-4 examples.
 am__append_7 = simple_xy_nc4_wr simple_xy_nc4_rd
@@ -131,9 +131,9 @@ am__EXEEXT_1 = simple_xy_wr$(EXEEXT) simple_xy_rd$(EXEEXT) \
 #	nc4_pres_temp_4D_wr$(EXEEXT)
 #am__EXEEXT_3 =  \
 #	$(am__EXEEXT_2)
-am__EXEEXT_4 = simple_xy_par_wr$(EXEEXT) \
-	simple_xy_par_rd$(EXEEXT) \
-	simple_xy_par_wr2$(EXEEXT)
+#am__EXEEXT_4 = simple_xy_par_wr$(EXEEXT) \
+#	simple_xy_par_rd$(EXEEXT) \
+#	simple_xy_par_wr2$(EXEEXT)
 am__EXEEXT_5 = simple_xy_nc4_wr$(EXEEXT) \
 	simple_xy_nc4_rd$(EXEEXT)
 am__nc4_pres_temp_4D_wr_SOURCES_DIST = nc4_pres_temp_4D_wr.f90
@@ -175,15 +175,15 @@ am_simple_xy_nc4_wr_OBJECTS =  \
 simple_xy_nc4_wr_OBJECTS = $(am_simple_xy_nc4_wr_OBJECTS)
 simple_xy_nc4_wr_LDADD = $(LDADD)
 am__simple_xy_par_rd_SOURCES_DIST = simple_xy_par_rd.f90
-am_simple_xy_par_rd_OBJECTS = simple_xy_par_rd.$(OBJEXT)
+#am_simple_xy_par_rd_OBJECTS = simple_xy_par_rd.$(OBJEXT)
 simple_xy_par_rd_OBJECTS = $(am_simple_xy_par_rd_OBJECTS)
 simple_xy_par_rd_LDADD = $(LDADD)
 am__simple_xy_par_wr_SOURCES_DIST = simple_xy_par_wr.f90
-am_simple_xy_par_wr_OBJECTS = simple_xy_par_wr.$(OBJEXT)
+#am_simple_xy_par_wr_OBJECTS = simple_xy_par_wr.$(OBJEXT)
 simple_xy_par_wr_OBJECTS = $(am_simple_xy_par_wr_OBJECTS)
 simple_xy_par_wr_LDADD = $(LDADD)
 am__simple_xy_par_wr2_SOURCES_DIST = simple_xy_par_wr2.f90
-am_simple_xy_par_wr2_OBJECTS = simple_xy_par_wr2.$(OBJEXT)
+#am_simple_xy_par_wr2_OBJECTS = simple_xy_par_wr2.$(OBJEXT)
 simple_xy_par_wr2_OBJECTS = $(am_simple_xy_par_wr2_OBJECTS)
 simple_xy_par_wr2_LDADD = $(LDADD)
 am_simple_xy_rd_OBJECTS = simple_xy_rd.$(OBJEXT)
@@ -468,21 +468,21 @@ TEST_LOG_DRIVER = $(SHELL) $(top_srcdir)/test-driver
 TEST_LOG_COMPILE = $(TEST_LOG_COMPILER) $(AM_TEST_LOG_FLAGS) \
 	$(TEST_LOG_FLAGS)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing aclocal-1.14
+ACLOCAL = ${SHELL} /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing aclocal-1.14
 ALLOCA = 
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
 AR = ar
-AUTOCONF = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing autoconf
-AUTOHEADER = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing autoheader
-AUTOMAKE = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing automake-1.14
+AUTOCONF = ${SHELL} /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing autoconf
+AUTOHEADER = ${SHELL} /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing autoheader
+AUTOMAKE = ${SHELL} /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing automake-1.14
 AWK = gawk
 BUILD_INTERNAL_DOCS = no
-CC = mpiicc
+CC = icc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -O3 -xHost -ip -no-prec-div -static-intel -Difort -fPIC -DLONGLONG_IS_LONG
 CPP = icc -E
-CPPFLAGS = -I/home/yamamoto/local/devel/moltypes/include -fPIC
+CPPFLAGS = -I/home/yamamoto/local/devel/github/moltypes/include -fPIC
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
@@ -496,8 +496,8 @@ ECHO_N = -n
 ECHO_T = 
 EGREP = /bin/grep -E
 EXEEXT = 
-F77 = mpiifort
-FC = mpiifort
+F77 = ifort
+FC = ifort
 FCFLAGS = -g
 FCFLAGS_f90 = 
 FFLAGS = -O3 -xHost -ip -no-prec-div -static-intel -fPIC
@@ -515,7 +515,7 @@ INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LD = /usr/bin/ld -m elf_x86_64
-LDFLAGS = -L/home/yamamoto/local/devel/moltypes/lib
+LDFLAGS = -L/home/yamamoto/local/devel/github/moltypes/lib
 LIBOBJS = 
 LIBS = -lnetcdf -lhdf5_hl -lhdf5 -lz -lsz -lcurl
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
@@ -523,12 +523,12 @@ LIPO =
 LN_S = ln -s
 LTLIBOBJS = 
 MAINT = #
-MAKEINFO = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing makeinfo
+MAKEINFO = ${SHELL} /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /bin/mkdir -p
 MOD_FLAG = -I
-NC_FLIBS = -lnetcdff -L/home/yamamoto/local/devel/moltypes/lib -lnetcdf -lnetcdf -lhdf5_hl -lhdf5 -lz -lsz -lcurl
-NC_LIBS = -L/home/yamamoto/local/devel/moltypes/lib -lnetcdf -lnetcdf -lhdf5_hl -lhdf5 -lz -lsz -lcurl
+NC_FLIBS = -lnetcdff -L/home/yamamoto/local/devel/github/moltypes/lib -lnetcdf -lnetcdf -lhdf5_hl -lhdf5 -lz -lsz -lcurl
+NC_LIBS = -L/home/yamamoto/local/devel/github/moltypes/lib -lnetcdf -lnetcdf -lhdf5_hl -lhdf5 -lz -lsz -lcurl
 NM = /usr/bin/nm -B
 NMEDIT = 
 NMFLAGS = 
@@ -550,12 +550,12 @@ SET_MAKE =
 SHELL = /bin/sh
 STRIP = strip
 VERSION = 4.4.4
-abs_builddir = /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/examples/F90
-abs_srcdir = /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/examples/F90
-abs_top_builddir = /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4
-abs_top_srcdir = /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4
+abs_builddir = /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-fortran-4.4.4/examples/F90
+abs_srcdir = /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-fortran-4.4.4/examples/F90
+abs_top_builddir = /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-fortran-4.4.4
+abs_top_srcdir = /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-fortran-4.4.4
 ac_ct_AR = ar
-ac_ct_CC = mpiicc
+ac_ct_CC = icc
 ac_ct_DUMPBIN = 
 ac_ct_F77 = 
 ac_ct_FC = 
@@ -584,7 +584,7 @@ host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/install-sh
+install_sh = ${SHELL} /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-fortran-4.4.4/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -593,7 +593,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /home/yamamoto/local/devel/moltypes
+prefix = /home/yamamoto/local/devel/github/moltypes
 program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
@@ -645,9 +645,9 @@ CLEANFILES = simple_xy.nc sfc_pres_temp.nc pres_temp_4D.nc \
 #F90_EXTRA_TESTS = nc4_simple_xy_wr nc4_sfc_pres_temp_wr	\
 #nc4_pres_temp_4D_wr
 
-simple_xy_par_wr_SOURCES = simple_xy_par_wr.f90
-simple_xy_par_wr2_SOURCES = simple_xy_par_wr2.f90
-simple_xy_par_rd_SOURCES = simple_xy_par_rd.f90
+#simple_xy_par_wr_SOURCES = simple_xy_par_wr.f90
+#simple_xy_par_wr2_SOURCES = simple_xy_par_wr2.f90
+#simple_xy_par_rd_SOURCES = simple_xy_par_rd.f90
 simple_xy_nc4_wr_SOURCES = simple_xy_nc4_wr.f90
 simple_xy_nc4_rd_SOURCES = simple_xy_nc4_rd.f90
 

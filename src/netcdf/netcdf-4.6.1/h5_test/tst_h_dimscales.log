@@ -1,0 +1,13 @@
+
+*** Checking HDF5 dimension scales.
+*** Creating simple dimension scales file...ok.
+*** Checking that simple dimscale file can be read...ok.
+*** Creating simple dimension scales file with lots of datasets...ok.
+*** Creating a file with an unlimited dimension scale...ok.
+*** Checking that unlimited dimscale file can be read...ok.
+*** Creating some 3D datasets using shared dimscales...ok.
+*** Checking 3D datasets created with shared dimscales...ok.
+*** Creating 3D datasets using shared dimscales in groups...ok.
+*** Checking 3D datasets in groups created with shared dimscales...ok.
+*** Tests successful!
+PASS tst_h_dimscales (exit status: 0)

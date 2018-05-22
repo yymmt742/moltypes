@@ -22,7 +22,7 @@
 ## then modify them accordingly to represent the new paths.               ##
 ##                                                                        ##
 ############################################################################
-prefix="/home/yamamoto/local/devel/moltypes"
+prefix="/home/yamamoto/local/devel/github/moltypes"
 exec_prefix="${prefix}"
 libdir="${exec_prefix}/lib"
 includedir="${prefix}/include"
@@ -88,9 +88,9 @@ CXXLINKERBASE="no"
 # from the hdf5 build. The order of the flags is intended to give precedence
 # to the user's flags.
 H5BLD_CXXFLAGS=" -O3 -xHost -ip -no-prec-div -static-intel -fPIC"
-H5BLD_CPPFLAGS=" -I/home/yamamoto/local/devel/moltypes/include -I/home/yamamoto/local/devel/moltypes/include"
-H5BLD_LDFLAGS=" -L/home/yamamoto/local/devel/moltypes/lib -L/home/yamamoto/local/devel/moltypes/lib"
-H5BLD_LIBS="-lz -ldl -lm "
+H5BLD_CPPFLAGS=" -I/home/yamamoto/local/devel/github/moltypes/include -I/home/yamamoto/local/devel/github/moltypes/include"
+H5BLD_LDFLAGS=" -L/home/yamamoto/local/devel/github/moltypes/lib -L/home/yamamoto/local/devel/github/moltypes/lib"
+H5BLD_LIBS="-lrt -lz -ldl -lm "
 
 CXX="${HDF5_CXX:-$CXXBASE}"
 CXXLINKER="${HDF5_CLINKER:-$CXXLINKERBASE}"

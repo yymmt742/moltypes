@@ -1,0 +1,7 @@
+
+*** Testing netcdf-4 variable syncing.
+**** testing that sync works in netCDF-4...ok.
+**** testing that sync works in netCDF-4, with test contributed by Jeff W....ok.
+**** testing that sync works in netCDF-4, with test contributed by Jeff W....ok.
+*** Tests successful!
+PASS tst_sync (exit status: 0)

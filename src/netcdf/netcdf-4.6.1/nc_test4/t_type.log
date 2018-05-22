@@ -1,0 +1,4 @@
+
+*** Testing netCDF classic version of nc_inq_type...ok.
+*** Tests successful!
+PASS t_type (exit status: 0)

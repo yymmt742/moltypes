@@ -4,9 +4,9 @@ implicit none
 contains
   subroutine compute()
   use spur_optparse
-  use moltypes_perser
+  use moltypes_parser
   use spur_histgram
-  type(molperser)   :: trj
+  type(molparser)   :: trj
   type(optparse)    :: arg
   real,allocatable  :: orig(:,:,:),vecx(:,:,:),vecy(:,:,:),vecz(:,:,:)
   real,allocatable  :: rbox(:,:)
@@ -16,14 +16,14 @@ contains
   double precision  :: vol,volr,vols,rcpn,rcpdr,rcpdr3
   type(histgram_1d) :: rdf
   type(histgram_3d) :: sdf
-    call arg%add_option("-o",narg=1,metavar='outputfile',def=['default'],help='output file.')
-    call arg%add_option("-r",narg=1,metavar='value',def=['1.0'], help='radial bin size. default [1.0] kcal/mol')
-    call arg%add_option("-R",narg=1,metavar='value',def=['30.0'],help='radial maxval.   default [30.0] angs.')
-    call arg%add_option("-c",narg=1,metavar='MaskString',help='Load mask string, for origin.')
-    call arg%add_option("-x",narg=1,metavar='MaskString',help='Load mask string, for x axis.')
-    call arg%add_option("-y",narg=1,metavar='MaskString',help='Load mask string, for y axis.')
-    call arg%add_option("-s",narg=1,metavar='symmetry',  help='symmetry group')
-    call arg%add_option("--cutoff",narg=1,metavar='MaskString',def=['999.0'],help='cutoff length.default [999.0] angs.')
+    call arg%add_option("-o",narg=1,metavar=['path'],def=['default'],help='output file.')
+    call arg%add_option("-r",narg=1,metavar=['value'],def=['1.0'], help='radial bin size. default [1.0] kcal/mol')
+    call arg%add_option("-R",narg=1,metavar=['value'],def=['30.0'],help='radial maxval.   default [30.0] angs.')
+    call arg%add_option("-c",narg=1,metavar=['mask'],help='Load mask string, for origin.')
+    call arg%add_option("-x",narg=1,metavar=['mask'],help='Load mask string, for x axis.')
+    call arg%add_option("-y",narg=1,metavar=['mask'],help='Load mask string, for y axis.')
+    call arg%add_option("-s",narg=1,metavar=['symmetry'],  help='symmetry group')
+    call arg%add_option("--cutoff",narg=1,metavar=['Mask'],def=['999'],help='cutoff length.default [999.0] angs.')
     call arg%parser()
     if(arg%narg()==0.or..not.arg%option('-c').or..not.arg%option('-x')) call arg%call_usage()
 !

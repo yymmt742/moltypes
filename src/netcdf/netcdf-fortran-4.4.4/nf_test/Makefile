@@ -133,16 +133,16 @@ am__append_6 = ftst_v2
 #f90tst_parallel_fill_SOURCES = f90tst_parallel_fill.f90
 
 # Test parallel I/O for F77.
-am__append_11 = f90tst_parallel \
-	f90tst_parallel2 \
-	f90tst_parallel3 \
-	f90tst_nc4_par \
-	ftst_parallel \
-	ftst_parallel_nasa
+#am__append_11 = f90tst_parallel \
+#	f90tst_parallel2 \
+#	f90tst_parallel3 \
+#	f90tst_nc4_par \
+#	ftst_parallel \
+#	ftst_parallel_nasa
 #f90tst_parallel_fill
-am__append_12 =  \
-	run_f90_par_test.sh \
-	run_f77_par_test.sh
+#am__append_12 =  \
+#	run_f90_par_test.sh \
+#	run_f77_par_test.sh
 
 # This is the fortran v2 test. It depends on the utilities being built
 # to generate it's input file.
@@ -183,12 +183,12 @@ am__EXEEXT_3 = ftst_v2$(EXEEXT)
 #	tst_flarge$(EXEEXT)
 #am__EXEEXT_5 =  \
 #	tst_io$(EXEEXT)
-am__EXEEXT_6 = f90tst_parallel$(EXEEXT) \
-	f90tst_parallel2$(EXEEXT) \
-	f90tst_parallel3$(EXEEXT) \
-	f90tst_nc4_par$(EXEEXT) \
-	ftst_parallel$(EXEEXT) \
-	ftst_parallel_nasa$(EXEEXT)
+#am__EXEEXT_6 = f90tst_parallel$(EXEEXT) \
+#	f90tst_parallel2$(EXEEXT) \
+#	f90tst_parallel3$(EXEEXT) \
+#	f90tst_nc4_par$(EXEEXT) \
+#	ftst_parallel$(EXEEXT) \
+#	ftst_parallel_nasa$(EXEEXT)
 am__EXEEXT_7 = ftest$(EXEEXT)
 am__f90tst_fill_SOURCES_DIST = f90tst_fill.f90
 am_f90tst_fill_OBJECTS = f90tst_fill.$(OBJEXT)
@@ -210,22 +210,22 @@ f90tst_grps_OBJECTS = $(am_f90tst_grps_OBJECTS)
 f90tst_grps_LDADD = $(LDADD)
 f90tst_grps_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f90tst_nc4_par_SOURCES_DIST = f90tst_nc4_par.f90
-am_f90tst_nc4_par_OBJECTS = f90tst_nc4_par.$(OBJEXT)
+#am_f90tst_nc4_par_OBJECTS = f90tst_nc4_par.$(OBJEXT)
 f90tst_nc4_par_OBJECTS = $(am_f90tst_nc4_par_OBJECTS)
 f90tst_nc4_par_LDADD = $(LDADD)
 f90tst_nc4_par_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f90tst_parallel_SOURCES_DIST = f90tst_parallel.f90
-am_f90tst_parallel_OBJECTS = f90tst_parallel.$(OBJEXT)
+#am_f90tst_parallel_OBJECTS = f90tst_parallel.$(OBJEXT)
 f90tst_parallel_OBJECTS = $(am_f90tst_parallel_OBJECTS)
 f90tst_parallel_LDADD = $(LDADD)
 f90tst_parallel_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f90tst_parallel2_SOURCES_DIST = f90tst_parallel2.f90
-am_f90tst_parallel2_OBJECTS = f90tst_parallel2.$(OBJEXT)
+#am_f90tst_parallel2_OBJECTS = f90tst_parallel2.$(OBJEXT)
 f90tst_parallel2_OBJECTS = $(am_f90tst_parallel2_OBJECTS)
 f90tst_parallel2_LDADD = $(LDADD)
 f90tst_parallel2_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__f90tst_parallel3_SOURCES_DIST = f90tst_parallel3.f90
-am_f90tst_parallel3_OBJECTS = f90tst_parallel3.$(OBJEXT)
+#am_f90tst_parallel3_OBJECTS = f90tst_parallel3.$(OBJEXT)
 f90tst_parallel3_OBJECTS = $(am_f90tst_parallel3_OBJECTS)
 f90tst_parallel3_LDADD = $(LDADD)
 f90tst_parallel3_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
@@ -289,13 +289,13 @@ ftst_groups_OBJECTS = $(am_ftst_groups_OBJECTS)
 ftst_groups_LDADD = $(LDADD)
 ftst_groups_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__ftst_parallel_SOURCES_DIST = ftst_parallel.F
-am_ftst_parallel_OBJECTS =  \
-	ftst_parallel.$(OBJEXT)
+#am_ftst_parallel_OBJECTS =  \
+#	ftst_parallel.$(OBJEXT)
 ftst_parallel_OBJECTS = $(am_ftst_parallel_OBJECTS)
 ftst_parallel_LDADD = $(LDADD)
 ftst_parallel_DEPENDENCIES = ${top_builddir}/fortran/libnetcdff.la
 am__ftst_parallel_nasa_SOURCES_DIST = ftst_parallel_nasa.F
-am_ftst_parallel_nasa_OBJECTS = ftst_parallel_nasa.$(OBJEXT)
+#am_ftst_parallel_nasa_OBJECTS = ftst_parallel_nasa.$(OBJEXT)
 ftst_parallel_nasa_OBJECTS = $(am_ftst_parallel_nasa_OBJECTS)
 ftst_parallel_nasa_LDADD = $(LDADD)
 ftst_parallel_nasa_DEPENDENCIES =  \
@@ -853,21 +853,21 @@ TEST_LOG_DRIVER = $(SHELL) $(top_srcdir)/test-driver
 TEST_LOG_COMPILE = $(TEST_LOG_COMPILER) $(AM_TEST_LOG_FLAGS) \
 	$(TEST_LOG_FLAGS)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing aclocal-1.14
+ACLOCAL = ${SHELL} /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing aclocal-1.14
 ALLOCA = 
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
 AR = ar
-AUTOCONF = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing autoconf
-AUTOHEADER = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing autoheader
-AUTOMAKE = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing automake-1.14
+AUTOCONF = ${SHELL} /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing autoconf
+AUTOHEADER = ${SHELL} /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing autoheader
+AUTOMAKE = ${SHELL} /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing automake-1.14
 AWK = gawk
 BUILD_INTERNAL_DOCS = no
-CC = mpiicc
+CC = icc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -O3 -xHost -ip -no-prec-div -static-intel -Difort -fPIC -DLONGLONG_IS_LONG
 CPP = icc -E
-CPPFLAGS = -I/home/yamamoto/local/devel/moltypes/include -fPIC
+CPPFLAGS = -I/home/yamamoto/local/devel/github/moltypes/include -fPIC
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
@@ -881,8 +881,8 @@ ECHO_N = -n
 ECHO_T = 
 EGREP = /bin/grep -E
 EXEEXT = 
-F77 = mpiifort
-FC = mpiifort
+F77 = ifort
+FC = ifort
 FCFLAGS = -g
 FCFLAGS_f90 = 
 FFLAGS = -O3 -xHost -ip -no-prec-div -static-intel -fPIC
@@ -900,7 +900,7 @@ INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LD = /usr/bin/ld -m elf_x86_64
-LDFLAGS = -L/home/yamamoto/local/devel/moltypes/lib
+LDFLAGS = -L/home/yamamoto/local/devel/github/moltypes/lib
 LIBOBJS = 
 LIBS = -lnetcdf -lhdf5_hl -lhdf5 -lz -lsz -lcurl
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
@@ -908,12 +908,12 @@ LIPO =
 LN_S = ln -s
 LTLIBOBJS = 
 MAINT = #
-MAKEINFO = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing makeinfo
+MAKEINFO = ${SHELL} /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-fortran-4.4.4/missing makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /bin/mkdir -p
 MOD_FLAG = -I
-NC_FLIBS = -lnetcdff -L/home/yamamoto/local/devel/moltypes/lib -lnetcdf -lnetcdf -lhdf5_hl -lhdf5 -lz -lsz -lcurl
-NC_LIBS = -L/home/yamamoto/local/devel/moltypes/lib -lnetcdf -lnetcdf -lhdf5_hl -lhdf5 -lz -lsz -lcurl
+NC_FLIBS = -lnetcdff -L/home/yamamoto/local/devel/github/moltypes/lib -lnetcdf -lnetcdf -lhdf5_hl -lhdf5 -lz -lsz -lcurl
+NC_LIBS = -L/home/yamamoto/local/devel/github/moltypes/lib -lnetcdf -lnetcdf -lhdf5_hl -lhdf5 -lz -lsz -lcurl
 NM = /usr/bin/nm -B
 NMEDIT = 
 NMFLAGS = 
@@ -935,12 +935,12 @@ SET_MAKE =
 SHELL = /bin/sh
 STRIP = strip
 VERSION = 4.4.4
-abs_builddir = /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/nf_test
-abs_srcdir = /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/nf_test
-abs_top_builddir = /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4
-abs_top_srcdir = /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4
+abs_builddir = /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-fortran-4.4.4/nf_test
+abs_srcdir = /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-fortran-4.4.4/nf_test
+abs_top_builddir = /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-fortran-4.4.4
+abs_top_srcdir = /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-fortran-4.4.4
 ac_ct_AR = ar
-ac_ct_CC = mpiicc
+ac_ct_CC = icc
 ac_ct_DUMPBIN = 
 ac_ct_F77 = 
 ac_ct_FC = 
@@ -969,7 +969,7 @@ host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/yamamoto/local/devel/moltypes/src/netcdf/netcdf-fortran-4.4.4/install-sh
+install_sh = ${SHELL} /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-fortran-4.4.4/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -978,7 +978,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /home/yamamoto/local/devel/moltypes
+prefix = /home/yamamoto/local/devel/github/moltypes
 program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
@@ -1052,12 +1052,12 @@ f90tst_vars4_SOURCES = f90tst_vars4.f90
 ftst_v2_SOURCES = ftst_v2.F
 #tst_flarge_SOURCES = tst_flarge.f90
 #tst_io_SOURCES = tst_io.f90
-f90tst_parallel_SOURCES = f90tst_parallel.f90
-f90tst_parallel2_SOURCES = f90tst_parallel2.f90
-f90tst_parallel3_SOURCES = f90tst_parallel3.f90
-f90tst_nc4_par_SOURCES = f90tst_nc4_par.f90
-ftst_parallel_SOURCES = ftst_parallel.F
-ftst_parallel_nasa_SOURCES = ftst_parallel_nasa.F
+#f90tst_parallel_SOURCES = f90tst_parallel.f90
+#f90tst_parallel2_SOURCES = f90tst_parallel2.f90
+#f90tst_parallel3_SOURCES = f90tst_parallel3.f90
+#f90tst_nc4_par_SOURCES = f90tst_nc4_par.f90
+#ftst_parallel_SOURCES = ftst_parallel.F
+#ftst_parallel_nasa_SOURCES = ftst_parallel_nasa.F
 #ftest_SOURCES = ftest.F fortlib.c
 ftest_SOURCES = ftest.F f03lib.c
 tst_f90_SOURCES = tst_f90.f90

@@ -15,7 +15,7 @@
  * help@hdfgroup.org.                                                        *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
- * Created:		Jan 15, 2018
+ * Created:		May 21, 2018
  *			yamamoto yuki <yymmt@yymmt.kuchem.kyoto-u.ac.jp>
  *
  * Purpose:		This machine-generated source code contains

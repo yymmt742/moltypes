@@ -5,19 +5,19 @@ implicit none
 contains
   subroutine compute()
   use spur_optparse
-  use moltypes_perser
+  use moltypes_parser
   use spur_vector_real
   use spur_stdio
   type(optparse)       :: arg
-  type(molperser)      :: trj0,trj1
+  type(molparser)      :: trj0,trj1
   type(stdio)          :: fio
   integer              :: i,j
   integer              :: nstep,nmax,nsum,nframe,natm
-    call arg%add_option("-m",narg=1,metavar='MaskString',help='Load mask string, like as vmd.')
-    call arg%add_option("-o",narg=1,metavar='outputfile',help='output file.')
-    call arg%add_option("-s",alias=["--second"],narg=1,metavar='value',def=['1.0'],&
-        &               help='trajectry time steps(ps). default 1.0')
-    call arg%add_option("-u",narg=1,metavar='value',def=['-1'],help='upper bound of sumup')
+    call arg%add_option("-m",narg=1,metavar=['mask'],help='Load mask string, like as vmd.')
+    call arg%add_option("-o",narg=1,metavar=['path'],help='output file.')
+    call arg%add_option("-u",narg=1,metavar=['value'],def=['-1'],help='upper bound of sumup')
+    call arg%add_option("-s",narg=1,metavar=['value'],def=['1.0'],&
+        &               help='trajectry time steps. default 1.0')
     call arg%parser()
     if(arg%narg()==0) call arg%call_usage()
 !

@@ -1,0 +1,13 @@
+
+*** Testing netcdf-4 variable functions, some more.
+**** testing definition of coordinate variable after endef/redef...ok.
+**** testing definition of coordinate variable with some data...ok.
+**** testing endianness of compound type variable...ok.
+**** testing that fixed vars with no filter end up being contiguous...ok.
+**** testing typeless access for classic model...ok.
+**** testing large number of vars with unlimited dimension...ok.
+**** testing fix of bug in checking coordinate variables out of order...ok.
+**** testing fix of bug in non-coordinate scalar variable with same name as dimension ...ok.
+**** testing bad inputs to put/get_vara calls...ok.
+*** Tests successful!
+PASS tst_vars3 (exit status: 0)

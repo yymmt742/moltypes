@@ -1,0 +1,9 @@
+
+*** Creating file for checking fix to bugs in accessing strings from HDF5 non-netcdf-4 file.
+*** Checking reading variable-length HDF5 string var through netCDF-4 API...ok.
+*** Checking reading fixed-length HDF5 string var through netCDF-4 API...ok.
+*** Checking reading variable-length HDF5 string att through netCDF-4 API...ok.
+*** Checking reading fixed-length HDF5 string att through netCDF-4 API...ok.
+*** Checking reading variable-length HDF5 strings var through netCDF-4 API...ok.
+*** Tests successful!
+PASS tst_h_strbug (exit status: 0)

@@ -5,27 +5,27 @@ implicit none
 contains
   subroutine compute()
   use spur_optparse
-  use moltypes_perser
+  use moltypes_parser
   use spur_vector_real
   use spur_stdio
   type(optparse)       :: arg
-  type(molperser)      :: trj0,trj1
+  type(molparser)      :: trj0,trj1
   type(stdio)          :: fio
   real,allocatable     :: vx0(:,:,:),vy0(:,:,:),vz0(:,:,:)
   real,allocatable     :: vx1(:,:,:),vy1(:,:,:),vz1(:,:,:)
   integer              :: i,j
   integer              :: nstep,nmax,nsum,nframe,natm,nres
   integer              :: nend
-    call arg%add_option("-m",narg=1,metavar='MaskString',help='Load mask string.')
-    call arg%add_option("-o",narg=1,metavar='outputfile',help='output file.')
-    call arg%add_option("-x",narg=1,metavar='MaskString',help='vector x mask string.')
-    call arg%add_option("-y",narg=1,metavar='MaskString',help='vector y mask string.')
-    call arg%add_option("-c",narg=1,metavar='MaskString',def=['all'],help='vector c mask string.')
-    call arg%add_option("-s",alias=["--second"],narg=1,metavar='value',def=['1.0'],&
-        &               help='trajectry time steps(ps). default 1.0')
-    call arg%add_option("-u",narg=1,metavar='value',def=['-1'],help='upper bound of sumup')
-    call arg%add_option("-i",narg=1,metavar='value',def=['0.1'],help='increment factor')
-    call arg%add_option("-e",narg=1,metavar='value',def=['-1'],help='end')
+    call arg%add_option("-m",narg=1,metavar=['mask'],help='Load mask string.')
+    call arg%add_option("-o",narg=1,metavar=['path'],help='output file.')
+    call arg%add_option("-x",narg=1,metavar=['mask'],help='vector x mask string.')
+    call arg%add_option("-y",narg=1,metavar=['mask'],help='vector y mask string.')
+    call arg%add_option("-c",narg=1,metavar=['mask'],def=['all'],help='vector c mask string.')
+    call arg%add_option("-s",narg=1,metavar=['value'],def=['1.0'],&
+        &               help='trajectry time steps. default 1.0')
+    call arg%add_option("-u",narg=1,metavar=['value'],def=['-1'],help='upper bound of sumup')
+    call arg%add_option("-i",narg=1,metavar=['value'],def=['0.1'],help='increment factor')
+    call arg%add_option("-e",narg=1,metavar=['value'],def=['-1'],help='end')
     call arg%parser()
     if(arg%narg()==0) call arg%call_usage()
 !

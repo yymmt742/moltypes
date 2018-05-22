@@ -1,4 +1,4 @@
-prefix=/home/yamamoto/local/devel/moltypes
+prefix=/home/yamamoto/local/devel/github/moltypes
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 sharedlibdir=${libdir}

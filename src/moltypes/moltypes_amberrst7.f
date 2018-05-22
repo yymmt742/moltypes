@@ -52,16 +52,16 @@ contains
     class(AmberRst7),intent(inout)    :: this
     character(*),intent(in)           :: path
     type(ncio)                        :: baff
-    integer                           :: frame,spatial,atom
+    integer                           :: spatial,atom
     integer                           :: cell_spatial,label,cell_angular
     logical                           :: invalid
-      call baff%fetch(path)
-      frame        = baff%dim_length('frame') ; spatial      = baff%dim_length('spatial')
+      call baff%fetch(path) ; call baff%loadheader()
+      spatial      = baff%dim_length('spatial')
       atom         = baff%dim_length('atom')  ; cell_spatial = baff%dim_length('cell_spatial')
       label        = baff%dim_length('label') ; cell_angular = baff%dim_length('cell_angular')
       call this%node(using)%put_caption(baff%get_attribute("title"))
       invalid = ANY([baff%iserr(),spatial/=spatial_def,cell_spatial/=cell_spatial_def,&
-          &          cell_angular/=cell_angular_def,label/=label_def,atom<=0,frame<0])
+          &          cell_angular/=cell_angular_def,label/=label_def,atom<=0])
       if(this%natoms==atom_def) this%natoms = atom
       invalid = invalid.or.this%natoms/=atom
       call CheckAmbRst(this,invalid,IO_NCFMTERR,using)
@@ -212,33 +212,33 @@ contains
     logical,intent(in)                :: mask(this%natoms)
     integer,intent(in)                :: frame
     type(ncio)                        :: baff
-    real                              :: tmp(3,this%natoms,1)
-    integer                           :: last
+    real                              :: tmp(3,this%natoms)
     integer                           :: i,j,k,l,m
       call baff%fetch(this%node(using)%is())
-      last = baff%dim_length('frame')
-      call baff%get('time',time(frame:frame),from=[last])
+      call baff%loadheader()
+!      call baff%get('time',time(frame:frame),from=[1])
+      time = 0.d0
       if(present(xyz))then
-        call baff%get('coordinates',tmp(:,:,:),from=[1,1,last])
+        call baff%get('coordinates',tmp,from=[1,1])
         j = 0
         do i=1,this%natoms
           if(mask(i))then
-            j = j + 1 ; xyz(:,j,frame)=tmp(:,i,1)
+            j = j + 1 ; xyz(:,j,frame)=tmp(:,i)
           endif
         enddo
       endif
       if(present(vel))then
         tmp = 0.0
-        call baff%get('velocities',tmp(:,:,:),from=[1,1,last])
+        call baff%get('velocities',tmp,from=[1,1])
         j = 0
         do i=1,this%natoms
           if(mask(i))then
-            j = j + 1 ; vel(:,j,frame)=tmp(:,i,1)
+            j = j + 1 ; vel(:,j,frame)=tmp(:,i)
           endif
         enddo
       endif
-      if(present(box)) call baff%get('cell_lengths',box(:,frame:frame),from=[1,last])
-      if(present(ang)) call baff%get('cell_angles', ang(:,frame:frame),from=[1,last])
+      if(present(box)) call baff%get('cell_lengths',box(:,frame),from=[1])
+      if(present(ang)) call baff%get('cell_angles', ang(:,frame),from=[1])
       call CheckAmbRst(this,baff%isErr(),IO_FMTERR,using)
     end subroutine AmbRstLoadNetcdf
   end subroutine AmbRstLoad

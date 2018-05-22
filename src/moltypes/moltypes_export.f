@@ -111,8 +111,12 @@ contains
     else ; ltitle = DEFAULT_NAME ; endif
 !
     ltime = -1.0
-    if(present(time).and.present(vel))then
-      if(all(shape(vel)>=[spatial,natm,nframe])) ltime = time(nframe)
+    if(present(vel))then
+      if(present(time))then
+        if(all(shape(vel)>=[spatial,natm,nframe])) ltime = time(nframe)
+      else
+        ltime = 0.0
+      endif
     endif
 !
     lboxang = [0.0,0.0,0.0,90.0,90.0,90.0]

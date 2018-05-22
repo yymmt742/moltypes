@@ -139,13 +139,13 @@
 #define HAVE_H5FREE_MEMORY 1
 
 /* Define to 1 if you have the `H5Pget_fapl_mpio' function. */
-#define HAVE_H5PGET_FAPL_MPIO 1
+/* #undef HAVE_H5PGET_FAPL_MPIO */
 
 /* Define to 1 if you have the `H5Pget_fapl_mpiposix' function. */
 /* #undef HAVE_H5PGET_FAPL_MPIPOSIX */
 
 /* Define to 1 if you have the `H5Pset_all_coll_metadata_ops' function. */
-#define HAVE_H5PSET_ALL_COLL_METADATA_OPS 1
+/* #undef HAVE_H5PSET_ALL_COLL_METADATA_OPS */
 
 /* Define to 1 if you have the `H5Pset_deflate' function. */
 #define HAVE_H5PSET_DEFLATE 1
@@ -358,7 +358,7 @@
 #define HAVE__BOOL 1
 
 /* if true, use collective metadata ops in parallel netCDF-4 */
-#define HDF5_HAS_COLL_METADATA_OPS 1
+/* #undef HDF5_HAS_COLL_METADATA_OPS */
 
 /* if true, H5free_memory() will be used to free hdf5-allocated memory in
    nc4file. */
@@ -368,7 +368,7 @@
 #define HDF5_HAS_LIBVER_BOUNDS 1
 
 /* if true, hdf5 has parallelism enabled */
-#define HDF5_PARALLEL 1
+/* #undef HDF5_PARALLEL */
 
 /* if true, include JNA bug fix */
 /* #undef JNA */
@@ -536,13 +536,13 @@
 #define USE_NETCDF_2 1
 
 /* if true, pnetcdf or parallel netcdf-4 is in use */
-#define USE_PARALLEL 1
+/* #undef USE_PARALLEL */
 
 /* if true, parallel netcdf-4 is in use */
-#define USE_PARALLEL4 1
+/* #undef USE_PARALLEL4 */
 
 /* if true, compile in parallel netCDF-4 based on MPI/IO */
-#define USE_PARALLEL_MPIO 1
+/* #undef USE_PARALLEL_MPIO */
 
 /* if true, compile in parallel netCDF-4 based on MPI/POSIX */
 /* #undef USE_PARALLEL_POSIX */

@@ -60,7 +60,7 @@ build_old_libs=yes
 pic_mode=default
 
 # Whether or not to optimize for fast installation.
-fast_install=needless
+fast_install=yes
 
 # Shared archive member basename,for filename based shared library versioning on AIX.
 shared_archive_member_spec=
@@ -165,7 +165,7 @@ old_postuninstall_cmds=""
 lock_old_archive_extraction=no
 
 # A C compiler.
-LTCC="mpiicc"
+LTCC="icc"
 
 # LTCC compiler flags.
 LTCFLAGS="-O3 -xHost -ip -no-prec-div -static-intel -Difort -fPIC"
@@ -253,7 +253,7 @@ runpath_var=LD_RUN_PATH
 shlibpath_var=LD_LIBRARY_PATH
 
 # Is shlibpath searched before the hard-coded library search path?
-shlibpath_overrides_runpath=yes
+shlibpath_overrides_runpath=no
 
 # Format of library name prefix.
 libname_spec="lib\$name"
@@ -285,10 +285,10 @@ finish_eval=""
 hardcode_into_libs=yes
 
 # Compile-time system search path for libraries.
-sys_lib_search_path_spec="/opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/lib/intel64_lin /usr/lib64 "
+sys_lib_search_path_spec="/opt/intel/compilers_and_libraries_2018.1.163/linux/compiler/lib/intel64_lin /usr/lib64 "
 
 # Detected run-time system search path for libraries.
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib64/atlas /usr/lib64/ctapi /usr/local/cuda-9.0/targets/x86_64-linux/lib /usr/local/lib /usr/local/lib64 /home/yamamoto/local/ifort/lib /home/yamamoto/local/gfortran63/lib /usr/lib64/mysql /usr/lib64/nvidia /usr/lib64/octave/3.4.3 /usr/lib64/qt-3.3/lib /usr/lib64/tcl8.5 /usr/lib64/xulrunner /opt/intel/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64_lin/ "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib64/atlas /usr/lib64/ctapi /usr/local/cuda-9.0/targets/x86_64-linux/lib /usr/local/cuda-9.1/targets/x86_64-linux/lib /usr/local/cuda-9.2/targets/x86_64-linux/lib /usr/local/lib /usr/local/lib64 /home/yamamoto/local/ifort/lib /home/yamamoto/local/gfortran63/lib /usr/lib64/mysql /usr/lib64/nvidia /usr/lib64/octave/3.4.3 /usr/lib64/qt-3.3/lib /usr/lib64/tcl8.5 /usr/lib64/xulrunner /opt/intel/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64_lin/ "
 
 # Explicit LT_SYS_LIBRARY_PATH set during ./configure time.
 configure_time_lt_sys_library_path=""
@@ -318,7 +318,7 @@ reload_cmds="\$LD\$reload_flag -o \$output\$reload_objs"
 old_archive_cmds="\$AR \$AR_FLAGS \$oldlib\$oldobjs~\$RANLIB \$tool_oldlib"
 
 # A language specific compiler.
-CC="mpiicc"
+CC="icc"
 
 # Is the compiler the GNU compiler?
 with_gcc=yes

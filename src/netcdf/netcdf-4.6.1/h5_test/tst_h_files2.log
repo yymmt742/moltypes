@@ -1,0 +1,5 @@
+
+*** Checking HDF5 file functions some more.
+*** Checking opaque attribute creation...ok.
+*** Tests successful!
+PASS tst_h_files2 (exit status: 0)

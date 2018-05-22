@@ -1,0 +1,348 @@
+libdap4_la-d4printer.lo: d4printer.c d4includes.h ../config.h \
+ ../include/ncconfigure.h /usr/include/stdlib.h /usr/include/features.h \
+ /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
+ /usr/include/gnu/stubs-64.h \
+ /opt/intel/compilers_and_libraries_2018.1.163/linux/compiler/include/stddef.h \
+ /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+ /usr/include/endian.h /usr/include/bits/endian.h /usr/include/bits/byteswap.h \
+ /usr/include/sys/types.h /usr/include/bits/types.h /usr/include/bits/typesizes.h \
+ /usr/include/time.h /usr/include/sys/select.h /usr/include/bits/select.h \
+ /usr/include/bits/sigset.h /usr/include/bits/time.h /usr/include/sys/sysmacros.h \
+ /usr/include/bits/pthreadtypes.h /usr/include/alloca.h /usr/include/stdio.h \
+ /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h \
+ /opt/intel/compilers_and_libraries_2018.1.163/linux/compiler/include/stdarg.h \
+ /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+ /usr/include/bits/stdio.h /usr/include/string.h /usr/include/xlocale.h \
+ /usr/include/bits/string.h /usr/include/bits/string2.h /usr/include/inttypes.h \
+ /opt/intel/compilers_and_libraries_2018.1.163/linux/compiler/include/stdint.h \
+ /usr/local/lib/gcc/x86_64-unknown-linux-gnu/4.8.4/include/stdint.h \
+ /usr/include/stdint.h /usr/include/bits/wchar.h /usr/include/assert.h \
+ /usr/include/unistd.h /usr/include/bits/posix_opt.h \
+ /usr/include/bits/environments.h /usr/include/bits/confname.h \
+ /usr/include/getopt.h /usr/include/curl/curl.h /usr/include/curl/curlver.h \
+ /usr/include/curl/curlbuild.h /usr/include/curl/curlbuild-64.h \
+ /usr/include/sys/socket.h /usr/include/sys/uio.h /usr/include/bits/uio.h \
+ /usr/include/bits/socket.h /usr/include/bits/sockaddr.h \
+ /usr/include/asm/socket.h /usr/include/asm-generic/socket.h \
+ /usr/include/asm/sockios.h /usr/include/asm-generic/sockios.h \
+ /usr/include/curl/curlrules.h \
+ /opt/intel/compilers_and_libraries_2018.1.163/linux/compiler/include/limits.h \
+ /usr/local/lib/gcc/x86_64-unknown-linux-gnu/4.8.4/include-fixed/limits.h \
+ /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+ /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+ /usr/include/bits/posix2_lim.h /usr/include/sys/time.h /usr/include/curl/easy.h \
+ /usr/include/curl/multi.h /usr/include/curl/typecheck-gcc.h \
+ /usr/include/sys/resource.h /usr/include/bits/resource.h ../include/netcdf.h \
+ /usr/include/errno.h /usr/include/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/asm/errno.h /usr/include/asm-generic/errno.h \
+ /usr/include/asm-generic/errno-base.h ../include/nc.h ../include/ncrc.h \
+ ../include/ncuri.h ../include/nclist.h ../include/ncbytes.h \
+ ../include/ncexternl.h ../include/nclog.h ../include/ncdap.h d4util.h \
+ ncd4types.h ../include/ncauth.h ncd4.h d4debug.h ../include/nc4internal.h \
+ /usr/include/ctype.h /home/yamamoto/local/devel/github/moltypes/include/hdf5.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5public.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5pubconf.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5version.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5api_adpt.h \
+ /opt/intel/compilers_and_libraries_2018.1.163/linux/compiler/include/stdbool.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5Apublic.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5Ipublic.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5Opublic.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5Lpublic.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5Tpublic.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5ACpublic.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5Cpublic.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5Dpublic.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5Epublic.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5Epubgen.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5Fpublic.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5FDpublic.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5Gpublic.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5MMpublic.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5Ppublic.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5Zpublic.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5PLpublic.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5Rpublic.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5Spublic.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5FDcore.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5FDdirect.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5FDfamily.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5FDlog.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5FDmpi.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5FDmpio.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5FDmulti.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5FDsec2.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5FDstdio.h \
+ ../include/ncdimscale.h ../include/nc_logging.h ../include/netcdf_f.h d4chunk.h
+
+d4includes.h:
+
+../config.h:
+
+../include/ncconfigure.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/features.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/gnu/stubs.h:
+
+/usr/include/gnu/stubs-64.h:
+
+/opt/intel/compilers_and_libraries_2018.1.163/linux/compiler/include/stddef.h:
+
+/usr/include/bits/waitflags.h:
+
+/usr/include/bits/waitstatus.h:
+
+/usr/include/endian.h:
+
+/usr/include/bits/endian.h:
+
+/usr/include/bits/byteswap.h:
+
+/usr/include/sys/types.h:
+
+/usr/include/bits/types.h:
+
+/usr/include/bits/typesizes.h:
+
+/usr/include/time.h:
+
+/usr/include/sys/select.h:
+
+/usr/include/bits/select.h:
+
+/usr/include/bits/sigset.h:
+
+/usr/include/bits/time.h:
+
+/usr/include/sys/sysmacros.h:
+
+/usr/include/bits/pthreadtypes.h:
+
+/usr/include/alloca.h:
+
+/usr/include/stdio.h:
+
+/usr/include/libio.h:
+
+/usr/include/_G_config.h:
+
+/usr/include/wchar.h:
+
+/opt/intel/compilers_and_libraries_2018.1.163/linux/compiler/include/stdarg.h:
+
+/usr/include/bits/stdio_lim.h:
+
+/usr/include/bits/sys_errlist.h:
+
+/usr/include/bits/stdio.h:
+
+/usr/include/string.h:
+
+/usr/include/xlocale.h:
+
+/usr/include/bits/string.h:
+
+/usr/include/bits/string2.h:
+
+/usr/include/inttypes.h:
+
+/opt/intel/compilers_and_libraries_2018.1.163/linux/compiler/include/stdint.h:
+
+/usr/local/lib/gcc/x86_64-unknown-linux-gnu/4.8.4/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/bits/wchar.h:
+
+/usr/include/assert.h:
+
+/usr/include/unistd.h:
+
+/usr/include/bits/posix_opt.h:
+
+/usr/include/bits/environments.h:
+
+/usr/include/bits/confname.h:
+
+/usr/include/getopt.h:
+
+/usr/include/curl/curl.h:
+
+/usr/include/curl/curlver.h:
+
+/usr/include/curl/curlbuild.h:
+
+/usr/include/curl/curlbuild-64.h:
+
+/usr/include/sys/socket.h:
+
+/usr/include/sys/uio.h:
+
+/usr/include/bits/uio.h:
+
+/usr/include/bits/socket.h:
+
+/usr/include/bits/sockaddr.h:
+
+/usr/include/asm/socket.h:
+
+/usr/include/asm-generic/socket.h:
+
+/usr/include/asm/sockios.h:
+
+/usr/include/asm-generic/sockios.h:
+
+/usr/include/curl/curlrules.h:
+
+/opt/intel/compilers_and_libraries_2018.1.163/linux/compiler/include/limits.h:
+
+/usr/local/lib/gcc/x86_64-unknown-linux-gnu/4.8.4/include-fixed/limits.h:
+
+/usr/include/limits.h:
+
+/usr/include/bits/posix1_lim.h:
+
+/usr/include/bits/local_lim.h:
+
+/usr/include/linux/limits.h:
+
+/usr/include/bits/posix2_lim.h:
+
+/usr/include/sys/time.h:
+
+/usr/include/curl/easy.h:
+
+/usr/include/curl/multi.h:
+
+/usr/include/curl/typecheck-gcc.h:
+
+/usr/include/sys/resource.h:
+
+/usr/include/bits/resource.h:
+
+../include/netcdf.h:
+
+/usr/include/errno.h:
+
+/usr/include/bits/errno.h:
+
+/usr/include/linux/errno.h:
+
+/usr/include/asm/errno.h:
+
+/usr/include/asm-generic/errno.h:
+
+/usr/include/asm-generic/errno-base.h:
+
+../include/nc.h:
+
+../include/ncrc.h:
+
+../include/ncuri.h:
+
+../include/nclist.h:
+
+../include/ncbytes.h:
+
+../include/ncexternl.h:
+
+../include/nclog.h:
+
+../include/ncdap.h:
+
+d4util.h:
+
+ncd4types.h:
+
+../include/ncauth.h:
+
+ncd4.h:
+
+d4debug.h:
+
+../include/nc4internal.h:
+
+/usr/include/ctype.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/hdf5.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5public.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5pubconf.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5version.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5api_adpt.h:
+
+/opt/intel/compilers_and_libraries_2018.1.163/linux/compiler/include/stdbool.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5Apublic.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5Ipublic.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5Opublic.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5Lpublic.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5Tpublic.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5ACpublic.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5Cpublic.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5Dpublic.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5Epublic.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5Epubgen.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5Fpublic.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5FDpublic.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5Gpublic.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5MMpublic.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5Ppublic.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5Zpublic.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5PLpublic.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5Rpublic.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5Spublic.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5FDcore.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5FDdirect.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5FDfamily.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5FDlog.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5FDmpi.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5FDmpio.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5FDmulti.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5FDsec2.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5FDstdio.h:
+
+../include/ncdimscale.h:
+
+../include/nc_logging.h:
+
+../include/netcdf_f.h:
+
+d4chunk.h:

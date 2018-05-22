@@ -1,0 +1,5 @@
+
+*** Checking HDF5 VLEN types.
+*** Checking simple HDF5 variable length types...ok.
+*** Tests successful!
+PASS tst_h_vl (exit status: 0)

@@ -53,7 +53,7 @@ build_old_libs=yes
 pic_mode=default
 
 # Whether or not to optimize for fast installation.
-fast_install=needless
+fast_install=yes
 
 # Shell to use when invoking shell scripts.
 SHELL="/bin/sh"
@@ -161,7 +161,7 @@ old_postuninstall_cmds=""
 lock_old_archive_extraction=no
 
 # A C compiler.
-LTCC="mpiicc"
+LTCC="icc"
 
 # LTCC compiler flags.
 LTCFLAGS="-O3 -xHost -ip -no-prec-div -static-intel -Difort -fPIC -DLONGLONG_IS_LONG"
@@ -240,7 +240,7 @@ runpath_var=LD_RUN_PATH
 shlibpath_var=LD_LIBRARY_PATH
 
 # Is shlibpath searched before the hard-coded library search path?
-shlibpath_overrides_runpath=yes
+shlibpath_overrides_runpath=no
 
 # Format of library name prefix.
 libname_spec="lib\$name"
@@ -272,10 +272,10 @@ finish_eval=""
 hardcode_into_libs=yes
 
 # Compile-time system search path for libraries.
-sys_lib_search_path_spec="/opt/intel/compilers_and_libraries_2017.2.174/linux/compiler/lib/intel64_lin /usr/lib64 "
+sys_lib_search_path_spec="/opt/intel/compilers_and_libraries_2018.1.163/linux/compiler/lib/intel64_lin /usr/lib64 "
 
 # Run-time system search path for libraries.
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib64/atlas /usr/lib64/ctapi /usr/local/cuda-9.0/targets/x86_64-linux/lib /usr/local/lib /usr/local/lib64 /home/yamamoto/local/ifort/lib /home/yamamoto/local/gfortran63/lib /usr/lib64/mysql /usr/lib64/nvidia /usr/lib64/octave/3.4.3 /usr/lib64/qt-3.3/lib /usr/lib64/tcl8.5 /usr/lib64/xulrunner /opt/intel/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64_lin/ "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib64/atlas /usr/lib64/ctapi /usr/local/cuda-9.0/targets/x86_64-linux/lib /usr/local/cuda-9.1/targets/x86_64-linux/lib /usr/local/cuda-9.2/targets/x86_64-linux/lib /usr/local/lib /usr/local/lib64 /home/yamamoto/local/ifort/lib /home/yamamoto/local/gfortran63/lib /usr/lib64/mysql /usr/lib64/nvidia /usr/lib64/octave/3.4.3 /usr/lib64/qt-3.3/lib /usr/lib64/tcl8.5 /usr/lib64/xulrunner /opt/intel/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64_lin/ "
 
 # Whether dlopen is supported.
 dlopen_support=unknown
@@ -302,7 +302,7 @@ reload_cmds="\$LD\$reload_flag -o \$output\$reload_objs"
 old_archive_cmds="\$AR \$AR_FLAGS \$oldlib\$oldobjs~\$RANLIB \$tool_oldlib"
 
 # A language specific compiler.
-CC="mpiicc"
+CC="icc"
 
 # Is the compiler the GNU compiler?
 with_gcc=yes
@@ -10109,7 +10109,7 @@ reload_cmds="\$LD\$reload_flag -o \$output\$reload_objs"
 old_archive_cmds="\$AR \$AR_FLAGS \$oldlib\$oldobjs~\$RANLIB \$tool_oldlib"
 
 # A language specific compiler.
-CC="mpiifort"
+CC="ifort"
 
 # Is the compiler the GNU compiler?
 with_gcc=
@@ -10151,11 +10151,11 @@ old_archive_from_new_cmds=""
 old_archive_from_expsyms_cmds=""
 
 # Commands used to build a shared archive.
-archive_cmds="\$CC -shared \$pic_flag \$libobjs \$deplibs \$compiler_flags \${wl}-soname \$wl\$soname -o \$lib"
+archive_cmds="\$CC -shared -nofor_main \$libobjs \$deplibs \$compiler_flags \${wl}-soname \$wl\$soname -o \$lib"
 archive_expsym_cmds="echo \\\"{ global:\\\" > \$output_objdir/\$libname.ver~
 	    cat \$export_symbols | sed -e \\\"s/\\\\(.*\\\\)/\\\\1;/\\\" >> \$output_objdir/\$libname.ver~
 	    echo \\\"local: *; };\\\" >> \$output_objdir/\$libname.ver~
-	    \$CC -shared \$pic_flag \$libobjs \$deplibs \$compiler_flags \${wl}-soname \$wl\$soname \${wl}-version-script \${wl}\$output_objdir/\$libname.ver -o \$lib"
+	    \$CC -shared -nofor_main \$libobjs \$deplibs \$compiler_flags \${wl}-soname \$wl\$soname \${wl}-version-script \${wl}\$output_objdir/\$libname.ver -o \$lib"
 
 # Commands used to build a loadable module if different from building
 # a shared archive.
@@ -10261,7 +10261,7 @@ reload_cmds="\$LD\$reload_flag -o \$output\$reload_objs"
 old_archive_cmds="\$AR \$AR_FLAGS \$oldlib\$oldobjs~\$RANLIB \$tool_oldlib"
 
 # A language specific compiler.
-CC="mpiifort"
+CC="ifort"
 
 # Is the compiler the GNU compiler?
 with_gcc=no
@@ -10303,11 +10303,11 @@ old_archive_from_new_cmds=""
 old_archive_from_expsyms_cmds=""
 
 # Commands used to build a shared archive.
-archive_cmds="\$CC -shared \$pic_flag \$libobjs \$deplibs \$compiler_flags \${wl}-soname \$wl\$soname -o \$lib"
+archive_cmds="\$CC -shared -nofor_main \$libobjs \$deplibs \$compiler_flags \${wl}-soname \$wl\$soname -o \$lib"
 archive_expsym_cmds="echo \\\"{ global:\\\" > \$output_objdir/\$libname.ver~
 	    cat \$export_symbols | sed -e \\\"s/\\\\(.*\\\\)/\\\\1;/\\\" >> \$output_objdir/\$libname.ver~
 	    echo \\\"local: *; };\\\" >> \$output_objdir/\$libname.ver~
-	    \$CC -shared \$pic_flag \$libobjs \$deplibs \$compiler_flags \${wl}-soname \$wl\$soname \${wl}-version-script \${wl}\$output_objdir/\$libname.ver -o \$lib"
+	    \$CC -shared -nofor_main \$libobjs \$deplibs \$compiler_flags \${wl}-soname \$wl\$soname \${wl}-version-script \${wl}\$output_objdir/\$libname.ver -o \$lib"
 
 # Commands used to build a loadable module if different from building
 # a shared archive.

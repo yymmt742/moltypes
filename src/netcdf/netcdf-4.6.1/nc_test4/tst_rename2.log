@@ -1,0 +1,7 @@
+*** Testing more renames
+*** test renaming 3 dimensions with format 3...*** test renaming 3 dims with coord data format 3...*** test renaming 3 dimensions with format 4...*** test renaming 3 dims with coord data format 4...ok.
+ok.
+ok.
+ok.
+*** Tests successful!
+PASS tst_rename2 (exit status: 0)

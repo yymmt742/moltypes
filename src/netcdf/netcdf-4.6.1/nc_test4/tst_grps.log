@@ -1,0 +1,24 @@
+
+*** Testing netcdf-4 group functions.
+*** testing simple group create...ok.
+*** testing simple group rename...ok.
+*** testing netcdf-3 and group functions...ok.
+*** testing use of unlimited dim in parent group...ok.
+*** testing simple nested group creates...ok.
+*** testing simple sibling group creates...ok.
+*** testing more group attributes...ok.
+*** testing groups and dimensions...ok.
+*** testing groups and vars...ok.
+*** testing group functions in netCDF classic file...ok.
+*** testing groups and vars...ok.
+*** testing very simple groups and dimension scoping...ok.
+*** testing groups and dimension scoping...ok.
+*** testing more groups and dimension scoping...ok.
+*** testing groups and unlimited dimensions...ok.
+*** testing nested groups...ok.
+*** testing nested groups, user defined types, and enddef...ok.
+*** creating file with lots of user-defined types...ok.
+*** creating file with lots of groups...ok.
+*** creating file with type defined after group...ok.
+*** Tests successful!
+PASS tst_grps (exit status: 0)

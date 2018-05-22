@@ -22,7 +22,7 @@
 ## then modify them accordingly to represent the new paths.               ##
 ##                                                                        ##
 ############################################################################
-prefix="/home/yamamoto/local/devel/moltypes"
+prefix="/home/yamamoto/local/devel/github/moltypes"
 exec_prefix="${prefix}"
 libdir="${exec_prefix}/lib"
 includedir="${prefix}/include"
@@ -86,8 +86,8 @@ FLINKERBASE="no"
 H5BLD_FCFLAGS=" "
 F9XMODFLAG=""
 F9XSUFFIXFLAG=""
-H5BLD_LDFLAGS=" -L/home/yamamoto/local/devel/moltypes/lib -L/home/yamamoto/local/devel/moltypes/lib"
-H5BLD_LIBS="-lz -ldl -lm "
+H5BLD_LDFLAGS=" -L/home/yamamoto/local/devel/github/moltypes/lib -L/home/yamamoto/local/devel/github/moltypes/lib"
+H5BLD_LIBS="-lrt -lz -ldl -lm "
 
 FC="${HDF5_FC:-$FCBASE}"
 FLINKER="${HDF5_FLINKER:-$FLINKERBASE}"

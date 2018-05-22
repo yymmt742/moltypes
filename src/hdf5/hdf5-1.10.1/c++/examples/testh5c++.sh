@@ -25,7 +25,7 @@ EXIT_SUCCESS=0
 EXIT_FAILURE=1
 
 # Where the tool is installed.
-prefix="${prefix:-/home/yamamoto/local/devel/moltypes}"
+prefix="${prefix:-/home/yamamoto/local/devel/github/moltypes}"
 AR="ar"
 RANLIB="ranlib"
 H5TOOL="h5c++"           	# The tool name

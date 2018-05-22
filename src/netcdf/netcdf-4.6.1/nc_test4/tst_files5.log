@@ -1,0 +1,5 @@
+
+*** Testing netcdf file functions.
+*** Checking the new inq_path function...ok.
+*** Tests successful!
+PASS tst_files5 (exit status: 0)

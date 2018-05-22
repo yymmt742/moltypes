@@ -1,0 +1,8 @@
+
+*** Testing netcdf-4 dimensions even more.
+*** testing netcdf-4 dimension inheritance...ok.
+*** testing a scalar coordinate dimension...ok.
+*** testing defining dimensions and coord variables in different orders in root group...ok.
+*** testing defining dimensions and coord variables in different orders in subgroup...ok.
+*** Tests successful!
+PASS tst_dims3 (exit status: 0)

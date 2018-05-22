@@ -1,0 +1,5 @@
+
+*** Checking HDF5 variable functions even more.
+*** Checking string variable fill value...ok.
+*** Tests successful!
+PASS tst_h_vars3 (exit status: 0)

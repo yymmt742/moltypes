@@ -1,0 +1,3 @@
+*** Testing phony dimension creation on pure h5 file
+*** Pass: phony dimension creation
+PASS tst_misc.sh (exit status: 0)

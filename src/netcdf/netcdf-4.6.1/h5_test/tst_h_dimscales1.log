@@ -1,0 +1,5 @@
+
+*** Checking HDF5 dimension scales.
+*** Creating simple dimension scales file, with scale detach...ok.
+*** Tests successful!
+PASS tst_h_dimscales1 (exit status: 0)

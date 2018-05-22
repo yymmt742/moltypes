@@ -109,7 +109,7 @@ host_triplet = x86_64-unknown-linux-gnu
 noinst_PROGRAMS = H5detect$(EXEEXT) H5make_libsettings$(EXEEXT)
 
 # Only compile parallel sources if necessary
-am__append_1 = H5ACmpio.c H5Cmpio.c H5Dmpio.c H5Fmpi.c H5FDmpi.c H5FDmpio.c H5Smpio.c
+#am__append_1 = H5ACmpio.c H5Cmpio.c H5Dmpio.c H5Fmpi.c H5FDmpi.c H5FDmpio.c H5Smpio.c
 
 # Only compile the direct VFD if necessary
 #am__append_2 = H5FDdirect.c
@@ -226,10 +226,10 @@ am__libhdf5_la_SOURCES_DIST = H5.c H5checksum.c H5dbg.c H5system.c \
 	H5Zdeflate.c H5Zfletcher32.c H5Znbit.c H5Zshuffle.c \
 	H5Zscaleoffset.c H5Zszip.c H5Ztrans.c H5ACmpio.c H5Cmpio.c \
 	H5Dmpio.c H5Fmpi.c H5FDmpi.c H5FDmpio.c H5Smpio.c H5FDdirect.c
-am__objects_1 = H5ACmpio.lo \
-	H5Cmpio.lo H5Dmpio.lo \
-	H5Fmpi.lo H5FDmpi.lo \
-	H5FDmpio.lo H5Smpio.lo
+#am__objects_1 = H5ACmpio.lo \
+#	H5Cmpio.lo H5Dmpio.lo \
+#	H5Fmpi.lo H5FDmpi.lo \
+#	H5FDmpio.lo H5Smpio.lo
 #am__objects_2 = H5FDdirect.lo
 am_libhdf5_la_OBJECTS = H5.lo H5checksum.lo H5dbg.lo H5system.lo \
 	H5timer.lo H5trace.lo H5A.lo H5Abtree2.lo H5Adense.lo \
@@ -547,7 +547,7 @@ am__DIST_COMMON = $(srcdir)/H5config.h.in $(srcdir)/Makefile.in \
 	$(top_srcdir)/config/conclude.am \
 	$(top_srcdir)/config/lt_vers.am COPYING
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/yamamoto/local/devel/moltypes/src/hdf5/hdf5-1.10.1/bin/missing aclocal-1.15
+ACLOCAL = ${SHELL} /home/yamamoto/local/devel/github/moltypes/src/hdf5/hdf5-1.10.1/bin/missing aclocal-1.15
 ADD_PARALLEL_FILES = no
 AMTAR = $${TAR-tar}
 
@@ -556,38 +556,38 @@ AMTAR = $${TAR-tar}
 # AM_CFLAGS is an automake construct which should be used by Makefiles 
 # instead of CFLAGS, as CFLAGS is reserved solely for the user to define.
 # This applies to FCFLAGS, CXXFLAGS, CPPFLAGS, and LDFLAGS as well.
-AM_CFLAGS =    -std=c99 -Wcheck -Wall  -Wl,-s  -O3
-AM_CPPFLAGS =  -I/home/yamamoto/local/devel/moltypes/include -D_GNU_SOURCE -D_POSIX_C_SOURCE=200112L   -DNDEBUG -UH5_DEBUG_API
-AM_CXXFLAGS =  -pedantic -Wall -Wextra -Wundef -Wshadow -Wpointer-arith -Wcast-qual -Wcast-align -Wwrite-strings -Wconversion -Wredundant-decls -Winline -Wsign-promo -Woverloaded-virtual -Wold-style-cast -Weffc++ -Wreorder -Wnon-virtual-dtor -Wctor-dtor-privacy -Wabi -Wfloat-equal -Wmissing-format-attribute -Wmissing-noreturn -Wpacked -Wdisabled-optimization -Wformat=2 -Wendif-labels -Winvalid-pch -Wvariadic-macros -Winit-self -Wmissing-include-dirs -Wswitch-default -Wswitch-enum -Wunused-macros -Wunsafe-loop-optimizations -Wstrict-overflow -Wlogical-op -Wlarger-than=2048 -Wvla -Wsync-nand -Wframe-larger-than=16384 -Wpacked-bitfield-compat -Wstrict-overflow=5 -Wdouble-promotion -Wsuggest-attribute=const -Wtrampolines -Wstack-usage=8192 -Wvector-operation-performance -Wsuggest-attribute=pure -Wsuggest-attribute=noreturn -Wsuggest-attribute=format  -s -O3
+AM_CFLAGS =      
+AM_CPPFLAGS =  -I/home/yamamoto/local/devel/github/moltypes/include -D_GNU_SOURCE -D_POSIX_C_SOURCE=200112L   -DNDEBUG -UH5_DEBUG_API
+AM_CXXFLAGS =     
 AM_DEFAULT_VERBOSITY = 0
-AM_FCFLAGS =     -O3
+AM_FCFLAGS =     
 AM_JAVACFLAGS = 
 AM_JAVAFLAGS = 
 AM_JNIFLAGS = 
-AM_LDFLAGS =  -L/home/yamamoto/local/devel/moltypes/lib 
+AM_LDFLAGS =  -L/home/yamamoto/local/devel/github/moltypes/lib 
 AR = ar
 ASSERTS = no
-AUTOCONF = ${SHELL} /home/yamamoto/local/devel/moltypes/src/hdf5/hdf5-1.10.1/bin/missing autoconf
-AUTOHEADER = ${SHELL} /home/yamamoto/local/devel/moltypes/src/hdf5/hdf5-1.10.1/bin/missing autoheader
-AUTOMAKE = ${SHELL} /home/yamamoto/local/devel/moltypes/src/hdf5/hdf5-1.10.1/bin/missing automake-1.15
+AUTOCONF = ${SHELL} /home/yamamoto/local/devel/github/moltypes/src/hdf5/hdf5-1.10.1/bin/missing autoconf
+AUTOHEADER = ${SHELL} /home/yamamoto/local/devel/github/moltypes/src/hdf5/hdf5-1.10.1/bin/missing autoheader
+AUTOMAKE = ${SHELL} /home/yamamoto/local/devel/github/moltypes/src/hdf5/hdf5-1.10.1/bin/missing automake-1.15
 AWK = gawk
 BUILD_MODE = production
 BYTESEX = little-endian
-CC = mpiicc
+CC = icc
 CCDEPMODE = depmode=gcc3
-CC_VERSION = /opt/intel/compilers_and_libraries_2017.2.174/linux/mpi/intel64/bin/mpiicc ( Intel(R) C Intel(R) 64 Compiler Version 17.0.2.174 Build 20170213)
+CC_VERSION = /opt/intel/compilers_and_libraries_2018.1.163/linux/bin/intel64/icc
 CFLAGS = -O3 -xHost -ip -no-prec-div -static-intel -fPIC
 CODESTACK = no
-CONFIG_DATE = Mon Jan 15 04:04:46 JST 2018
+CONFIG_DATE = Mon May 21 06:34:22 JST 2018
 CONFIG_MODE = 
 CONFIG_USER = yymmt@yymmt.kuchem.kyoto-u.ac.jp
 CPP = icc -E
-CPPFLAGS = -I/home/yamamoto/local/devel/moltypes/include
+CPPFLAGS = -I/home/yamamoto/local/devel/github/moltypes/include
 CXX = no
-CXXCPP = icc -E
+CXXCPP = icpc -E
 CXXDEPMODE = depmode=gcc3
 CXXFLAGS = -O3 -xHost -ip -no-prec-div -static-intel -fPIC
-CXX_VERSION = no ( Intel(R) C++ Intel(R) 64 Compiler Version 17.0.2.174 Build 20170213)
+CXX_VERSION = no
 CYGPATH_W = echo
 DEFAULT_API_VERSION = v110
 DEFS = -DHAVE_CONFIG_H
@@ -613,7 +613,7 @@ FC = no
 FCFLAGS = 
 FCFLAGS_f90 = 
 FCLIBS = 
-FC_VERSION = no ( Intel(R) Fortran Intel(R) 64 Compiler Version 17.0.2.174 Build 20170213)
+FC_VERSION = no
 FGREP = /bin/grep -F
 FORTRAN_C_LONG_DOUBLE_IS_UNIQUE = 
 FORTRAN_HAVE_C_LONG_DOUBLE = 
@@ -626,11 +626,11 @@ H5CONFIG_F_NUM_IKIND =
 H5CONFIG_F_NUM_RKIND = 
 H5CONFIG_F_RKIND = 
 H5CONFIG_F_RKIND_SIZEOF = 
-H5_CFLAGS =   -std=c99 -Wcheck -Wall  -Wl,-s  -O3
+H5_CFLAGS =     
 H5_CLASSPATH = 
 H5_CPPFLAGS = -D_GNU_SOURCE -D_POSIX_C_SOURCE=200112L   -DNDEBUG -UH5_DEBUG_API
-H5_CXXFLAGS = -pedantic -Wall -Wextra -Wundef -Wshadow -Wpointer-arith -Wcast-qual -Wcast-align -Wwrite-strings -Wconversion -Wredundant-decls -Winline -Wsign-promo -Woverloaded-virtual -Wold-style-cast -Weffc++ -Wreorder -Wnon-virtual-dtor -Wctor-dtor-privacy -Wabi -Wfloat-equal -Wmissing-format-attribute -Wmissing-noreturn -Wpacked -Wdisabled-optimization -Wformat=2 -Wendif-labels -Winvalid-pch -Wvariadic-macros -Winit-self -Wmissing-include-dirs -Wswitch-default -Wswitch-enum -Wunused-macros -Wunsafe-loop-optimizations -Wstrict-overflow -Wlogical-op -Wlarger-than=2048 -Wvla -Wsync-nand -Wframe-larger-than=16384 -Wpacked-bitfield-compat -Wstrict-overflow=5 -Wdouble-promotion -Wsuggest-attribute=const -Wtrampolines -Wstack-usage=8192 -Wvector-operation-performance -Wsuggest-attribute=pure -Wsuggest-attribute=noreturn -Wsuggest-attribute=format  -s -O3
-H5_FCFLAGS =    -O3
+H5_CXXFLAGS =    
+H5_FCFLAGS =    
 H5_FORTRAN_SHARED = no
 H5_JAVACFLAGS = 
 H5_JAVAFLAGS = 
@@ -671,9 +671,9 @@ JAVA_VERSION = /home/yamamoto/.pyenv/plugins/pyenv-virtualenv/shims/ (./configur
 JNIFLAGS = 
 JUNIT = 
 LD = /usr/bin/ld -m elf_x86_64
-LDFLAGS = -L/home/yamamoto/local/devel/moltypes/lib
+LDFLAGS = -L/home/yamamoto/local/devel/github/moltypes/lib
 LIBOBJS = 
-LIBS = -lz -ldl -lm 
+LIBS = -lrt -lz -ldl -lm 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = 
 LL_PATH = 
@@ -682,12 +682,12 @@ LTLIBOBJS =
 LT_STATIC_EXEC = 
 LT_SYS_LIBRARY_PATH = 
 MAINT = #
-MAKEINFO = ${SHELL} /home/yamamoto/local/devel/moltypes/src/hdf5/hdf5-1.10.1/bin/missing makeinfo
+MAKEINFO = ${SHELL} /home/yamamoto/local/devel/github/moltypes/src/hdf5/hdf5-1.10.1/bin/missing makeinfo
 MANIFEST_TOOL = :
 MEMORYALLOCSANITYCHECK = no
 METADATATRACEFILE = no
 MKDIR_P = /bin/mkdir -p
-MPE = 
+MPE = no
 NM = /usr/bin/nm -B
 NMEDIT = 
 OBJDUMP = objdump
@@ -716,12 +716,12 @@ PAC_FORTRAN_NATIVE_INTEGER_SIZEOF =
 PAC_FORTRAN_NATIVE_REAL_KIND = 
 PAC_FORTRAN_NATIVE_REAL_SIZEOF = 
 PAC_FORTRAN_NUM_INTEGER_KINDS = 
-PARALLEL = yes
+PARALLEL = no
 PATH_SEPARATOR = :
 PROFILING = no
 RANLIB = ranlib
-ROOT = /home/yamamoto/local/devel/moltypes/src/hdf5/hdf5-1.10.1
-RUNPARALLEL = mpiexec -n $${NPROCS:=6}
+ROOT = /home/yamamoto/local/devel/github/moltypes/src/hdf5/hdf5-1.10.1
+RUNPARALLEL = 
 RUNSERIAL = 
 R_INTEGER = 
 R_LARGE = 
@@ -735,13 +735,13 @@ STATIC_SHARED = static, shared
 STRICT_FORMAT_CHECKS = no
 STRIP = strip
 SYMBOLS = no
-TESTPARALLEL = testpar
+TESTPARALLEL = 
 TESTS_JUNIT = 
 THREADSAFE = no
 TIME = time
 TR = /usr/bin/tr
 TRACE_API = no
-UNAME_INFO = Linux yymmt.kuchem.kyoto-u.ac.jp 2.6.32-696.16.1.el6.x86_64 #1 SMP Wed Nov 15 16:51:15 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
+UNAME_INFO = Linux yymmt.kuchem.kyoto-u.ac.jp 2.6.32-696.28.1.el6.x86_64 #1 SMP Wed May 9 23:09:02 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
 USE_FILTER_DEFLATE = yes
 USE_FILTER_SZIP = no
 USINGMEMCHECKER = no
@@ -749,12 +749,12 @@ UUDECODE =
 VERSION = 1.10.1
 WORDS_BIGENDIAN = no
 _ACJNI_JAVAC = 
-abs_builddir = /home/yamamoto/local/devel/moltypes/src/hdf5/hdf5-1.10.1/src
-abs_srcdir = /home/yamamoto/local/devel/moltypes/src/hdf5/hdf5-1.10.1/src
-abs_top_builddir = /home/yamamoto/local/devel/moltypes/src/hdf5/hdf5-1.10.1
-abs_top_srcdir = /home/yamamoto/local/devel/moltypes/src/hdf5/hdf5-1.10.1
+abs_builddir = /home/yamamoto/local/devel/github/moltypes/src/hdf5/hdf5-1.10.1/src
+abs_srcdir = /home/yamamoto/local/devel/github/moltypes/src/hdf5/hdf5-1.10.1/src
+abs_top_builddir = /home/yamamoto/local/devel/github/moltypes/src/hdf5/hdf5-1.10.1
+abs_top_srcdir = /home/yamamoto/local/devel/github/moltypes/src/hdf5/hdf5-1.10.1
 ac_ct_AR = 
-ac_ct_CC = mpiicc
+ac_ct_CC = icc
 ac_ct_CXX = 
 ac_ct_DUMPBIN = 
 ac_ct_FC = 
@@ -787,7 +787,7 @@ host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/yamamoto/local/devel/moltypes/src/hdf5/hdf5-1.10.1/bin/install-sh
+install_sh = ${SHELL} /home/yamamoto/local/devel/github/moltypes/src/hdf5/hdf5-1.10.1/bin/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -796,7 +796,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /home/yamamoto/local/devel/moltypes
+prefix = /home/yamamoto/local/devel/github/moltypes
 program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin

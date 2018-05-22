@@ -1,0 +1,6 @@
+
+*** Testing NetCDF-4 with user-supplied sample file.
+*** testing creation of sample file...ok.
+*** testing opening of many files...ok.
+*** Tests successful!
+PASS tst_files4 (exit status: 0)

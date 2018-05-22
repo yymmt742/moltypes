@@ -1,0 +1,6 @@
+
+*** Testing netcdf-4 compound types even more.
+*** testing compound variable create from packed struct...ok.
+*** testing compound attribute with Dennis...ok.
+*** Tests successful!
+PASS tst_compounds3 (exit status: 0)

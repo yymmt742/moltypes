@@ -1,0 +1,9 @@
+
+*** Testing netcdf data conversion.
+*** Testing conversion in netCDF classic files... ok.
+*** Testing conversion in netCDF 64-bit offset files... ok.
+*** Testing conversion in netCDF netCDF-4 files... ok.
+*** Testing conversion in netCDF netCDF-4 classic model files... ok.
+*** Testing conversion in netCDF CDF5 files... ok.
+*** Tests successful!
+PASS tst_converts (exit status: 0)

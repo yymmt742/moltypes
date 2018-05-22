@@ -11,10 +11,12 @@ public
   double precision,parameter :: EV2KCM    = 23.06d0
   double precision,parameter :: EV2NM     = 1239.84d0
   double precision,parameter :: BOHR      = 0.5291772106712d0              ! [Angstr]
+  double precision,parameter :: AU2DEBYE  = 4.803204544d0
   double precision,parameter :: ANG2BOHR  = 1.d0/BOHR
   double precision,parameter :: PLANK     = 6.62607004081d0                ! [10e-34 Js]
   double precision,parameter :: DIRAC     = 1.05457180013d0                ! [10e-34 Js]
   double precision,parameter :: ZERO      = 0.d0
+  double precision,parameter :: HALF      = 0.5d0
   double precision,parameter :: ONE       = 1.d0
   double precision,parameter :: SQRT2     = 1.4142135623730950d0
   double precision,parameter :: SQRT3     = 1.7320508075688773d0

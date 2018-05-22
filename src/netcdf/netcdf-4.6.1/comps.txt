@@ -1,0 +1,7 @@
+CPPFLAGS= CC=gcc CFLAGS= LDFLAGS= LIBS=-lcurl 
+CPPFLAGS= CC=gcc CFLAGS= LDFLAGS= LIBS=-lcurl 
+CPPFLAGS=-I/home/yamamoto/local/devel/github/moltypes/ifort/include -fPIC CC=icc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel -Difort -fPIC LDFLAGS=-L/home/yamamoto/local/devel/github/moltypes/lib LIBS=-lhdf5_hl -lhdf5 -lz -lsz -lcurl
+CPPFLAGS=-I/home/yamamoto/local/devel/github/moltypes/include -fPIC CC=icc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel -Difort -fPIC LDFLAGS=-L/home/yamamoto/local/devel/github/moltypes/lib LIBS=-lhdf5_hl -lhdf5 -lz -lsz -lcurl
+CPPFLAGS=-I/home/yamamoto/local/devel/github/moltypes/include -fPIC CC=icc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel -Difort -fPIC LDFLAGS=-L/home/yamamoto/local/devel/github/moltypes/lib LIBS=-lhdf5_hl -lhdf5 -lz -lsz -lcurl
+CPPFLAGS=-I/home/yamamoto/local/devel/github/moltypes/include -fPIC CC=icc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel -Difort -fPIC LDFLAGS=-L/home/yamamoto/local/devel/github/moltypes/lib LIBS=-lhdf5_hl -lhdf5 -lz -lsz -lcurl
+CPPFLAGS=-I/home/yamamoto/local/devel/github/moltypes/include -fPIC CC=icc CFLAGS=-O3 -xHost -ip -no-prec-div -static-intel -Difort -fPIC LDFLAGS=-L/home/yamamoto/local/devel/github/moltypes/lib LIBS=-lhdf5_hl -lhdf5 -lz -lsz -lcurl

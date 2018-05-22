@@ -20,8 +20,8 @@ contains
   type(amberprmtop)                :: prm
   type(readmask)                   :: mp
   type(optparse)                   :: op
-    call op%add_option("-m",narg=1,metavar='string',def=['all'], help='mask string.')
-    call op%add_option("-o",narg=1,metavar='string', help='output path.')
+    call op%add_option("-m",narg=1,metavar=['string'],def=['all'], help='mask string.')
+    call op%add_option("-o",narg=1,metavar=['string'], help='output path.')
     call op%parser()
     if(op%narg()==0) call op%call_usage()
 !

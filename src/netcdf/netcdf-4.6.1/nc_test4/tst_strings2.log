@@ -1,0 +1,5 @@
+
+*** Testing netcdf-4 string type.
+*** testing very simple string attribute...ok.
+*** Tests successful!
+PASS tst_strings2 (exit status: 0)

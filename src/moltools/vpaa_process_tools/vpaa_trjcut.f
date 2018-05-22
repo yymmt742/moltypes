@@ -32,11 +32,11 @@ contains
   character(:),allocatable :: nout
   integer                  :: i,j,k
     call op%add_description('Cluster analysis and calculate their fluctuations.')
-    call op%add_option("-mol",narg=1,metavar='string',def=['all'], help='clustering molecules mask.')
-    call op%add_option("-ref",narg=1,metavar='string',def=['none'],help='reference molecules mask.')
-    call op%add_option("-log",narg=1,metavar='string',def=['trjcut.log'],help='reference molecules mask.')
-    call op%add_option("-s",narg=1,metavar='num',def=['0.1'],help='time step size. default [0.1]')
-    call op%add_option("-t",alias=["--threshold"],narg=1,metavar='value',def=['5.0'],&
+    call op%add_option("-mol",narg=1,metavar=['string'],def=['all'], help='clustering molecules mask.')
+    call op%add_option("-ref",narg=1,metavar=['string'],def=['none'],help='reference molecules mask.')
+    call op%add_option("-log",narg=1,metavar=['string'],def=['trjcut.log'],help='reference molecules mask.')
+    call op%add_option("-s",narg=1,metavar=['num'],def=['0.1'],help='time step size. default [0.1]')
+    call op%add_option("-t",narg=1,metavar=['value'],def=['5.0'],&
                       &help='cluster decision threshold(angstrom). default 5.0')
     call op%parser()
     if(op%narg()==0) call op%call_usage()

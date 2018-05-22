@@ -1,0 +1,5 @@
+
+*** Testing some extra stuff.
+*** Trying to open non-netCDF files of tiny length...ok.
+*** Tests successful!
+PASS tst_misc (exit status: 0)

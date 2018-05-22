@@ -1,0 +1,5 @@
+
+*** Testing for a netCDF-4 fill-value bug.
+*** Testing fill-values...ok.
+*** Tests successful!
+PASS tst_fillbug (exit status: 0)

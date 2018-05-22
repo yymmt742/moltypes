@@ -124,7 +124,7 @@ if [ "x$DOAUTOTOOL" = "xTRUE" ]; then
             SHARED_BUILD="--enable-shared"
         fi
 
-        LIBS="-ldl -lm -lhdf5_hl -lhdf5 -lz -lsz -lcurl" CFLAGS="-I/home/yamamoto/local/devel/moltypes/include" LDFLAGS="-L/home/yamamoto/local/devel/moltypes/lib" ./configure --prefix=/home/yamamoto/local/devel/moltypes $STATIC_BUILD $SHARED_BUILD
+        LIBS="-ldl -lm -lhdf5_hl -lhdf5 -lz -lsz -lcurl" CFLAGS="-I/home/yamamoto/local/devel/github/moltypes/include" LDFLAGS="-L/home/yamamoto/local/devel/github/moltypes/lib" ./configure --prefix=/home/yamamoto/local/devel/github/moltypes $STATIC_BUILD $SHARED_BUILD
         LIBS="-ldl -lm -lhdf5_hl -lhdf5 -lz -lsz -lcurl" make
         LIBS="-ldl -lm -lhdf5_hl -lhdf5 -lz -lsz -lcurl" make check
     fi

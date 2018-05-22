@@ -6,5 +6,5 @@ FSOURCES=moltypes_errorhandler.f\
          moltypes_readmask.f\
          moltypes_export.f\
          moltypes.f\
-         moltypes_perser.f\
+         moltypes_parser.f\
 

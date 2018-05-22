@@ -1,0 +1,12 @@
+
+*** Testing netcdf-4 string type.
+*** testing string attribute...ok.
+*** testing string attribute...ok.
+*** testing string var functions...ok.
+*** testing string attributes...ok.
+*** testing string fill value...ok.
+*** Testing netcdf-4 strided string access...ok.
+*** testing string variables with fill values...ok.
+*** Testing a file that causes ncdump problems...ok.
+*** Tests successful!
+PASS tst_strings (exit status: 0)

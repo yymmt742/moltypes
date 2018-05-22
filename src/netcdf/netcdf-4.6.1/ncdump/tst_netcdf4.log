@@ -1,0 +1,62 @@
+
+*** Testing ncgen and ncdump for netCDF-4 format.
+*** Creating test output tst_netcdf4_c0.nc.
+*** Testing that program tst_h_rdc0 can read tst_netcdf4_c0.nc.
+
+*** Checking HDF5 file c0.nc.
+*** Checking HDF5 objcts...ok.
+*** Tests successful!
+*** Running tst_create_files.c to create test files.
+
+*** Creating test files for ncdump.
+*** creating nested group file tst_solar_1.nc...ok.
+*** checking nested group file tst_solar_1.nc...ok.
+*** creating file with VLEN tst_solar_2.nc...ok.
+*** creating file with compound type tst_solar_cmp.nc...ok.
+*** Tests successful!
+*** Testing tst_create_files output for netCDF-4 features.
+*** Running tst_group_data.c to create test files.
+
+*** Testing groups.
+*** creating nested group file tst_group_data.nc...ok.
+*** Tests successful!
+*** Testing -v option with absolute name and groups...
+*** Testing -v option with relative name and groups...
+*** Running tst_enum_data.c to create test files.
+
+*** Testing enums.
+*** creating enum test file tst_enum_data.nc...ok.
+*** Tests successful!
+*** Running tst_opaque_data.c to create test files.
+
+*** Testing opaque types.
+*** creating opaque test file tst_opaque_data.nc...ok.
+*** Tests successful!
+*** Running tst_vlen_data.c to create test files.
+
+*** Testing vlens.
+*** creating vlen test file tst_vlen_data.nc...ok.
+*** Tests successful!
+*** Running tst_comp.c to create test files.
+
+*** Testing compound types.
+*** creating compound test file tst_comp.nc...ok.
+*** Tests successful!
+*** Running tst_nans.c to create test files.
+
+*** Testing NaN
+*** creating NaN test file tst_nans.nc...ok.
+*** Tests successful!
+*** dumping tst_unicode.nc to tst_unicode.cdl...
+
+*** Testing UTF-8.
+*** creating UTF-8 test file tst_unicode.nc...ok.
+*** Tests successful!
+*** Running tst_special_atts.c to create test files.
+
+*** Testing '-s' option for special attributes.
+*** creating special attributes test file tst_special_atts.nc...ok.
+*** Tests successful!
+*** comparing tst_special_atts.cdl with ref_tst_special_atts.cdl...
+*** All ncgen and ncdump test output for netCDF-4 format passed!
+PASS tst_netcdf4.sh (exit status: 0)

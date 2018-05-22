@@ -25,8 +25,8 @@ EXIT_SUCCESS=0
 EXIT_FAILURE=1
 
 # Where the tool is installed.
-prefix="${prefix:-/home/yamamoto/local/devel/moltypes}"
-PARALLEL=yes		# Am I in parallel mode?
+prefix="${prefix:-/home/yamamoto/local/devel/github/moltypes}"
+PARALLEL=no		# Am I in parallel mode?
 AR="ar"
 RANLIB="ranlib"
 if [ "$PARALLEL" = no ]; then

@@ -1,0 +1,5 @@
+
+*** Running group_rename test
+-116: NetCDF: Bad group ID
+***XFAIL : attempt to rename root group failed as expected
+PASS run_grp_rename.sh (exit status: 0)

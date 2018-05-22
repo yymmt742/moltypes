@@ -1,0 +1,39 @@
+findplugin.sh loaded
+final HDF5_PLUGIN_PATH=/home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/nc_test4/hdf5plugins/.libs
+*** Testing dynamic filters using API
+
+*** Testing API: bzip2 compression.
+show parameters for bzip2: level=9
+show chunks: chunks=4,4,4,4
+
+*** Testing API: bzip2 decompression.
+data comparison: |array|=256
+no data errors
+*** Pass: API dynamic filter
+
+*** Testing dynamic filters parameter passing
+test1: compression.
+test: nparams=14: params= 1 239 23 65511 27 77 93 1145389056 3287505826 1097305129 1 2147483648 4294967295 4294967295
+ chunks=4,4,4,4
+test1: decompression.
+data comparison: |array|=256
+no data errors
+*** Pass: parameter passing
+*** Testing dynamic filters using ncgen
+*** Pass: ncgen dynamic filter
+*** Testing dynamic filters using nccopy
+	*** Testing simple filter application
+	*** Pass: nccopy simple filter
+	*** Testing pass-thru of filters
+	*** Pass: pass-thru of filters
+	*** Testing -F none
+	*** Pass: -F none
+	*** Testing -F var,none 
+	*** Pass: -F var,none
+*** Pass: all nccopy filter tests
+*** Testing access to filter info when filter dll is not available
+*** Pass: ncgen dynamic filter
+*** Testing dynamic filters using ncgen with -lc
+*** Pass: ncgen dynamic filter
+*** Pass: all selected tests passed
+PASS tst_filter.sh (exit status: 0)

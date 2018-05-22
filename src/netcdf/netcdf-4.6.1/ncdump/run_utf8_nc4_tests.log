@@ -1,0 +1,4 @@
+
+*** Testing netcdf-4 file with utf8 characters...
+*** NetCDF-4 UTF8 testing passed!
+PASS run_utf8_nc4_tests.sh (exit status: 0)

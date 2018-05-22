@@ -11,6 +11,9 @@ netcdf:
 #	(cd src/hdf5 && make)
 	(cd src/netcdf && make)
 
+fnv:
+	(cd src/fnv && make && make check && make install)
+
 spur03:
 	(cd src/spur03 && make)
 

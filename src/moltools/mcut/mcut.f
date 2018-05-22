@@ -5,25 +5,27 @@ implicit none
 contains
   subroutine compute_mcut()
   use spur_itertools
-  use moltypes_perser
+  use moltypes_parser
   use spur_optparse
-  type(molperser)                  :: mt
+  type(molparser)                  :: mt
   type(optparse)                   :: op
   logical                          :: ow
   integer                          :: lb,ub,inc,num
   integer                          :: i,j,progres
-    call op%add_option("-l",narg=1,metavar='int',def=['1'],  help='lower bound of frame index')
-    call op%add_option("-u",narg=1,metavar='int',def=['-1'], help='upper bound of frame index')
-    call op%add_option("-i",narg=1,metavar='int',def=['1'],  help='increment of frame index')
-    call op%add_option("-m",narg=1,metavar='mask string',def=['all'], help='mask string.')
-    call op%add_option("-o",narg=1,metavar='path name', help='output path.')
+    call op%add_option("-l",narg=1,metavar=['int'],def=['1'],  help='lower bound of frame index')
+    call op%add_option("-u",narg=1,metavar=['int'],def=['-1'], help='upper bound of frame index')
+    call op%add_option("-i",narg=1,metavar=['int'],def=['1'],  help='increment of frame index')
+    call op%add_option("-m",narg=1,metavar=['mask'],def=['all'], help='mask string.')
+    call op%add_option("-o",narg=1,metavar=['path'], help='output path.')
     call op%add_option("-O", help='over writing.')
-    call op%add_option("--center",narg=1,metavar='mask string', help='centering atoms.')
-    call op%add_option("--wrap",metavar='mask string', help='unwrap coordinates.')
-    call op%add_option("--unwrap",metavar='mask string', help='unwrap coordinates.')
-    call op%add_option("--dry-run",metavar='string',def=['all'], help='dry run mode.')
+    call op%add_option("--center",narg=1,metavar=['mask'], help='centering atoms.')
+    call op%add_option("--wrap",    help='wrap coordinates.')
+    call op%add_option("--unwrap",  help='unwrap coordinates.')
+    call op%add_option("--dry-run", help='dry run mode.')
     call op%parser()
-    if(op%narg()==0) call op%call_usage()
+    if(op%narg()==0)then
+      call op%call_usage() ; RETURN
+    endif
 !
     lb  = op%optargi('-l',1)
     ub  = op%optargi('-u',1)
@@ -57,17 +59,16 @@ contains
 !
   subroutine PrintInfomation(mt,op,lb,ub,inc,num)
   use spur_string
-  use moltypes_perser
+  use moltypes_parser
   use spur_optparse
   use spur_vector_chr
-  type(molperser),intent(in)  :: mt
+  type(molparser),intent(in)  :: mt
   type(optparse),intent(in)   :: op
   integer,intent(in)          :: lb,ub,inc,num
   type(vector_chr)            :: args
   integer                     :: i
     write(STDOUT,'(a,i0,a,i0,a)') 'Fetched trajectry ',mt%nfetchframes(),' frames / ',mt%nfetchatoms(),' atoms'
-    call args%textwrap(join(op%args(),' '),78)
-    !call args%textwrap(join(op%args(),' '),78,delimiter=' ')
+    call args%textwrap(78,join(op%args(),' '))
     write(STDOUT,'(a)') 'Here is Input Files'
     do i = 1,args%size()
       write(STDOUT,'(a)') "| "//args%at(i)

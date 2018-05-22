@@ -13,15 +13,14 @@ integer          :: istat
   if(istat/=0) ERROR STOP
 contains
   subroutine compute_vpaa_rmsd()
-  use moltypes_perser
+  use moltypes_parser
   use moltypes_export
   use spur_string
   use spur_histgram
   use spur_optparse
-  use spur_vector
   use spur_stdio
   type(optparse)           :: arg
-  type(molperser)          :: mt
+  type(molparser)          :: mt
   type(stdio)              :: dat,logf
   character(:),allocatable :: ifmt,nfmt,ncout
   integer                  :: natm,nmol,nres,ntrj,nswp,nflp,ncpy
@@ -33,13 +32,13 @@ contains
   integer                  :: ikey,nkey,iswp,iflp,ichiral,flpcnt
   double precision         :: time
     call arg%add_description('cluster analysys. trajectry must be 0 fixed.')
-    call arg%add_option("-i",narg=1,metavar='num',def=['100'],help='n sampling. default [100]')
-    call arg%add_option("-s",narg=1,metavar='num',def=['0.1'],help='time step size. default [0.1]')
-    call arg%add_option("-m",narg=1,metavar='string',help='loading mask')
-    call arg%add_option("-o",narg=1,metavar='filename',help='output file name.')
-    call arg%add_option("-dat",narg=1,metavar='filename',def=['rmsd.dat'],help='dat file name.')
-    call arg%add_option("-flp",narg=1,metavar='filename',help='c2v molecule flip list')
-    call arg%add_option("-x",narg=1,metavar='index',def=['0'],help='fiting frame for trajout')
+    call arg%add_option("-i",narg=1,metavar=['num'],def=['100'],help='n sampling. default [100]')
+    call arg%add_option("-s",narg=1,metavar=['num'],def=['0.1'],help='time step size. default [0.1]')
+    call arg%add_option("-m",narg=1,metavar=['string'],help='loading mask')
+    call arg%add_option("-o",narg=1,metavar=['path'],help='output file name.')
+    call arg%add_option("-dat",narg=1,metavar=['path'],def=['rmsd.dat'],help='dat file name.')
+    call arg%add_option("-flp",narg=1,metavar=['path'],help='c2v molecule flip list')
+    call arg%add_option("-x",narg=1,metavar=['index'],def=['0'],help='fiting frame for trajout')
     call arg%add_option("--silent",help='run silent mode')
     call arg%add_option("--noswp", help='run without swaping')
     call arg%parser()
@@ -404,18 +403,17 @@ contains
   end function rmsrot
 !
   subroutine PrintHeader(logf,args,natm,nres,ntrj,nflp,nswp,ncpy,nkey)
-  use spur_vector
+  use spur_vector_chr
   use spur_stdio
-  use spur_string
   type(stdio),intent(inout) :: logf
   character(*),intent(in)   :: args(:)
   integer,intent(in)        :: natm,nres,ntrj,nflp,nswp,ncpy,nkey
-  type(vector_character)    :: wrap
+  type(vector_chr)          :: wrap
     call logf%puts('============================================================')
     call logf%puts('---           SUMMARY OF VPAA_RMSD CALCULATION           ---')
     call logf%puts('============================================================')
     call logf%puts('* >> HERE IS INPUT FILES.')
-    call wrap%textwrap(join(args,', '),60)
+    call wrap%push(args) ; call wrap%textwrap(60)
     call logf%puts(wrap%lookup())
     call logf%break()
     call logf%puts('* >> TRAJECTORY INFOMATION')

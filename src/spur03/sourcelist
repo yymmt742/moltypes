@@ -1,3 +1,4 @@
+#CSOURCES=hash/get_hash.c
 FSOURCES=itertools/spur_itertools.f\
          itertools/spur_shapeshifter.f\
          math/spur_mathconst_dble.f\
@@ -24,5 +25,4 @@ FSOURCES=itertools/spur_itertools.f\
          io/spur_stdio.f\
          io/spur_ncio.f\
          io/spur_optparse.f\
-         io/spur_optparse2.f\
          io/spur_histgram.f\

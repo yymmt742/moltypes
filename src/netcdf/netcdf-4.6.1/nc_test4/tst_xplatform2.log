@@ -1,0 +1,14 @@
+
+Testing nested types across platforms.
+*** testing of vlen of compound type...ok.
+*** testing Solaris-written vlen of compound type...ok.
+*** testing compound type containing array of compound type...ok.
+*** testing Solaris-written compound type containing array of compound type...ok.
+*** testing compound attribute containing array of vlen of compound type...ok.
+*** testing compound variable containing array of vlen of compound type...ok.
+
+*** Checking HDF5 attribute functions some more.
+*** Opening tst_xplatform2_3.nc... reading type Magna_Carta_VLEN  reading type barons  reading type cmp_t ok.
+*** Opening tst_xplatform2_3.nc again...ok.
+*** Tests successful!
+PASS tst_xplatform2 (exit status: 0)

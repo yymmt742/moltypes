@@ -1,0 +1,7 @@
+
+*** Checking HDF5 file functions.
+*** Checking HDF5 file creates and opens...ok.
+*** Checking HDF5 file creates and opens some more...ok.
+*** Creating file...ok.
+*** Tests successful!
+PASS tst_h_files (exit status: 0)

@@ -1,0 +1,8 @@
+***Testing url prefix parameters
+command: /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -h [log][show=fetch]http://remotetest.unidata.ucar.edu/dts/test.03
+***Testing url suffix parameters
+command: /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -h http://remotetest.unidata.ucar.edu/dts/test.03#log&show=fetch
+***Testing url prefix+suffix parameters
+command: /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump -h [log][show=fetch]http://remotetest.unidata.ucar.edu/dts/test.03#noprefetch&fetch=disk
+***PASS
+PASS testurl.sh (exit status: 0)

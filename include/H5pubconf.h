@@ -237,7 +237,7 @@
 /* #undef H5_HAVE_MPI_MULTI_LANG_Info */
 
 /* Define if we have parallel support */
-#define H5_HAVE_PARALLEL 1
+/* #undef H5_HAVE_PARALLEL */
 
 /* Define to 1 if you have the <pthread.h> header file. */
 /* #undef H5_HAVE_PTHREAD_H */

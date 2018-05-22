@@ -1,0 +1,103 @@
+*** Testing DAP to netCDF-3 translation 
+        Client Parameters: [log][cache][prefetch][netcdf3]
+        Caching: on
+    Note: The remote tests may be slow or even fail if the server is overloaded
+*** Testing: test.01
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.01
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.01 \> test.01.dmp
+*** Testing: test.02
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.02
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.02 \> test.02.dmp
+*** Testing: test.04
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.04
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.04 \> test.04.dmp
+*** Testing: test.05
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.05
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.05 \> test.05.dmp
+*** Testing: test.07a
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.07a
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.07a \> test.07a.dmp
+*** Testing: test.07
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.07
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.07 \> test.07.dmp
+*** Testing: test.21
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.21
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.21 \> test.21.dmp
+*** Testing: test.50
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.50
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.50 \> test.50.dmp
+*** Testing: test.53
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.53
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.53 \> test.53.dmp
+*** Testing: test.55
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.55
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.55 \> test.55.dmp
+*** Testing: test.56
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.56
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.56 \> test.56.dmp
+*** Testing: test.57
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.57
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.57 \> test.57.dmp
+*** Testing: test.66
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.66
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.66 \> test.66.dmp
+*** Testing: test.67
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.67
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.67 \> test.67.dmp
+*** Testing: test.68
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.68
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.68 \> test.68.dmp
+*** Testing: test.69
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.69
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.69 \> test.69.dmp
+*** Testing: test.01.1
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.01?f64
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.01?f64 \> test.01.1.dmp
+*** Testing: test.02.1
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.02?b[1:2:10]
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.02?b[1:2:10] \> test.02.1.dmp
+*** Testing: test.03.1
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.03?i32[0:1][1:2][0:2]
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.03?i32[0:1][1:2][0:2] \> test.03.1.dmp
+*** Testing: test.04.1
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.04?types.i32
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.04?types.i32 \> test.04.1.dmp
+*** Testing: test.05.1
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.05?types.floats.f32
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.05?types.floats.f32 \> test.05.1.dmp
+*** Testing: test.07.1
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.07?person.age
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.07?person.age \> test.07.1.dmp
+*** Testing: test.07.3
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.07?person
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.07?person \> test.07.3.dmp
+*** Testing: test.07.4
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.07?types.f32
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.07?types.f32 \> test.07.4.dmp
+Unknown which test: CB
+*** Testing: test.01.1
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.01?f64
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.01?f64 \> test.01.1.dmp
+*** Testing: test.02.1
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.02?b[1:2:10]
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.02?b[1:2:10] \> test.02.1.dmp
+*** Testing: test.03.1
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.03?i32[0:1][1:2][0:2]
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.03?i32[0:1][1:2][0:2] \> test.03.1.dmp
+*** Testing: test.04.1
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.04?types.i32
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.04?types.i32 \> test.04.1.dmp
+*** Testing: test.05.1
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.05?types.floats.f32
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.05?types.floats.f32 \> test.05.1.dmp
+*** Testing: test.07.1
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.07?person.age
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.07?person.age \> test.07.1.dmp
+*** Testing: test.07.3
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.07?person
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.07?person \> test.07.3.dmp
+*** Testing: test.07.4
+*** URL: [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.07?types.f32
+command =   /home/yamamoto/local/devel/github/moltypes/src/netcdf/netcdf-4.6.1/ncdump/ncdump [log][cache][prefetch][netcdf3]http://remotetest.unidata.ucar.edu/dts/test.07?types.f32 \> test.07.4.dmp
+*** PASSED: 32/32 ; 0 expected failures ; 0 unexpected failures
+PASS tst_remote3.sh (exit status: 0)

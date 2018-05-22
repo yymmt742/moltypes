@@ -1,0 +1,10 @@
+
+*** Testing netCDF-4 types...
+*** testing netCDF-4 new atomic types and equality...ok.
+*** testing user-defined netCDF-4 enum types and equality...ok.
+*** testing vara functions with new netCDF-4 atomic types...ok.
+*** testing vars functions with new netCDF-4 atomic types...ok.
+*** testing var1 functions with new netCDF-4 atomic types...ok.
+*** testing varm functions with new netCDF-4 atomic types...ok.
+*** Tests successful!
+PASS tst_types (exit status: 0)

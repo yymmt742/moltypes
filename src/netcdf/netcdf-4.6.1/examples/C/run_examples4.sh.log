@@ -1,0 +1,19 @@
+*** Running examples for netCDF-4.
+*** running simple_nc4 examples...
+*** SUCCESS writing example file simple_nc4.nc!
+*** SUCCESS reading example file simple_nc4.nc!
+*** running simple_xy_nc4 examples...
+*** SUCCESS writing example file simple_xy_nc4.nc!
+*** SUCCESS reading example file simple_xy_nc4.nc!
+*** running test_filter example...
+*** running filter_example...
+
+*** Testing API: bzip2 compression.
+show parameters for bzip2: level=9
+show chunks: chunks=4,4,4,4
+
+*** Testing API: bzip2 decompression.
+data comparison: |array|=256
+no data errors
+*** Examples successful!
+PASS run_examples4.sh (exit status: 0)

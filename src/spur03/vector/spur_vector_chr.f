@@ -477,30 +477,39 @@ contains
     if(j+1<last)  call qs_down(this,j+1,last)
   end subroutine qs_down
 !
-  pure subroutine CTextWrap(this,text,width,delimiter)
-  use spur_vector_int4
+  pure subroutine CTextWrap(this,width,text,delimiter)
   class(vector_chr),intent(inout)       :: this
-  character(*),intent(in)               :: text
   integer,intent(in)                    :: width
+  character(*),intent(in),optional      :: text
   character(*),intent(in),optional      :: delimiter
-  character(width)                      :: tmp
   type(vector_chr)                      :: words
-  type(vector_int4)                     :: head,tail
-  integer,allocatable                   :: minima(:),lengths(:),breaks(:)
-  integer,allocatable                   :: slack(:,:)
-  integer                               :: width2
-  integer                               :: i, j, x
-    if(present(delimiter))then
-      call CSplit(words,text,delimiter)
+    if(present(text))then
+      if(present(delimiter))then
+        call words%split(text,delimiter)
+      else
+        call words%split(text)
+      endif
     else
-      call CSplit(words,text)
+      call words%push(this%lookup())
+      call this%clear()
     endif
     if(words%size()<1) RETURN
+    call ComputeTextWrap(this,words,width)
+  end subroutine CTextWrap
 !
-    allocate(lengths(words%size()))
-    allocate(slack(words%size(),words%size()))
-    allocate(minima(words%size()+1),breaks(words%size()))
-!
+  pure subroutine ComputeTextWrap(this,words,width)
+  use spur_vector_int4
+  class(vector_chr),intent(inout)       :: this
+  type(vector_chr),intent(in)           :: words
+  integer,intent(in)                    :: width
+  character(width)                      :: tmp
+  type(vector_int4)                     :: head,tail
+  integer                               :: minima(words%size()+1)
+  integer                               :: lengths(words%size())
+  integer                               :: breaks(words%size())
+  integer                               :: slack(words%size(),words%size())
+  integer                               :: width2
+  integer                               :: i, j, x
     width2 = width + 1
     minima = NAN ; minima(1) = 0  ; breaks = 1
 !
@@ -536,10 +545,9 @@ contains
       tmp = trim(words%join(lb=head%at(i),ub=tail%at(i),delimiter=' '))
       call this%push(tmp)
     enddo
-    deallocate(lengths,slack,minima,breaks)
     call words%clear()
     call head%clear() ; call tail%clear()
-  end subroutine CTextwrap
+  end subroutine ComputeTextwrap
 !
   pure elemental subroutine CClear(this)
   class(vector_chr),intent(inout) :: this

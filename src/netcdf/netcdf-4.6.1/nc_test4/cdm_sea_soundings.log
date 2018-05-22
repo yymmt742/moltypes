@@ -1,0 +1,5 @@
+
+*** Testing netcdf-4 CDM compliance: sea soundings.
+*** creating simple sea sounding file...ok.
+*** Tests successful!
+PASS cdm_sea_soundings (exit status: 0)
