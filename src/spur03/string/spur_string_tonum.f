@@ -48,7 +48,15 @@ contains
   character(*), intent(in)    :: string
   double precision,intent(in) :: dumm
   double precision            :: tmp,res
-    res = dumm ; read(string,'(f)',err=100) tmp ; res = tmp
+  character(:),allocatable    :: pzero
+    res = dumm
+    if(index(string,'.')<1)then
+      allocate(character(0)::pzero) ; pzero = trim(string)//'.0'
+      read(pzero,'(f)',err=100) tmp
+    else
+      read(string,'(f)',err=100) tmp
+    endif
+    res = tmp
 100 return
   end function tonum_float
 end module spur_string_tonum
