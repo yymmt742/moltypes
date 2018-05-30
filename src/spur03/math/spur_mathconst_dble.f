@@ -3,6 +3,7 @@ implicit none
 public
   double precision,parameter :: PI        = 3.1415926535897932384626433d0
   double precision,parameter :: ANG2RAD   = 0.0174532925199432957690768d0  ! PI/180
+  double precision,parameter :: RAD2ANG   = 180.d0 / PI                    ! 180/PI
   double precision,parameter :: HTR2KCM   = 627.509d0
   double precision,parameter :: EC2KCM    = 332.0522d0                     ! 
   double precision,parameter :: HTR2EV    = 27.21162d0
