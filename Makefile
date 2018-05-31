@@ -33,4 +33,3 @@ test:
 clean:
 	(cd src/spur03 && make clean)
 	(cd src/moltypes && make clean)
-	(cd src/moltools && make clean)

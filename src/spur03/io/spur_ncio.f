@@ -71,7 +71,8 @@ contains
   logical function NcReadOpen(this) result(res)
   class(ncio),intent(inout) :: this
   integer                   :: mode
-    res = this%isnotReading() ; if(this%isReading())RETURN
+    res = this%isnotReading()
+    if(this%isnotExist().or.this%isReading())RETURN
     call this%quit()
     mode = nf90_nowrite
     this%io = nf90_open(this%Is(),mode=mode,ncid=this%ncid)
