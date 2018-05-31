@@ -1,5 +1,0 @@
-
-*** Creating file with datasets & attributes that have reference datatypes.
-*** Checking accessing file through netCDF-4 API...ok.
-*** Tests successful!
-PASS tst_h_refs (exit status: 0)

@@ -1,5 +1,0 @@
-
-*** Checking HDF5 opaque types.
-*** Checking simple HDF5 opaque types...ok.
-*** Tests successful!
-PASS tst_h_opaques (exit status: 0)

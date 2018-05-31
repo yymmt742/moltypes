@@ -484,7 +484,7 @@ CCDEPMODE = depmode=gcc3
 CC_VERSION = /opt/intel/compilers_and_libraries_2018.1.163/linux/bin/intel64/icc
 CFLAGS = -O3 -xHost -ip -no-prec-div -static-intel -fPIC
 CODESTACK = no
-CONFIG_DATE = Tue May 22 19:07:06 JST 2018
+CONFIG_DATE = Thu May 31 17:25:49 JST 2018
 CONFIG_MODE = 
 CONFIG_USER = yymmt@yymmt.kuchem.kyoto-u.ac.jp
 CPP = icc -E
@@ -647,7 +647,7 @@ THREADSAFE = no
 TIME = time
 TR = /usr/bin/tr
 TRACE_API = no
-UNAME_INFO = Linux yymmt.kuchem.kyoto-u.ac.jp 2.6.32-696.28.1.el6.x86_64 #1 SMP Wed May 9 23:09:02 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
+UNAME_INFO = Linux yymmt.kuchem.kyoto-u.ac.jp 2.6.32-696.30.1.el6.x86_64 #1 SMP Tue May 22 03:28:18 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
 USE_FILTER_DEFLATE = yes
 USE_FILTER_SZIP = no
 USINGMEMCHECKER = no

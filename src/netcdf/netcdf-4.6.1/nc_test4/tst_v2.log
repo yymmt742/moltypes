@@ -1,5 +1,0 @@
-
-*** Testing netcdf-4 v2 API functions.
-*** testing simple opens and creates...ok.
-*** Tests successful!
-PASS tst_v2 (exit status: 0)

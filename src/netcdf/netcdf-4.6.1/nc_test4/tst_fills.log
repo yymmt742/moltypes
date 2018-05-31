@@ -1,7 +1,0 @@
-
-*** Testing fill values.
-*** testing very simple scalar string var...ok.
-*** testing fill values of one var...ok.
-*** testing fill values of lots of vars...ok.
-*** Tests successful!
-PASS tst_fills (exit status: 0)

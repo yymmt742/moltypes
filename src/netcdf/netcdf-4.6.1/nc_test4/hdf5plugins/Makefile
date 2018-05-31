@@ -249,7 +249,7 @@ CC = icc
 CCDEPMODE = depmode=gcc3
 CC_VERSION = /opt/intel/compilers_and_libraries_2018.1.163/linux/bin/intel64/icc
 CFLAGS = -O3 -xHost -ip -no-prec-div -static-intel -Difort -fPIC
-CONFIG_DATE = Tue May 22 20:24:17 JST 2018
+CONFIG_DATE = Thu May 31 17:34:53 JST 2018
 CPP = icc -E
 CPPFLAGS = -I/home/yamamoto/local/devel/github/moltypes/include -fPIC
 CYGPATH_W = echo

@@ -1,5 +1,0 @@
-
-*** Testing that this version can read data produced by old versions of netCDF.
-*** checking ref_nc_test_netcdf4_4_0.nc...
-*** All backward compatibility tests passed!
-PASS run_back_comp_tests.sh (exit status: 0)

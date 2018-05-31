@@ -1,5 +1,0 @@
-
-*** Checking HDF5 phony, secret, and underhanded dimscales. Shhh! Don't tell anyone!
-*** Creating a phony dimscale...ok.
-*** Tests successful!
-PASS tst_h_dimscales3 (exit status: 0)

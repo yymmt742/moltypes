@@ -1,5 +1,0 @@
-
-*** Checking HDF5 dimscales detach.
-*** Creating a file with two vars with one dimension scale...ok.
-*** Tests successful!
-PASS tst_h_dimscales4 (exit status: 0)

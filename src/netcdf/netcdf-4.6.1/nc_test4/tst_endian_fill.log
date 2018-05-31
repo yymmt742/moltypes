@@ -1,6 +1,0 @@
-
-*** Testing specified endiannesss fill values.
-*** testing simple case with int...ok.
-*** testing short, int, int64, and unsigned...ok.
-*** Tests successful!
-PASS tst_endian_fill (exit status: 0)

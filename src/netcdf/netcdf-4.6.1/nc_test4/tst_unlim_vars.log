@@ -1,5 +1,0 @@
-
-*** Testing netcdf-4 variable with unlimited dimensions.
-*** Testing file with one var, one unlim dim...ok.
-*** Tests successful!
-PASS tst_unlim_vars (exit status: 0)

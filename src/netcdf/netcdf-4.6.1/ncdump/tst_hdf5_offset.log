@@ -1,3 +1,0 @@
-***Pass: 512 offset
-***Pass: 1024 offset
-PASS tst_hdf5_offset.sh (exit status: 0)

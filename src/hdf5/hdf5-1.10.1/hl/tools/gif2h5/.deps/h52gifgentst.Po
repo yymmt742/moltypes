@@ -32,7 +32,8 @@ h52gifgentst.o: h52gifgentst.c /usr/include/assert.h /usr/include/features.h \
  ../../../src/H5Spublic.h ../../../src/H5FDcore.h ../../../src/H5FDdirect.h \
  ../../../src/H5FDfamily.h ../../../src/H5FDlog.h ../../../src/H5FDmpi.h \
  ../../../src/H5FDmpio.h ../../../src/H5FDmulti.h ../../../src/H5FDsec2.h \
- ../../../src/H5FDstdio.h ../../../hl/src/H5IMpublic.h
+ ../../../src/H5FDstdio.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5IMpublic.h
 
 /usr/include/assert.h:
 
@@ -194,4 +195,4 @@ h52gifgentst.o: h52gifgentst.c /usr/include/assert.h /usr/include/features.h \
 
 ../../../src/H5FDstdio.h:
 
-../../../hl/src/H5IMpublic.h:
+/home/yamamoto/local/devel/github/moltypes/include/H5IMpublic.h:

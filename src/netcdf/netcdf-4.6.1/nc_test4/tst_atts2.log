@@ -1,9 +1,0 @@
-
-*** Testing netcdf-4 attribute copies.
-*** testing compound attribute copy to different type of same name...ok.
-*** testing string attribute copy...ok.
-*** testing non-string atomic attribute copy...ok.
-*** testing simple compound attribute copy...ok.
-*** testing simple enum attribute copy...ok.
-*** Tests successful!
-PASS tst_atts2 (exit status: 0)

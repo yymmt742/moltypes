@@ -1,8 +1,0 @@
-
-*** Checking HDF5 string types.
-*** Checking scalar string attribute...ok.
-*** Checking simple HDF5 string types...ok.
-*** Checking G&S compliance...ok.
-*** Checking empty strings...ok.
-*** Tests successful!
-PASS tst_h_strings (exit status: 0)

@@ -67,7 +67,8 @@ test_file_image.o: test_file_image.c h5hltest.h ../../test/h5test.h \
  /usr/include/dirent.h /usr/include/bits/dirent.h ../../src/H5win32defs.h \
  ../../hl/src/H5HLprivate2.h ../../hl/src/hdf5_hl.h ../../hl/src/H5DOpublic.h \
  ../../hl/src/H5DSpublic.h ../../hl/src/H5LTpublic.h ../../hl/src/H5IMpublic.h \
- ../../hl/src/H5TBpublic.h ../../hl/src/H5PTpublic.h ../../hl/src/H5LDpublic.h
+ ../../hl/src/H5TBpublic.h ../../hl/src/H5PTpublic.h ../../hl/src/H5LDpublic.h \
+ /home/yamamoto/local/devel/github/moltypes/include/H5LTpublic.h
 
 h5hltest.h:
 
@@ -380,3 +381,5 @@ h5hltest.h:
 ../../hl/src/H5PTpublic.h:
 
 ../../hl/src/H5LDpublic.h:
+
+/home/yamamoto/local/devel/github/moltypes/include/H5LTpublic.h:

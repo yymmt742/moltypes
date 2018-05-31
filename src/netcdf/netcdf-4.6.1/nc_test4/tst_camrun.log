@@ -1,9 +1,0 @@
-
-*** Testing CAM output file in netCDF-4.
-*** creating file...data memory 0 MB
-before enddef data memory 3 MB
-before close data memory 23 MB
-after close data memory 22 MB
-ok.
-*** Tests successful!
-PASS tst_camrun (exit status: 0)

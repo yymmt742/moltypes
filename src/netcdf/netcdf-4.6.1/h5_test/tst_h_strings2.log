@@ -1,6 +1,0 @@
-
-*** Checking HDF5 string types even more.
-*** Checking string dataset with unlimited dimension...ok.
-*** Checking string dataset with unlimited dimension...ok.
-*** Tests successful!
-PASS tst_h_strings2 (exit status: 0)

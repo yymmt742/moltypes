@@ -1,8 +1,0 @@
-
-*** Testing netcdf-4 mapped variable functions.
-*** testing mapping with 2x2 variable...ok.
-*** testing mapping with 2x3 variable...ok.
-*** testing simple example from C Users' Guide...ok.
-*** testing transposed rh example from C Users' Guide...ok.
-*** Tests successful!
-PASS tst_varms (exit status: 0)

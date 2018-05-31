@@ -1,8 +1,0 @@
-
-*** Running ncdump bug test.
-
-*** Testing preparation of fillbug test.
-*** creating fillbug test file tst_fillbug.nc...ok.
-*** Tests successful!
-*** All ncdump bug test output for netCDF-4 format passed!
-PASS tst_fillbug.sh (exit status: 0)

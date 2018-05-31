@@ -1,6 +1,0 @@
-
-*** Testing HDF5/NetCDF-4 interoperability yet again...
-*** Checking scalar string attribute...ok.
-*** Checking a HDF5 file with scalar, fixed-length string dataset...ok.
-*** Tests successful!
-PASS tst_interops6 (exit status: 0)

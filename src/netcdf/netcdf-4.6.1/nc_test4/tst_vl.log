@@ -1,7 +1,0 @@
-
-*** Testing netcdf-4 variable length type functions.
-*** testing vlen (of ints) attribute...ok.
-*** testing vlen (of ints) variable...ok.
-*** testing vlen (of ints) attribute copy...ok.
-*** Tests successful!
-PASS tst_vl (exit status: 0)

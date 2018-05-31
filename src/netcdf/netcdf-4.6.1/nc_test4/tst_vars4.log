@@ -1,5 +1,0 @@
-
-*** Testing netcdf-4 variable functions, even more.
-**** testing Jeff's dimension problem...ok.
-*** Tests successful!
-PASS tst_vars4 (exit status: 0)

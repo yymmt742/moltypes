@@ -1,8 +1,0 @@
-
-*** Testing netcdf-4 enum type.
-*** testing creation of enum type...ok.
-*** testing enum attribute...ok.
-*** testing enum fill value ...ok.
-*** testing enum interuptus...ok.
-*** Tests successful!
-PASS tst_enums (exit status: 0)

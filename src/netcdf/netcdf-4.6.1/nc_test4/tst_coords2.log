@@ -1,6 +1,0 @@
-
-*** Testing netcdf-4 coordinate dimensions and variables, some more.
-**** testing more complex 2D coordinate variable with dimensions defined in different order...ok.
-**** testing example from bug NCF-247, multidimensional coord variable in subgroup ...ok.
-*** Tests successful!
-PASS tst_coords2 (exit status: 0)

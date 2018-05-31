@@ -275,7 +275,7 @@ hardcode_into_libs=yes
 sys_lib_search_path_spec="/opt/intel/compilers_and_libraries_2018.1.163/linux/compiler/lib/intel64_lin /usr/lib64 "
 
 # Run-time system search path for libraries.
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib64/atlas /usr/lib64/ctapi /usr/local/cuda-9.0/targets/x86_64-linux/lib /usr/local/cuda-9.1/targets/x86_64-linux/lib /usr/local/cuda-9.2/targets/x86_64-linux/lib /usr/local/lib /usr/local/lib64 /home/yamamoto/local/ifort/lib /home/yamamoto/local/gfortran63/lib /usr/lib64/mysql /usr/lib64/nvidia /usr/lib64/octave/3.4.3 /usr/lib64/qt-3.3/lib /usr/lib64/tcl8.5 /usr/lib64/xulrunner /opt/intel/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64_lin/ "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib64/atlas /usr/lib64/ctapi /usr/local/cuda-9.0/targets/x86_64-linux/lib /usr/local/cuda-9.1/targets/x86_64-linux/lib /usr/local/cuda-9.2/targets/x86_64-linux/lib /usr/local/lib /usr/local/lib64 /home/yamamoto/local/ifort/lib /home/yamamoto/local/gfortran63/lib /usr/lib64/mysql /usr/lib64/octave/3.4.3 /usr/lib64/qt-3.3/lib /usr/lib64/tcl8.5 /usr/lib64/xulrunner /opt/intel/compilers_and_libraries_2016.4.258/linux/compiler/lib/intel64_lin/ "
 
 # Whether dlopen is supported.
 dlopen_support=unknown

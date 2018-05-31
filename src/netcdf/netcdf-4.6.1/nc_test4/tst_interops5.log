@@ -1,5 +1,0 @@
-
-*** Testing HDF5/NetCDF-4 interoperability...
-*** testing HDF5 compatibility...ok.
-*** Tests successful!
-PASS tst_interops5 (exit status: 0)

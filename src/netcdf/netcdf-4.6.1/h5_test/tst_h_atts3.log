@@ -1,6 +1,0 @@
-
-*** Checking HDF5 attribute functions some more.
-*** Creating tst_xplatform2_3.nc with HDF only...ok.
-*** Checking vlen of compound file...ok.
-*** Tests successful!
-PASS tst_h_atts3 (exit status: 0)

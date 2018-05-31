@@ -1,9 +1,0 @@
-
-*** Testing netcdf-4 opaque type.
-*** testing scalar opaque variable...ok.
-*** testing opaque variable...ok.
-*** testing *really* simple opaque attribute...ok.
-*** testing opaque attribute...ok.
-*** testing 3 opaque types...ok.
-*** Tests successful!
-PASS tst_opaques (exit status: 0)

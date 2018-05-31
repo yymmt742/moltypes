@@ -1,6 +1,0 @@
-
-*** Testing netCDF attributes.
-*** testing attribute renaming for memory leak, like nc_test...ok.
-*** testing attribute renaming for memory leak, like nc_test...ok.
-*** Tests successful!
-PASS tst_atts (exit status: 0)

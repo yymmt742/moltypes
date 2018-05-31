@@ -1,7 +1,0 @@
-
-*** Testing cross-platform compound data.
-*** testing define of struct s1 compound type...ok.
-*** reading ref_tst_compound3.nc...ok.
-*** reading ref_tst_compound4.nc...ok.
-*** Tests successful!
-PASS tst_xplatform (exit status: 0)

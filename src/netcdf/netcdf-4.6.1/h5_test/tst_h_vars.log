@@ -1,9 +1,0 @@
-
-*** Checking HDF5 variable functions.
-*** Checking HDF5 boolen variables...ok.
-*** Checking HDF5 variable with unlimited dimension...ok.
-*** Checking HDF5 deflate filter setting and getting...ok.
-*** Checking HDF5 deflate, fletcher32, shuffle filter setting and getting...ok.
-*** Checking HDF5 endianness control...ok.
-*** Tests successful!
-PASS tst_h_vars (exit status: 0)

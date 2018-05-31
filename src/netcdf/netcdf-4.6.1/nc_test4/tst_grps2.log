@@ -1,6 +1,0 @@
-
-*** Testing netcdf-4 group functions.
-*** testing use of unlimited dim in parent group...ok.
-*** testing groups and unlimited dimensions...ok.
-*** Tests successful!
-PASS tst_grps2 (exit status: 0)

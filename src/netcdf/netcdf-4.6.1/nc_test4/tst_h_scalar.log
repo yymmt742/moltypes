@@ -1,6 +1,0 @@
-
-*** Creating file with datasets & attributes that have scalar dataspaces...ok.
-*** Checking accessing file through netCDF-4 API...ok.
-*** Checking revising file through netCDF-4 API...ok.
-*** Tests successful!
-PASS tst_h_scalar (exit status: 0)

@@ -1,5 +1,0 @@
-
-*** Checking HDF5 integer dataset with extension.
-*** checking 1D int dataset with extend...ok.
-*** Tests successful!
-PASS tst_h_ints (exit status: 0)

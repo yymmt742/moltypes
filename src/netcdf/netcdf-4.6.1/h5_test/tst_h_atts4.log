@@ -1,5 +1,0 @@
-
-*** Checking HDF5 attribute functions for memory leaks.
-*** Checking vlen of compound file...ok.
-*** Tests successful!
-PASS tst_h_atts4 (exit status: 0)

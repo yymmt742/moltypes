@@ -1,6 +1,0 @@
-
-*** Checking HDF5 string types some more.
-*** Checking fill value of scalar string dataset...ok.
-*** Checking string 1D dataset...ok.
-*** Tests successful!
-PASS tst_h_strings1 (exit status: 0)
