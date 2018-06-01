@@ -8,7 +8,7 @@ STATIC=$(TARGET).a
 OBJ_FILES = $(CSOURCES:.c=.o) $(FSOURCES:.f=.o)
 MOD_FILES = $(FSOURCES:.f=.mod)
 
-LDFLAGS += -L$(LIBPATH) -lfnv -lnetcdf -lnetcdff -lhdf5_hl -lhdf5 -lz -lsz -lcurl -lm
+LDFLAGS += -L$(LIBPATH) -lnetcdf -lnetcdff -lhdf5_hl -lhdf5 -lz -lsz -lcurl -lm
 CFLAGS  += -shared -fpic -O3 -xHOST -I$(INCPATH)
 FFLAGS  += -shared -fpic -O3 -xHOST -free -qopenmp -mkl -I$(INCPATH)
 
