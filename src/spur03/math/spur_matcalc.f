@@ -3,7 +3,7 @@ module spur_matcalc
 !$ use omp_lib
 implicit none
   private
-  public :: cov,idemat,refmat,det,inverse,svd,sye
+  public :: cov,idemat,refmat,det,inverse,svd,sye,gemm
 !
   interface cov
     module procedure rcov,dcov,rcovc,dcovc
@@ -32,6 +32,10 @@ implicit none
   interface sye
     module procedure ssye,dsye
   end interface sye
+!
+  interface gemm
+    module procedure SSQMATMUL,DSQMATMUL
+  end interface gemm
 contains
   pure function rcov(d1,d2,n,X,Y) result(res)
   integer,intent(in) :: d1,d2,n
@@ -224,4 +228,16 @@ contains
     deallocate(WorkSpace) ; allocate(WorkSpace(1:LWork))
     CALL DSYEV('V','L',N,A,N,EV,WorkSpace,LWork,Info)
   end subroutine DSYE
+!
+  subroutine SSQMATMUL(A,B,C,N)
+  real,intent(inout)     :: A(N,N),B(N,N),C(N,N)
+  integer,intent(in)     :: N
+    CALL SGEMM('N','N',N,N,N,1.0,A,N,B,N,0.0,C,N)
+  end subroutine SSQMATMUL
+!
+  subroutine DSQMATMUL(A,B,C,N)
+  double precision,intent(inout) :: A(N,N),B(N,N),C(N,N)
+  integer,intent(in)             :: N
+    CALL DGEMM('N','N',N,N,N,1.d0,A,N,B,N,0.d0,C,N)
+  end subroutine DSQMATMUL
 end module spur_matcalc

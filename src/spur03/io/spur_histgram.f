@@ -20,13 +20,15 @@ module spur_histgram
     procedure :: setup        => H1dSetup
     procedure,private ::         H1dStack
     procedure,private ::         H1dStackArray
-    generic   :: stack        => H1dStack,H1dStackArray
+    procedure,private ::         H1dStackArrayArray
+    generic   :: stack        => H1dStack,H1dStackArray,H1dStackArrayArray
     procedure :: Scale        => H1dScale
     procedure :: normal       => H1dNormal
     procedure :: size         => H1dSize
     procedure :: range        => H1dRange
     procedure :: hvalue       => H1dHvalue
     procedure :: export       => H1dExport
+    procedure :: clear        => H1dClear
     final     :: h1dDestractor
   end type histgram_1d
 !
@@ -207,6 +209,19 @@ contains
       this%Hist(intx) = this%Hist(intx) + lval
     enddo
   end subroutine H1dStackArray
+!
+  pure subroutine H1dStackArrayArray(this,x,val)
+  class(histgram_1d),intent(inout)     :: this
+  double precision,intent(in)          :: x(:)
+  double precision,intent(in)          :: val(:)
+  double precision                     :: lb,ub
+  integer                              :: i,intx
+    do i = lbound(x,1),ubound(x,1)
+      if(x(i)<this%lb.or.x(i)>this%ub)CYCLE
+      intx = idnint(x(i) * this%hrange(4))
+      this%Hist(intx) = this%Hist(intx) + val(i)
+    enddo
+  end subroutine H1dStackArrayArray
 !
   pure subroutine H2dStack(this,x,val)
   class(histgram_2d),intent(inout)     :: this
@@ -803,11 +818,16 @@ contains
     enddo
   end subroutine DXExport
 !
-  pure subroutine H1dDestractor(this)
-  type(histgram_1d),intent(inout) :: this
+  pure subroutine H1dClear(this)
+  class(histgram_1d),intent(inout) :: this
     if(allocated(this%Hist))deallocate(this%Hist)
     this%hrange = hrange_def
     this%nrange = [0,0,0]
+  end subroutine H1dClear
+!
+  pure subroutine H1dDestractor(this)
+  type(histgram_1d),intent(inout) :: this
+    call this%clear()
   end subroutine H1dDestractor
 !
   pure subroutine H2dDestractor(this)

@@ -12,8 +12,11 @@ public
   double precision,parameter :: EV2KCM    = 23.06d0
   double precision,parameter :: EV2NM     = 1239.84d0
   double precision,parameter :: BOHR      = 0.5291772106712d0              ! [Angstr]
-  double precision,parameter :: AU2DEBYE  = 4.803204544d0
   double precision,parameter :: ANG2BOHR  = 1.d0/BOHR
+  double precision,parameter :: AU2DEBYE  = 4.803204544d0
+  double precision,parameter :: DEBYE2AU  = 1.d0/4.803204544d0
+  double precision,parameter :: ELCON     = 8.854187817d0                  ! [10e-12 F/m]
+  double precision,parameter :: ELCHG     = 1.602176620898d0               ! [10e-19 C]
   double precision,parameter :: PLANK     = 6.62607004081d0                ! [10e-34 Js]
   double precision,parameter :: DIRAC     = 1.05457180013d0                ! [10e-34 Js]
   double precision,parameter :: ZERO      = 0.d0
