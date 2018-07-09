@@ -18,7 +18,7 @@ implicit none
   end interface refmat
 !
   interface det
-    module procedure  ddet3,rdet3
+    module procedure  ddet3,rdet3,DDETN
   end interface det
 !
   interface inverse
@@ -142,6 +142,24 @@ contains
     res = X(1,1)*X(2,2)*X(3,3)+X(1,2)*X(2,3)*X(3,1)+X(1,3)*X(2,1)*X(3,2)&
         &-X(1,3)*X(2,2)*X(3,1)-X(1,2)*X(2,1)*X(3,3)-X(1,1)*X(2,3)*X(3,2)
   end function ddet3
+!
+  function DDETN(N,A) result(res)
+  integer,intent(in)           :: N
+  double precision,intent(in)  :: A(N,N)
+  double precision             :: res,W(N,N)
+  double precision             :: WorkSpace(64*N)
+  integer                      :: ipiv(N),i
+  integer                      :: info,lwork,lda
+    lda = n
+    lwork = 64*n
+    W = A
+    CALL DGETRF(n,n,w,lda,ipiv,info)
+    res = 1.d0
+    do i=1,N
+      res = res * w(i,i)
+      if(ipiv(i)/=i) res = -res
+    enddo
+  end function DDETN
 !
   function SINVERSE(A) result(res)
   real,intent(in)     :: A(:,:)
