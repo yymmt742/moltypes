@@ -45,37 +45,41 @@ public
   double precision,parameter :: EULER     = 2.71828182845904524d0
 contains
   pure elemental function convert_si(from,to,v) result(res)
-  character(*),intent(in)              :: from,to
+  character(*),intent(in),optional     :: from,to
   double precision,intent(in),optional :: v
   double precision                     :: res
     res = ONE
     if(present(v)) res = v
 !
-    select case(from(1:1))
-    case ('P') ; res = res * FEMTO
-    case ('T') ; res = res * PICO
-    case ('G') ; res = res * NANO
-    case ('M') ; res = res * MICRO
-    case ('k') ; res = res * MILLI
-    case ('m') ; res = res * KILO
-    case ('u') ; res = res * MEGA
-    case ('n') ; res = res * GIGA
-    case ('p') ; res = res * TERA
-    case ('f') ; res = res * PETA
-    end select
+    if(present(from))then
+      select case(from(1:1))
+      case ('f') ; res = res * FEMTO
+      case ('p') ; res = res * PICO
+      case ('n') ; res = res * NANO
+      case ('u') ; res = res * MICRO
+      case ('m') ; res = res * MILLI
+      case ('k') ; res = res * KILO
+      case ('M') ; res = res * MEGA
+      case ('G') ; res = res * GIGA
+      case ('T') ; res = res * TERA
+      case ('P') ; res = res * PETA
+      end select
+    endif
 !
-    select case(to(1:1))
-    case ('f') ; res = res * FEMTO
-    case ('p') ; res = res * PICO
-    case ('n') ; res = res * NANO
-    case ('u') ; res = res * MICRO
-    case ('m') ; res = res * MILLI
-    case ('k') ; res = res * KILO
-    case ('M') ; res = res * MEGA
-    case ('G') ; res = res * GIGA
-    case ('T') ; res = res * TERA
-    case ('P') ; res = res * PETA
-    end select
+    if(present(to))then
+      select case(to(1:1))
+      case ('P') ; res = res * FEMTO
+      case ('T') ; res = res * PICO
+      case ('G') ; res = res * NANO
+      case ('M') ; res = res * MICRO
+      case ('k') ; res = res * MILLI
+      case ('m') ; res = res * KILO
+      case ('u') ; res = res * MEGA
+      case ('n') ; res = res * GIGA
+      case ('p') ; res = res * TERA
+      case ('f') ; res = res * PETA
+      end select
+    endif
   end function convert_si
 !
 end module spur_mathconst_dble
