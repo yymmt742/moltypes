@@ -82,7 +82,6 @@ contains
   subroutine XYZLoad(this,xyz,lb,ub,inc,mask)
   use spur_itertools, only : IterScope
   use spur_shapeshifter
-  use spur_string
   class(XYZFMT),intent(inout)             :: this
   real,intent(inout),allocatable,optional :: xyz(:,:,:)
   integer,intent(in),optional             :: lb,ub,inc
@@ -92,9 +91,10 @@ contains
   type(vector_chr)                        :: words
   integer                                 :: is,nmask,frame
   integer                                 :: llb,lub,linc
-  integer                                 :: i,j
+  integer                                 :: i,j,k,l,itrj
+  logical                                 :: skip
     call RoutineNameIs('XYZFMT_LOAD')
-    if(this%isErr().or.this%nnode<=0)RETURN
+    if(this%isErr().or.this%nnode<1)RETURN
     llb  = 1          ; if(present(lb))  llb  = lb
     lub  = this%nnode ; if(present(ub))  lub  = ub
     linc = 1          ; if(present(inc)) linc = inc
@@ -105,20 +105,34 @@ contains
     if(present(mask)) lmask = CompleteMask(mask,this%natoms)
     nmask = count(lmask)
 !
-    if(present(xyz))then
-      if(.not.allocated(xyz).or.LT_shape(shape(xyz),[spatial_def,nmask,frame]))then
-        if(allocated(xyz)) deallocate(xyz)
-        allocate(xyz(spatial_def,nmask,frame))
-      endif
+    if(.not.present(xyz)) RETURN
+!
+    if(.not.allocated(xyz).or.LT_shape(shape(xyz),[spatial_def,nmask,frame]))then
+      if(allocated(xyz)) deallocate(xyz)
+      allocate(xyz(spatial_def,nmask,frame))
     endif
 !
+    l = 1
     do j=1,this%nnode
       call baff%fetch(this%node(j)%is())
       call baff%load()
-      call baff%goforward(2)
-      do i=1,this%natoms
-        call words%clear() ; call words%split(baff%gets())
-        xyz(:,i,j) = tonum([words%at(2),words%at(3),words%at(4)],[0.0,0.0,0.0])
+      k = 0
+      do while(baff%SeekSuccess())
+        call baff%goforward(2)
+!
+        if(mod(l,inc)/=0)then
+          call baff%goforward(this%natoms)
+        else
+          itrj = l/inc
+          do i=1,this%natoms
+            call words%clear() ; call words%split(baff%gets())
+            if(.not.lmask(i)) CYCLE
+            k = k + 1
+            xyz(:,k,itrj) = [words%tonum(2,0.0),words%tonum(3,0.0),words%tonum(4,0.0)]
+          enddo
+        endif
+!
+        l = l + 1
       enddo
       call baff%clear() ; call baff%quit()
     enddo

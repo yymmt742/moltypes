@@ -68,6 +68,7 @@ module spur_histgram
   double precision,allocatable :: Hist(:,:,:)
   contains
     procedure :: setup        => H3dSetup
+    procedure :: size         => H3dSize
     procedure,private ::         H3dStack
     procedure,private ::         H3dStackArray
     generic   :: stack        => H3dStack,H3dStackArray
@@ -77,6 +78,8 @@ module spur_histgram
     procedure :: maxloc       => H3dMaxloc
     procedure :: export       => H3dExport
     procedure :: export_dx    => DXExport
+    procedure :: hvalue       => H3dHvalue
+    procedure :: reset        => H3dReset
     final     :: h3dDestractor
   end type histgram_3d
 !
@@ -289,6 +292,11 @@ contains
       this%Hist(intx(1),intx(2),intx(3)) = this%Hist(intx(1),intx(2),intx(3)) + lval
     enddo
   end subroutine H3dStackArray
+!
+  pure subroutine H3dReset(this)
+  class(histgram_3d),intent(inout)     :: this
+    if(.not.allocated(this%hist))RETURN ; this%Hist = 0d0
+  end subroutine H3dReset
 !
   pure subroutine H1dScale(this,factor,expornent)
   class(histgram_1d),intent(inout)     :: this
@@ -692,9 +700,14 @@ contains
   pure function H1dSize(this) result(res)
   class(histgram_1d),intent(in)    :: this
   integer                          :: res
-  integer                          :: i
     res = this%nrange(3)
   end function H1dSize
+!
+  pure function H3dSize(this) result(res)
+  class(histgram_3d),intent(in)    :: this
+  integer                          :: res(3)
+    res = this%nrange(:,3)
+  end function H3dSize
 !
   pure function H1dRange(this) result(res)
   class(histgram_1d),intent(in)    :: this
@@ -707,8 +720,14 @@ contains
   class(histgram_1d),intent(in)    :: this
   double precision                 :: res(this%nrange(3))
   integer                          :: i
-    res = [(this%hist(i),i=this%nrange(1),this%nrange(2))]
+    if(.not.allocated(this%hist))RETURN ; res = this%hist
   end function H1dHvalue
+!
+  pure function H3dHvalue(this) result(res)
+  class(histgram_3d),intent(in)    :: this
+  double precision                 :: res(this%nrange(1,3),this%nrange(2,3),this%nrange(3,3))
+    if(.not.allocated(this%hist))RETURN ; res = this%hist
+  end function H3dHvalue
 !
   subroutine H1dExport(this,path,title)
   use spur_stdio

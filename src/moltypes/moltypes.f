@@ -360,7 +360,7 @@ contains
         this%natm  = size(this%xyz,2) ; this%nframe = size(this%xyz,3)
       endif
     case(MODE_XYZ)
-      call this%xyzfmt(N_ALLOC)%load(xyz=this%xyz,lb=llb,ub=lub,inc=linc)
+      call this%xyzfmt(N_ALLOC)%load(xyz=this%xyz,lb=llb,ub=lub,inc=linc,mask=this%mask)
       if(CheckMt(this,this%xyzfmt(N_ALLOC)%iserr(),IO_FMTERR)) RETURN
       if(allocated(this%xyz))then
         this%natm  = size(this%xyz,2) ; this%nframe = size(this%xyz,3)

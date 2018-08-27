@@ -27,16 +27,16 @@ contains
   type(stdio)                          :: fout
   integer                              :: i,j
     call RoutineNameIs('EXPORT_XYZFORMAT')
-    if(CheckAbort(natm<=0,IO_NATOMERR))RETURN
+    if(CheckAbort(natm<1,IO_NATOMERR)) RETURN
     call fout%fetch(path)
     if(present(overwrite))then
       if(overwrite.and.path/='') call fout%generate()
     endif
-    call fout%append()
+    if(path/='') call fout%append()
  
     allocate(character(0)::lffmt,ltitle)
     if(present(ffmt))then  ; lffmt  = '(A,3'//ffmt//')'
-    else ; lffmt  = '(A,3F9.3)'  ; endif
+    else ; lffmt  = '(A,3F16.9)'  ; endif
     if(present(title))then ; ltitle = title
     else ; ltitle = DEFAULT_NAME ; endif
     do j=1,nframe
