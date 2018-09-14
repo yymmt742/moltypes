@@ -294,15 +294,49 @@ contains
        &     allocated(this%xyz),allocated(this%vel),allocated(this%frc), &
        &     allocated(this%box).or.allocated(this%ang),allocated(this%time))
       endif
-      call ExportAmberNetcdf(fpath%is(),this%natm,this%nframe,    &
-         &                   this%xyz,this%vel,this%frc,             &
-         &                   dble(this%box),dble(this%ang),this%time)
+      if(allocated(this%box))then
+        if(allocated(this%ang))then
+          call ExportAmberNetcdf(fpath%is(),this%natm,this%nframe,      &
+             &                   this%xyz,this%vel,this%frc,            &
+             &                   box=dble(this%box),ang=dble(this%ang), &
+             &                   time=this%time)
+        else
+          call ExportAmberNetcdf(fpath%is(),this%natm,this%nframe,       &
+             &                   this%xyz,this%vel,this%frc,             &
+             &                   box=dble(this%box),time=this%time)
+        endif
+      else
+        if(allocated(this%ang))then
+          call ExportAmberNetcdf(fpath%is(),this%natm,this%nframe,       &
+             &                   this%xyz,this%vel,this%frc,             &
+             &                   ang=dble(this%ang),time=this%time)
+        else
+          call ExportAmberNetcdf(fpath%is(),this%natm,this%nframe,       &
+             &                   this%xyz,this%vel,this%frc,             &
+             &                   time=this%time)
+        endif
+      endif
 !   case('mdcrd','crd')
 !     call ExportMdcrd(fpath%is(),this%natm(),this%nframe(),          &
 !    &                 this%xyz(),this%box(),this%boxang(),overwrite=lo)
     case('rst7','restrt')
-      call ExportRST7(fpath%is(),this%natm,this%nframe,this%xyz,this%vel, &
-     &                this%box,this%ang,this%time)
+      if(allocated(this%box))then
+        if(allocated(this%ang))then
+          call ExportRST7(fpath%is(),this%natm,this%nframe,this%xyz,this%vel, &
+         &                box=this%box,ang=this%ang,time=this%time)
+        else
+          call ExportRST7(fpath%is(),this%natm,this%nframe,this%xyz,this%vel, &
+         &                box=this%box,time=this%time)
+        endif
+      else
+        if(allocated(this%ang))then
+          call ExportRST7(fpath%is(),this%natm,this%nframe,this%xyz,this%vel, &
+         &                ang=this%ang,time=this%time)
+        else
+          call ExportRST7(fpath%is(),this%natm,this%nframe,this%xyz,this%vel, &
+         &                time=this%time)
+        endif
+      endif
     case default
       if(allocated(this%xyz)) call ExportXYZ(fpath%is(),this%natm,this%nframe,this%xyz,this%inq('name','XX  '),overwrite=lo)
     end select

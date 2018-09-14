@@ -281,7 +281,8 @@ contains
       if(present(ang))then
         call ncout%put('cell_lengths',dummy_box(cell_spatial,nframe),from=[1,frame])
         if(all(shape(ang)>=[spatial,nframe]))then
-          call ncout%put('cell_angles',ang(1:cell_spatial,1:nframe),from=[1,frame])
+          !call ncout%put('cell_angles',ang(1:cell_spatial,1:nframe),from=[1,frame])
+          call ncout%put('cell_angles',dummy_ang(cell_spatial,nframe),from=[1,frame])
         else
           call ncout%put('cell_angles',dummy_ang(cell_spatial,nframe),from=[1,frame])
         endif
