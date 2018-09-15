@@ -29,6 +29,10 @@ get_hash.o: get_hash.o
 .SUFFIXES:.o .f
 	$(FC) -c $(FFLAGS) $(LDFLAGS) $<
 
+.PHONY: test
+test:
+	cd string/test && make test
+
 .PHONY: clean
 clean:
 	$(RM) $(OBJ_FILES) $(MOD_FILES) $(SHARED) $(STATIC)

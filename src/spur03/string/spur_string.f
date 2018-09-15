@@ -7,7 +7,7 @@ module spur_string
   use spur_string_join
   implicit none
   private
-  public :: neaten, digit, tostr, tonum, padding, join
+  public  :: neaten,large,small,digit,tostr,tonum,padding,join
 !
   interface digit
     module procedure  digit_byte,digit_int2,digit_int4,digit_int8,digit_chr
@@ -29,17 +29,4 @@ module spur_string
   interface join
     module procedure  join_byte, join_int2, join_int4, join_chr
   end interface join
-contains
-  pure function neaten(string,let) result(res)
-  character(*),intent(in)          :: string
-  character(*),intent(in),optional :: let
-  character(digit(string))         :: res
-    res = adjustl(trim(string))
-    if(present(let))then
-      select case(let(1:1))
-      case('u','U') ;  res = large(res)
-      case('l','L') ;  res = small(res)
-      end select
-    endif
-  end function neaten
-end module spur_String
+end module spur_string

@@ -1,11 +1,26 @@
 module spur_string_neaten
   implicit none
-  public large,upperword,small,lowerword
+  public neaten,large,upperword,small,lowerword
 contains
+  pure function neaten(string,let) result(res)
+  character(*),intent(in)          :: string
+  character(*),intent(in),optional :: let
+  character(:),allocatable         :: res
+    allocate(character(len_trim(adjustl(string)))::res)
+    res(:) = trim(adjustl(string))
+    if(present(let))then
+      select case(let(1:1))
+      case('u','U') ;  res(:) = large(res)
+      case('l','L') ;  res(:) = small(res)
+      end select
+    endif
+  end function neaten
+!
   pure function large(string) result(res)
   character(*), intent(in) :: string
-  character(len(string))   :: res
+  character(:),allocatable :: res
   integer                  :: i
+    allocate(character(len(string))::res)
     do i=1,len(string)
       res(i:i) = UpperWord(string(i:i))
     enddo
@@ -21,10 +36,11 @@ contains
     endif
   end function UpperWord
 !
-  pure function Small(String) result(res)
-  character(*), intent(in) :: String
-  character(len(string))   :: res
+  pure function small(string) result(res)
+  character(*), intent(in) :: string
+  character(:),allocatable :: res
   integer                  :: i
+    allocate(character(len(string))::res)
     do i=1,len(string)
       res(i:i) = LowerWord(string(i:i))
     enddo
